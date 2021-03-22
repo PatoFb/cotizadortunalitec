@@ -17,31 +17,31 @@
             <p>{{ __('Dashboard') }}</p>
         </a>
       </li>
-      <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }}">
+        <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">
+            <a class="nav-link" href="{{ route('profile.edit') }}">
+                <i class="material-icons">person</i>
+                <p>{{ __('Perfil') }}</p>
+            </a>
+        </li>
+      <li class="nav-item {{ ($activePage == 'usuarios') ? ' active' : '' }}">
         <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">
-            <i class="material-icons">account_circle</i>
-          <p>{{ __('Usuarios') }}
+            <i class="material-icons">settings_application</i>
+          <p>{{ __('Admin') }}
             <b class="caret"></b>
           </p>
         </a>
         <div class="collapse show" id="laravelExample">
           <ul class="nav">
-            <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('profile.edit') }}">
-                <span class="sidebar-mini"> UP </span>
-                <span class="sidebar-normal">{{ __('Perfil de usuario') }} </span>
-              </a>
-            </li>
-            <li class="nav-item{{ $activePage == 'user-management' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('user.index') }}">
-                <span class="sidebar-mini"> UM </span>
+            <li class="nav-item{{ $activePage == 'usuarios' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ route('users.index') }}">
+                <span class="sidebar-mini"> U </span>
                 <span class="sidebar-normal"> {{ __('Usuarios') }} </span>
               </a>
             </li>
           </ul>
         </div>
       </li>
-        <li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">
+        {{--<li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">
             <a class="nav-link" href="{{ route('table') }}">
                 <i class="material-icons">payments</i>
                 <p>{{ __('Cotizar') }}</p>
@@ -82,7 +82,7 @@
           <i class="material-icons">language</i>
           <p>{{ __('RTL Support') }}</p>
         </a>
-      </li>
+      </li>--}}
     </ul>
   </div>
 </div>

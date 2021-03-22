@@ -19,7 +19,7 @@
             </li>
             <li>
                 <a href="https://www.creative-tim.com/license">
-                    {{ __('Licenses') }}
+                    {{ __('Licencias') }}
                 </a>
             </li>
         </ul>

@@ -23,7 +23,7 @@
             </div>--}}
           </div>
           <div class="card-body">
-            <p class="card-description text-center">{{ __('Or Sign in with ') }} <strong>admin@material.com</strong> {{ __(' and the password ') }}<strong>secret</strong> </p>
+            {{--<p class="card-description text-center"><strong>admin@material.com</strong> {{ __(' password: ') }}<strong>secret</strong> </p>--}}
             <div class="bmd-form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
               <div class="input-group">
                 <div class="input-group-prepend">
@@ -54,21 +54,21 @@
                 </div>
               @endif
             </div>
-            <div class="form-check mr-auto ml-3 mt-3">
+            {{--<div class="form-check mr-auto ml-3 mt-3">
               <label class="form-check-label">
                 <input class="form-check-input" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Recordarme') }}
                 <span class="form-check-sign">
                   <span class="check"></span>
                 </span>
               </label>
-            </div>
+            </div>--}}
           </div>
           <div class="card-footer justify-content-center">
             <button type="submit" class="btn btn-primary btn-link btn-lg">{{ __('Iniciar Sesion') }}</button>
           </div>
         </div>
       </form>
-      <div class="row">
+      {{--<div class="row">
         <div class="col-6">
             @if (Route::has('password.request'))
                 <a href="{{ route('password.request') }}" class="text-light">
@@ -76,7 +76,7 @@
                 </a>
             @endif
         </div>
-      </div>
+      </div>--}}
     </div>
   </div>
 </div>
