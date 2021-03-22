@@ -15,7 +15,7 @@ class CreateCurtainsTable extends Migration
     {
         Schema::create('curtains', function (Blueprint $table) {
             $table->id();
-            $table->integer('cantidad');
+            $table->integer('quantity');
             $table->bigInteger('order_id')->unsigned()->index()->nullable(true);
             $table->bigInteger('model_id')->unsigned()->index()->nullable(true);
             $table->float('price')->nullable()->default(0);

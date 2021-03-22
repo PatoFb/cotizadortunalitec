@@ -48,7 +48,7 @@
 
                             <div class="row">
                                 <div class="form-group col-sm-10 col-lg-10">
-                                    {!! Form::submit('Submit', ['class'=>'btn btn-primary']) !!}
+                                    {!! Form::submit('Aceptar', ['class'=>'btn btn-primary']) !!}
                                 </div>
 
 
