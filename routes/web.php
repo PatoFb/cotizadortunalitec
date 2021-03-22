@@ -56,6 +56,10 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('admin/users', 'App\Http\Controllers\UsersController', ['except' => ['show']]);
+    Route::resource('admin/controls', 'App\Http\Controllers\CurtainControlsController', ['except' => ['show']]);
+    Route::resource('admin/types', 'App\Http\Controllers\TypesController', ['except' => ['show']]);
+    Route::resource('admin/canopies', 'App\Http\Controllers\CurtainCanopiesController', ['except' => ['show']]);
+    Route::resource('admin/handles', 'App\Http\Controllers\CurtainHandlesController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);

@@ -23,7 +23,8 @@
                 <p>{{ __('Perfil') }}</p>
             </a>
         </li>
-      <li class="nav-item {{ ($activePage == 'usuarios') ? ' active' : '' }}">
+      <li class="nav-item {{ ($activePage == 'usuarios') || ($activePage == 'controles_cortina') || ($activePage == 'tipos') || ($activePage == 'tejaillos_cortina')
+                              || ($activePage == 'manivelas_cortina') ? ' active' : '' }}">
         <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">
             <i class="material-icons">settings_application</i>
           <p>{{ __('Admin') }}
@@ -38,6 +39,30 @@
                 <span class="sidebar-normal"> {{ __('Usuarios') }} </span>
               </a>
             </li>
+              <li class="nav-item{{ $activePage == 'tipos' ? ' active' : '' }}">
+                  <a class="nav-link" href="{{ route('types.index') }}">
+                      <span class="sidebar-mini"> TP </span>
+                      <span class="sidebar-normal"> {{ __('Tipos de productos') }} </span>
+                  </a>
+              </li>
+              <li class="nav-item{{ $activePage == 'controles_cortina' ? ' active' : '' }}">
+                  <a class="nav-link" href="{{ route('controls.index') }}">
+                      <span class="sidebar-mini"> CC </span>
+                      <span class="sidebar-normal"> {{ __('Controles para cortina') }} </span>
+                  </a>
+              </li>
+              <li class="nav-item{{ $activePage == 'tejadillos_cortina' ? ' active' : '' }}">
+                  <a class="nav-link" href="{{ route('canopies.index') }}">
+                      <span class="sidebar-mini"> T </span>
+                      <span class="sidebar-normal"> {{ __('Tejadillos') }} </span>
+                  </a>
+              </li>
+              <li class="nav-item{{ $activePage == 'manivelas_cortina' ? ' active' : '' }}">
+                  <a class="nav-link" href="{{ route('handles.index') }}">
+                      <span class="sidebar-mini"> M </span>
+                      <span class="sidebar-normal"> {{ __('Manivelas') }} </span>
+                  </a>
+              </li>
           </ul>
         </div>
       </li>

@@ -21,7 +21,7 @@ class CreateOrdersTable extends Migration
             $table->string('comments')->nullable(true)->default("Sin comentarios");
             $table->bigInteger('user_id')->unsigned()->index()->nullable(true);
             $table->float('price')->nullable(true)->default(0);
-            $table->float('descuento')->nullable(true)->default(0);
+            $table->float('discount')->nullable(true)->default(0);
             $table->float('total')->nullable(true)->default(0);
             $table->timestamps();
         });
