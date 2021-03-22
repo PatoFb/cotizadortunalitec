@@ -2,20 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UsersEditRequest;
+use App\Http\Requests\UsersRequest;
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $users = User::all();
-        return view('users.index', compact('users'));
+        $users = User::orderBy('name')->paginate(20);
+        return view('admin.users.index', compact('users'));
     }
 
     /**
@@ -25,7 +28,8 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        $roles = Role::pluck('name', 'id')->all();
+        return view('admin.users.create', compact('roles'));
     }
 
     /**
@@ -34,9 +38,12 @@ class UsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UsersRequest $request)
     {
-        //
+        $input = $request->all();
+        $input['password'] = bcrypt($request->password);
+        User::create($input);
+        return redirect('/admin/users')->withStatus(__('Usuario añadido correctamente'));
     }
 
     /**
@@ -58,7 +65,9 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $roles = Role::pluck('name', 'id')->all();
+        $user = User::findOrFail($id);
+        return view('admin.users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -68,9 +77,17 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UsersEditRequest $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+        if(trim($request->password) == ''){
+            $input = $request->except('password', 'confirm_password');
+        } else {
+            $input = $request->all();
+            $input['password'] = bcrypt($request->password);
+        }
+        $user->update($input);
+        return redirect('/admin/users')->withStatus('Usuario editado correctamente');
     }
 
     /**
@@ -81,6 +98,8 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect('/admin/users')->withStatus('Usuario eliminado correctamente');
     }
 }

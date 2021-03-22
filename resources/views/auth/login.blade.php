@@ -54,21 +54,21 @@
                 </div>
               @endif
             </div>
-            <div class="form-check mr-auto ml-3 mt-3">
+            {{--<div class="form-check mr-auto ml-3 mt-3">
               <label class="form-check-label">
                 <input class="form-check-input" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Recordarme') }}
                 <span class="form-check-sign">
                   <span class="check"></span>
                 </span>
               </label>
-            </div>
+            </div>--}}
           </div>
           <div class="card-footer justify-content-center">
             <button type="submit" class="btn btn-primary btn-link btn-lg">{{ __('Iniciar Sesion') }}</button>
           </div>
         </div>
       </form>
-      <div class="row">
+      {{--<div class="row">
         <div class="col-6">
             @if (Route::has('password.request'))
                 <a href="{{ route('password.request') }}" class="text-light">
@@ -76,7 +76,7 @@
                 </a>
             @endif
         </div>
-      </div>
+      </div>--}}
     </div>
   </div>
 </div>

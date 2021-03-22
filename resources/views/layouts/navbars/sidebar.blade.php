@@ -33,7 +33,7 @@
         <div class="collapse show" id="laravelExample">
           <ul class="nav">
             <li class="nav-item{{ $activePage == 'usuarios' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('user.index') }}">
+              <a class="nav-link" href="{{ route('users.index') }}">
                 <span class="sidebar-mini"> U </span>
                 <span class="sidebar-normal"> {{ __('Usuarios') }} </span>
               </a>
@@ -41,7 +41,7 @@
           </ul>
         </div>
       </li>
-        <li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">
+        {{--<li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">
             <a class="nav-link" href="{{ route('table') }}">
                 <i class="material-icons">payments</i>
                 <p>{{ __('Cotizar') }}</p>
@@ -82,7 +82,7 @@
           <i class="material-icons">language</i>
           <p>{{ __('RTL Support') }}</p>
         </a>
-      </li>
+      </li>--}}
     </ul>
   </div>
 </div>
