@@ -23,6 +23,12 @@
                 <p>{{ __('Perfil') }}</p>
             </a>
         </li>
+        <li class="nav-item{{ $activePage == 'contact' ? ' active' : '' }}">
+            <a class="nav-link" href="{{ route('contact') }}">
+                <i class="material-icons">contact_page</i>
+                <p>{{ __('Contacto') }}</p>
+            </a>
+        </li>
       <li class="nav-item {{ ($activePage == 'usuarios') || ($activePage == 'controles_cortina') || ($activePage == 'tipos') || ($activePage == 'tejaillos_cortina')
                               || ($activePage == 'manivelas_cortina') || ($activePage == 'modelos_cortina') || ($activePage == 'cubiertas_cortina') ? ' active' : '' }}">
         <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">
