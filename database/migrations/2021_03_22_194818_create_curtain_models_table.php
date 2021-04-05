@@ -23,7 +23,7 @@ class CreateCurtainModelsTable extends Migration
             $table->float('max_width');
             $table->float('max_height');
             $table->float('base_price');
-            $table->integer('photo')->nullable(true);
+            $table->string('photo')->nullable(true);
             $table->timestamps();
         });
     }

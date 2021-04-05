@@ -37,8 +37,16 @@ class CurtainCoversController extends Controller
      */
     public function store(CurtainCoversRequest $request)
     {
-        $cover = $request->all();
-        CurtainCover::create($cover);
+        $input = $request->all();
+        $file = $request->file('photo');
+        if($file != '') {
+            $name = $file->getClientOriginalName();
+            $input['photo'] = $name;
+            $request->photo->storeAs('public/images/', $name);
+        } else {
+            $input['photo'] = 'default-avatar.png';
+        }
+        CurtainCover::create($input);
         return redirect('/admin/covers')->withStatus(__('Cubierta guardada correctamente'));
     }
 
@@ -76,6 +84,14 @@ class CurtainCoversController extends Controller
     {
         $cover = CurtainCover::findOrFail($id);
         $input = $request->all();
+        $file = $request->file('photo');
+        if($file != '') {
+            $name = $file->getClientOriginalName();
+            $input['photo'] = $name;
+            $request->photo->storeAs('public/images/', $name);
+        } else {
+            $input['photo'] = $cover->photo;
+        }
         $cover->update($input);
         return redirect('/admin/covers')->withStatus(__('Cubierta actualizada correctamente'));
     }
