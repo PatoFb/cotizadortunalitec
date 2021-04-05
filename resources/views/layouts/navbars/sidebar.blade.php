@@ -24,7 +24,7 @@
             </a>
         </li>
       <li class="nav-item {{ ($activePage == 'usuarios') || ($activePage == 'controles_cortina') || ($activePage == 'tipos') || ($activePage == 'tejaillos_cortina')
-                              || ($activePage == 'manivelas_cortina') ? ' active' : '' }}">
+                              || ($activePage == 'manivelas_cortina') || ($activePage == 'modelos_cortina') || ($activePage == 'cubiertas_cortina') ? ' active' : '' }}">
         <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">
             <i class="material-icons">settings_application</i>
           <p>{{ __('Admin') }}
@@ -49,6 +49,12 @@
                   <a class="nav-link" href="{{ route('models.index') }}">
                       <span class="sidebar-mini"> MC </span>
                       <span class="sidebar-normal"> {{ __('Modelos de cortina') }} </span>
+                  </a>
+              </li>
+              <li class="nav-item{{ $activePage == 'cubiertas_cortina' ? ' active' : '' }}">
+                  <a class="nav-link" href="{{ route('covers.index') }}">
+                      <span class="sidebar-mini"> CU </span>
+                      <span class="sidebar-normal"> {{ __('Cubiertas para cortina') }} </span>
                   </a>
               </li>
               <li class="nav-item{{ $activePage == 'controles_cortina' ? ' active' : '' }}">

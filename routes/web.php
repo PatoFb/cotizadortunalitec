@@ -61,6 +61,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('admin/canopies', 'App\Http\Controllers\CurtainCanopiesController', ['except' => ['show']]);
     Route::resource('admin/handles', 'App\Http\Controllers\CurtainHandlesController', ['except' => ['show']]);
     Route::resource('admin/models', 'App\Http\Controllers\CurtainModelsController', ['except' => ['show']]);
+    Route::resource('admin/covers', 'App\Http\Controllers\CurtainCoversController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
