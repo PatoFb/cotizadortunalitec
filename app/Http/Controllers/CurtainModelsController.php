@@ -39,8 +39,16 @@ class CurtainModelsController extends Controller
      */
     public function store(CurtainModelsRequest $request)
     {
-        $model = $request->all();
-        CurtainModel::create($model);
+        $input = $request->all();
+        $file = $request->file('photo');
+        if($file != '') {
+            $name = $file->getClientOriginalName();
+            $input['photo'] = $name;
+            $request->photo->storeAs('public/images/', $name);
+        } else {
+            $input['photo'] = 'default-avatar.png';
+        }
+        CurtainModel::create($input);
         return redirect('/admin/models')->withStatus(__('Modelo agregado correctamente'));
     }
 
@@ -79,6 +87,14 @@ class CurtainModelsController extends Controller
     {
         $model = CurtainModel::findOrFail($id);
         $input = $request->all();
+        $file = $request->file('photo');
+        if($file != '') {
+            $name = $file->getClientOriginalName();
+            $input['photo'] = $name;
+            $request->photo->storeAs('public/images/', $name);
+        } else {
+            $input['photo'] = $model->photo;
+        }
         $model->update($input);
         return redirect('/admin/models')->withStatus(__('Modelo actualizado correctamente'));
     }

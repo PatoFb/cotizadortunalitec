@@ -36,6 +36,16 @@
                         {!! Form::number('price', null, ['class'=>'form-control']) !!}
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="form-group col-sm-12 col-lg-12">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="inputGroupFile01" lang="es" name="photo">
+                            <label class="custom-file-label" for="inputGroupFile01">Seleccionar imagen</label>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="row">
                     <div class="form-group col-sm-12 col-lg-12">
                         {!! Form::submit('Agregar cubierta', ['class'=>'btn btn-primary pull-right']) !!}

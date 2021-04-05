@@ -22,7 +22,7 @@
                 <table class="table">
                   <thead class=" text-primary">
                     <tr>
-                        <th class="text-center">ID</th>
+                        <th class="text-center">Imagen</th>
                         <th class="text-center">Nombre</th>
                         <th class="text-center">Ancho de rollo</th>
                         <th class="text-center">Uniones</th>
@@ -35,7 +35,17 @@
                   @if($covers)
                       @foreach($covers as $cover)
                   <tr>
-                        <td class="text-center">{{$cover->id}}</td>
+                      <td>
+                          @if($cover->photo == '')
+                              <span class="avatar avatar-sm rounded-circle">
+                                <img src="{{asset('material')}}/img/defaut-avatar.png" alt="" style="max-width: 80px; border-radiu: 100px">
+                            </span>
+                          @else
+                              <span class="avatar avatar-sm rounded-circle">
+                                <img src="{{asset('storage')}}/images/{{$cover->photo}}" alt="" style="max-width: 80px; border-radiu: 100px">
+                            </span>
+                          @endif
+                      </td>
                         <td class="text-center">{{$cover->name}}</td>
                       <td class="text-center">{{$cover->roll_width}}</td>
                       <td class="text-center">{{$cover->unions}}</td>

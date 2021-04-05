@@ -22,7 +22,7 @@
                 <table class="table">
                   <thead class=" text-primary">
                     <tr>
-                        <th class="text-center">ID</th>
+                        <th class="text-center">Imagen</th>
                         <th class="text-center">Nombre</th>
                         <th class="text-center">Tipo</th>
                         <th class="text-center">Res max vs viento</th>
@@ -38,7 +38,17 @@
                   @if($models)
                       @foreach($models as $model)
                   <tr>
-                        <td class="text-center">{{$model->id}}</td>
+                      <td>
+                          @if($model->photo == '')
+                              <span class="avatar avatar-sm rounded-circle">
+                                <img src="{{asset('material')}}/img/defaut-avatar.png" alt="" style="max-width: 80px; border-radiu: 100px">
+                            </span>
+                          @else
+                              <span class="avatar avatar-sm rounded-circle">
+                                <img src="{{asset('storage')}}/images/{{$model->photo}}" alt="" style="max-width: 80px; border-radiu: 100px">
+                            </span>
+                          @endif
+                      </td>
                         <td class="text-center">{{$model->name}}</td>
                       <td class="text-center">{{$model->type->name}}</td>
                       <td class="text-center">{{$model->max_resistance}}</td>

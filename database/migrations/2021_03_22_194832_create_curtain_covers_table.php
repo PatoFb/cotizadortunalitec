@@ -19,7 +19,7 @@ class CreateCurtainCoversTable extends Migration
             $table->float('roll_width');
             $table->string('unions');
             $table->float('price');
-            $table->integer('photo')->nullable(true);
+            $table->string('photo')->nullable(true);
             $table->timestamps();
         });
     }
