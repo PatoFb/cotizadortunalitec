@@ -42,7 +42,7 @@
                             <div class="row">
                                 <div class="form-group {{ $errors->has('role') ? ' has-danger' : '' }} col-sm-6 col-lg-6">
                                     {!! Form::label('role_id', 'Rol:' )  !!}
-                                    {!! Form::select('role_id', [''=>'Select role'] + $roles, null, ['class' => 'form-control' ]) !!}
+                                    {!! Form::select('role_id', [''=>'Seleccionar rol'] + $roles, null, ['class' => 'form-control' ]) !!}
                                 </div>
                             </div>
 

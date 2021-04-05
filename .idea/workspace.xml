@@ -2,23 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/curtains/canopies/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/curtains/canopies/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/curtains/controls/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/curtains/controls/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/curtains/covers/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/curtains/covers/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/curtains/handles/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/curtains/handles/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/curtains/models/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/curtains/models/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/types/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/types/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_22_195001_create_curtains_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_22_195001_create_curtains_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_22_195013_create_orders_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_22_195013_create_orders_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainModelsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CurtainModelsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/curtains/models/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/curtains/models/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/curtains/models/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/curtains/models/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/users/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/users/create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/users/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/users/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/users/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/users/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/navbars/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/navbars/sidebar.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
@@ -160,22 +149,22 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/admin" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/admin/curtains/models" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\admin" />
-      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\admin\curtains" />
-      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\admin\curtains\controls" />
-      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views" />
-      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\users" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\admin\curtains" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\admin" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\public\material\img" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\admin\curtains\models" />
+      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\admin" />
+      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\admin\curtains" />
+      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\admin\curtains\controls" />
+      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views" />
     </key>
   </component>
   <component name="RunManager">
@@ -198,7 +187,9 @@
       <workItem from="1614879700321" duration="39000" />
       <workItem from="1616088609106" duration="5249000" />
       <workItem from="1616110692296" duration="2108000" />
-      <workItem from="1616442367487" duration="13534000" />
+      <workItem from="1616442367487" duration="15559000" />
+      <workItem from="1617579959902" duration="409000" />
+      <workItem from="1617644551639" duration="2426000" />
     </task>
     <servers />
   </component>
@@ -210,21 +201,21 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2561" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1616453819067" />
-    <state x="2610" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1616455755255">
+    <state x="2610" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1617646007877">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2610" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1616455755255" />
+    <state x="2610" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1617646007877" />
     <state x="2627" y="367" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1616444039766">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2627" y="367" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1616444039766" />
-    <state x="2660" y="275" key="FileChooserDialogImpl" timestamp="1616445833456">
+    <state x="2660" y="275" key="FileChooserDialogImpl" timestamp="1617644613677">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2660" y="275" key="FileChooserDialogImpl/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1616445833456" />
-    <state x="2576" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1616442369045">
+    <state x="2660" y="275" key="FileChooserDialogImpl/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1617644613677" />
+    <state x="2576" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1617644554204">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2576" y="344" key="com.intellij.ide.util.TipDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1616442369045" />
+    <state x="2576" y="344" key="com.intellij.ide.util.TipDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1617644554204" />
   </component>
 </project>
