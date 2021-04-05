@@ -45,6 +45,12 @@
                       <span class="sidebar-normal"> {{ __('Tipos de productos') }} </span>
                   </a>
               </li>
+              <li class="nav-item{{ $activePage == 'modelos_cortina' ? ' active' : '' }}">
+                  <a class="nav-link" href="{{ route('models.index') }}">
+                      <span class="sidebar-mini"> MC </span>
+                      <span class="sidebar-normal"> {{ __('Modelos de cortina') }} </span>
+                  </a>
+              </li>
               <li class="nav-item{{ $activePage == 'controles_cortina' ? ' active' : '' }}">
                   <a class="nav-link" href="{{ route('controls.index') }}">
                       <span class="sidebar-mini"> CC </span>

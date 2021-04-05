@@ -18,7 +18,7 @@ class CurtainModel extends Model
     protected $fillable = [
         'name',
         'description',
-        'typo_id',
+        'type_id',
         'max_resistance',
         'production_time',
         'max_width',
