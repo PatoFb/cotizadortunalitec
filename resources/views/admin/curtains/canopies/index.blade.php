@@ -14,19 +14,15 @@
             </div>
             <div class="card-body">
                                   {!! Form::open(['method'=>'POST', 'action'=>'App\Http\Controllers\CurtainCanopiesController@store']) !!}
-                                  <div class="row">
-                                      <div class="form-group col-lg-12 col-sm-12">
+                                  <div class="form-group">
                                           {!! Form::label('price', 'Precio:') !!}
                                           {!! Form::number('price', null, ['class'=>'form-control', 'step'=>0.01]) !!}
-                                      </div>
                                   </div>
-                                  <div class="row">
-                                      <div class="form-group col-12 text-right">
+                                      <div class="form-group text-right">
                                           {!! Form::submit('Agregar Tejadillo', ['class'=>'btn btn-primary btn-sm']) !!}
                                       </div>
 
                                       {!! Form::close() !!}
-                                  </div>
               <div class="table-responsive">
                 <table class="table">
                   <thead class=" text-primary">

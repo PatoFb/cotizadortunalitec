@@ -74,7 +74,7 @@ class TypesController extends Controller
      */
     public function update(TypesRequest $request, $id)
     {
-        $type = TypesRequest::findOrFail($id);
+        $type = Type::findOrFail($id);
         $input = $request->all();
         $type->update($input);
         return redirect('/admin/types')->withStatus(__('Tipo editado correctamente'));
