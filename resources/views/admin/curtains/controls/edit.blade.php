@@ -13,22 +13,22 @@
                         </div>
                         <div class="card-body">
                             {!! Form::model($control, ['method'=>'PATCH', 'action'=>['App\Http\Controllers\CurtainControlsController@update', $control->id]]) !!}
-                            <div class="row">
-                                <div class="form-group col-lg-6 col-sm-6">
+                            <div class="form-row">
+                                <div class="col-lg-6 col-sm-12">
                                     {!! Form::label('name', 'Nombre:') !!}
                                     {!! Form::text('name', null, ['class'=>'form-control']) !!}
                                 </div>
 
-                                <div class="form-group col-lg-6 col-sm-6">
+                                <div class="col-md-6 col-sm-12">
                                     {!! Form::label('price', 'Precio:') !!}
                                     {!! Form::number('price', null, ['class'=>'form-control', 'step'=>0.01]) !!}
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <div class="form-group col-sm-10 col-lg-10">
+                            <div class="form-row float-right">
+
                                     {!! Form::submit('Aceptar', ['class'=>'btn btn-primary']) !!}
-                                </div>
+
 
 
 
@@ -37,10 +37,10 @@
 
                                 {!! Form::open(['method'=>'DELETE', 'action'=>['App\Http\Controllers\CurtainControlsController@destroy', $control->id]]) !!}
 
-                                <div class="form-group">
+
                                     {!! Form::submit('Eliminar', ['class'=>'btn btn-danger float-right']) !!}
                                     {!! Form::close() !!}
-                                </div>
+
                             </div>
                         </div>
                         {!! Form::close() !!}

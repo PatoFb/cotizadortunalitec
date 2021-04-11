@@ -14,19 +14,19 @@
             </div>
             <div class="card-body">
                                   {!! Form::open(['method'=>'POST', 'action'=>'App\Http\Controllers\TypesController@store']) !!}
-                                  <div class="row">
-                                      <div class="form-group col-lg-12 col-sm-12">
-                                          {!! Form::label('name', 'Nombre:') !!}
-                                          {!! Form::text('name', null, ['class'=>'form-control']) !!}
+
+                                      <div class="form-group">
+                                          <label for="typeName">Name:</label>
+                                          {!! Form::text('name', null, ['class'=>'form-control', 'id'=>'typeName']) !!}
                                       </div>
-                                  </div>
-                                  <div class="row">
-                                      <div class="form-group col-12 text-right">
+
+
+                                      <div class="form-group text-right">
                                           {!! Form::submit('Agregar Tipo', ['class'=>'btn btn-primary btn-sm']) !!}
                                       </div>
 
                                       {!! Form::close() !!}
-                                  </div>
+
               <div class="table-responsive">
                 <table class="table">
                   <thead class=" text-primary">
