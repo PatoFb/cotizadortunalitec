@@ -2,16 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/orders/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/orders/show.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/all()" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainCoversController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CurtainCoversController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainModelsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CurtainModelsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrdersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OrdersController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TypesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TypesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/users/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/users/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/curtains/review.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/curtains/review.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/orders/new.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/orders/new.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delete()" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/update($input)" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/withStatus(__('Control" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +195,7 @@
       <workItem from="1616442367487" duration="15559000" />
       <workItem from="1617579959902" duration="409000" />
       <workItem from="1617644551639" duration="9812000" />
-      <workItem from="1618128921863" duration="53054000" />
+      <workItem from="1618128921863" duration="55053000" />
     </task>
     <servers />
   </component>
@@ -203,6 +203,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="2607" y="323" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1618217706351">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2607" y="323" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618217706351" />
     <state x="2561" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1616453819067">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>

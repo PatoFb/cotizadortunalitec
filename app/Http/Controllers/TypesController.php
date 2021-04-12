@@ -29,6 +29,17 @@ class TypesController extends Controller
         return view('products.type', compact('order_id', 'types'));
     }
 
+    /**
+     * Funtion to select the type of product to add to order. For now it's only possible to add curtains but the switch is already implemented
+     * for when I add the other types.
+     *
+     * In case you select a non valid one, you will be redirected back, if not, you'll go to the model selection page (CurtainsController)
+     *
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+
     public function productTypePost(Request $request, $id)
     {
         $order_id = $id;

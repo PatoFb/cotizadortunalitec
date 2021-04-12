@@ -39,7 +39,9 @@ class CurtainCoversController extends Controller
     public function store(CurtainCoversRequest $request)
     {
         $input = $request->all();
+        //get file from the input
         $file = $request->file('photo');
+        //check if file isn't null. If it is, assign a default value, if it isn't, get and store the name and then save the file in the disk
         if($file != '') {
             $name = $file->getClientOriginalName();
             $input['photo'] = $name;
@@ -85,7 +87,9 @@ class CurtainCoversController extends Controller
     {
         $cover = CurtainCover::findOrFail($id);
         $input = $request->all();
+        //get file value from input
         $file = $request->file('photo');
+        //check if file isn't null. If it is, assign the same value it had, if it isn't, get and store the name and then save the file in the disk
         if($file != '') {
             $name = $file->getClientOriginalName();
             $input['photo'] = $name;
