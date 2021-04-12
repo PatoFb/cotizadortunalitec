@@ -1,4 +1,4 @@
-@extends('layouts.app', ['class' => 'off-canvas-sidebar', 'activePage' => 'contacto', 'titlePage' => __('Contacto')])
+@extends('layouts.app', ['activePage' => 'contacto', 'titlePage' => __('Contacto')])
 
 @section('content')
     <div class="content">
