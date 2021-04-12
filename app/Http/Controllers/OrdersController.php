@@ -22,7 +22,7 @@ class OrdersController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Call to post view to make order
      *
      * @return \Illuminate\Http\Response
      */
@@ -33,18 +33,25 @@ class OrdersController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Function to create a new order, get the ID and pass it on the URI
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * Forget a session (used for testing but left it just in case)
+     *
+     * You will be sent to the next step, selecting a type of product (TypesController)
+     *
+     * Added some validation
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     *
      */
-    public function store(Request $request)
-    {
-
-    }
-
     public function newOrderPost(Request $request)
     {
+        $request->validate([
+            'invoice_data' => 'required',
+            'activity'=>'required',
+            'project'=>'required'
+        ]);
         $user = Auth::user();
         $order = $request->all();
         $order['user_id'] = $user->id;
