@@ -122,9 +122,14 @@ class CurtainsController extends Controller
 
     public function reviewPost(Request $request, $id)
     {
+        $order_id = $id;
         $curtain = $request->session()->get('curtain');
         $curtain->save();
+        $order = Order::findOrFail($id);
+        $order->price = $order->price + $curtain['price'];
+        $order->total = $order->total + ($curtain['price']*(1 - ($order->discount/100)));
+        $order->save();
         $request->session()->forget('curtain');
-        return redirect()->route('orders.show', $curtain['order_id']);
+        return redirect()->route('orders.show', $order_id);
     }
 }

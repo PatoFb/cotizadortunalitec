@@ -2,35 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/alerts/error_form.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/curtains/cover.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/curtains/data.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/curtains/features.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/curtains/model.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/curtains/review.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/orders/new.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/products/type.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/orders/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/orders/show.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainCoversController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CurtainCoversController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainModelsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CurtainModelsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrdersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OrdersController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TypesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TypesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/CurtainCoversRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/CurtainCoversRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/CurtainModelsRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/CurtainModelsRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Curtain.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Curtain.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/curtains/covers/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/curtains/covers/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/curtains/covers/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/curtains/covers/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/curtains/covers/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/curtains/covers/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/curtains/models/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/curtains/models/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/curtains/models/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/curtains/models/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/curtains/models/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/curtains/models/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/types/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/types/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/contact.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contact.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/navbars/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/navbars/sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/profile/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/profile/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/users/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/users/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/curtains/review.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/curtains/review.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/orders/new.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/orders/new.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -172,16 +152,16 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/curtains" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/orders" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\orders" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\curtains" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\alerts" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\products" />
-      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\orders" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\product" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -215,7 +195,7 @@
       <workItem from="1616442367487" duration="15559000" />
       <workItem from="1617579959902" duration="409000" />
       <workItem from="1617644551639" duration="9812000" />
-      <workItem from="1618128921863" duration="48752000" />
+      <workItem from="1618128921863" duration="53054000" />
     </task>
     <servers />
   </component>

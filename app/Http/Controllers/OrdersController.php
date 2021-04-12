@@ -49,8 +49,10 @@ class OrdersController extends Controller
         $order = $request->all();
         $order['user_id'] = $user->id;
         Order::create($order);
+        $orderObj = Order::where('user_id', $user->id)->orderBy('id', 'DESC')->first();
+        $order_id = $orderObj->id;
         $request->session()->forget('curtain');
-        return redirect()->route('orders.type');
+        return redirect()->route('orders.type', $order_id);
     }
 
     /**
@@ -61,7 +63,8 @@ class OrdersController extends Controller
      */
     public function show($id)
     {
-
+        $order = Order::findOrFail($id);
+        return view('orders.show', compact('order'));
     }
 
     /**

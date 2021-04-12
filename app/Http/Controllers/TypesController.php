@@ -21,12 +21,10 @@ class TypesController extends Controller
         return view('admin.types.index', compact('types'));
     }
 
-    public function productType()
+    public function productType($id)
     {
         $user = Auth::user();
-        $order['user_id'] = $user->id;
-        $orderObj = Order::where('user_id', $user->id)->orderBy('id', 'DESC')->first();
-        $order_id = $orderObj->id;
+        $order_id = $id;
         $types = Type::pluck('name', 'id')->all();
         return view('products.type', compact('order_id', 'types'));
     }
@@ -39,7 +37,7 @@ class TypesController extends Controller
                 return redirect()->route('curtain.model', $order_id);
                 break;
             default:
-                return redirect()->route('orders.type')->withStatus(__('Elija un producto válido'));
+                return redirect()->route('orders.type', $order_id)->withStatus(__('Elija un producto válido'));
                 break;
         }
     }
