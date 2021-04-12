@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CurtainCoversEditRequest;
 use App\Http\Requests\CurtainCoversRequest;
 use App\Models\CurtainCover;
 use Illuminate\Http\Request;
@@ -80,7 +81,7 @@ class CurtainCoversController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CurtainCoversRequest $request, $id)
+    public function update(CurtainCoversEditRequest $request, $id)
     {
         $cover = CurtainCover::findOrFail($id);
         $input = $request->all();

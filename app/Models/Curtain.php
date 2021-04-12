@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Curtain extends Model
 {
-    public function curtain_model() {
+    public function model() {
         return $this->belongsTo('App\Models\CurtainModel');
     }
 
@@ -15,11 +15,11 @@ class Curtain extends Model
         return $this->belongsTo('App\Models\Orden');
     }
 
-    public function cubierta() {
+    public function cover() {
         return $this->belongsTo('App\Models\CurtainCover');
     }
 
-    public function manivela() {
+    public function handle() {
         return $this->belongsTo('App\Models\CurtainHandle');
     }
 
@@ -27,7 +27,7 @@ class Curtain extends Model
         return $this->belongsTo('App\Models\CurtainControl');
     }
 
-    public function tejadillo() {
+    public function canopy() {
         return $this->belongsTo('App\Models\CurtainCanopy');
     }
 

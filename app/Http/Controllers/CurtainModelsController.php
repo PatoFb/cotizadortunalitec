@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CurtainModelsEditRequest;
 use App\Http\Requests\CurtainModelsRequest;
 use App\Models\CurtainModel;
 use App\Models\Type;
@@ -83,7 +84,7 @@ class CurtainModelsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CurtainModelsRequest $request, $id)
+    public function update(CurtainModelsEditRequest $request, $id)
     {
         $model = CurtainModel::findOrFail($id);
         $input = $request->all();

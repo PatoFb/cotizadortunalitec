@@ -1,11 +1,17 @@
-@extends('layouts.app', ['class' => 'off-canvas-sidebar', 'activePage' => 'home', 'title' => __('Material Dashboard')])
+@extends('layouts.app', ['activePage' => 'home', 'titlePage' => __('Bienvenido')])
 
 @section('content')
-<div class="container" style="height: auto;">
-  <div class="row justify-content-center">
-      <div class="col-lg-7 col-md-8">
-          <h1 class="text-white text-center">{{ __('Bienvenido al cotizador Tunalitec.') }}</h1>
+    <div class="content">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+      <div class="card">
+          <div class="card-body text-center">
+          <h2>{{ __('Bienvenido al cotizador Tunalitec.') }}</h2>
+          </div>
       </div>
   </div>
+    </div>
+</div>
 </div>
 @endsection

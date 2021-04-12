@@ -32,6 +32,7 @@ class CurtainModelsRequest extends FormRequest
             'max_width'=>'required',
             'max_height'=>'required',
             'base_price'=>'required',
+            'photo'=>'required|max:10000|mimes:jpg,png,jpeg'
         ];
     }
 }

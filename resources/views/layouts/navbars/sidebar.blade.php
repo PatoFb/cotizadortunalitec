@@ -11,16 +11,28 @@
   </div>
   <div class="sidebar-wrapper">
     <ul class="nav">
-      <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
+      {{--<li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('home') }}">
           <i class="material-icons">dashboard</i>
             <p>{{ __('Dashboard') }}</p>
         </a>
-      </li>
+      </li>--}}
         <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">
             <a class="nav-link" href="{{ route('profile.edit') }}">
                 <i class="material-icons">person</i>
                 <p>{{ __('Perfil') }}</p>
+            </a>
+        </li>
+        <li class="nav-item{{ $activePage == 'orders' ? ' active' : '' }}">
+            <a class="nav-link" href="{{ route('orders.new') }}">
+                <i class="material-icons">add_shopping_cart</i>
+                <p>{{ __('Crear orden') }}</p>
+            </a>
+        </li>
+        <li class="nav-item{{ $activePage == 'myorders' ? ' active' : '' }}">
+            <a class="nav-link" href="{{ route('orders.index') }}">
+                <i class="material-icons">list</i>
+                <p>{{ __('Mis ordenes') }}</p>
             </a>
         </li>
         <li class="nav-item{{ $activePage == 'contact' ? ' active' : '' }}">
@@ -31,13 +43,13 @@
         </li>
       <li class="nav-item {{ ($activePage == 'usuarios') || ($activePage == 'controles_cortina') || ($activePage == 'tipos') || ($activePage == 'tejaillos_cortina')
                               || ($activePage == 'manivelas_cortina') || ($activePage == 'modelos_cortina') || ($activePage == 'cubiertas_cortina') ? ' active' : '' }}">
-        <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">
+        <a class="nav-link" data-toggle="collapse" href="#admin" aria-expanded="true">
             <i class="material-icons">settings_application</i>
           <p>{{ __('Admin') }}
             <b class="caret"></b>
           </p>
         </a>
-        <div class="collapse show" id="laravelExample">
+        <div class="collapse show" id="admin">
           <ul class="nav">
             <li class="nav-item{{ $activePage == 'usuarios' ? ' active' : '' }}">
               <a class="nav-link" href="{{ route('users.index') }}">

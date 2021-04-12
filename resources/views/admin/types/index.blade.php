@@ -16,7 +16,7 @@
                                   {!! Form::open(['method'=>'POST', 'action'=>'App\Http\Controllers\TypesController@store']) !!}
 
                                       <div class="form-group">
-                                          <label for="typeName">Name:</label>
+                                          <label for="typeName">Nombre:</label>
                                           {!! Form::text('name', null, ['class'=>'form-control', 'id'=>'typeName']) !!}
                                       </div>
 

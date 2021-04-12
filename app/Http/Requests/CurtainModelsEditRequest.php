@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CurtainCoversRequest extends FormRequest
+class CurtainModelsEditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,10 +25,14 @@ class CurtainCoversRequest extends FormRequest
     {
         return [
             'name'=>'required',
-            'roll_width'=>'required',
-            'unions'=>'required',
-            'price'=>'required',
-            'photo'=>'required|max:10000|mimes:jpg,png,jpeg'
+            'description'=>'required',
+            'type_id'=>'required',
+            'max_resistance'=>'required',
+            'production_time'=>'required',
+            'max_width'=>'required',
+            'max_height'=>'required',
+            'base_price'=>'required',
+            'photo'=>'max:10000|mimes:jpg,png,jpeg'
         ];
     }
 }

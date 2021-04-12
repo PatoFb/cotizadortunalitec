@@ -12,7 +12,7 @@
               {{--<p class="card-category"> Here you can manage users</p>--}}
             </div>
             <div class="card-body">
-                {!! Form::open(['method'=>'POST', 'action'=>'App\Http\Controllers\CurtainCoversController@store']) !!}
+                {!! Form::open(['method'=>'POST', 'action'=>'App\Http\Controllers\CurtainCoversController@store', 'files'=>true]) !!}
                     <div class="form-group">
                         {!! Form::label('name', 'Nombre:') !!}
                         {!! Form::text('name', null, ['class'=>'form-control']) !!}
@@ -37,13 +37,13 @@
                 <br>
 
                 {!! Form::label('photo', 'Imagen:') !!}
-                <div class="fileinput fileinput-new" data-provides="fileinput">
+                <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                     <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
                     <div>
-        <span class="btn btn-raised btn-round btn-primary btn-file">
-            <input type="file" name="photo" />
-        </span>
-                        <a href="#" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                        <span class="btn btn-raised btn-round btn-primary btn-file">
+                            <input type="file" name="photo" />
+                        </span>
+                        {{--<a href="#" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>--}}
                     </div>
                 </div>
 

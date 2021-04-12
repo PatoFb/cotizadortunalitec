@@ -12,7 +12,7 @@
               {{--<p class="card-category"> Here you can manage users</p>--}}
             </div>
             <div class="card-body">
-                {!! Form::open(['method'=>'POST', 'action'=>'App\Http\Controllers\CurtainModelsController@store']) !!}
+                {!! Form::open(['method'=>'POST', 'action'=>'App\Http\Controllers\CurtainModelsController@store', 'files'=>true]) !!}
                 <div class="form-row">
                     <div class="col-sm-6 col-md-6">
                         {!! Form::label('name', 'Nombre:') !!}
@@ -39,12 +39,12 @@
 
                     <div class="col-sm-6 col-md-3">
                         {!! Form::label('max_width', 'Ancho máximo:' )  !!}
-                        {!! Form::number('max_width', null, ['class'=>'form-control']) !!}
+                        {!! Form::number('max_width', null, ['class'=>'form-control', "step"=>0.1]) !!}
                     </div>
 
                     <div class="col-sm-6 col-md-3">
                         {!! Form::label('max_height', 'Caída máxima:' )  !!}
-                        {!! Form::number('max_height', null, ['class'=>'form-control']) !!}
+                        {!! Form::number('max_height', null, ['class'=>'form-control', "step"=>0.1]) !!}
                     </div>
                 </div>
 <br>
@@ -62,13 +62,13 @@
 <br>
 
                 {!! Form::label('photo', 'Imagen:') !!}
-                <div class="fileinput fileinput-new" data-provides="fileinput">
-                    <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+                <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                    <div class="fileinput-preview fileinput-exists thumbnail img-raised" style="max-width: 400px;"></div>
                     <div>
-        <span class="btn btn-raised btn-round btn-primary btn-file">
-            <input type="file" name="photo" />
-        </span>
-                        <a href="#" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                        <span class="btn btn-raised btn-round btn-primary btn-file">
+                            <input type="file" name="photo" />
+                        </span>
+                        {{--<a href="#" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>--}}
                     </div>
                 </div>
 

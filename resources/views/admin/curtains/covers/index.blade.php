@@ -22,7 +22,7 @@
                 <table class="table">
                   <thead class=" text-primary">
                     <tr>
-                        <th class="text-center">Imagen</th>
+                        <th>Imagen</th>
                         <th class="text-center">Nombre</th>
                         <th class="text-center">Ancho de rollo</th>
                         <th class="text-center">Uniones</th>

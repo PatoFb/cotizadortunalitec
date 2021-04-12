@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TypesRequest;
+use App\Models\Order;
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TypesController extends Controller
 {
@@ -17,6 +19,29 @@ class TypesController extends Controller
     {
         $types = Type::all();
         return view('admin.types.index', compact('types'));
+    }
+
+    public function productType()
+    {
+        $user = Auth::user();
+        $order['user_id'] = $user->id;
+        $orderObj = Order::where('user_id', $user->id)->orderBy('id', 'DESC')->first();
+        $order_id = $orderObj->id;
+        $types = Type::pluck('name', 'id')->all();
+        return view('products.type', compact('order_id', 'types'));
+    }
+
+    public function productTypePost(Request $request, $id)
+    {
+        $order_id = $id;
+        switch ($request['type_id']){
+            case 1:
+                return redirect()->route('curtain.model', $order_id);
+                break;
+            default:
+                return redirect()->route('orders.type')->withStatus(__('Elija un producto válido'));
+                break;
+        }
     }
 
     /**
