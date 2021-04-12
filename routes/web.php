@@ -63,7 +63,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('admin/controls', 'App\Http\Controllers\CurtainControlsController', ['except' => ['show']]);
     Route::resource('admin/types', 'App\Http\Controllers\TypesController', ['except' => ['show']]);
 
-    Route::get('orders/type', 'App\Http\Controllers\TypesController@productType')->name('orders.type');
+    Route::get('orders/type/{id}', 'App\Http\Controllers\TypesController@productType')->name('orders.type');
     Route::post('orders/type/{id}', 'App\Http\Controllers\TypesController@productTypePost')->name('orders.type.post');
 
     Route::get('orders/{id}/curtain/model', 'App\Http\Controllers\CurtainsController@addModel')->name('curtain.model');

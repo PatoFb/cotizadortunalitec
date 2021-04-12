@@ -13,10 +13,10 @@
             </div>
             <div class="card-body">
                               <div class="row">
-                <div class="col-12 text-right">
-                  <a href="{{route('users.create')}}" class="btn btn-sm btn-primary">Agregar usuario</a>
+                    <div class="col-12 text-right">
+                        <a href="{{route('users.create')}}" class="btn btn-sm btn-primary">Agregar usuario</a>
+                    </div>
                 </div>
-              </div>
               <div class="table-responsive">
                 <table class="table">
                   <thead class=" text-primary">

@@ -17,39 +17,43 @@
                     <table class="table">
                         <tr>
                             <td class="text-center">Modelo:</td>
-                            <td class="text-center""><strong>{{$curtain->model->name}}</strong></td>
+                            <td><strong>{{$curtain->model->name}}</strong></td>
                         </tr>
                         <tr>
                             <td class="text-center">Cubierta:</td>
-                            <td class="text-center"><strong>{{$curtain->cover->name}}</strong></td>
+                            <td><strong>{{$curtain->cover->name}}</strong></td>
                         </tr>
                         <tr>
                             <td class="text-center">Ancho:</td>
-                            <td class="text-center"><strong>{{$curtain->width}} mts</strong></td>
+                            <td><strong>{{$curtain->width}} mts</strong></td>
                         </tr>
                         <tr>
                             <td class="text-center">Caida:</td>
-                            <td class="text-center"><strong>{{$curtain->height}} mts</strong></td>
+                            <td><strong>{{$curtain->height}} mts</strong></td>
                         </tr>
                         <tr>
                             <td class="text-center">Tejadillo:</td>
-                            <td class="text-center"><strong>{{$curtain->canopy->price}}</strong></td>
+                            <td><strong>{{$curtain->canopy->price}}</strong></td>
                         </tr>
                         <tr>
                             <td class="text-center">Manivela:</td>
-                            <td class="text-center"><strong>{{$curtain->handle->measure}}</strong></td>
+                            <td><strong>{{$curtain->handle->measure}}</strong></td>
                         </tr>
                         <tr>
                             <td class="text-center">Control:</td>
-                            <td class="text-center"><strong>{{$curtain->control->name}}</strong></td>
+                            <td><strong>{{$curtain->control->name}}</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">Precio unitario:</td>
+                            <td><strong>${{number_format($curtain->price/$curtain->quantity, 2)}}</strong></td>
                         </tr>
                         <tr>
                             <td class="text-center">Cantidad:</td>
-                            <td class="text-center"><strong>{{$curtain->quantity}}</strong></td>
+                            <td><strong>{{$curtain->quantity}}</strong></td>
                         </tr>
                         <tr>
                             <td class="text-center">Total:</td>
-                            <td class="text-center"><strong>${{number_format($curtain->price, 2)}}</strong></td>
+                            <td><strong>${{number_format($curtain->price, 2)}}</strong></td>
                         </tr>
                     </table>
                 </div>
