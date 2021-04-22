@@ -36,12 +36,14 @@
                         <th>
                             Descuento
                         </th>
-                        <th>
+                        <th class="text-right">
                             Total
                         </th>
+                        @if($order->activity == "Orden")
                     <th class="text-right">
-                      Eliminar
+                      Acciones
                     </th>
+                            @endif
                   </tr></thead>
                   <tbody>
                   <tr>
@@ -50,13 +52,15 @@
                       <td>{{$order->invoice_data}}</td>
                       <td>${{number_format($order->price, 2)}}</td>
                       <td>{{$order->discount}}%</td>
-                      <td>${{number_format($order->total, 2)}}</td>
+                      <td class="text-right">${{number_format($order->total, 2)}}</td>
+                      @if($order->activity == "Orden")
                         <td class="td-actions text-right">
-                            <a rel="tooltip" class="btn btn-danger btn-link" href="{{route('orders.destroy', $order->id)}}" data-original-title="" title="">
-                              <i class="material-icons">delete</i>
+                            <a rel="tooltip" class="btn btn-success btn-link" href="{{route('orders.destroy', $order->id)}}" data-original-title="" title="">
+                              Enviar
                               <div class="ripple-container"></div>
                             </a>
                         </td>
+                          @endif
                       </tr>
                   </tbody>
                 </table>

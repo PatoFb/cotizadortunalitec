@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Curtain;
 use App\Models\Order;
 use App\Models\Type;
 use Illuminate\Http\Request;
@@ -82,7 +83,8 @@ class OrdersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $order = Order::findOrFail($id);
+        return view('orders.edit', compact('order'));
     }
 
     /**
@@ -94,7 +96,10 @@ class OrdersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $order = Order::findOrFail($id);
+        $input = $request->all();
+        $order->update($input);
+        return redirect('orders/'.$id)->withStatus('Orden editada correctamente');
     }
 
     /**
@@ -105,6 +110,12 @@ class OrdersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $order = Order::findOrFail($id);
+        $curtains = Curtain::where('order_id', $id)->get();
+        foreach($curtains as $curtain){
+            $curtain->delete();
+        }
+        $order->delete();
+        return redirect('orders/')->withStatus('Orden eliminada correctamente');
     }
 }
