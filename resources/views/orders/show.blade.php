@@ -55,10 +55,7 @@
                       <td class="text-right">${{number_format($order->total, 2)}}</td>
                       @if($order->activity == "Orden")
                         <td class="td-actions text-right">
-                            <a rel="tooltip" class="btn btn-success btn-link" href="{{route('orders.destroy', $order->id)}}" data-original-title="" title="">
-                              Enviar
-                              <div class="ripple-container"></div>
-                            </a>
+                            <button type="button" class="btn btn-success btn-link" data-toggle="modal" data-target="#sendModal">Enviar</button>
                         </td>
                           @endif
                       </tr>
@@ -69,6 +66,26 @@
           </div>
       </div>
     </div>
+      <div class="modal fade" id="sendModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Enviar orden</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      Seguro que desea enviar su orden a Tunalitec? Pasará a revisión y un colaborador se pondrá en contacto con usted.
+                  </div>
+                  <div class="modal-footer">
+                      <a class="btn btn-success" href="{{route('orders.send', $order->id)}}" data-original-title="" title="">
+                          Enviar
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </div>
   </div>
 </div>
     @endsection

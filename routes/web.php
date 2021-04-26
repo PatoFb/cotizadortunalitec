@@ -84,6 +84,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('orders/new', 'App\Http\Controllers\OrdersController@newOrder')->name('orders.new');
     Route::post('orders/new', 'App\Http\Controllers\OrdersController@newOrderPost')->name('orders.new.post');
 
+    Route::get('orders/{id}/send', 'App\Http\Controllers\OrdersController@send')->name('orders.send');
+
 
     Route::resource('admin/canopies', 'App\Http\Controllers\CurtainCanopiesController', ['except' => ['show']]);
     Route::resource('admin/handles', 'App\Http\Controllers\CurtainHandlesController', ['except' => ['show']]);

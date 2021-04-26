@@ -86,6 +86,7 @@
                       {!! Form::open(['method'=>'DELETE', 'action'=>['App\Http\Controllers\OrdersController@destroy', $order->id]]) !!}
                       {!! Form::submit('Eliminar', ['class'=>'btn btn-danger']) !!}
                       {!! Form::close() !!}
+
                   </div>
               </div>
           </div>
