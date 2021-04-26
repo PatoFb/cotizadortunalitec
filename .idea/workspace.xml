@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrdersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OrdersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/curtains/models/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/curtains/models/edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/orders/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/orders/show.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -146,7 +144,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/orders" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
@@ -192,7 +190,10 @@
       <workItem from="1618128921863" duration="59238000" />
       <workItem from="1618266449693" duration="620000" />
       <workItem from="1618289426977" duration="4463000" />
-      <workItem from="1619067282686" duration="4334000" />
+      <workItem from="1619067282686" duration="6659000" />
+      <workItem from="1619134370941" duration="208000" />
+      <workItem from="1619196899555" duration="629000" />
+      <workItem from="1619458059952" duration="1212000" />
     </task>
     <servers />
   </component>
@@ -216,13 +217,13 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2627" y="367" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1616444039766" />
-    <state x="2660" y="275" key="FileChooserDialogImpl" timestamp="1618289471814">
+    <state x="2660" y="275" key="FileChooserDialogImpl" timestamp="1619196906335">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2660" y="275" key="FileChooserDialogImpl/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618289471814" />
-    <state x="2576" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1618289432886">
+    <state x="2660" y="275" key="FileChooserDialogImpl/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1619196906335" />
+    <state x="2576" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1619458060302">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2576" y="344" key="com.intellij.ide.util.TipDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618289432886" />
+    <state x="2576" y="344" key="com.intellij.ide.util.TipDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1619458060302" />
   </component>
 </project>
