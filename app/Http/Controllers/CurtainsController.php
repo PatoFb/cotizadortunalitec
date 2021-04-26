@@ -242,4 +242,21 @@ class CurtainsController extends Controller
         $request->session()->forget('curtain');
         return redirect()->route('orders.show', $order_id);
     }
+
+    /**
+     * Delete a curtain from an order and subtract the total price
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function destroy($id)
+    {
+        $curtain = Curtain::findOrFail($id);
+        $order = Order::where('id', $curtain->order_id)->first();
+        $order->price = $order->price - $curtain->price;
+        $order->total = $order->price - ($order->price * ($order->discount/100));
+        $order->save();
+        $curtain->delete();
+        return redirect()->back()->withStatus('Producto eliminado correctamente');
+    }
 }
