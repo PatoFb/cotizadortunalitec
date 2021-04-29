@@ -66,7 +66,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('orders/type/{id}', 'App\Http\Controllers\TypesController@productType')->name('orders.type');
     Route::post('orders/type/{id}', 'App\Http\Controllers\TypesController@productTypePost')->name('orders.type.post');
 
-    Route::get('orders/{id}/curtain/model', 'App\Http\Controllers\CurtainsController@addModel')->name('curtain.model');
+    /*Route::get('orders/{id}/curtain/model', 'App\Http\Controllers\CurtainsController@addModel')->name('curtain.model');
     Route::post('orders/{id}/curtain/model', 'App\Http\Controllers\CurtainsController@addModelPost')->name('curtain.model.post');
 
     Route::get('orders/{id}/curtain/cover', 'App\Http\Controllers\CurtainsController@addCover')->name('curtain.cover');
@@ -79,7 +79,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('orders/{id}/curtain/features', 'App\Http\Controllers\CurtainsController@addFeaturesPost')->name('curtain.features.post');
 
     Route::get('orders/{id}/curtain/review', 'App\Http\Controllers\CurtainsController@review')->name('curtain.review');
-    Route::post('orders/{id}/curtain/review', 'App\Http\Controllers\CurtainsController@reviewPost')->name('curtain.review.post');
+    Route::post('orders/{id}/curtain/review', 'App\Http\Controllers\CurtainsController@reviewPost')->name('curtain.review.post');*/
+
+    Route::get('orders/{id}/curtain/add', 'App\Http\Controllers\CurtainsController@add')->name('curtain.add');
+    Route::post('orders/{id}/curtain/add', 'App\Http\Controllers\CurtainsController@save')->name('curtain.save');
 
     Route::get('orders/new', 'App\Http\Controllers\OrdersController@newOrder')->name('orders.new');
     Route::post('orders/new', 'App\Http\Controllers\OrdersController@newOrderPost')->name('orders.new.post');
