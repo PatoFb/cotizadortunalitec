@@ -96,7 +96,40 @@
                         </div>
 
                     </div>
+                    @if($order->activity == "Pedido")
+                    <br>
+                    <h6>Datos para producción (solo requeridos para pedidos)</h6>
+                    <div class="form-row">
+                        <div class="col-md-4 col-sm-12">
+                            {!! Form::label('installation_type', 'Tipo de instalación:') !!}
+                            <select class="form-control" name="installation_type">
+                                <option value=""></option>
+                                <option>Pared</option>
+                                <option>Techo</option>
+                                <option>Entre muros</option>
+                            </select>
+                        </div>
 
+                        <div class="col-md-4 col-sm-12">
+                            {!! Form::label('mechanism_side', 'Lado de mecanismo:') !!}
+                            <select class="form-control" name="mechanism_side" >
+                                <option value=""></option>
+                                <option>Izquierdo</option>
+                                <option>Derecho</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-4 col-sm-12">
+                            {!! Form::label('view_type', 'Tipo de vista:') !!}
+                            <select class="form-control" name="view_type" >
+                                <option value=""></option>
+                                <option>Exterior</option>
+                                <option>Interior</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    @endif
                 </div>
                 <div class="col-md-6 col-sm-6">
                     <h4>Detalles</h4>

@@ -28,9 +28,6 @@
                                       Actividad
                                   </th>
                                   <th>
-                                      Datos de facturación
-                                  </th>
-                                  <th>
                                       Precio
                                   </th>
                                   <th>
@@ -39,7 +36,7 @@
                                   <th class="text-right">
                                       Total
                                   </th>
-                                  @if($order->activity == "Orden")
+                                  @if($order->activity == "Pedido")
                                       <th class="text-right">
                                           Acciones
                                       </th>
@@ -49,11 +46,10 @@
                               <tr>
                                   <td>{{$order->project}}</td>
                                   <td>{{$order->activity}}</td>
-                                  <td>{{$order->invoice_data}}</td>
                                   <td>${{number_format($order->price, 2)}}</td>
                                   <td>{{$order->discount}}%</td>
                                   <td class="text-right">${{number_format($order->total, 2)}}</td>
-                                  @if($order->activity == "Orden")
+                                  @if($order->activity == "Pedido")
                                       <td class="td-actions text-right">
                                           <button type="button" class="btn btn-success btn-link" data-toggle="modal" data-target="#sendModal">Enviar</button>
                                       </td>

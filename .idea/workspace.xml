@@ -4,9 +4,14 @@
     <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TypesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TypesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrdersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OrdersController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Order.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_22_195013_create_orders_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_22_195013_create_orders_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/curtains/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/curtains/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/orders/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/orders/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/orders/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/orders/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/orders/new.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/orders/new.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/orders/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/orders/show.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,7 +203,7 @@
       <workItem from="1619196899555" duration="629000" />
       <workItem from="1619458059952" duration="5707000" />
       <workItem from="1619479736688" duration="238000" />
-      <workItem from="1619712398018" duration="2444000" />
+      <workItem from="1619712398018" duration="5785000" />
     </task>
     <servers />
   </component>

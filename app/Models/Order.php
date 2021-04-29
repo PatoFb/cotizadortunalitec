@@ -18,7 +18,6 @@ class Order extends Model
     protected $fillable = [
         'project',
         'activity',
-        'invoice_data',
         'comments',
         'user_id',
         'price',

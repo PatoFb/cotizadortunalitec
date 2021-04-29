@@ -18,27 +18,45 @@ class CurtainsController extends Controller
     public function add($id)
     {
         $order_id = $id;
+        $order = Order::findOrFail($id);
         $models = CurtainModel::all();
         $covers = CurtainCover::all();
         $handles = CurtainHandle::all();
         $canopies = CurtainCanopy::all();
         $controls = CurtainControl::all();
-        return view('curtains.create', compact('order_id', 'models', 'covers', 'handles', 'canopies', 'controls'));
+        return view('curtains.create', compact('order_id', 'models', 'covers', 'handles', 'canopies', 'controls', 'order'));
     }
 
     public function save(Request $request, $id)
     {
         $order_id = $id;
-        $validatedData = $request->validate([
-            'model_id' => 'required',
-            'cover_id' => 'required',
-            'width' => 'required',
-            'height' => 'required',
-            'handle_id' => 'required',
-            'canopy_id' => 'required',
-            'control_id' => 'required',
-            'quantity' => 'required'
-        ]);
+        $order = Order::findOrFail($id);
+        if($order->activity == "Pedido") {
+            $validatedData = $request->validate([
+                'model_id' => 'required',
+                'cover_id' => 'required',
+                'width' => 'required',
+                'height' => 'required',
+                'handle_id' => 'required',
+                'canopy_id' => 'required',
+                'control_id' => 'required',
+                'quantity' => 'required',
+                'installation_type' => 'required',
+                'mechanism_side' => 'required',
+                'view_type' => 'required'
+            ]);
+        } else {
+            $validatedData = $request->validate([
+                'model_id' => 'required',
+                'cover_id' => 'required',
+                'width' => 'required',
+                'height' => 'required',
+                'handle_id' => 'required',
+                'canopy_id' => 'required',
+                'control_id' => 'required',
+                'quantity' => 'required',
+            ]);
+        }
         $curtain = new Curtain();
         $curtain['order_id'] = $order_id;
         $curtain->fill($validatedData);
@@ -49,7 +67,6 @@ class CurtainsController extends Controller
         $cover = CurtainCover::where('id', $curtain['cover_id'])->first();
         $curtain['price'] = ($handle->price + $canopy->price + $control->price + $model->base_price + $cover->price) * $curtain['quantity'];
         $curtain->save();
-        $order = Order::findOrFail($id);
         $order->price = $order->price + $curtain['price'];
         $order->total = $order->total + ($curtain['price']*(1 - ($order->discount/100)));
         $order->save();

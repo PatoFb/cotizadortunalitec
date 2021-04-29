@@ -14,39 +14,18 @@
             <div class="card-body">
                 {!! Form::model($order, ['method'=>'PUT', 'action'=>['App\Http\Controllers\OrdersController@update', $order->id]]) !!}
 
-                    <div class="form-row">
+                <div class="form-row">
 
-                        <div class="col-md-2 col-sm-12 text-center text-justify">
-                            <div class="form-check form-check-radio">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="radio" name="activity" id="exampleRadios1" value="Oferta" @if($order->activity == 'Oferta') checked @endif>
-                                    Oferta
-                                    <span class="circle">
-                                        <span class="check"></span>
-                                    </span>
-                                </label>
-                            </div>
-                            <div class="form-check form-check-radio">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="radio" name="activity" id="exampleRadios1" value="Orden" @if($order->activity == 'Orden') checked @endif>
-                                    Orden
-                                    <span class="circle" >
-                                        <span class="check"></span>
-                                    </span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="col-md-5 col-sm-12">
-                            {!! Form::label('project', 'Nombre del proyecto:') !!}
-                            {!! Form::text('project', null, ['class'=>'form-control']) !!}
-                        </div>
-
-                        <div class="col-sm-12 col-md-5">
-                            {!! Form::label('invoice_data', 'Datos de facturación:') !!}
-                            {!! Form::text('invoice_data', null, ['class'=>'form-control']) !!}
-                        </div>
+                    <div class="col-md-6 col-sm-12">
+                        {!! Form::label('project', 'Nombre del proyecto:') !!}
+                        {!! Form::text('project', null, ['class'=>'form-control']) !!}
                     </div>
+
+                    <div class="col-sm-12 col-md-6">
+                        {!! Form::label('discount', 'Descuento:') !!}
+                        {!! Form::number('discount', null, ['class'=>'form-control', 'step'=>0.1]) !!}
+                    </div>
+                </div>
 
                 <br>
                 <div class="form-group">
