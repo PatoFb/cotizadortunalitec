@@ -45,7 +45,7 @@
                 </div>
 
                     <div class="form-group text-right">
-                        {!! Form::submit('Siguiente', ['class'=>'btn btn-primary']) !!}
+                        {!! Form::submit('Siguiente', ['class'=>'btn btn-primary', 'id'=>'create_order']) !!}
                     </div>
 
             </div>
