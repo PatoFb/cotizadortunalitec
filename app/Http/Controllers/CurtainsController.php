@@ -17,7 +17,12 @@ use mysql_xdevapi\Table;
 
 class CurtainsController extends Controller
 {
-
+    /**
+     * This function recieves the order_id through the URI and returns a view containing the form for the curtain creation.
+     *
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function add($id)
     {
         $order_id = $id;
@@ -29,6 +34,13 @@ class CurtainsController extends Controller
         $controls = CurtainControl::all();
         return view('curtains.create', compact('order_id', 'models', 'covers', 'handles', 'canopies', 'controls', 'order'));
     }
+
+    /**
+     * This function validates the data from the modal when you want to edit the product and saves it (the product id is sent in a hidden input form)
+     *
+     * @param Request $request
+     * @return mixed
+     */
 
     public function addData(Request $request)
     {
@@ -44,6 +56,15 @@ class CurtainsController extends Controller
         return redirect()->back()->withStatus(_('Datos guardados correctamente'));
     }
 
+    /**
+     * This function validates the data for saving a curtain. It has two cases in which extra data is required if the order is made as "Pedido"
+     * If it's made as "Oferta", those fields aren't shown.
+     * It calculates the price by adding all the object prices (Needs correction) and saves it, then it redirects you to the order page.
+     *
+     * @param Request $request
+     * @param $id
+     * @return mixed
+     */
     public function save(Request $request, $id)
     {
         $order_id = $id;
@@ -90,6 +111,12 @@ class CurtainsController extends Controller
         return redirect()->route('orders.show', $order_id)->withStatus(__('Cortina agregada correctamente'));
     }
 
+    /**
+     * This function recievies an ajax request from the model select in the curtain form, getting the id and retrieving the model from the database
+     * It returns an html formatted string to display it every time the selected model changed.
+     *
+     * @param Request $request
+     */
     public function fetchModel(Request $request){
         $select = $request->get('select');
         $value = $request->get('value');
@@ -116,6 +143,11 @@ class CurtainsController extends Controller
               <hr>";
     }
 
+    /**
+     * This function works exactly as the model one but retrieves the cover
+     *
+     * @param Request $request
+     */
     public function fetchCover(Request $request){
         //$select = $request->get('select');
         $value = $request->get('value');
@@ -145,6 +177,12 @@ class CurtainsController extends Controller
                 </div>
               ";
     }
+
+    /**
+     * Function that retrieves the data in the height and width fields (In progress)
+     *
+     * @param Request $request
+     */
 
     public function fetchNumbers(Request $request){
         $values = $request->get('values');

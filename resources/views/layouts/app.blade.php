@@ -140,6 +140,7 @@
         </script>
 
         <script>
+            //Funcion para mandar el valor del select del modelo, llamando a ajax y regresando los datos del mismo
             jQuery(document).ready(function() {
                 $('.dynamicModel').on('change', function () {
                     if ($(this).val() != '') {
@@ -166,7 +167,9 @@
             });
 
         </script>
+
         <script>
+            //Funcion para mandar el valor del select de la cubierta, llamando a ajax y regresando los datos de la misma
             jQuery(document).ready(function() {
                 $('.dynamicCover').on('change', function () {
                     if ($(this).val() != '') {
