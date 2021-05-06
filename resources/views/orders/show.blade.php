@@ -13,8 +13,8 @@
                   </div>
                   <div class="card-body">
                       <div class="form-row float-right">
-                          <a href="{{route('orders.type', $order->id)}}" class="btn btn-sm btn-primary">Agregar producto</a>
-                          <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#editModal">
+                          <a href="{{route('orders.type', $order->id)}}" class="btn btn-sm btn-primary" >Agregar producto</a>
+                          <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#editModal" id="edit_order_modal">
                               Editar Orden
                               </button>
                       </div>
@@ -49,7 +49,7 @@
                                   <td>{{$order->discount}}%</td>
                                   <td class="text-right">${{number_format($order->total, 2)}}</td>
                                   <td class="td-actions text-right">
-                                      <button type="button" class="btn btn-danger btn-link" data-toggle="modal" data-target="#deleteOrderModal">
+                                      <button type="button" class="btn btn-danger btn-link" data-toggle="modal" data-target="#deleteOrderModal" id="delete_order_modal">
                                           <i class="material-icons">delete</i>
                                           <div class="ripple-container"></div></button>
                                   </td>
@@ -119,11 +119,11 @@
                                   <td>{{$curtain->quantity}}</td>
                                   <td class="text-right">${{number_format($curtain->price, 2)}}</td>
                                       <td class="td-actions text-right">
-                                          <button type="button" class="btn btn-danger btn-link" data-toggle="modal" data-target="#deleteModal">
+                                          <button type="button" class="btn btn-danger btn-link" data-toggle="modal" data-target="#deleteModal" id="delete_product_modal">
                                               <i class="material-icons">delete</i>
                                               <div class="ripple-container"></div></button>
                                           @if($order->activity == "Pedido")
-                                              <button type="button" class="btn btn-info btn-link" data-toggle="modal" data-target="#addModal">
+                                              <button type="button" class="btn btn-info btn-link" data-toggle="modal" data-target="#addModal" id="add_data_modal">
                                                   Añadir datos
                                                   </button>
                                               @endif
@@ -171,7 +171,7 @@
                                               </div>
                                           </div>
                                           <div class="modal-footer">
-                                              {!! Form::submit('Aceptar', ['class'=>'btn btn-primary']) !!}
+                                              {!! Form::submit('Aceptar', ['class'=>'btn btn-primary', 'id'=>'add_data']) !!}
                                               {!! Form::close() !!}
                                           </div>
                                       </div>
@@ -191,7 +191,7 @@
                                           </div>
                                           <div class="modal-footer">
                                               {!! Form::open(['method'=>'DELETE', 'action'=>['App\Http\Controllers\CurtainsController@destroy', $curtain->id]]) !!}
-                                              {!! Form::submit('Eliminar', ['class'=>'btn btn-danger']) !!}
+                                              {!! Form::submit('Eliminar', ['class'=>'btn btn-danger', "id"=>'delete_curtain']) !!}
                                               {!! Form::close() !!}
                                           </div>
                                       </div>
@@ -271,7 +271,7 @@
                 </div>
                 <div class="modal-footer">
 
-                    {!! Form::submit('Aceptar', ['class'=>'btn btn-primary pull-right']) !!}
+                    {!! Form::submit('Aceptar', ['class'=>'btn btn-primary pull-right', 'id'=>'edit_order']) !!}
 
 
                     {!! Form::close() !!}
@@ -293,7 +293,7 @@
                 </div>
                 <div class="modal-footer">
                     {!! Form::open(['method'=>'DELETE', 'action'=>['App\Http\Controllers\OrdersController@destroy', $order->id]]) !!}
-                    {!! Form::submit('Eliminar', ['class'=>'btn btn-danger']) !!}
+                    {!! Form::submit('Eliminar', ['class'=>'btn btn-danger', 'id'=>'delete_order']) !!}
                     {!! Form::close() !!}
 
                 </div>

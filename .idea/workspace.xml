@@ -3,11 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/curtains/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/curtains/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/orders/new.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/orders/new.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentos/CasosDePrueba.docx" beforeDir="false" afterPath="$PROJECT_DIR$/documentos/CasosDePrueba.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentos/InstallationManual.docx" beforeDir="false" afterPath="$PROJECT_DIR$/documentos/InstallationManual.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentos/ManualTecnico.docx" beforeDir="false" afterPath="$PROJECT_DIR$/documentos/ManualTecnico.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentos/Planner.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/documentos/Planner.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentos/UserManual.docx" beforeDir="false" afterPath="$PROJECT_DIR$/documentos/UserManual.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentos/cotizador_burndown.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/documentos/cotizador_burndown.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/orders/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/orders/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/products/type.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/products/type.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,7 +203,7 @@
       <workItem from="1619712398018" duration="5899000" />
       <workItem from="1619739369092" duration="222000" />
       <workItem from="1620160075679" duration="668000" />
-      <workItem from="1620218312308" duration="31864000" />
+      <workItem from="1620218312308" duration="37047000" />
     </task>
     <servers />
   </component>
