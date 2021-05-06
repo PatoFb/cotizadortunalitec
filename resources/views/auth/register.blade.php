@@ -160,7 +160,7 @@
             </div>--}}
           </div>
           <div class="card-footer justify-content-center">
-            <button type="submit" class="btn btn-primary btn-link btn-lg">{{ __('Crear cuenta') }}</button>
+            <button id="signup" type="submit" class="btn btn-primary btn-link btn-lg">{{ __('Crear cuenta') }}</button>
           </div>
         </div>
       </form>

@@ -37,6 +37,9 @@
                                   <th class="text-right">
                                       Total
                                   </th>
+                                  <th class="text-right">
+                                      Eliminar
+                                  </th>
                               </tr></thead>
                               <tbody>
                               <tr>
@@ -45,6 +48,11 @@
                                   <td>${{number_format($order->price, 2)}}</td>
                                   <td>{{$order->discount}}%</td>
                                   <td class="text-right">${{number_format($order->total, 2)}}</td>
+                                  <td class="td-actions text-right">
+                                      <button type="button" class="btn btn-danger btn-link" data-toggle="modal" data-target="#deleteOrderModal">
+                                          <i class="material-icons">delete</i>
+                                          <div class="ripple-container"></div></button>
+                                  </td>
                               </tr>
                               </tbody>
                           </table>
@@ -262,10 +270,32 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+
                     {!! Form::submit('Aceptar', ['class'=>'btn btn-primary pull-right']) !!}
 
 
                     {!! Form::close() !!}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="deleteOrderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Eliminar</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Seguro que desea eliminar la orden? Se eliminarán todos los productos dentro de ella también.
+                </div>
+                <div class="modal-footer">
+                    {!! Form::open(['method'=>'DELETE', 'action'=>['App\Http\Controllers\OrdersController@destroy', $order->id]]) !!}
+                    {!! Form::submit('Eliminar', ['class'=>'btn btn-danger']) !!}
+                    {!! Form::close() !!}
+
                 </div>
             </div>
         </div>

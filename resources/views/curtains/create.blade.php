@@ -146,7 +146,7 @@
 
                 <div class="form-group text-right">
 
-                        {!! Form::submit('Guardar', ['class'=>'btn btn-primary', $order_id]) !!}
+                        {!! Form::submit('Guardar', ['class'=>'btn btn-primary', 'id'=>'save_curtain', $order_id]) !!}
                         {!! Form::close() !!}
 
                 </div>

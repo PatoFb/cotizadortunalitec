@@ -2,17 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/cotizadortunalitec.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/cotizadortunalitec.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/curtains/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/curtains/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/orders/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/orders/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/orders/new.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/orders/new.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/orders/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/orders/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/products/type.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/products/type.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,19 +152,19 @@
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\curtains" />
-      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\orders" />
-      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\alerts" />
-      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\products" />
-      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\product" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\cotizadortunalitec\public\material\js\plugins" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\public\material\img" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\public\material\css" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\public\images" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\admin\curtains" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\curtains" />
+      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\orders" />
+      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\alerts" />
+      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\products" />
+      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\product" />
     </key>
   </component>
   <component name="RunManager">
@@ -206,7 +201,7 @@
       <workItem from="1619712398018" duration="5899000" />
       <workItem from="1619739369092" duration="222000" />
       <workItem from="1620160075679" duration="668000" />
-      <workItem from="1620218312308" duration="25935000" />
+      <workItem from="1620218312308" duration="31864000" />
     </task>
     <servers />
   </component>

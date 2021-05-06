@@ -23,7 +23,7 @@
                 </div>
 
                     <div class="form-group text-right">
-                        {!! Form::submit('Siguiente', ['class'=>'btn btn-primary'], $order_id) !!}
+                        {!! Form::submit('Siguiente', ['class'=>'btn btn-primary', 'id'=>'select_product'], $order_id) !!}
                     </div>
 
             </div>
