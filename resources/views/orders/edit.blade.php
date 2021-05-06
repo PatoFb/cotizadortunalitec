@@ -16,12 +16,21 @@
 
                 <div class="form-row">
 
-                    <div class="col-md-6 col-sm-12">
+                    <div class="col-md-4 col-sm-12">
+                        {!! Form::label('activity', 'Actividad:') !!}
+                        <select class="form-control" name="activity" >
+                            <option value="">Selecciona la actividad</option>
+                            <option @if($order->activity == "Oferta") selected @endif>Oferta</option>
+                            <option @if($order->activity == "Pedido") selected @endif>Pedido</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 col-sm-12">
                         {!! Form::label('project', 'Nombre del proyecto:') !!}
                         {!! Form::text('project', null, ['class'=>'form-control']) !!}
                     </div>
 
-                    <div class="col-sm-12 col-md-6">
+                    <div class="col-sm-12 col-md-4">
                         {!! Form::label('discount', 'Descuento:') !!}
                         {!! Form::number('discount', null, ['class'=>'form-control', 'step'=>0.1]) !!}
                     </div>

@@ -138,6 +138,89 @@
                 $(this).next('.custom-file-label').html(fileName);
             })
         </script>
+
+        <script>
+            jQuery(document).ready(function() {
+                $('.dynamicModel').on('change', function () {
+                    if ($(this).val() != '') {
+                        var select = $(this).attr("id");
+                        var value = $(this).val();
+                        var dependant = $(this).data('dependant');
+                        var _token = $('input[name="_token"]').val();
+                        $.ajaxSetup({
+                            headers: {
+                                'X-CSRF-TOKEN': $('[name="_token"]').attr('content')
+                            }
+                        });
+                        $.ajax({
+                            url: "{{ route('curtain.fetch.model') }}",
+                            method: "POST",
+                            data: {select: select, value: value, _token: _token, dependant: dependant},
+                            success: function (result) {
+                                $('#' + dependant).html(result);
+                            }
+
+                        });
+                    }
+                });
+            });
+
+        </script>
+        <script>
+            jQuery(document).ready(function() {
+                $('.dynamicCover').on('change', function () {
+                    if ($(this).val() != '') {
+                        var select = $(this).attr("id");
+                        var value = $(this).val();
+                        var dependant = $(this).data('dependant');
+                        var _token = $('input[name="_token"]').val();
+                        $.ajaxSetup({
+                            headers: {
+                                'X-CSRF-TOKEN': $('[name="_token"]').attr('content')
+                            }
+                        });
+                        $.ajax({
+                            url: "{{ route('curtain.fetch.cover') }}",
+                            method: "POST",
+                            data: {select: select, value: value, _token: _token, dependant: dependant},
+                            success: function (result) {
+                                $('#' + dependant).html(result);
+                            }
+
+                        });
+                    }
+                });
+            });
+
+        </script>
+
+        <!--<script>
+            jQuery(document).ready(function() {
+                $('.dynamicNumber1').on('change', function () {
+                    if ($(this).val() != '') {
+                        var select = $(this).attr("id");
+                        var values = $(this).val();
+                        var dependant = $(this).data('dependant');
+                        var _token = $('input[name="_token"]').val();
+                        $.ajaxSetup({
+                            headers: {
+                                'X-CSRF-TOKEN': $('[name="_token"]').attr('content')
+                            }
+                        });
+                        $.ajax({
+                            url: "",
+                            method: "POST",
+                            data: {select: select, values: values, _token: _token, dependant: dependant},
+                            success: function (result) {
+                                $('#'+dependant).html(result);
+                            }
+
+                        });
+                    }
+                });
+            });
+
+        </script>-->
         @stack('js')
     </body>
 </html>

@@ -11,6 +11,9 @@ use App\Models\CurtainModel;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use mysql_xdevapi\Table;
 
 class CurtainsController extends Controller
 {
@@ -25,6 +28,20 @@ class CurtainsController extends Controller
         $canopies = CurtainCanopy::all();
         $controls = CurtainControl::all();
         return view('curtains.create', compact('order_id', 'models', 'covers', 'handles', 'canopies', 'controls', 'order'));
+    }
+
+    public function addData(Request $request)
+    {
+        $validatedData = $request->validate([
+            'id'=>'required',
+            'mechanism_side' => 'required',
+            'installation_type' => 'required',
+            'view_type' => 'required'
+        ]);
+        $curtain = Curtain::findOrFail($validatedData['id']);
+        $curtain->fill($validatedData);
+        $curtain->save();
+        return redirect()->back()->withStatus(_('Datos guardados correctamente'));
     }
 
     public function save(Request $request, $id)
@@ -71,6 +88,67 @@ class CurtainsController extends Controller
         $order->total = $order->total + ($curtain['price']*(1 - ($order->discount/100)));
         $order->save();
         return redirect()->route('orders.show', $order_id)->withStatus(__('Cortina agregada correctamente'));
+    }
+
+    public function fetchModel(Request $request){
+        $select = $request->get('select');
+        $value = $request->get('value');
+        $dependant = $request->get('dependant');
+        $model = CurtainModel::findOrFail($value);
+
+        echo "<h4>Detalles de sistema</h4>
+            <div class='row'>
+                <div class='col-md-6 col-sm-12'>
+                   <img src=".asset('storage')."/images/".$model->photo." style='width: 100%;'>
+              </div>
+              <div class='col-md-6 col-sm-12'>
+                   <h7 style='color: grey;'>$model->name</h7>
+                   <br>
+                   <h7 style='color: grey;'>Máxima resistencia al viento de $model->max_resistance km/h</h7>
+                   <br>
+                   <h7 style='color: grey;'>Tiempo de producción: $model->production_time días hábiles</h7>
+                   <br>
+                   <h7 style='color: grey;'>Ancho máximo: $model->max_width</h7>
+                   <br>
+                   <h7 style='color: grey;'>Caída máxima: $model->max_height</h7>
+              </div>
+              </div>
+              <hr>";
+    }
+
+    public function fetchCover(Request $request){
+        //$select = $request->get('select');
+        $value = $request->get('value');
+        //$dependant = $request->get('dependant');
+        $cover = CurtainCover::findOrFail($value);
+
+        echo "<div class='col-12'>
+                <h4>Detalles de cubierta</h4>
+               </div>
+                <div class='row'>
+                <div class='col-md-6 col-sm-12'>
+                   <img src=".asset('storage')."/images/".$cover->photo." style='width: 100%;'>
+              </div>
+              <div class='col-md-6 col-sm-12'>
+                   <h7 style='color: grey;'>$cover->name</h7>
+                   <br>
+                   <h7 style='color: grey;'>Ancho de rollo: $cover->roll_width mts</h7>
+                   <br>
+                   <h7 style='color: grey;'>Uniones: $cover->unions</h7>
+                   <br>
+                   <h7 style='color: grey;'>Número de lienzos:<h7 class='number'> </h7></h7>
+                   <br>
+                   <h7 style='color: grey;'>Medida de lienzos:<h7 class='measure'> </h7></h7>
+                   <br>
+                   <h7 style='color: grey;'>Total de textil:<h7 class='numbertotal'> </h7></h7>
+              </div>
+                </div>
+              ";
+    }
+
+    public function fetchNumbers(Request $request){
+        $values = $request->get('values');
+        echo "<p>Hola</p>";
     }
     /**
      * Receives order id through URI and sends it to the next step.

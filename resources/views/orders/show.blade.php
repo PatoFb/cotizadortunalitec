@@ -14,8 +14,9 @@
                   <div class="card-body">
                       <div class="form-row float-right">
                           <a href="{{route('orders.type', $order->id)}}" class="btn btn-sm btn-primary">Agregar producto</a>
-
-                          <a href="{{route('orders.edit', $order->id)}}" class="btn btn-sm btn-info">Editar orden</a>
+                          <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#editModal">
+                              Editar Orden
+                              </button>
                       </div>
                       <div class="table-responsive">
                           <table class="table">
@@ -36,11 +37,6 @@
                                   <th class="text-right">
                                       Total
                                   </th>
-                                  @if($order->activity == "Pedido")
-                                      <th class="text-right">
-                                          Acciones
-                                      </th>
-                                  @endif
                               </tr></thead>
                               <tbody>
                               <tr>
@@ -49,11 +45,6 @@
                                   <td>${{number_format($order->price, 2)}}</td>
                                   <td>{{$order->discount}}%</td>
                                   <td class="text-right">${{number_format($order->total, 2)}}</td>
-                                  @if($order->activity == "Pedido")
-                                      <td class="td-actions text-right">
-                                          <button type="button" class="btn btn-success btn-link" data-toggle="modal" data-target="#sendModal">Enviar</button>
-                                      </td>
-                                  @endif
                               </tr>
                               </tbody>
                           </table>
@@ -103,7 +94,7 @@
                                       Precio
                                   </th>
                                   <th class="text-right">
-                                      Eliminar
+                                      Acciones
                                   </th>
 
                               </tr></thead>
@@ -123,9 +114,61 @@
                                           <button type="button" class="btn btn-danger btn-link" data-toggle="modal" data-target="#deleteModal">
                                               <i class="material-icons">delete</i>
                                               <div class="ripple-container"></div></button>
+                                          @if($order->activity == "Pedido")
+                                              <button type="button" class="btn btn-info btn-link" data-toggle="modal" data-target="#addModal">
+                                                  Añadir datos
+                                                  </button>
+                                              @endif
                                       </td>
 
                               </tr>
+                              <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog modal-lg" role="document">
+                                      <div class="modal-content">
+                                          <div class="modal-header">
+                                              <h5 class="modal-title" id="exampleModalLabel">Agregar datos para pedido</h5>
+                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true">&times;</span>
+                                              </button>
+                                          </div>
+                                          <div class="modal-body">
+                                              {!! Form::model($curtain, ['method'=>'PUT', 'action'=>['App\Http\Controllers\CurtainsController@addData', $curtain->id]]) !!}
+                                              <input name="id" type="hidden" value="{{$curtain->id}}">
+                                              <div class="col-12">
+                                                  {!! Form::label('installation_type', 'Tipo de instalación:') !!}
+                                                  <select class="form-control" name="installation_type">
+                                                      <option value="">Selecciona tipo de instalacion</option>
+                                                      <option>Pared</option>
+                                                      <option>Techo</option>
+                                                      <option>Entre muros</option>
+                                                  </select>
+                                              </div>
+                                              <br>
+                                              <div class="col-12">
+                                                  {!! Form::label('mechanism_side', 'Lado de mecanismo:') !!}
+                                                  <select class="form-control" name="mechanism_side" >
+                                                      <option value="">Lado del mecanismo</option>
+                                                      <option>Izquierdo</option>
+                                                      <option>Derecho</option>
+                                                  </select>
+                                              </div>
+                                              <br>
+                                              <div class="col-12">
+                                                  {!! Form::label('view_type', 'Tipo de vista:') !!}
+                                                  <select class="form-control" name="view_type" >
+                                                      <option value="">Tipo de vista</option>
+                                                      <option>Exterior</option>
+                                                      <option>Interior</option>
+                                                  </select>
+                                              </div>
+                                          </div>
+                                          <div class="modal-footer">
+                                              {!! Form::submit('Aceptar', ['class'=>'btn btn-primary']) !!}
+                                              {!! Form::close() !!}
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
                               <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                   <div class="modal-dialog" role="document">
                                       <div class="modal-content">
@@ -176,6 +219,57 @@
           </div>
       </div>
   </div>
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Editar Orden</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {!! Form::model($order, ['method'=>'PUT', 'action'=>['App\Http\Controllers\OrdersController@update', $order->id]]) !!}
+
+
+
+                        <div class="col-12">
+                            {!! Form::label('activity', 'Actividad:') !!}
+                            <select class="form-control" name="activity" >
+                                <option value="">Selecciona la actividad</option>
+                                <option @if($order->activity == "Oferta") selected @endif>Oferta</option>
+                                <option @if($order->activity == "Pedido") selected @endif>Pedido</option>
+                            </select>
+                        </div>
+<br>
+                        <div class="col-12">
+                            {!! Form::label('project', 'Nombre del proyecto:') !!}
+                            {!! Form::text('project', null, ['class'=>'form-control']) !!}
+                        </div>
+<br>
+                        <div class="col-12">
+                            {!! Form::label('discount', 'Descuento:') !!}
+                            {!! Form::number('discount', null, ['class'=>'form-control', 'step'=>0.1]) !!}
+                        </div>
+
+
+                    <br>
+                    <div class="form-group">
+                        <div class="col-sm-12 col-md-12">
+                            {!! Form::label('comments', 'Comentarios:') !!}
+                            {!! Form::textarea('comments', null, ['class'=>'form-control']) !!}
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    {!! Form::submit('Aceptar', ['class'=>'btn btn-primary pull-right']) !!}
+
+
+                    {!! Form::close() !!}
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
     @endsection
 
