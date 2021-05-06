@@ -17,7 +17,6 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->string('project')->nullable(true)->default("NA");
             $table->string('activity')->default("Oferta");
-            $table->string('invoice_data')->nullable(true)->default("NA");
             $table->string('comments')->nullable(true)->default("Sin comentarios");
             $table->bigInteger('user_id')->unsigned()->index()->nullable(true);
             $table->float('price')->nullable(true)->default(0);

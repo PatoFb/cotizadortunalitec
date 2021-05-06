@@ -30,9 +30,6 @@
                       Actividad
                     </th>
                         <th>
-                           Datos de facturación
-                        </th>
-                        <th>
                             Precio
                         </th>
                         <th>
@@ -52,7 +49,6 @@
                         <td>{{$order->id}}</td>
                         <td>{{$order->project}}</td>
                         <td>{{$order->activity}}</td>
-                      <td>{{$order->invoice_data}}</td>
                       <td>${{number_format($order->price, 2)}}</td>
                       <td>{{$order->discount}}%</td>
                       <td>${{number_format($order->total, 2)}}</td>

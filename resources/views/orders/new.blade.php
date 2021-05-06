@@ -16,35 +16,23 @@
 
                     <div class="form-row">
 
-                        <div class="col-md-2 col-sm-12 text-center text-justify">
-                            <div class="form-check form-check-radio">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="radio" name="activity" id="exampleRadios1" value="Oferta" >
-                                    Oferta
-                                    <span class="circle">
-                                        <span class="check"></span>
-                                    </span>
-                                </label>
-                            </div>
-                            <div class="form-check form-check-radio">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="radio" name="activity" id="exampleRadios1" value="Orden" >
-                                    Orden
-                                    <span class="circle" >
-                                        <span class="check"></span>
-                                    </span>
-                                </label>
-                            </div>
+                        <div class="col-md-4 col-sm-4">
+                            {!! Form::label('activity', 'Actividad:') !!}
+                            <select class="form-control" name="activity" >
+                                <option value="">Selecciona la actividad</option>
+                                <option>Oferta</option>
+                                <option>Pedido</option>
+                            </select>
                         </div>
 
-                        <div class="col-md-5 col-sm-12">
+                        <div class="col-md-4 col-sm-4">
                             {!! Form::label('project', 'Nombre del proyecto:') !!}
                             {!! Form::text('project', null, ['class'=>'form-control']) !!}
                         </div>
 
-                        <div class="col-sm-12 col-md-5">
-                            {!! Form::label('invoice_data', 'Datos de facturación:') !!}
-                            {!! Form::text('invoice_data', null, ['class'=>'form-control']) !!}
+                        <div class="col-sm-12 col-md-4">
+                            {!! Form::label('discount', 'Descuento:') !!}
+                            {!! Form::number('discount', null, ['class'=>'form-control', 'step'=>0.1]) !!}
                         </div>
                     </div>
 

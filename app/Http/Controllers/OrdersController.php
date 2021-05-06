@@ -49,9 +49,9 @@ class OrdersController extends Controller
     public function newOrderPost(Request $request)
     {
         $request->validate([
-            'invoice_data' => 'required',
             'activity'=>'required',
-            'project'=>'required'
+            'project'=>'required',
+            'discount' => 'required'
         ]);
         $user = Auth::user();
         $order = $request->all();
