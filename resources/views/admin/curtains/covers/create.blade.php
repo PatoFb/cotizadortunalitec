@@ -21,17 +21,17 @@
                 <div class="form-row">
                     <div class="col-sm-6 col-md-4">
                         {!! Form::label('roll_width', 'Ancho de rollo:') !!}
-                        {!! Form::number('roll_width', null, ['class'=>'form-control']) !!}
+                        {!! Form::number('roll_width', null, ['class'=>'form-control', 'step'=>0.01]) !!}
                     </div>
 
                     <div class="col-sm-6 col-md-4">
                         {!! Form::label('unions', 'Uniones:') !!}
-                        {!! Form::number('unions', null, ['class'=>'form-control']) !!}
+                        {!! Form::text('unions', null, ['class'=>'form-control']) !!}
                     </div>
 
                     <div class="col-sm-6 col-md-4">
                         {!! Form::label('price', 'Precio' )  !!}
-                        {!! Form::number('price', null, ['class'=>'form-control']) !!}
+                        {!! Form::number('price', null, ['class'=>'form-control', 'step'=>0.01]) !!}
                     </div>
                 </div>
                 <br>

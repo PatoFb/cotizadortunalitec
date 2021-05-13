@@ -26,7 +26,7 @@
 
                                 <div class="col-sm-6 col-md-4">
                                     {!! Form::label('unions', 'Uniones:') !!}
-                                    {!! Form::number('unions', null, ['class'=>'form-control']) !!}
+                                    {!! Form::text('unions', null, ['class'=>'form-control']) !!}
                                 </div>
 
                                 <div class="col-sm-6 col-md-4">

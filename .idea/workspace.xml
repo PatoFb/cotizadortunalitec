@@ -3,13 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentos/CasosDePrueba.docx" beforeDir="false" afterPath="$PROJECT_DIR$/documentos/CasosDePrueba.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentos/InstallationManual.docx" beforeDir="false" afterPath="$PROJECT_DIR$/documentos/InstallationManual.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentos/ManualTecnico.docx" beforeDir="false" afterPath="$PROJECT_DIR$/documentos/ManualTecnico.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentos/Planner.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/documentos/Planner.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentos/UserManual.docx" beforeDir="false" afterPath="$PROJECT_DIR$/documentos/UserManual.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentos/cotizador_burndown.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/documentos/cotizador_burndown.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/orders/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/orders/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/curtains/covers/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/curtains/covers/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/curtains/covers/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/curtains/covers/edit.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,7 +145,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../mitunalitec_web" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
@@ -203,7 +199,8 @@
       <workItem from="1619712398018" duration="5899000" />
       <workItem from="1619739369092" duration="222000" />
       <workItem from="1620160075679" duration="668000" />
-      <workItem from="1620218312308" duration="37047000" />
+      <workItem from="1620218312308" duration="44075000" />
+      <workItem from="1620861870430" duration="22000" />
     </task>
     <servers />
   </component>
@@ -227,14 +224,14 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2627" y="367" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1616444039766" />
-    <state x="2660" y="275" key="FileChooserDialogImpl" timestamp="1620160146130">
+    <state x="2660" y="275" key="FileChooserDialogImpl" timestamp="1620861889925">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2660" y="275" key="FileChooserDialogImpl/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1620160146130" />
-    <state x="2576" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1620218324881">
+    <state x="2660" y="275" key="FileChooserDialogImpl/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1620861889925" />
+    <state x="2576" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1620861883234">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2576" y="344" key="com.intellij.ide.util.TipDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1620218324881" />
+    <state x="2576" y="344" key="com.intellij.ide.util.TipDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1620861883234" />
     <state x="2536" y="240" key="run.anything.popup" timestamp="1620239885763">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
