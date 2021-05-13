@@ -124,7 +124,7 @@
                       <i class="material-icons">description</i>
                   </span>
                       </div>
-                      <input type="text" name="razon_social" class="form-control" placeholder="{{ __('Razon Social') }}" value="{{ old('razon_social') }}">
+                      <input type="text" name="razon_social" class="form-control" placeholder="{{ __('Razón Social') }}" value="{{ old('razon_social') }}">
                   </div>
                   @if ($errors->has('razon_social'))
                       <div id="name-error" class="error text-danger pl-3" for="razon_social" style="display: block;">

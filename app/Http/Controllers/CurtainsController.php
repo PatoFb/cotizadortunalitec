@@ -129,7 +129,7 @@ class CurtainsController extends Controller
                    <img src=".asset('storage')."/images/".$model->photo." style='width: 100%;'>
               </div>
               <div class='col-md-6 col-sm-12'>
-                   <h7 style='color: grey;'>$model->name</h7>
+                   <h7 style='color: grey;'>$model->description</h7>
                    <br>
                    <h7 style='color: grey;'>Máxima resistencia al viento de $model->max_resistance km/h</h7>
                    <br>

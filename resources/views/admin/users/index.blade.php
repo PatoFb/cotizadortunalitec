@@ -27,10 +27,19 @@
                       Email
                     </th>
                     <th>
-                      Fecha de creacion
+                      Rol
                     </th>
                         <th>
-                            Rol
+                            Teléfono
+                        </th>
+                        <th>
+                            RFC
+                        </th>
+                        <th>
+                            CFDI
+                        </th>
+                        <th>
+                            Razón social
                         </th>
                     <th class="text-right">
                       Acciones
@@ -42,8 +51,11 @@
                   <tr>
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
-                        <td>{{$user->created_at}}</td>
                       <td>{{$user->role->name}}</td>
+                      <td>{{$user->phone}}</td>
+                      <td>{{$user->rfc}}</td>
+                      <td>{{$user->cfdi}}</td>
+                      <td>{{$user->razon_social}}</td>
                         <td class="td-actions text-right">
                             <a rel="tooltip" class="btn btn-success btn-link" href="{{route('users.edit', $user->id)}}" data-original-title="" title="">
                               <i class="material-icons">edit</i>
