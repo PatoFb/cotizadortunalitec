@@ -4,8 +4,10 @@
     <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/curtains/covers/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/curtains/covers/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/curtains/covers/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/curtains/covers/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/material/js/material-dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/material/js/material-dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/curtains/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/curtains/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,19 +152,19 @@
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\cotizadortunalitec\public\material\js\plugins" />
-      <recent name="C:\xampp\htdocs\cotizadortunalitec\public\material\img" />
-      <recent name="C:\xampp\htdocs\cotizadortunalitec\public\material\css" />
-      <recent name="C:\xampp\htdocs\cotizadortunalitec\public\images" />
-      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\admin\curtains" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\curtains" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\orders" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\alerts" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\products" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\product" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\cotizadortunalitec\public\material\js\plugins" />
+      <recent name="C:\xampp\htdocs\cotizadortunalitec\public\material\img" />
+      <recent name="C:\xampp\htdocs\cotizadortunalitec\public\material\css" />
+      <recent name="C:\xampp\htdocs\cotizadortunalitec\public\images" />
+      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\admin\curtains" />
     </key>
   </component>
   <component name="RunManager">
@@ -201,6 +203,8 @@
       <workItem from="1620160075679" duration="668000" />
       <workItem from="1620218312308" duration="44075000" />
       <workItem from="1620861870430" duration="22000" />
+      <workItem from="1620927832260" duration="1122000" />
+      <workItem from="1621395505805" duration="22007000" />
     </task>
     <servers />
   </component>
@@ -228,10 +232,10 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2660" y="275" key="FileChooserDialogImpl/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1620861889925" />
-    <state x="2576" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1620861883234">
+    <state x="2576" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1621395536646">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2576" y="344" key="com.intellij.ide.util.TipDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1620861883234" />
+    <state x="2576" y="344" key="com.intellij.ide.util.TipDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1621395536646" />
     <state x="2536" y="240" key="run.anything.popup" timestamp="1620239885763">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>

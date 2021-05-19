@@ -117,30 +117,79 @@ class CurtainsController extends Controller
      *
      * @param Request $request
      */
-    public function fetchModel(Request $request){
-        $select = $request->get('select');
-        $value = $request->get('value');
-        $dependant = $request->get('dependant');
-        $model = CurtainModel::findOrFail($value);
+    public function fetchData(Request $request){
+        $input = $request->all();
+        $price = 0;
 
-        echo "<h4>Detalles de sistema</h4>
+        $model_id = $input['model_id'];
+        $model = CurtainModel::find($model_id);
+
+        $cover_id = $input['cover_id'];
+        $cover = CurtainCover::find($cover_id);
+
+        $canopy_id = $input['canopy_id'];
+        $canopy = CurtainCanopy::find($canopy_id);
+
+        $handle_id = $input['handle_id'];
+        $handle = CurtainHandle::find($handle_id);
+
+        $control_id = $input['control_id'];
+        $control = CurtainControl::find($control_id);
+
+        $width = $input['width'];
+        $height = $input['height'];
+        $quantity = $input['quantity'];
+        $num_lienzos = ceil($width/$cover->roll_width);
+        $measure = $height + 0.5;
+        $total_fabric = $measure * $num_lienzos;
+
+        $price = ($handle->price + $canopy->price + $control->price + $model->base_price + $cover->price) * $quantity;
+        $price = number_format($price, 2);
+        echo "<div class='text-right'><h3><strong>Precio estimado: $$price</strong></h3></div>
+<hr>
+<div>
+            <h4>Detalles de sistema</h4>
             <div class='row'>
                 <div class='col-md-6 col-sm-12'>
-                   <img src=".asset('storage')."/images/".$model->photo." style='width: 100%;'>
+                   <img src=".asset('storage')."/images/".$model->photo." style='width: 100%;' alt='Image not found'>
               </div>
               <div class='col-md-6 col-sm-12'>
-                   <h7 style='color: grey;'>$model->description</h7>
+                   <h7 style='color: grey;'><strong>$model->description</strong></h7>
                    <br>
-                   <h7 style='color: grey;'>Máxima resistencia al viento de $model->max_resistance km/h</h7>
+                   <h7 style='color: grey;'>Máxima resistencia al viento de <strong>$model->max_resistance km/h</strong></h7>
                    <br>
-                   <h7 style='color: grey;'>Tiempo de producción: $model->production_time días hábiles</h7>
+                   <h7 style='color: grey;'>Tiempo de producción: <strong>$model->production_time días hábiles</strong></h7>
                    <br>
-                   <h7 style='color: grey;'>Ancho máximo: $model->max_width</h7>
+                   <h7 style='color: grey;'>Ancho máximo: <strong>$model->max_width</strong></h7>
                    <br>
-                   <h7 style='color: grey;'>Caída máxima: $model->max_height</h7>
+                   <h7 style='color: grey;'>Caída máxima: <strong>$model->max_height</strong></h7>
               </div>
               </div>
-              <hr>";
+              <hr>
+              </div>
+              <div>
+              <div class='col-12'>
+                <h4>Detalles de cubierta</h4>
+               </div>
+                <div class='row'>
+                <div class='col-md-6 col-sm-12'>
+                   <img src=".asset('storage')."/images/".$cover->photo." style='width: 100%;'>
+              </div>
+              <div class='col-md-6 col-sm-12'>
+                   <h7 style='color: grey;'><strong>$cover->name</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Ancho de rollo: <strong>$cover->roll_width mts</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Uniones: <strong>$cover->unions</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Número de lienzos: <strong>$num_lienzos</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Medida de lienzos: <strong>$measure</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Total de textil: <strong>$total_fabric</strong></h7>
+              </div>
+                </div>
+              </div>";
     }
 
     /**
