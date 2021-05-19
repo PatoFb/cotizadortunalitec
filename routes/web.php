@@ -90,7 +90,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('orders/{id}/send', 'App\Http\Controllers\OrdersController@send')->name('orders.send');
 
     Route::post('curtains/fetch/model', 'App\Http\Controllers\CurtainsController@fetchModel')->name('curtain.fetch.model');
-    Route::post('curtains/fetch/cover', 'App\Http\Controllers\CurtainsController@fetchCover')->name('curtain.fetch.cover');
+    Route::post('curtains/fetch/data', 'App\Http\Controllers\CurtainsController@fetchData')->name('curtain.fetch.data');
     Route::post('curtains/fetch/numbers', 'App\Http\Controllers\CurtainsController@fetchNumbers')->name('curtain.fetch.numbers');
 
     Route::put('curtains/add_data', 'App\Http\Controllers\CurtainsController@addData')->name('curtain.add.data');

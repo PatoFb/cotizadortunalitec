@@ -111,18 +111,14 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
         <!-- Library for adding dinamically elements -->
         <script src="{{ asset('material') }}/js/plugins/arrive.min.js"></script>
-        <!--  Google Maps Plugin    -->
-        <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE'"></script>
         <!-- Chartist JS -->
         <script src="{{ asset('material') }}/js/plugins/chartist.min.js"></script>
         <!--  Notifications Plugin    -->
         <script src="{{ asset('material') }}/js/plugins/bootstrap-notify.js"></script>
-        <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script>
-        <script type="text/javascript" src="{{asset('material')}}js/plugins/jquery.gmap.js"></script>
+
         <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
         <script src="{{ asset('material') }}/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
-        <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-        <script src="{{ asset('material') }}/demo/demo.js"></script>
+
         <script src="{{ asset('material') }}/js/settings.js"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
         <!-- Latest compiled and minified JavaScript -->
@@ -138,92 +134,44 @@
                 $(this).next('.custom-file-label').html(fileName);
             })
         </script>
-
         <script>
-            //Funcion para mandar el valor del select del modelo, llamando a ajax y regresando los datos del mismo
-            jQuery(document).ready(function() {
-                $('.dynamicModel').on('change', function () {
-                    if ($(this).val() != '') {
-                        var select = $(this).attr("id");
-                        var value = $(this).val();
-                        var dependant = $(this).data('dependant');
-                        var _token = $('input[name="_token"]').val();
-                        $.ajaxSetup({
-                            headers: {
-                                'X-CSRF-TOKEN': $('[name="_token"]').attr('content')
-                            }
-                        });
-                        $.ajax({
-                            url: "{{ route('curtain.fetch.model') }}",
-                            method: "POST",
-                            data: {select: select, value: value, _token: _token, dependant: dependant},
-                            success: function (result) {
-                                $('#' + dependant).html(result);
-                            }
-
-                        });
+            $('#curtainForm').on('input', function (event) {
+                event.preventDefault();
+                let $wrapper = $('#curtainForm'),
+                    model_id = $wrapper.find('#model_id').val(),
+                    cover_id = $wrapper.find('#cover_id').val(),
+                    width = $wrapper.find('#width').val(),
+                    height = $wrapper.find('#height').val(),
+                    control_id = $wrapper.find('#control_id').val(),
+                    canopy_id = $wrapper.find('#canopy_id').val(),
+                    handle_id = $wrapper.find('#handle_id').val(),
+                    quantity = $wrapper.find('#quantity').val(),
+                    _token = $('input[name="_token"]').val();
+                console.log(model_id, cover_id, width, height);
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('[name="_token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url: "{{ route('curtain.fetch.data') }}",
+                    method: "POST",
+                    data: {
+                        model_id: model_id,
+                        cover_id: cover_id,
+                        width:  width,
+                        height: height,
+                        control_id: control_id,
+                        handle_id: handle_id,
+                        canopy_id: canopy_id,
+                        quantity: quantity,
+                        _token: _token },
+                    success: function (result) {
+                        $('#dynamicInfo').html(result);
                     }
                 });
             });
-
         </script>
-
-        <script>
-            //Funcion para mandar el valor del select de la cubierta, llamando a ajax y regresando los datos de la misma
-            jQuery(document).ready(function() {
-                $('.dynamicCover').on('change', function () {
-                    if ($(this).val() != '') {
-                        var select = $(this).attr("id");
-                        var value = $(this).val();
-                        var dependant = $(this).data('dependant');
-                        var _token = $('input[name="_token"]').val();
-                        $.ajaxSetup({
-                            headers: {
-                                'X-CSRF-TOKEN': $('[name="_token"]').attr('content')
-                            }
-                        });
-                        $.ajax({
-                            url: "{{ route('curtain.fetch.cover') }}",
-                            method: "POST",
-                            data: {select: select, value: value, _token: _token, dependant: dependant},
-                            success: function (result) {
-                                $('#' + dependant).html(result);
-                            }
-
-                        });
-                    }
-                });
-            });
-
-        </script>
-
-        <!--<script>
-            jQuery(document).ready(function() {
-                $('.dynamicNumber1').on('change', function () {
-                    if ($(this).val() != '') {
-                        var select = $(this).attr("id");
-                        var values = $(this).val();
-                        var dependant = $(this).data('dependant');
-                        var _token = $('input[name="_token"]').val();
-                        $.ajaxSetup({
-                            headers: {
-                                'X-CSRF-TOKEN': $('[name="_token"]').attr('content')
-                            }
-                        });
-                        $.ajax({
-                            url: "",
-                            method: "POST",
-                            data: {select: select, values: values, _token: _token, dependant: dependant},
-                            success: function (result) {
-                                $('#'+dependant).html(result);
-                            }
-
-                        });
-                    }
-                });
-            });
-
-        </script>-->
         @stack('js')
     </body>
 </html>
