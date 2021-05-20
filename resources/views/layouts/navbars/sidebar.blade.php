@@ -41,7 +41,7 @@
                 <p>{{ __('Contacto') }}</p>
             </a>
         </li>
-        <li class="nav-item{{ $activePage == 'orders' ? ' active' : '' }}">
+        <li class="nav-item{{ $activePage == 'allorders' ? ' active' : '' }}">
             <a class="nav-link" href="{{ route('orders.all') }}">
                 <i class="material-icons">list</i>
                 <p>{{ __('Ordenes') }}</p>
