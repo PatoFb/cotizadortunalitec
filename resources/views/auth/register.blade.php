@@ -85,7 +85,7 @@
             </div>
               <br>
               <div class="card-title">
-                  <h6>Datos opcionales (se pedirán al hacer una orden)</h6>
+                  <h6>Datos de facturación</h6>
               </div>
               <div class="bmd-form-group{{ $errors->has('phone') ? ' has-danger' : '' }} mt-3">
                   <div class="input-group">
@@ -158,6 +158,101 @@
                 {{ __('I agree with the ') }} <a href="#">{{ __('Privacy Policy') }}</a>
               </label>
             </div>--}}
+
+              <br>
+              <div class="card-title">
+                  <h6>Dirección principal</h6>
+              </div>
+              <div class="bmd-form-group{{ $errors->has('alias') ? ' has-danger' : '' }} mt-3">
+                  <div class="input-group">
+                      <div class="input-group-prepend">
+                  <span class="input-group-text">
+                      <i class="material-icons">home</i>
+                  </span>
+                      </div>
+                      <input type="text" name="alias" class="form-control" placeholder="{{ __('Alias') }}" value="{{ old('alias') }}">
+                  </div>
+                  @if ($errors->has('alias'))
+                      <div id="name-error" class="error text-danger pl-3" for="alias" style="display: block;">
+                          <strong>{{ $errors->first('alias') }}</strong>
+                      </div>
+                  @endif
+              </div>
+              <div class="bmd-form-group{{ $errors->has('city') ? ' has-danger' : '' }} mt-3">
+                  <div class="input-group">
+                      <div class="input-group-prepend">
+                  <span class="input-group-text">
+                      <i class="material-icons">location_city</i>
+                  </span>
+                      </div>
+                      <input type="text" name="city" class="form-control" placeholder="{{ __('Ciudad') }}" value="{{ old('city') }}">
+                  </div>
+                  @if ($errors->has('city'))
+                      <div id="name-error" class="error text-danger pl-3" for="city" style="display: block;">
+                          <strong>{{ $errors->first('city') }}</strong>
+                      </div>
+                  @endif
+              </div>
+              <div class="bmd-form-group{{ $errors->has('state') ? ' has-danger' : '' }} mt-3">
+                  <div class="input-group">
+                      <div class="input-group-prepend">
+                  <span class="input-group-text">
+                      <i class="material-icons">domain</i>
+                  </span>
+                      </div>
+                      <input type="text" name="razon_social" class="form-control" placeholder="{{ __('Estado') }}" value="{{ old('state') }}">
+                  </div>
+                  @if ($errors->has('state'))
+                      <div id="name-error" class="error text-danger pl-3" for="state" style="display: block;">
+                          <strong>{{ $errors->first('state') }}</strong>
+                      </div>
+                  @endif
+              </div>
+              <div class="bmd-form-group{{ $errors->has('zip_code') ? ' has-danger' : '' }} mt-3">
+                  <div class="input-group">
+                      <div class="input-group-prepend">
+                  <span class="input-group-text">
+                      <i class="material-icons">source</i>
+                  </span>
+                      </div>
+                      <input type="text" name="zip_code" class="form-control" placeholder="{{ __('Código postal') }}" value="{{ old('zip_code') }}">
+                  </div>
+                  @if ($errors->has('zip_code'))
+                      <div id="name-error" class="error text-danger pl-3" for="zip_code" style="display: block;">
+                          <strong>{{ $errors->first('zip_code') }}</strong>
+                      </div>
+                  @endif
+              </div>
+              <div class="bmd-form-group{{ $errors->has('line1') ? ' has-danger' : '' }} mt-3">
+                  <div class="input-group">
+                      <div class="input-group-prepend">
+                  <span class="input-group-text">
+                      <i class="material-icons">description</i>
+                  </span>
+                      </div>
+                      <input type="text" name="line1" class="form-control" placeholder="{{ __('Colonia, calle, nombre de la empresa, # exterior') }}" value="{{ old('line1') }}">
+                  </div>
+                  @if ($errors->has('line1'))
+                      <div id="name-error" class="error text-danger pl-3" for="line1" style="display: block;">
+                          <strong>{{ $errors->first('line1') }}</strong>
+                      </div>
+                  @endif
+              </div>
+              <div class="bmd-form-group{{ $errors->has('line2') ? ' has-danger' : '' }} mt-3">
+                  <div class="input-group">
+                      <div class="input-group-prepend">
+                  <span class="input-group-text">
+                      <i class="material-icons">description</i>
+                  </span>
+                      </div>
+                      <input type="text" name="line2" class="form-control" placeholder="{{ __('# interior, edificio, departamento, etc.') }}" value="{{ old('line2') }}">
+                  </div>
+                  @if ($errors->has('line2'))
+                      <div id="name-error" class="error text-danger pl-3" for="line2" style="display: block;">
+                          <strong>{{ $errors->first('line2') }}</strong>
+                      </div>
+                  @endif
+              </div>
           </div>
           <div class="card-footer justify-content-center">
             <button id="signup" type="submit" class="btn btn-primary btn-link btn-lg">{{ __('Crear cuenta') }}</button>
