@@ -172,6 +172,12 @@
                 });
             });
         </script>
+        <script>
+            $('#orders-list a').on('click', function (e) {
+                e.preventDefault()
+                $(this).tab('show')
+            })
+        </script>
         @stack('js')
     </body>
 </html>
