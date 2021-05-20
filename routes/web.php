@@ -89,7 +89,15 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('orders/all', 'App\Http\Controllers\OrdersController@all')->name('orders.all');
 
+    Route::get('orders/{id}/details', 'App\Http\Controllers\OrdersController@details')->name('orders.details');
+
+    Route::get('orders/{id}/authorize', 'App\Http\Controllers\OrdersController@production')->name('orders.production');
+
     Route::get('orders/{id}/send', 'App\Http\Controllers\OrdersController@send')->name('orders.send');
+
+    Route::post('orders/{id}/upload', 'App\Http\Controllers\OrdersController@upload')->name('orders.upload');
+
+    Route::get('orders/{id}/download', 'App\Http\Controllers\OrdersController@download')->name('orders.download');
 
     Route::post('curtains/fetch/model', 'App\Http\Controllers\CurtainsController@fetchModel')->name('curtain.fetch.model');
     Route::post('curtains/fetch/data', 'App\Http\Controllers\CurtainsController@fetchData')->name('curtain.fetch.data');

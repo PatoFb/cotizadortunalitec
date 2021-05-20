@@ -13,10 +13,13 @@
                   </div>
                   <div class="card-body">
                       <div class="form-row float-right">
-                          <a href="{{route('orders.type', $order->id)}}" class="btn btn-sm btn-primary" >Agregar producto</a>
+                          <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#fileModal" id="file_order_modal">
+                              Agregar comprobante
+                          </button>
                           <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#editModal" id="edit_order_modal">
                               Editar Orden
-                              </button>
+                          </button>
+                          <a href="{{route('orders.type', $order->id)}}" class="btn btn-sm btn-primary" >Agregar producto</a>
                       </div>
                       <div class="table-responsive">
                           <table class="table">
@@ -241,24 +244,24 @@
 
 
 
-                        <div class="col-12">
-                            {!! Form::label('activity', 'Actividad:') !!}
-                            <select class="form-control" name="activity" >
-                                <option value="">Selecciona la actividad</option>
-                                <option @if($order->activity == "Oferta") selected @endif>Oferta</option>
-                                <option @if($order->activity == "Pedido") selected @endif>Pedido</option>
-                            </select>
-                        </div>
-<br>
-                        <div class="col-12">
-                            {!! Form::label('project', 'Nombre del proyecto:') !!}
-                            {!! Form::text('project', null, ['class'=>'form-control']) !!}
-                        </div>
-<br>
-                        <div class="col-12">
-                            {!! Form::label('discount', 'Descuento:') !!}
-                            {!! Form::number('discount', null, ['class'=>'form-control', 'step'=>0.1]) !!}
-                        </div>
+                    <div class="col-12">
+                        {!! Form::label('activity', 'Actividad:') !!}
+                        <select class="form-control" name="activity" >
+                            <option value="">Selecciona la actividad</option>
+                            <option @if($order->activity == "Oferta") selected @endif>Oferta</option>
+                            <option @if($order->activity == "Pedido") selected @endif>Pedido</option>
+                        </select>
+                    </div>
+                    <br>
+                    <div class="col-12">
+                        {!! Form::label('project', 'Nombre del proyecto:') !!}
+                        {!! Form::text('project', null, ['class'=>'form-control']) !!}
+                    </div>
+                    <br>
+                    <div class="col-12">
+                        {!! Form::label('discount', 'Descuento:') !!}
+                        {!! Form::number('discount', null, ['class'=>'form-control', 'step'=>0.1]) !!}
+                    </div>
 
 
                     <br>
@@ -279,6 +282,35 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="fileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Editar Orden</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\OrdersController@upload', $order->id], 'files'=>true]) !!}
+                    {!! Form::label('photo', 'Archivo (PDF, JPG, JPEG, PNG):') !!}
+                    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                        <span class="btn btn-raised btn-round btn-primary btn-file">
+                            <input type="file" name="file" />
+                        </span>
+                            {{--<a href="#" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>--}}
+                        </div>
+                    </div>
+                <div class="modal-footer">
+
+                    {!! Form::submit('Subir', ['class'=>'btn btn-primary pull-right', 'id'=>'file_order']) !!}
+
+
+                    {!! Form::close() !!}
+                </div>
+        </div>
+        </div>
+            </div>
     <div class="modal fade" id="deleteOrderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

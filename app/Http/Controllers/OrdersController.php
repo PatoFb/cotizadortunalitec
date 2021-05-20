@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Curtain;
 use App\Models\Order;
 use App\Models\Type;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,6 +29,14 @@ class OrdersController extends Controller
         $offers = Order::where('activity', 'Oferta')->get();
         $prods = Order::where('activity', 'Produccion')->get();
         return view('admin.orders.index', compact('orders', 'offers', 'prods'));
+    }
+
+    public function production($id)
+    {
+        $order = Order::findOrFail($id);
+        $order->activity = 'Produccion';
+        $order->save();
+        return redirect()->back()->withStatus(__('La orden fue autorizada'));
     }
 
     /**
@@ -83,6 +92,12 @@ class OrdersController extends Controller
         return view('orders.show', compact('order'));
     }
 
+    public function details($id)
+    {
+        $order = Order::findOrFail($id);
+        return view('admin.orders.show', compact('order'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -108,6 +123,30 @@ class OrdersController extends Controller
         $input = $request->all();
         $order->update($input);
         return redirect('orders/'.$id)->withStatus('Orden editada correctamente');
+    }
+
+    public function upload(Request $request, $id){
+        $order = Order::findOrFail($id);
+        //get file value from input
+        $file = $request->file('file');
+        $date = Carbon::now()->format('YmdHs');
+        //check if file isn't null. If it is, assign a default value, if it isn't, get and store the name and then save the file in the disk
+        if($file != '') {
+            $name = $date.$file->getClientOriginalName();
+            $order->file = $name;
+            $request->file->storeAs('comprobantes/', $name);
+        } else {
+            $order->file = '';
+        }
+        $order->save();
+        return redirect()->back()->withStatus(__('Comprobante subido correctamente'));
+    }
+
+    public function download($id)
+    {
+        $order = Order::findOrFail($id);
+        $pathToFile = storage_path('app/comprobantes/' . $order->file);
+        return response()->download($pathToFile);
     }
 
     /**
