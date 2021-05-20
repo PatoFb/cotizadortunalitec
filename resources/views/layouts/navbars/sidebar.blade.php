@@ -41,6 +41,12 @@
                 <p>{{ __('Contacto') }}</p>
             </a>
         </li>
+        <li class="nav-item{{ $activePage == 'orders' ? ' active' : '' }}">
+            <a class="nav-link" href="{{ route('orders.all') }}">
+                <i class="material-icons">list</i>
+                <p>{{ __('Ordenes') }}</p>
+            </a>
+        </li>
       <li class="nav-item {{ ($activePage == 'usuarios') || ($activePage == 'controles_cortina') || ($activePage == 'tipos') || ($activePage == 'tejaillos_cortina')
                               || ($activePage == 'manivelas_cortina') || ($activePage == 'modelos_cortina') || ($activePage == 'cubiertas_cortina') ? ' active' : '' }}">
         <a class="nav-link" data-toggle="collapse" href="#admin" aria-expanded="true">

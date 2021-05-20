@@ -22,6 +22,14 @@ class OrdersController extends Controller
         return view('orders.index', compact('orders'));
     }
 
+    public function all()
+    {
+        $orders = Order::where('activity', 'Pedido')->get();
+        $offers = Order::where('activity', 'Oferta')->get();
+        $prods = Order::where('activity', 'Produccion')->get();
+        return view('admin.orders.index', compact('orders', 'offers', 'prods'));
+    }
+
     /**
      * Call to post view to make order
      *
