@@ -7,6 +7,7 @@ use App\Models\CurtainCanopy;
 use App\Models\CurtainControl;
 use App\Models\CurtainCover;
 use App\Models\CurtainHandle;
+use App\Models\CurtainMechanism;
 use App\Models\CurtainModel;
 use App\Models\Order;
 use Illuminate\Http\Request;
@@ -32,7 +33,8 @@ class CurtainsController extends Controller
         $handles = CurtainHandle::all();
         $canopies = CurtainCanopy::all();
         $controls = CurtainControl::all();
-        return view('curtains.create', compact('order_id', 'models', 'covers', 'handles', 'canopies', 'controls', 'order'));
+        $mechanisms = CurtainMechanism::all();
+        return view('curtains.create', compact('order_id', 'models', 'covers', 'handles', 'canopies', 'controls', 'order', 'mechanisms'));
     }
 
     /**
@@ -81,7 +83,8 @@ class CurtainsController extends Controller
                 'quantity' => 'required',
                 'installation_type' => 'required',
                 'mechanism_side' => 'required',
-                'view_type' => 'required'
+                'view_type' => 'required',
+                'mechanism_id'=>'required'
             ]);
         } else {
             $validatedData = $request->validate([
@@ -93,6 +96,7 @@ class CurtainsController extends Controller
                 'canopy_id' => 'required',
                 'control_id' => 'required',
                 'quantity' => 'required',
+                'mechanism_id'=>'required'
             ]);
         }
         $curtain = new Curtain();
@@ -103,7 +107,8 @@ class CurtainsController extends Controller
         $control = CurtainControl::where('id', $curtain['control_id'])->first();
         $model = CurtainModel::where('id', $curtain['model_id'])->first();
         $cover = CurtainCover::where('id', $curtain['cover_id'])->first();
-        $curtain['price'] = ($handle->price + $canopy->price + $control->price + $model->base_price + $cover->price) * $curtain['quantity'];
+        $mechanism = CurtainMechanism::where('id', $curtain['mechanism_id'])->first();
+        $curtain['price'] = ($handle->price + $canopy->price + $control->price + $model->base_price + $cover->price + $mechanism->price) * $curtain['quantity'];
         $curtain->save();
         $order->price = $order->price + $curtain['price'];
         $order->total = $order->total + ($curtain['price']*(1 - ($order->discount/100)));
@@ -136,6 +141,9 @@ class CurtainsController extends Controller
         $control_id = $input['control_id'];
         $control = CurtainControl::find($control_id);
 
+        $mechanism_id = $input['mechanism_id'];
+        $mechanism = CurtainMechanism::find($mechanism_id);
+
         $width = $input['width'];
         $height = $input['height'];
         $quantity = $input['quantity'];
@@ -143,7 +151,7 @@ class CurtainsController extends Controller
         $measure = $height + 0.5;
         $total_fabric = $measure * $num_lienzos;
 
-        $price = ($handle->price + $canopy->price + $control->price + $model->base_price + $cover->price) * $quantity;
+        $price = ($handle->price + $canopy->price + $control->price + $model->base_price + $cover->price + $mechanism->price) * $quantity;
         $price = number_format($price, 2);
         echo "<div class='text-right'><h3><strong>Precio estimado: $$price</strong></h3></div>
 <hr>

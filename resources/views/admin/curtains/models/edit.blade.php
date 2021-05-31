@@ -55,6 +55,18 @@
                             </div>
 
                             <br>
+                            <div class="form-row">
+                                <div class="col-sm-6 col-md-6">
+                                    {!! Form::label('tube_id', 'Tubo:' )  !!}
+                                    {!! Form::select('tube_id', [''=>'Selecciona el tubo'] + $tubes, null, ['class' => 'form-control' ]) !!}
+                                </div>
+
+                                <div class="col-sm-6 col-md-6">
+                                    {!! Form::label('panel_id', 'Pánel frontal:' )  !!}
+                                    {!! Form::select('panel_id', [''=>'Selecciona el panel'] + $panels, null, ['class' => 'form-control' ]) !!}
+                                </div>
+                            </div>
+                            <br>
                             <div class="form-group">
                                 {!! Form::label('description', 'Descripción:') !!}
                                 {!! Form::textarea('description', null, ['class'=>'form-control']) !!}

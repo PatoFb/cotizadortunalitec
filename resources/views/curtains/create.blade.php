@@ -41,6 +41,19 @@
                     </div>
 
                     <br>
+                    <h6>Mecanismo</h6>
+                    <div class="form-row">
+                        <div class="col-md-12 col-sm-12">
+
+                            <select class="form-control" name="mechanism_id" id="mechanism_id" >
+                                @foreach($mechanisms as $mechanism)
+                                    <option value="{{$mechanism->id}}">{{$mechanism->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <br>
                     <h6>Datos</h6>
                     <div class="form-row">
 

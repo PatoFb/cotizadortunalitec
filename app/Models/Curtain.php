@@ -31,6 +31,10 @@ class Curtain extends Model
         return $this->belongsTo('App\Models\CurtainCanopy');
     }
 
+    public function mechanism() {
+        return $this->belongsTo(CurtainMechanism::class);
+    }
+
     protected $fillable = [
         'order_id',
         'quantity',
@@ -41,6 +45,7 @@ class Curtain extends Model
         'handle_id',
         'control_id',
         'canopy_id',
-        'price'
+        'price',
+        'mechanism_id'
     ];
 }

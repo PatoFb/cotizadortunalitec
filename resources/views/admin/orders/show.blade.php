@@ -12,7 +12,7 @@
                       {{--<p class="card-category"> Here you can manage users</p>--}}
                   </div>
                   <div class="card-body">
-                      @if($order->activity != 'Produccion')
+                      @if($order->activity == 'Pedido')
                       <div class="form-row float-right">
                           <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#authorizeModal" id="authorize_order_modal">
                               Autorizar y enviar a producción
@@ -41,7 +41,7 @@
                                   <th class="text-right">
                                       Total
                                   </th>
-                                  <th>
+                                  <th class="text-right">
                                       Comprobante de pago
                                   </th>
                               </tr></thead>
@@ -53,7 +53,7 @@
                                   <td>${{number_format($order->price, 2)}}</td>
                                   <td>{{$order->discount}}%</td>
                                   <td class="text-right">${{number_format($order->total, 2)}}</td>
-                                  <td><a href="{{route('orders.download', $order->id)}}"> Descargar archivo</a></td>
+                                  <td class="text-right"><a href="{{route('orders.download', $order->id)}}"> Descargar archivo</a></td>
                               </tr>
                               </tbody>
                           </table>
@@ -80,6 +80,9 @@
                                   </th>
                                   <th>
                                       Cubierta
+                                  </th>
+                                  <th>
+                                      Mecanismo
                                   </th>
                                   <th>
                                       Ancho
@@ -109,6 +112,7 @@
                               <tr>
                                   <td>{{$curtain->model->name}}</td>
                                   <td>{{$curtain->cover->name}}</td>
+                                  <td>{{$curtain->mechanism->name}}</td>
                                   <td>{{$curtain->width}}</td>
                                   <td>{{$curtain->height}}</td>
                                   <td>{{$curtain->handle->measure}}</td>

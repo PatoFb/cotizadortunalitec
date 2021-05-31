@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrdenAProduccion;
 use App\Models\Curtain;
 use App\Models\Order;
 use App\Models\Type;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class OrdersController extends Controller
 {
@@ -34,8 +37,10 @@ class OrdersController extends Controller
     public function production($id)
     {
         $order = Order::findOrFail($id);
+        $user = User::findOrFail($order->user_id);
         $order->activity = 'Produccion';
         $order->save();
+        Mail::to($user->email)->send(new OrdenAProduccion($user, $order));
         return redirect()->back()->withStatus(__('La orden fue autorizada'));
     }
 

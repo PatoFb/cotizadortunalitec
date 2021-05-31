@@ -42,10 +42,15 @@
 
 <br>
 
-                    <div class="form-group">
+                    <div class="form-row">
                         <div class="col-md-6 col-sm-12">
                             {!! Form::label('role_id', 'Rol:' )  !!}
                             {!! Form::select('role_id', [''=>'Seleccionar rol'] + $roles, null, ['class' => 'form-control']) !!}
+                        </div>
+
+                        <div class="col-md-6 col-sm-12">
+                            {!! Form::label('discount', 'Descuento:') !!}
+                            {!! Form::number('discount', null, ['class'=>'form-control']) !!}
                         </div>
                     </div>
 
