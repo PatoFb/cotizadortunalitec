@@ -32,7 +32,7 @@
 
                         <div class="col-sm-12 col-md-4">
                             {!! Form::label('discount', 'Descuento:') !!}
-                            {!! Form::number('discount', null, ['class'=>'form-control', 'step'=>0.1]) !!}
+                            {!! Form::number('discount', \Illuminate\Support\Facades\Auth::user()->discount, ['class'=>'form-control', 'readonly']) !!}
                         </div>
                     </div>
 

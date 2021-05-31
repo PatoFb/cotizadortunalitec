@@ -48,7 +48,8 @@
             </a>
         </li>
       <li class="nav-item {{ ($activePage == 'usuarios') || ($activePage == 'controles_cortina') || ($activePage == 'tipos') || ($activePage == 'tejaillos_cortina')
-                              || ($activePage == 'manivelas_cortina') || ($activePage == 'modelos_cortina') || ($activePage == 'cubiertas_cortina') ? ' active' : '' }}">
+                              || ($activePage == 'manivelas_cortina') || ($activePage == 'modelos_cortina') || ($activePage == 'cubiertas_cortina') ||
+                              ($activePage == 'mecanismos_cortina') || ($activePage == 'paneles_cortina') || ($activePage == 'tubos_cortina') ? ' active' : '' }}">
         <a class="nav-link" data-toggle="collapse" href="#admin" aria-expanded="true">
             <i class="material-icons">settings_application</i>
           <p>{{ __('Admin') }}
@@ -71,7 +72,7 @@
               </li>
               <li class="nav-item{{ $activePage == 'modelos_cortina' ? ' active' : '' }}">
                   <a class="nav-link" href="{{ route('models.index') }}">
-                      <span class="sidebar-mini"> MC </span>
+                      <span class="sidebar-mini"> MO </span>
                       <span class="sidebar-normal"> {{ __('Modelos de cortina') }} </span>
                   </a>
               </li>
@@ -79,6 +80,12 @@
                   <a class="nav-link" href="{{ route('covers.index') }}">
                       <span class="sidebar-mini"> CU </span>
                       <span class="sidebar-normal"> {{ __('Cubiertas para cortina') }} </span>
+                  </a>
+              </li>
+              <li class="nav-item{{ $activePage == 'mecanismos_cortina' ? ' active' : '' }}">
+                  <a class="nav-link" href="{{ route('mechanisms.index') }}">
+                      <span class="sidebar-mini"> ME </span>
+                      <span class="sidebar-normal"> {{ __('Mecanismos') }} </span>
                   </a>
               </li>
               <li class="nav-item{{ $activePage == 'controles_cortina' ? ' active' : '' }}">
@@ -89,14 +96,26 @@
               </li>
               <li class="nav-item{{ $activePage == 'tejadillos_cortina' ? ' active' : '' }}">
                   <a class="nav-link" href="{{ route('canopies.index') }}">
-                      <span class="sidebar-mini"> T </span>
+                      <span class="sidebar-mini"> TE </span>
                       <span class="sidebar-normal"> {{ __('Tejadillos') }} </span>
                   </a>
               </li>
               <li class="nav-item{{ $activePage == 'manivelas_cortina' ? ' active' : '' }}">
                   <a class="nav-link" href="{{ route('handles.index') }}">
-                      <span class="sidebar-mini"> M </span>
+                      <span class="sidebar-mini"> MA </span>
                       <span class="sidebar-normal"> {{ __('Manivelas') }} </span>
+                  </a>
+              </li>
+              <li class="nav-item{{ $activePage == 'tubos_cortina' ? ' active' : '' }}">
+                  <a class="nav-link" href="{{ route('tubes.index') }}">
+                      <span class="sidebar-mini"> TU </span>
+                      <span class="sidebar-normal"> {{ __('Tubos para cortinas') }} </span>
+                  </a>
+              </li>
+              <li class="nav-item{{ $activePage == 'paneles_cortina' ? ' active' : '' }}">
+                  <a class="nav-link" href="{{ route('panels.index') }}">
+                      <span class="sidebar-mini"> PA </span>
+                      <span class="sidebar-normal"> {{ __('Páneles frontales') }} </span>
                   </a>
               </li>
           </ul>

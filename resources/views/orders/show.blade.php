@@ -13,9 +13,11 @@
                   </div>
                   <div class="card-body">
                       <div class="form-row float-right">
+                          @if($order->activity == 'Pedido')
                           <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#fileModal" id="file_order_modal">
                               Agregar comprobante
                           </button>
+                          @endif
                           <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#editModal" id="edit_order_modal">
                               Editar Orden
                           </button>
@@ -84,6 +86,9 @@
                                       Cubierta
                                   </th>
                                   <th>
+                                      Mecanismo
+                                  </th>
+                                  <th>
                                       Ancho
                                   </th>
                                   <th>
@@ -114,6 +119,7 @@
                               <tr>
                                   <td>{{$curtain->model->name}}</td>
                                   <td>{{$curtain->cover->name}}</td>
+                                  <td>{{$curtain->mechanism->name}}</td>
                                   <td>{{$curtain->width}}</td>
                                   <td>{{$curtain->height}}</td>
                                   <td>{{$curtain->handle->measure}}</td>

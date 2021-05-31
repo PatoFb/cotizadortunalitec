@@ -145,9 +145,9 @@
                     control_id = $wrapper.find('#control_id').val(),
                     canopy_id = $wrapper.find('#canopy_id').val(),
                     handle_id = $wrapper.find('#handle_id').val(),
+                    mechanism_id = $wrapper.find('#mechanism_id').val(),
                     quantity = $wrapper.find('#quantity').val(),
                     _token = $('input[name="_token"]').val();
-                console.log(model_id, cover_id, width, height);
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('[name="_token"]').attr('content')
@@ -164,6 +164,7 @@
                         control_id: control_id,
                         handle_id: handle_id,
                         canopy_id: canopy_id,
+                        mechanism_id: mechanism_id,
                         quantity: quantity,
                         _token: _token },
                     success: function (result) {

@@ -110,6 +110,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('admin/handles', 'App\Http\Controllers\CurtainHandlesController', ['except' => ['show']]);
     Route::resource('admin/models', 'App\Http\Controllers\CurtainModelsController', ['except' => ['show']]);
     Route::resource('admin/covers', 'App\Http\Controllers\CurtainCoversController', ['except' => ['show']]);
+    Route::resource('admin/tubes', 'App\Http\Controllers\CurtainTubesController', ['except' => ['show']]);
+    Route::resource('admin/mechanisms', 'App\Http\Controllers\CurtainMechanismsController', ['except' => ['show']]);
+    Route::resource('admin/panels', 'App\Http\Controllers\CurtainPanelsController', ['except' => ['show']]);
     Route::resource('orders', 'App\Http\Controllers\OrdersController');
     Route::resource('curtains', 'App\Http\Controllers\CurtainsController');
 

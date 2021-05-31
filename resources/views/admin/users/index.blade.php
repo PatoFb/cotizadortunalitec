@@ -41,6 +41,9 @@
                         <th>
                             Razón social
                         </th>
+                        <th>
+                            Descuento
+                        </th>
                     <th class="text-right">
                       Acciones
                     </th>
@@ -56,6 +59,7 @@
                       <td>{{$user->rfc}}</td>
                       <td>{{$user->cfdi}}</td>
                       <td>{{$user->razon_social}}</td>
+                      <td>{{$user->discount}}%</td>
                         <td class="td-actions text-right">
                             <a rel="tooltip" class="btn btn-success btn-link" href="{{route('users.edit', $user->id)}}" data-original-title="" title="">
                               <i class="material-icons">edit</i>

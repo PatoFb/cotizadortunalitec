@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CurtainModelsEditRequest;
 use App\Http\Requests\CurtainModelsRequest;
 use App\Models\CurtainModel;
+use App\Models\CurtainPanel;
+use App\Models\CurtainTube;
 use App\Models\Type;
 use Illuminate\Http\Request;
 
@@ -29,7 +31,9 @@ class CurtainModelsController extends Controller
     public function create()
     {
         $types = Type::pluck('name', 'id')->all();
-        return view('admin.curtains.models.create', compact('types'));
+        $tubes = CurtainTube::pluck('name', 'id')->all();
+        $panels = CurtainPanel::pluck('name', 'id')->all();
+        return view('admin.curtains.models.create', compact('types', 'panels', 'tubes'));
     }
 
     /**
@@ -76,7 +80,9 @@ class CurtainModelsController extends Controller
     {
         $types = Type::pluck('name', 'id')->all();
         $model = CurtainModel::findOrFail($id);
-        return view('admin.curtains.models.edit', compact('types', 'model'));
+        $tubes = CurtainTube::pluck('name', 'id')->all();
+        $panels = CurtainPanel::pluck('name', 'id')->all();
+        return view('admin.curtains.models.edit', compact('types', 'model', 'tubes', 'panels'));
     }
 
     /**
