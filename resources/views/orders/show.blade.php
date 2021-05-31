@@ -266,7 +266,7 @@
                     <br>
                     <div class="col-12">
                         {!! Form::label('discount', 'Descuento:') !!}
-                        {!! Form::number('discount', null, ['class'=>'form-control', 'step'=>0.1]) !!}
+                        {!! Form::number('discount', null, ['class'=>'form-control', 'step'=>0.1, 'readonly']) !!}
                     </div>
 
 
