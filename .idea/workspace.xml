@@ -2,27 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrdersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OrdersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Order.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_22_195013_create_orders_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_22_195013_create_orders_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_20_170630_create_addresses_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_20_171315_add_address_id_column_to_users_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_20_171341_add_address_id_column_to_orders_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_31_052726_create_curtain_panel_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_05_31_052726_create_curtain_panels_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/curtains/panels/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/curtains/panels/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/curtains/panels/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/curtains/panels/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/curtains/tubes/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/curtains/tubes/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/curtains/tubes/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/curtains/tubes/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/orders/new.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/orders/new.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentos/CasosDePrueba.docx" beforeDir="false" afterPath="$PROJECT_DIR$/documentos/CasosDePrueba.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentos/Planner.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/documentos/Planner.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentos/cotizador_burndown.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/documentos/cotizador_burndown.xlsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -228,7 +211,7 @@
       <workItem from="1622432820194" duration="6943000" />
       <workItem from="1622843871676" duration="83000" />
       <workItem from="1622849509418" duration="18000" />
-      <workItem from="1623024554498" duration="10641000" />
+      <workItem from="1623024554498" duration="11857000" />
     </task>
     <servers />
   </component>
