@@ -10,6 +10,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class OrdersController extends Controller
@@ -70,18 +71,38 @@ class OrdersController extends Controller
      */
     public function newOrderPost(Request $request)
     {
-        $request->validate([
-            'activity'=>'required',
-            'project'=>'required',
-            'discount' => 'required'
-        ]);
         $user = Auth::user();
-        $order = $request->all();
+        if($request->get('addressCheck') == 1) {
+            $request->validate([
+                'activity' => 'required',
+                'project' => 'required',
+                'discount' => 'required'
+            ]);
+            $order = $request->all();
+            $order['city'] = $user->city;
+            $order['state'] = $user->state;
+            $order['zip_code'] = $user->zip_code;
+            $order['line1'] = $user->line1;
+            $order['line2'] = $user->line2;
+            $order['reference'] = $user->reference;
+        } else {
+            $request->validate([
+                'activity' => 'required',
+                'project' => 'required',
+                'discount' => 'required',
+                'city' => ['required'],
+                'state' => ['required'],
+                'zip_code' => ['required', 'size:5', 'number'],
+                'line1' => ['required'],
+                'line2' => ['required'],
+                'reference' => ['string']
+            ]);
+            $order = $request->all();
+        }
         $order['user_id'] = $user->id;
         Order::create($order);
         $orderObj = Order::where('user_id', $user->id)->orderBy('id', 'DESC')->first();
         $order_id = $orderObj->id;
-        $request->session()->forget('curtain');
         return redirect()->route('orders.type', $order_id);
     }
 

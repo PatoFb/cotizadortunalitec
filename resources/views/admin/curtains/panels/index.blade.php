@@ -22,7 +22,7 @@
 
                                       <div class="col-md-6 col-sm-12">
                                           {!! Form::label('price', 'Precio:') !!}
-                                          {!! Form::number('price', null, ['class'=>'form-control', 'step'=>0.01]) !!}
+                                          {!! Form::number('price', null, ['class'=>'form-control', 'step'=>0.001]) !!}
                                       </div>
                                   </div>
 

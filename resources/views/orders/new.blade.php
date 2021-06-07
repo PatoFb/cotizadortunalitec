@@ -37,11 +37,62 @@
                     </div>
 
                 <br>
-                <div class="form-group">
+                <div class="form-row">
                     <div class="col-sm-12 col-md-12">
                         {!! Form::label('comments', 'Comentarios:') !!}
                         {!! Form::textarea('comments', null, ['class'=>'form-control']) !!}
                     </div>
+                </div>
+                <br>
+                <div class="form-check">
+                    <div class="col-sm-12 col-md-12">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" value="1" id="addressCheck" name="addressCheck" checked>
+                        Utilizar dirección predeterminada
+                        <span class="form-check-sign">
+                             <span class="check"></span>
+                        </span>
+                    </label>
+                    </div>
+                </div>
+                <br>
+                <div class="d-none" id="addressForm">
+                <div class="form-row">
+                    <div class="col-md-5 col-sm-12">
+                        {!! Form::label('city', 'Ciudad:') !!}
+                        {!! Form::text('city', null, ['class'=>'form-control']) !!}
+                    </div>
+                    <div class="col-md-5 col-sm-12">
+                        {!! Form::label('state', 'Estado:') !!}
+                        {!! Form::text('state', null, ['class'=>'form-control']) !!}
+                    </div>
+
+                    <div class="col-md-2 col-sm-12">
+                        {!! Form::label('zip_code', 'Código postal:') !!}
+                        {!! Form::text('zip_code', null, ['class'=>'form-control']) !!}
+                    </div>
+                </div>
+                <br>
+                <div class="form-row">
+                    <div class="col-md-12 col-sm-12">
+                        {!! Form::label('line1', 'Línea de dirección 1:') !!}
+                        {!! Form::text('line1', null, ['class'=>'form-control', 'placeholder'=>'Colonia, calle, nombre de la empresa, # exterior']) !!}
+                    </div>
+                </div>
+                <br>
+                <div class="form-row">
+                    <div class="col-md-12 col-sm-12">
+                        {!! Form::label('line2', 'Línea de dirección 2:') !!}
+                        {!! Form::text('line2', null, ['class'=>'form-control', 'placeholder'=>'# interior, edificio, departamento, etc.']) !!}
+                    </div>
+                </div>
+                <br>
+                <div class="form-row">
+                    <div class="col-md-12 col-sm-12">
+                        {!! Form::label('reference', 'Referencias:') !!}
+                        {!! Form::text('reference', null, ['class'=>'form-control']) !!}
+                    </div>
+                </div>
                 </div>
 
                     <div class="form-group text-right">

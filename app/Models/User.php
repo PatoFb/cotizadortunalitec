@@ -25,7 +25,13 @@ class User extends Authenticatable
         'cfdi',
         'razon_social',
         'phone',
-        'discount'
+        'discount',
+        'state',
+        'city',
+        'zip_code',
+        'line1',
+        'line2',
+        'reference'
     ];
 
     /**

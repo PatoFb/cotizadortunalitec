@@ -22,6 +22,12 @@ class Order extends Model
         'user_id',
         'price',
         'discount',
-        'total'
+        'total',
+        'state',
+        'city',
+        'zip_code',
+        'line1',
+        'line2',
+        'reference'
     ];
 }

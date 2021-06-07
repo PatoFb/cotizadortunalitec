@@ -179,6 +179,15 @@
                 $(this).tab('show')
             })
         </script>
+        <script>
+            $('#addressCheck').change(function () {
+                if (this.checked) {
+                    document.getElementById('addressForm').classList.add('d-none');
+                } else {
+                    document.getElementById('addressForm').classList.remove('d-none');
+                }
+            });
+        </script>
         @stack('js')
     </body>
 </html>

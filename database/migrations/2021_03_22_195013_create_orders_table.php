@@ -22,6 +22,12 @@ class CreateOrdersTable extends Migration
             $table->float('price')->nullable(true)->default(0);
             $table->float('discount')->nullable(true)->default(0);
             $table->float('total')->nullable(true)->default(0);
+            $table->string('state');
+            $table->string('city');
+            $table->string('zip_code');
+            $table->string('line1');
+            $table->string('line2');
+            $table->string('reference')->nullable(true);
             $table->timestamps();
         });
     }

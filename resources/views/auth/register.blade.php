@@ -163,21 +163,6 @@
               <div class="card-title">
                   <h6>Dirección principal</h6>
               </div>
-              <div class="bmd-form-group{{ $errors->has('alias') ? ' has-danger' : '' }} mt-3">
-                  <div class="input-group">
-                      <div class="input-group-prepend">
-                  <span class="input-group-text">
-                      <i class="material-icons">home</i>
-                  </span>
-                      </div>
-                      <input type="text" name="alias" class="form-control" placeholder="{{ __('Alias') }}" value="{{ old('alias') }}">
-                  </div>
-                  @if ($errors->has('alias'))
-                      <div id="name-error" class="error text-danger pl-3" for="alias" style="display: block;">
-                          <strong>{{ $errors->first('alias') }}</strong>
-                      </div>
-                  @endif
-              </div>
               <div class="bmd-form-group{{ $errors->has('city') ? ' has-danger' : '' }} mt-3">
                   <div class="input-group">
                       <div class="input-group-prepend">
@@ -200,7 +185,7 @@
                       <i class="material-icons">domain</i>
                   </span>
                       </div>
-                      <input type="text" name="razon_social" class="form-control" placeholder="{{ __('Estado') }}" value="{{ old('state') }}">
+                      <input type="text" name="state" class="form-control" placeholder="{{ __('Estado') }}" value="{{ old('state') }}">
                   </div>
                   @if ($errors->has('state'))
                       <div id="name-error" class="error text-danger pl-3" for="state" style="display: block;">
@@ -250,6 +235,21 @@
                   @if ($errors->has('line2'))
                       <div id="name-error" class="error text-danger pl-3" for="line2" style="display: block;">
                           <strong>{{ $errors->first('line2') }}</strong>
+                      </div>
+                  @endif
+              </div>
+              <div class="bmd-form-group{{ $errors->has('reference') ? ' has-danger' : '' }} mt-3">
+                  <div class="input-group">
+                      <div class="input-group-prepend">
+                  <span class="input-group-text">
+                      <i class="material-icons">description</i>
+                  </span>
+                      </div>
+                      <input type="text" name="reference" class="form-control" placeholder="{{ __('Referencia') }}" value="{{ old('reference') }}">
+                  </div>
+                  @if ($errors->has('reference'))
+                      <div id="name-error" class="error text-danger pl-3" for="reference" style="display: block;">
+                          <strong>{{ $errors->first('reference') }}</strong>
                       </div>
                   @endif
               </div>
