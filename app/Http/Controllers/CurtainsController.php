@@ -108,10 +108,52 @@ class CurtainsController extends Controller
         $model = CurtainModel::where('id', $curtain['model_id'])->first();
         $cover = CurtainCover::where('id', $curtain['cover_id'])->first();
         $mechanism = CurtainMechanism::where('id', $curtain['mechanism_id'])->first();
-        $curtain['price'] = ($handle->price + $canopy->price + $control->price + $model->base_price + $cover->price + $mechanism->price) * $curtain['quantity'];
+
+        $width = $curtain['width'];
+        $height = $curtain['height'];
+        $quantity = $curtain['quantity'];
+
+        //Calculates number of fabric needed for pricing
+        $num_lienzos = ceil($width/$cover->roll_width);
+        $measure = $height + 0.45;
+        $total_fabric = $measure * $num_lienzos;
+
+        //Calculates total pricing of fabric plus handiwork plus IVA
+        $cover_price = $cover->price * $total_fabric;
+        $work_price = (53 * $total_fabric)/(1 - 0.40);
+        $total_cover = ($cover_price + $work_price) * 1.16;
+
+        //If user chooses canopy, it will calculate the price by width plus IVA
+        if($curtain['canopy_id'] == 1) {
+            $canopy_price = 2165.94 / 5 * $width + 100;
+            //If width is greater than 3.6, price will be summed (322.66 * 2)
+            if ($width > 3.5) {
+                $total_canopy = ($canopy_price + 255.04 + (322.66 * 2) + (118.15 * $width)) * 1.16;
+            } else { //If not, price will be summed 322.66
+                $total_canopy = ($canopy_price + 255.04 + (322.66) + (118.15 * $width)) * 1.16;
+            }
+        } else { //Canopy price is 0 if selection is No
+            $total_canopy = 0;
+        }
+
+        //Calculates the tube price for the model, multiplying it by width + cut and adding utility
+        $tube_price = ($model->tube->price * $width + 100) / (1 - 0.37);
+        //Calculates the panel price for the model, multiplying it by width + cut and adding utility
+        $panel_price = ($model->panel->price * $width + 150) / (1 - 0.37);
+        //Sums all data for model + the cordon plus IVA
+        $price_model = ($model->base_price + $tube_price + $panel_price + (6.18 * ($width * 2) / (1 - 0.37))) * 1.16;
+
+        //Handle plus IVA
+        $handle_total = $handle->price * 1.16;
+
+        //Control plus IVA
+        $control_total = $control->price * 1.16;
+
+        //Pricing of user selected option
+        $curtain['price'] = ($handle_total + $total_canopy + $control_total + $price_model + $total_cover + ($mechanism->price * 1.16)) * $quantity;
         $curtain->save();
         $order->price = $order->price + $curtain['price'];
-        $order->total = $order->total + ($curtain['price']*(1 - ($order->discount/100)));
+        $order->total = $order->total + ($curtain['price'] * (1 - ($order->discount/100)));
         $order->save();
         return redirect()->route('orders.show', $order_id)->withStatus(__('Cortina agregada correctamente'));
     }
