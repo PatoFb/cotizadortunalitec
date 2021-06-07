@@ -82,9 +82,8 @@
                         <div class="col-md-6 col-sm-12">
                             {!! Form::label('canopy_id', 'Tejadillo:' )  !!}
                             <select class="form-control" name="canopy_id" id="canopy_id">
-                                @foreach($canopies as $canopy)
-                                    <option value="{{$canopy->id}}">{{$canopy->price}}</option>
-                                @endforeach
+                                <option value="0">No</option>
+                                <option value="1">Si</option>
                             </select>
                         </div>
                     </div>

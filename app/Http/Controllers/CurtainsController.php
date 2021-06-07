@@ -124,16 +124,12 @@ class CurtainsController extends Controller
      */
     public function fetchData(Request $request){
         $input = $request->all();
-        $price = 0;
 
         $model_id = $input['model_id'];
         $model = CurtainModel::find($model_id);
 
         $cover_id = $input['cover_id'];
         $cover = CurtainCover::find($cover_id);
-
-        $canopy_id = $input['canopy_id'];
-        $canopy = CurtainCanopy::find($canopy_id);
 
         $handle_id = $input['handle_id'];
         $handle = CurtainHandle::find($handle_id);
@@ -144,24 +140,94 @@ class CurtainsController extends Controller
         $mechanism_id = $input['mechanism_id'];
         $mechanism = CurtainMechanism::find($mechanism_id);
 
+        //Gets all mechanisms for the comparisob
+        $manual = CurtainMechanism::find(1);
+        $somfy = CurtainMechanism::find(2);
+        $elec = CurtainMechanism::find(3);
+        $tube = CurtainMechanism::find(4);
+
         $width = $input['width'];
         $height = $input['height'];
         $quantity = $input['quantity'];
+
+        //Calculates number of fabric needed for pricing
         $num_lienzos = ceil($width/$cover->roll_width);
-        $measure = $height + 0.5;
+        $measure = $height + 0.45;
         $total_fabric = $measure * $num_lienzos;
 
-        $price = ($handle->price + $canopy->price + $control->price + $model->base_price + $cover->price + $mechanism->price) * $quantity;
+        //Calculates total pricing of fabric plus handiwork plus IVA
+        $cover_price = $cover->price * $total_fabric;
+        $work_price = (53 * $total_fabric)/(1 - 0.40);
+        $total_cover = ($cover_price + $work_price) * 1.16;
+
+        //If user chooses canopy, it will calculate the price by width plus IVA
+        if($input['canopy_id'] == 1) {
+            $canopy_price = 2165.94 / 5 * $width + 100;
+            //If width is greater than 3.6, price will be summed (322.66 * 2)
+            if ($width > 3.5) {
+                $total_canopy = ($canopy_price + 255.04 + (322.66 * 2) + (118.15 * $width)) * 1.16;
+            } else { //If not, price will be summed 322.66
+                $total_canopy = ($canopy_price + 255.04 + (322.66) + (118.15 * $width)) * 1.16;
+            }
+        } else { //Canopy price is 0 if selection is No
+            $total_canopy = 0;
+        }
+
+        //Calculates the tube price for the model, multiplying it by width + cut and adding utility
+        $tube_price = ($model->tube->price * $width + 100) / (1 - 0.37);
+        //Calculates the panel price for the model, multiplying it by width + cut and adding utility
+        $panel_price = ($model->panel->price * $width + 150) / (1 - 0.37);
+        //Sums all data for model + the cordon plus IVA
+        $price_model = ($model->base_price + $tube_price + $panel_price + (6.18 * ($width * 2) / (1 - 0.37))) * 1.16;
+
+        //Handle plus IVA
+        $handle_total = $handle->price * 1.16;
+
+        //Control plus IVA
+        $control_total = $control->price * 1.16;
+
+        //Pricing of user selected option
+        $price = ($handle_total + $total_canopy + $control_total + $price_model + $total_cover + ($mechanism->price * 1.16)) * $quantity;
         $price = number_format($price, 2);
+
+        //Pricing of manual mechanism
+        $price_manual = ($handle_total + $total_canopy + $control_total + $price_model + $total_cover + ($manual->price * 1.16)) * $quantity;
+        $price_manual = number_format($price_manual, 2);
+
+        //Pricing of somfy mechanism
+        $price_somfy = ($handle_total + $total_canopy + $control_total + $price_model + $total_cover+ ($somfy->price * 1.16)) * $quantity;
+        $price_somfy = number_format($price_somfy, 2);
+
+        //Pricing of manual-electric mechanism
+        $price_elec = ($handle_total + $total_canopy + $control_total + $price_model + $total_cover + ($elec->price * 1.16)) * $quantity;
+        $price_elec = number_format($price_elec, 2);
+
+        //Pricing of tube mechanism
+        $price_tube = ($handle_total + $total_canopy + $control_total + $price_model + $total_cover + ($tube->price *  1.16)) * $quantity;
+        $price_tube = number_format($price_tube,2);
         echo "<div class='text-right'><h3><strong>Precio estimado: $$price</strong></h3></div>
+            <div class='row text-right'>
+            <div class='col-md-3 col-sm-6'>
+            <strong>Manual-Eléctrico <br>$$price_elec</strong>
+</div>
+<div class='col-md-3 col-sm-6'>
+            <strong>Somfy <br>$$price_somfy</strong>
+</div>
+<div class='col-md-3 col-sm-6'>
+            <strong>Tube <br>$$price_tube</strong>
+</div>
+<div class='col-md-3 col-sm-6'>
+            <strong>Manual <br>$$price_manual</strong>
+</div>
+</div>
 <hr>
 <div>
             <h4>Detalles de sistema</h4>
             <div class='row'>
-                <div class='col-md-6 col-sm-12'>
+                <div class='col-md-4 col-sm-12'>
                    <img src=".asset('storage')."/images/".$model->photo." style='width: 100%;' alt='Image not found'>
               </div>
-              <div class='col-md-6 col-sm-12'>
+              <div class='col-md-8 col-sm-12'>
                    <h7 style='color: grey;'><strong>$model->description</strong></h7>
                    <br>
                    <h7 style='color: grey;'>Máxima resistencia al viento de <strong>$model->max_resistance km/h</strong></h7>
@@ -180,10 +246,10 @@ class CurtainsController extends Controller
                 <h4>Detalles de cubierta</h4>
                </div>
                 <div class='row'>
-                <div class='col-md-6 col-sm-12'>
+                <div class='col-md-4 col-sm-12'>
                    <img src=".asset('storage')."/images/".$cover->photo." style='width: 100%;'>
               </div>
-              <div class='col-md-6 col-sm-12'>
+              <div class='col-md-8 col-sm-12'>
                    <h7 style='color: grey;'><strong>$cover->name</strong></h7>
                    <br>
                    <h7 style='color: grey;'>Ancho de rollo: <strong>$cover->roll_width mts</strong></h7>
