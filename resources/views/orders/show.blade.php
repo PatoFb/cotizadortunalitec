@@ -124,7 +124,7 @@
                                   <td>{{$curtain->height}}</td>
                                   <td>{{$curtain->handle->measure}}</td>
                                   <td>{{$curtain->control->name}}</td>
-                                  <td>${{number_format($curtain->canopy->price, 2)}}</td>
+                                  <td>Si</td>
                                   <td>{{$curtain->quantity}}</td>
                                   <td class="text-right">${{number_format($curtain->price, 2)}}</td>
                                       <td class="td-actions text-right">

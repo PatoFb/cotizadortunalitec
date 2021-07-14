@@ -245,7 +245,7 @@
                       <i class="material-icons">description</i>
                   </span>
                       </div>
-                      <input type="text" name="reference" class="form-control" placeholder="{{ __('Referencia') }}" value="{{ old('reference') }}">
+                      <input type="text" name="reference" class="form-control" placeholder="{{ __('Referencias (opcional)') }}" value="{{ old('reference') }}">
                   </div>
                   @if ($errors->has('reference'))
                       <div id="name-error" class="error text-danger pl-3" for="reference" style="display: block;">

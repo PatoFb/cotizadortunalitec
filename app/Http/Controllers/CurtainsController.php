@@ -215,12 +215,13 @@ class CurtainsController extends Controller
             $total_canopy = 0;
         }
 
+        $packing = (10.34 * $width * 2 * 2) + (1 * $width * 2 * 2);
         //Calculates the tube price for the model, multiplying it by width + cut and adding utility
-        $tube_price = ($model->tube->price * $width + 100) / (1 - 0.37);
+        $tube_price = ($model->tube->price * $width) / (1 - 0.37);
         //Calculates the panel price for the model, multiplying it by width + cut and adding utility
         $panel_price = ($model->panel->price * $width + 150) / (1 - 0.37);
         //Sums all data for model + the cordon plus IVA
-        $price_model = ($model->base_price + $tube_price + $panel_price + (6.18 * ($width * 2) / (1 - 0.37))) * 1.16;
+        $price_model = ($model->base_price + $tube_price + $panel_price + (6.18 * ($width * 2) / (1 - 0.37)) + $packing) * 1.16;
 
         //Handle plus IVA
         $handle_total = $handle->price * 1.16;
@@ -229,15 +230,31 @@ class CurtainsController extends Controller
         $control_total = $control->price * 1.16;
 
         //Pricing of user selected option
-        $price = ($handle_total + $total_canopy + $control_total + $price_model + $total_cover + ($mechanism->price * 1.16)) * $quantity;
+        switch($mechanism->id) {
+            case 1:
+                $price = ($handle_total + $total_canopy + $price_model + $total_cover + ($manual->price * 1.16)) * $quantity;
+                break;
+            case 2:
+                $price = ($total_canopy + $control_total + $price_model + $total_cover + ($mechanism->price * 1.16)) * $quantity;
+                break;
+            case 3:
+                $price = ($handle_total + $total_canopy + $control_total + $price_model + $total_cover + ($elec->price * 1.16)) * $quantity;
+                break;
+            case 4:
+                $price = ($handle_total + $total_canopy + $price_model + $total_cover + ($tube->price *  1.16)) * $quantity;
+                break;
+            default:
+                $price = 0;
+                break;
+        }
         $price = number_format($price, 2);
 
         //Pricing of manual mechanism
-        $price_manual = ($handle_total + $total_canopy + $control_total + $price_model + $total_cover + ($manual->price * 1.16)) * $quantity;
+        $price_manual = ($handle_total + $total_canopy + $price_model + $total_cover + ($manual->price * 1.16)) * $quantity;
         $price_manual = number_format($price_manual, 2);
 
         //Pricing of somfy mechanism
-        $price_somfy = ($handle_total + $total_canopy + $control_total + $price_model + $total_cover+ ($somfy->price * 1.16)) * $quantity;
+        $price_somfy = ($total_canopy + $control_total + $price_model + $total_cover+ ($somfy->price * 1.16)) * $quantity;
         $price_somfy = number_format($price_somfy, 2);
 
         //Pricing of manual-electric mechanism
@@ -245,9 +262,9 @@ class CurtainsController extends Controller
         $price_elec = number_format($price_elec, 2);
 
         //Pricing of tube mechanism
-        $price_tube = ($handle_total + $total_canopy + $control_total + $price_model + $total_cover + ($tube->price *  1.16)) * $quantity;
+        $price_tube = ($handle_total + $total_canopy + $price_model + $total_cover + ($tube->price *  1.16)) * $quantity;
         $price_tube = number_format($price_tube,2);
-        echo "<div class='text-right'><h3><strong>Precio estimado: $$price</strong></h3></div>
+        echo "<div class='text-right'><h3><strong>Precio seleccionado: $$price</strong></h3></div>
             <div class='row text-right'>
             <div class='col-md-3 col-sm-6'>
             <strong>Manual-Eléctrico <br>$$price_elec</strong>
