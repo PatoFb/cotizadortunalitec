@@ -173,6 +173,48 @@
                 });
             });
         </script>
+
+        <script>
+            $('#palilleriaForm').on('input', function (event) {
+                event.preventDefault();
+                let $wrapper = $('#palilleriaForm'),
+                    cover_id = $wrapper.find('#cover_id').val(),
+                    width = $wrapper.find('#width').val(),
+                    height = $wrapper.find('#height').val(),
+                    control_id = $wrapper.find('#control_id').val(),
+                    mechanism_id = $wrapper.find('#mechanism_id').val(),
+                    quantity = $wrapper.find('#quantity').val(),
+                    reinforcement_quantity = $wrapper.find('#reinforcement_quantity').val(),
+                    reinforcement_id = $wrapper.find('#reinforcement_id').val(),
+                    control_quantity = $wrapper.find('#control_quantity').val(),
+                    goals = $wrapper.find('#goals').val(),
+                    _token = $('input[name="_token"]').val();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('[name="_token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url: "{{ route('palilleria.fetch.data') }}",
+                    method: "POST",
+                    data: {
+                        cover_id: cover_id,
+                        width:  width,
+                        height: height,
+                        control_id: control_id,
+                        mechanism_id: mechanism_id,
+                        quantity: quantity,
+                        reinforcement_quantity: reinforcement_quantity,
+                        reinforcement_id: reinforcement_id,
+                        control_quantity: control_quantity,
+                        goals: goals,
+                        _token: _token },
+                    success: function (result) {
+                        $('#dynamicInfoP').html(result);
+                    }
+                });
+            });
+        </script>
         <script>
             $('#orders-list a').on('click', function (e) {
                 e.preventDefault()

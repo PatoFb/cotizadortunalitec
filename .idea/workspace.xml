@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/orders/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/orders/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/orders/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/orders/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TypesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TypesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/CurtainControl.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/CurtainControl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/CurtainCover.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/CurtainCover.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/CurtainMechanism.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/CurtainMechanism.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Order.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_31_052726_create_curtain_panels_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_05_31_052726_create_curtain_panels_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,23 +150,25 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\xampp\htdocs\cotizadortunalitec\resources\views" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\admin\curtains" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\mail" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\admin\orders" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\admin" />
-      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\curtains" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\admin\orders" />
@@ -220,6 +230,12 @@
       <workItem from="1625206278946" duration="2865000" />
       <workItem from="1625259366519" duration="27000" />
       <workItem from="1625453942414" duration="820000" />
+      <workItem from="1626279422453" duration="130000" />
+      <workItem from="1626362730509" duration="17000" />
+      <workItem from="1626363675883" duration="1882000" />
+      <workItem from="1627580179193" duration="316000" />
+      <workItem from="1627925884199" duration="907000" />
+      <workItem from="1627926903437" duration="15911000" />
     </task>
     <servers />
   </component>

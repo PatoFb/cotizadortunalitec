@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCurtainPanelsTable extends Migration
+class CreateReinforcementsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateCurtainPanelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('curtain_panels', function (Blueprint $table) {
+        Schema::create('reinforcements', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->float('price');
-            $table->timestamps();
+            $table->float('guide_price');
+            $table->float('sop_price');
+            $table->float('hook_price');
+            $table->float('pulley_price');
         });
     }
 
@@ -28,6 +29,6 @@ class CreateCurtainPanelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('curtain_panels');
+        Schema::dropIfExists('reinforcements');
     }
 }

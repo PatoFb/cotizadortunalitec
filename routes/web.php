@@ -105,6 +105,12 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::put('curtains/add_data', 'App\Http\Controllers\CurtainsController@addData')->name('curtain.add.data');
 
+    Route::get('orders/{id}/palilleria/add', 'App\Http\Controllers\PalilleriasController@add')->name('palilleria.add');
+    Route::post('orders/{id}/palilleria/add', 'App\Http\Controllers\PalilleriasController@save')->name('palilleria.save');
+
+    Route::post('palillerias/fetch/data', 'App\Http\Controllers\PalilleriasController@fetchData')->name('palilleria.fetch.data');
+    Route::post('palillerias/fetch/numbers', 'App\Http\Controllers\PalilleriasController@fetchNumbers')->name('palilleria.fetch.numbers');
+
 
     Route::resource('admin/canopies', 'App\Http\Controllers\CurtainCanopiesController', ['except' => ['show']]);
     Route::resource('admin/handles', 'App\Http\Controllers\CurtainHandlesController', ['except' => ['show']]);
@@ -115,6 +121,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('admin/panels', 'App\Http\Controllers\CurtainPanelsController', ['except' => ['show']]);
     Route::resource('orders', 'App\Http\Controllers\OrdersController');
     Route::resource('curtains', 'App\Http\Controllers\CurtainsController');
+    Route::resource('palillerias', 'App\Http\Controllers\PalilleriasController');
 
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
