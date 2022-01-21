@@ -5,14 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/toldos/create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PalilleriasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PalilleriasController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TypesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TypesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/CurtainCanopy.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/CurtainCanopy.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/CurtainControl.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/CurtainControl.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/CurtainCover.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/CurtainCover.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/CurtainHandle.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/CurtainHandle.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/CurtainMechanism.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/CurtainMechanism.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Order.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_31_052726_create_curtain_panels_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_05_31_052726_create_curtain_panels_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_08_03_180749_create_palillerias_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_08_03_180749_create_palillerias_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
@@ -27,6 +31,13 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/app/Models/CurtainPanel.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/Models/CurtainTube.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/Models/CurtainModel.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -153,7 +164,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../mitunalitec_web" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
@@ -164,11 +175,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\xampp\htdocs\cotizadortunalitec\resources\views\toldos" />
       <recent name="D:\xampp\htdocs\cotizadortunalitec\resources\views" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\admin\curtains" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\mail" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\admin\orders" />
-      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\admin" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\admin\orders" />
@@ -235,7 +246,27 @@
       <workItem from="1626363675883" duration="1882000" />
       <workItem from="1627580179193" duration="316000" />
       <workItem from="1627925884199" duration="907000" />
-      <workItem from="1627926903437" duration="15911000" />
+      <workItem from="1627926903437" duration="16681000" />
+      <workItem from="1628114035681" duration="1891000" />
+      <workItem from="1628612066496" duration="1557000" />
+      <workItem from="1628870037883" duration="2513000" />
+      <workItem from="1629314722636" duration="1802000" />
+      <workItem from="1630793977104" duration="1789000" />
+      <workItem from="1630967124266" duration="48000" />
+      <workItem from="1631231633734" duration="5330000" />
+      <workItem from="1632175835931" duration="149000" />
+      <workItem from="1632176030921" duration="1192000" />
+      <workItem from="1632177449765" duration="3224000" />
+      <workItem from="1632770619130" duration="1215000" />
+      <workItem from="1633373823258" duration="5561000" />
+      <workItem from="1633396145952" duration="15910000" />
+      <workItem from="1634307316700" duration="4802000" />
+      <workItem from="1636076942884" duration="5351000" />
+      <workItem from="1636480855602" duration="1795000" />
+      <workItem from="1637084845461" duration="11137000" />
+      <workItem from="1639668280419" duration="3298000" />
+      <workItem from="1639754736628" duration="2438000" />
+      <workItem from="1642442811507" duration="7561000" />
     </task>
     <servers />
   </component>

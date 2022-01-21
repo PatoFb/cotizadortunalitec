@@ -15,6 +15,10 @@ class Order extends Model
         return $this->hasMany(Palilleria::class);
     }
 
+    public function toldos() {
+        return $this->hasMany(Toldo::class);
+    }
+
     public function user() {
         return $this->belongsTo('App\Models\User');
     }

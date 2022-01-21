@@ -145,7 +145,7 @@ class PalilleriasController extends Controller
 
         $reinforcement_total = (($reinforcement->guide_price * $height + 400) + ($reinforcement->sop_price * 3) + ($reinforcement->hook_price) + (ceil($height * 0.45) * 42.68)) * $rquant;
 
-        $goals_total= 5172.04 * 1.16 * $goals;
+        $goals_total = 5172.04 * 1.16 * $goals;
 
         $total_guides = 0;
         if ($width <= 7 && $width > 0) {
@@ -242,7 +242,8 @@ class PalilleriasController extends Controller
                 </div>
               </div>
               </div>
-              </div>";
+              </div>
+              <img src=".asset('storage')."/images/".$goals."palillerias.png"." style='width: 100%;'>";
     }
     /**
      * Show the form for creating a new resource.

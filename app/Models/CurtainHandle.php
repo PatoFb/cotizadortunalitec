@@ -11,5 +11,9 @@ class CurtainHandle extends Model
         return $this->hasMany('App\Models\Curtain');
     }
 
+    public function toldos() {
+        return $this->hasMany(Toldo::class);
+    }
+
     protected $fillable = ['id','measure', 'price'];
 }

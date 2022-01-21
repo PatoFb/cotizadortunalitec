@@ -111,6 +111,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('palillerias/fetch/data', 'App\Http\Controllers\PalilleriasController@fetchData')->name('palilleria.fetch.data');
     Route::post('palillerias/fetch/numbers', 'App\Http\Controllers\PalilleriasController@fetchNumbers')->name('palilleria.fetch.numbers');
 
+    Route::get('orders/{id}/toldo/add', 'App\Http\Controllers\ToldosController@add')->name('toldo.add');
+    Route::post('orders/{id}/toldo/add', 'App\Http\Controllers\ToldosController@save')->name('toldo.save');
+
+    Route::post('toldos/fetch/data', 'App\Http\Controllers\ToldosController@fetchData')->name('toldo.fetch.data');
+    Route::post('toldos/fetch/numbers', 'App\Http\Controllers\ToldosController@fetchNumbers')->name('toldo.fetch.numbers');
+    Route::post('toldos/fetch/projection', 'App\Http\Controllers\ToldosController@fetchProjection')->name('toldo.fetch.projection');
 
     Route::resource('admin/canopies', 'App\Http\Controllers\CurtainCanopiesController', ['except' => ['show']]);
     Route::resource('admin/handles', 'App\Http\Controllers\CurtainHandlesController', ['except' => ['show']]);
@@ -122,6 +128,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('orders', 'App\Http\Controllers\OrdersController');
     Route::resource('curtains', 'App\Http\Controllers\CurtainsController');
     Route::resource('palillerias', 'App\Http\Controllers\PalilleriasController');
+    Route::resource('toldos', 'App\Http\Controllers\ToldosController');
 
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);

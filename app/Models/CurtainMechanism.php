@@ -15,5 +15,9 @@ class CurtainMechanism extends Model
         return $this->hasMany(Palilleria::class);
     }
 
+    public function toldos() {
+        return $this->hasMany(Toldo::class);
+    }
+
     protected $fillable = ['id','name', 'price'];
 }

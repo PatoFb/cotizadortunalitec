@@ -45,10 +45,13 @@ class TypesController extends Controller
         $order_id = $id;
         switch ($request['type_id']){
             case 1:
-                return redirect()->route('curtain.add', $order_id);
+                //return redirect()->route('curtain.add', $order_id);
                 break;
             case 2:
                 return redirect()->route('palilleria.add', $order_id);
+                break;
+            case 3:
+                return redirect()->route('toldo.add', $order_id);
                 break;
             default:
                 return redirect()->route('orders.type', $order_id)->withStatus(__('Elija un producto válido'));
