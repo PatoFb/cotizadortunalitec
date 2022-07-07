@@ -20,6 +20,18 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id',
+        'rfc',
+        'cfdi',
+        'razon_social',
+        'phone',
+        'discount',
+        'state',
+        'city',
+        'zip_code',
+        'line1',
+        'line2',
+        'reference'
     ];
 
     /**
@@ -32,12 +44,25 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function role() {
+        return $this->belongsTo('App\Models\Role');
+    }
+
+    public function isAdmin(){
+        if($this->role_id == 1){
+            return true;
+        }
+        return false;
+    }
+
+    public function client(){
+        if($this->role_id == 2){
+            return true;
+        }
+        return false;
+    }
+
+    public function orders() {
+        return $this->hasMany('App\Models\Order');
+    }
 }

@@ -1,4 +1,4 @@
-<div class="sidebar" data-color="danger" data-background-color="white" data-image="{{ asset('material') }}/img/sidebar-1.jpg">
+<div class="sidebar" data-color="orange" data-background-color="blue" data-image="{{ asset('material') }}/img/sidebar-1.jpg">
   <!--
       Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -11,37 +11,117 @@
   </div>
   <div class="sidebar-wrapper">
     <ul class="nav">
-      <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
+      {{--<li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('home') }}">
           <i class="material-icons">dashboard</i>
             <p>{{ __('Dashboard') }}</p>
         </a>
-      </li>
-      <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }}">
-        <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">
-            <i class="material-icons">account_circle</i>
-          <p>{{ __('Usuarios') }}
+      </li>--}}
+        <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">
+            <a class="nav-link" href="{{ route('profile.edit') }}">
+                <i class="material-icons">person</i>
+                <p>{{ __('Perfil') }}</p>
+            </a>
+        </li>
+        <li class="nav-item{{ $activePage == 'orders' ? ' active' : '' }}">
+            <a class="nav-link" href="{{ route('orders.new') }}">
+                <i class="material-icons">add_shopping_cart</i>
+                <p>{{ __('Crear orden') }}</p>
+            </a>
+        </li>
+        <li class="nav-item{{ $activePage == 'myorders' ? ' active' : '' }}">
+            <a class="nav-link" href="{{ route('orders.index') }}">
+                <i class="material-icons">list</i>
+                <p>{{ __('Mis ordenes') }}</p>
+            </a>
+        </li>
+        <li class="nav-item{{ $activePage == 'contact' ? ' active' : '' }}">
+            <a class="nav-link" href="{{ route('contact') }}">
+                <i class="material-icons">contact_page</i>
+                <p>{{ __('Contacto') }}</p>
+            </a>
+        </li>
+        <li class="nav-item{{ $activePage == 'allorders' ? ' active' : '' }}">
+            <a class="nav-link" href="{{ route('orders.all') }}">
+                <i class="material-icons">list</i>
+                <p>{{ __('Ordenes') }}</p>
+            </a>
+        </li>
+      <li class="nav-item {{ ($activePage == 'usuarios') || ($activePage == 'controles_cortina') || ($activePage == 'tipos') || ($activePage == 'tejaillos_cortina')
+                              || ($activePage == 'manivelas_cortina') || ($activePage == 'modelos_cortina') || ($activePage == 'cubiertas_cortina') ||
+                              ($activePage == 'mecanismos_cortina') || ($activePage == 'paneles_cortina') || ($activePage == 'tubos_cortina') ? ' active' : '' }}">
+        <a class="nav-link" data-toggle="collapse" href="#admin" aria-expanded="true">
+            <i class="material-icons">settings_application</i>
+          <p>{{ __('Admin') }}
             <b class="caret"></b>
           </p>
         </a>
-        <div class="collapse show" id="laravelExample">
+        <div class="collapse show" id="admin">
           <ul class="nav">
-            <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('profile.edit') }}">
-                <span class="sidebar-mini"> UP </span>
-                <span class="sidebar-normal">{{ __('User profile') }} </span>
+            <li class="nav-item{{ $activePage == 'usuarios' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ route('users.index') }}">
+                <span class="sidebar-mini"> U </span>
+                <span class="sidebar-normal"> {{ __('Usuarios') }} </span>
               </a>
             </li>
-            <li class="nav-item{{ $activePage == 'user-management' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('user.index') }}">
-                <span class="sidebar-mini"> UM </span>
-                <span class="sidebar-normal"> {{ __('User Management') }} </span>
-              </a>
-            </li>
+              <li class="nav-item{{ $activePage == 'tipos' ? ' active' : '' }}">
+                  <a class="nav-link" href="{{ route('types.index') }}">
+                      <span class="sidebar-mini"> TP </span>
+                      <span class="sidebar-normal"> {{ __('Tipos de productos') }} </span>
+                  </a>
+              </li>
+              <li class="nav-item{{ $activePage == 'modelos_cortina' ? ' active' : '' }}">
+                  <a class="nav-link" href="{{ route('models.index') }}">
+                      <span class="sidebar-mini"> MO </span>
+                      <span class="sidebar-normal"> {{ __('Modelos de cortina') }} </span>
+                  </a>
+              </li>
+              <li class="nav-item{{ $activePage == 'cubiertas_cortina' ? ' active' : '' }}">
+                  <a class="nav-link" href="{{ route('covers.index') }}">
+                      <span class="sidebar-mini"> CU </span>
+                      <span class="sidebar-normal"> {{ __('Cubiertas para cortina') }} </span>
+                  </a>
+              </li>
+              <li class="nav-item{{ $activePage == 'mecanismos_cortina' ? ' active' : '' }}">
+                  <a class="nav-link" href="{{ route('mechanisms.index') }}">
+                      <span class="sidebar-mini"> ME </span>
+                      <span class="sidebar-normal"> {{ __('Mecanismos') }} </span>
+                  </a>
+              </li>
+              <li class="nav-item{{ $activePage == 'controles_cortina' ? ' active' : '' }}">
+                  <a class="nav-link" href="{{ route('controls.index') }}">
+                      <span class="sidebar-mini"> CC </span>
+                      <span class="sidebar-normal"> {{ __('Controles para cortina') }} </span>
+                  </a>
+              </li>
+              <li class="nav-item{{ $activePage == 'tejadillos_cortina' ? ' active' : '' }}">
+                  <a class="nav-link" href="{{ route('canopies.index') }}">
+                      <span class="sidebar-mini"> TE </span>
+                      <span class="sidebar-normal"> {{ __('Tejadillos') }} </span>
+                  </a>
+              </li>
+              <li class="nav-item{{ $activePage == 'manivelas_cortina' ? ' active' : '' }}">
+                  <a class="nav-link" href="{{ route('handles.index') }}">
+                      <span class="sidebar-mini"> MA </span>
+                      <span class="sidebar-normal"> {{ __('Manivelas') }} </span>
+                  </a>
+              </li>
+              <li class="nav-item{{ $activePage == 'tubos_cortina' ? ' active' : '' }}">
+                  <a class="nav-link" href="{{ route('tubes.index') }}">
+                      <span class="sidebar-mini"> TU </span>
+                      <span class="sidebar-normal"> {{ __('Tubos para cortinas') }} </span>
+                  </a>
+              </li>
+              <li class="nav-item{{ $activePage == 'paneles_cortina' ? ' active' : '' }}">
+                  <a class="nav-link" href="{{ route('panels.index') }}">
+                      <span class="sidebar-mini"> PA </span>
+                      <span class="sidebar-normal"> {{ __('Páneles frontales') }} </span>
+                  </a>
+              </li>
           </ul>
         </div>
       </li>
-        <li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">
+        {{--<li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">
             <a class="nav-link" href="{{ route('table') }}">
                 <i class="material-icons">payments</i>
                 <p>{{ __('Cotizar') }}</p>
@@ -82,7 +162,7 @@
           <i class="material-icons">language</i>
           <p>{{ __('RTL Support') }}</p>
         </a>
-      </li>
+      </li>--}}
     </ul>
   </div>
 </div>

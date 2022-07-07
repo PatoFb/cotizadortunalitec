@@ -16,16 +16,16 @@
  */
 
 (function() {
-  isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
+    isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
 
-  if (isWindows) {
-    // if we are on windows OS we activate the perfectScrollbar function
-    $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar();
+    if (isWindows) {
+        // if we are on windows OS we activate the perfectScrollbar function
+        $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar();
 
-    $('html').addClass('perfect-scrollbar-on');
-  } else {
-    $('html').addClass('perfect-scrollbar-off');
-  }
+        $('html').addClass('perfect-scrollbar-on');
+    } else {
+        $('html').addClass('perfect-scrollbar-off');
+    }
 })();
 
 
@@ -142,9 +142,9 @@ $(window).resize(function() {
   // reset the seq for charts drawing animations
   seq = seq2 = 0;
 
-  setTimeout(function() {
+  /*setTimeout(function() {
     md.initDashboardPageCharts();
-  }, 500);
+  }, 500);*/
 });
 
 md = {
@@ -183,11 +183,11 @@ md = {
     });
   },
 
-  initDocumentationCharts: function() {
+  /*initDocumentationCharts: function() {
     if ($('#dailySalesChart').length != 0 && $('#websiteViewsChart').length != 0) {
       /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
 
-      dataDailySalesChart = {
+      /*dataDailySalesChart = {
         labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
         series: [
           [12, 17, 7, 17, 23, 18, 38]
@@ -212,7 +212,7 @@ md = {
 
       var animationHeaderChart = new Chartist.Line('#websiteViewsChart', dataDailySalesChart, optionsDailySalesChart);
     }
-  },
+  },*/
 
 
   initFormExtendedDatetimepickers: function() {
@@ -264,7 +264,7 @@ md = {
   },
 
 
-  initSliders: function() {
+ /* initSliders: function() {
     // Sliders for demo purpose
     var slider = document.getElementById('sliderRegular');
 
@@ -287,7 +287,7 @@ md = {
         max: 100
       }
     });
-  },
+  },*/
 
   initSidebarsCheck: function() {
     if ($(window).width() <= 991) {
@@ -307,12 +307,12 @@ md = {
     }
   },
 
-  initDashboardPageCharts: function() {
+  /*initDashboardPageCharts: function() {
 
     if ($('#dailySalesChart').length != 0 || $('#completedTasksChart').length != 0 || $('#websiteViewsChart').length != 0) {
       /* ----------==========     Daily Sales Chart initialization    ==========---------- */
 
-      dataDailySalesChart = {
+      /*dataDailySalesChart = {
         labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
         series: [
           [12, 17, 7, 17, 23, 18, 38]
@@ -341,7 +341,7 @@ md = {
 
       /* ----------==========     Completed Tasks Chart initialization    ==========---------- */
 
-      dataCompletedTasksChart = {
+      /*dataCompletedTasksChart = {
         labels: ['12p', '3p', '6p', '9p', '12p', '3a', '6a', '9a'],
         series: [
           [230, 750, 450, 300, 280, 240, 200, 190]
@@ -370,7 +370,7 @@ md = {
 
       /* ----------==========     Emails Subscription Chart initialization    ==========---------- */
 
-      var dataWebsiteViewsChart = {
+      /*var dataWebsiteViewsChart = {
         labels: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
         series: [
           [542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895]
@@ -405,7 +405,7 @@ md = {
       //start animation for the Emails Subscription Chart
       md.startAnimationForBarChart(websiteViewsChart);
     }
-  },
+  },*/
 
   initMinimizeSidebar: function() {
 
@@ -489,7 +489,7 @@ md = {
     }
   }, 200),
 
-  startAnimationForLineChart: function(chart) {
+  /*startAnimationForLineChart: function(chart) {
 
     chart.on('draw', function(data) {
       if (data.type === 'line' || data.type === 'area') {
@@ -539,7 +539,7 @@ md = {
   },
 
 
-  initFullCalendar: function() {
+  /*initFullCalendar: function() {
     $calendar = $('#fullCalendar');
 
     today = new Date();
@@ -674,7 +674,7 @@ md = {
     });
   },
 
-  initVectorMap: function() {
+  /*initVectorMap: function() {
     var mapData = {
       "AU": 760,
       "BR": 550,
@@ -711,7 +711,7 @@ md = {
         }]
       },
     });
-  }
+  }*/
 }
 
 // Returns a function, that, as long as it continues to be invoked, will not

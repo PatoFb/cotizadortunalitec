@@ -1,21 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="" />
+    <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ToldosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ToldosController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/CurtainControl.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/CurtainControl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Toldo.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Toldo.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_09_10_154533_create_toldos_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_09_10_154533_create_toldos_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/orders/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/orders/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/orders/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/orders/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/orders/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/orders/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/toldos/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/toldos/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution>
-      <executable />
-    </execution>
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/app/Models/CurtainPanel.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/Models/CurtainTube.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/Models/CurtainModel.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
-      <path value="$PROJECT_DIR$/vendor/dnoegel/php-xdg-base-dir" />
       <path value="$PROJECT_DIR$/vendor/egulias/email-validator" />
       <path value="$PROJECT_DIR$/vendor/phar-io/manifest" />
       <path value="$PROJECT_DIR$/vendor/phar-io/version" />
@@ -124,18 +146,45 @@
       <path value="$PROJECT_DIR$/vendor/fakerphp/faker" />
       <path value="$PROJECT_DIR$/vendor/vlucas/phpdotenv" />
       <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/laravelcollective/html" />
+      <path value="$PROJECT_DIR$/vendor/snapappointments/bootstrap-select" />
+      <path value="$PROJECT_DIR$/vendor/dnoegel/php-xdg-base-dir" />
     </include_path>
   </component>
   <component name="ProjectId" id="1pHPbY30g1VNK72qrSfGMDazFBu" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\xampp\htdocs\cotizadortunalitec\resources\views\toldos" />
+      <recent name="D:\xampp\htdocs\cotizadortunalitec\resources\views" />
+      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\admin\curtains" />
+      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\mail" />
+      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\admin\orders" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\admin\orders" />
+      <recent name="C:\xampp\htdocs\cotizadortunalitec\public\material\js\plugins" />
+      <recent name="C:\xampp\htdocs\cotizadortunalitec\public\material\img" />
+      <recent name="C:\xampp\htdocs\cotizadortunalitec\public\material\css" />
+      <recent name="C:\xampp\htdocs\cotizadortunalitec\public\images" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -143,6 +192,7 @@
       <method v="2" />
     </configuration>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -153,17 +203,92 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1614837115942</updated>
-      <workItem from="1614837124809" duration="2651000" />
+      <workItem from="1614837124809" duration="3027000" />
+      <workItem from="1614879700321" duration="39000" />
+      <workItem from="1616088609106" duration="5249000" />
+      <workItem from="1616110692296" duration="2108000" />
+      <workItem from="1616442367487" duration="15559000" />
+      <workItem from="1617579959902" duration="409000" />
+      <workItem from="1617644551639" duration="9812000" />
+      <workItem from="1618128921863" duration="59238000" />
+      <workItem from="1618266449693" duration="620000" />
+      <workItem from="1618289426977" duration="4463000" />
+      <workItem from="1619067282686" duration="6659000" />
+      <workItem from="1619134370941" duration="208000" />
+      <workItem from="1619196899555" duration="629000" />
+      <workItem from="1619458059952" duration="5707000" />
+      <workItem from="1619479736688" duration="238000" />
+      <workItem from="1619712398018" duration="5899000" />
+      <workItem from="1619739369092" duration="222000" />
+      <workItem from="1620160075679" duration="668000" />
+      <workItem from="1620218312308" duration="44075000" />
+      <workItem from="1620861870430" duration="22000" />
+      <workItem from="1620927832260" duration="1122000" />
+      <workItem from="1621395505805" duration="39586000" />
+      <workItem from="1622431772965" duration="68000" />
+      <workItem from="1622431867158" duration="912000" />
+      <workItem from="1622432820194" duration="6943000" />
+      <workItem from="1622843871676" duration="83000" />
+      <workItem from="1622849509418" duration="18000" />
+      <workItem from="1623024554498" duration="21061000" />
+      <workItem from="1623266968233" duration="21000" />
+      <workItem from="1623772778482" duration="4462000" />
+      <workItem from="1625191868499" duration="140000" />
+      <workItem from="1625192166236" duration="274000" />
+      <workItem from="1625206278946" duration="2865000" />
+      <workItem from="1625259366519" duration="27000" />
+      <workItem from="1625453942414" duration="820000" />
+      <workItem from="1626279422453" duration="130000" />
+      <workItem from="1626362730509" duration="17000" />
+      <workItem from="1626363675883" duration="1882000" />
+      <workItem from="1627580179193" duration="316000" />
+      <workItem from="1627925884199" duration="907000" />
+      <workItem from="1627926903437" duration="16681000" />
+      <workItem from="1628114035681" duration="1891000" />
+      <workItem from="1628612066496" duration="1557000" />
+      <workItem from="1628870037883" duration="2513000" />
+      <workItem from="1629314722636" duration="1802000" />
+      <workItem from="1630793977104" duration="1789000" />
+      <workItem from="1630967124266" duration="48000" />
+      <workItem from="1631231633734" duration="5330000" />
+      <workItem from="1632175835931" duration="149000" />
+      <workItem from="1632176030921" duration="1192000" />
+      <workItem from="1632177449765" duration="3224000" />
+      <workItem from="1632770619130" duration="1215000" />
+      <workItem from="1633373823258" duration="5561000" />
+      <workItem from="1633396145952" duration="15910000" />
+      <workItem from="1634307316700" duration="4802000" />
+      <workItem from="1636076942884" duration="5351000" />
+      <workItem from="1636480855602" duration="1795000" />
+      <workItem from="1637084845461" duration="11137000" />
+      <workItem from="1639668280419" duration="3298000" />
+      <workItem from="1639754736628" duration="2438000" />
+      <workItem from="1642442811507" duration="12417000" />
+      <workItem from="1643825737593" duration="3253000" />
+      <workItem from="1644511534300" duration="22196000" />
+      <workItem from="1644954503983" duration="24697000" />
+      <workItem from="1645580005142" duration="1747000" />
+      <workItem from="1645650887404" duration="1200000" />
+      <workItem from="1645719301680" duration="4000" />
+      <workItem from="1646418728039" duration="705000" />
+      <workItem from="1646693850140" duration="1202000" />
+      <workItem from="1647548355587" duration="739000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
-  <component name="WindowStateProjectService">
-    <state x="2576" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1614837129756">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state x="2576" y="344" key="com.intellij.ide.util.TipDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1614837129756" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
