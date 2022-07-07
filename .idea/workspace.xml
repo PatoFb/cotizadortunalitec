@@ -5,19 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/toldos/create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PalilleriasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PalilleriasController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TypesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TypesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/CurtainCanopy.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/CurtainCanopy.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ToldosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ToldosController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/CurtainControl.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/CurtainControl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/CurtainCover.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/CurtainCover.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/CurtainHandle.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/CurtainHandle.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/CurtainMechanism.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/CurtainMechanism.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Order.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_08_03_180749_create_palillerias_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_08_03_180749_create_palillerias_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Toldo.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Toldo.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_09_10_154533_create_toldos_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_09_10_154533_create_toldos_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/orders/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/orders/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/orders/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/orders/show.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/orders/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/orders/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/toldos/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/toldos/create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -164,7 +161,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../mitunalitec_web" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
@@ -266,7 +263,16 @@
       <workItem from="1637084845461" duration="11137000" />
       <workItem from="1639668280419" duration="3298000" />
       <workItem from="1639754736628" duration="2438000" />
-      <workItem from="1642442811507" duration="7561000" />
+      <workItem from="1642442811507" duration="12417000" />
+      <workItem from="1643825737593" duration="3253000" />
+      <workItem from="1644511534300" duration="22196000" />
+      <workItem from="1644954503983" duration="24697000" />
+      <workItem from="1645580005142" duration="1747000" />
+      <workItem from="1645650887404" duration="1200000" />
+      <workItem from="1645719301680" duration="4000" />
+      <workItem from="1646418728039" duration="705000" />
+      <workItem from="1646693850140" duration="1202000" />
+      <workItem from="1647548355587" duration="739000" />
     </task>
     <servers />
   </component>

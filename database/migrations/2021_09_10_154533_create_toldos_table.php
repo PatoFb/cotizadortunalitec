@@ -23,7 +23,7 @@ class CreateToldosTable extends Migration
             $table->integer('control_quantity');
             $table->bigInteger('cover_id')->unsigned()->index()->nullable(true);
             $table->integer('mechanism_id')->unsigned()->index()->nullable(true);
-            $table->integer('modelo_toldo_id')->unsigned()->index()->nullable(true);
+            $table->integer('model_id')->unsigned()->index()->nullable(true);
             $table->float('price')->nullable()->default(0);
             $table->bigInteger('canopy_id')->unsigned()->index()->nullable(true);
             $table->bigInteger('sensor_id')->unsigned()->index()->nullable(true);

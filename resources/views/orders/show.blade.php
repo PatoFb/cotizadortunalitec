@@ -71,7 +71,7 @@
           <div class="col-md-12">
               <div class="card">
                   <div class="card-header card-header-primary">
-                      <h4 class="card-title">Productos ({{count($order->curtains)}})</h4>
+                      <h4 class="card-title">Cortinas ({{count($order->curtains)}})</h4>
                       {{--<p class="card-category"> Here you can manage users</p>--}}
                   </div>
                   <div class="card-body">
@@ -214,6 +214,285 @@
               </div>
           </div>
       </div>
+      @endif
+      @if($order->toldos)
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="card">
+                      <div class="card-header card-header-primary">
+                          <h4 class="card-title">Toldos ({{count($order->toldos)}})</h4>
+                          {{--<p class="card-category"> Here you can manage users</p>--}}
+                      </div>
+                      <div class="card-body">
+                          <div class="table-responsive">
+                              <table class="table">
+                                  <thead class=" text-primary">
+                                  <tr>
+                                      <th>
+                                          Modelo
+                                      </th>
+                                      <th>
+                                          Cubierta
+                                      </th>
+                                      <th>
+                                          Mecanismo
+                                      </th>
+                                      <th>
+                                          Ancho
+                                      </th>
+                                      <th>
+                                          Proyección
+                                      </th>
+                                      <th>
+                                          Cantidad
+                                      </th>
+                                      <th class="text-right">
+                                          Precio
+                                      </th>
+                                      <th class="text-right">
+                                          Acciones
+                                      </th>
+
+                                  </tr></thead>
+                                  <tbody>
+                                  @foreach($order->toldos as $toldo)
+                                      <tr>
+                                          <td>{{$toldo->model->name}}</td>
+                                          <td>{{$toldo->cover->name}}</td>
+                                          <td>{{$toldo->mechanism->name}}</td>
+                                          <td>{{$toldo->width}}</td>
+                                          <td>{{$toldo->projection}}</td>
+                                          <td>{{$toldo->quantity}}</td>
+                                          <td class="text-right">${{number_format($toldo->price, 2)}}</td>
+                                          <td class="td-actions text-right">
+                                              <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#toldoDetailsModal{{$toldo->id}}" id="toldo_details_modal">
+                                                  Ver detalle
+                                              </button>
+                                              <button type="button" class="btn btn-danger btn-link" data-toggle="modal" data-target="#deleteToldoModal" id="delete_product_modal">
+                                                  <i class="material-icons">delete</i>
+                                                  <div class="ripple-container"></div></button>
+                                              @if($order->activity == "Pedido")
+                                                  {{--<button type="button" class="btn btn-info btn-link" data-toggle="modal" data-target="#addModal" id="add_data_modal">
+                                                      Añadir datos
+                                                  </button>--}}
+                                              @endif
+                                          </td>
+
+                                      </tr>
+                                      <div class="modal fade" id="toldoDetailsModal{{$toldo->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                          <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+                                              <div class="modal-content">
+                                                  <div class="modal-header">
+                                                      <h5 class="modal-title" id="exampleModalLabel">Detalles</h5>
+                                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                          <span aria-hidden="true">&times;</span>
+                                                      </button>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                      <h5><strong>Estructura</strong></h5>
+                                                              <div class="row">
+                                                                  <div class="col-6 text-center">
+                                                                  Modelo:
+                                                              </div>
+                                                                  <div class="col-6 text-center">
+                                                                    <strong>{{$toldo->model->name}}</strong>
+                                                                  </div>
+                                                              </div>
+                                                      <hr>
+                                                      <div class="row">
+                                                          <div class="col-6 text-center">
+                                                             Cubierta:
+                                                          </div>
+                                                          <div class="col-6 text-center">
+                                                              <strong>{{$toldo->cover->name}}</strong>
+                                                          </div>
+                                                      </div>
+                                                      <hr>
+                                                      <div class="row">
+                                                          <div class="col-6 text-center">
+                                                              Mecanismo:
+                                                          </div>
+                                                          <div class="col-6 text-center">
+                                                              <strong>{{$toldo->mechanism->name}}</strong>
+                                                          </div>
+                                                      </div>
+                                                      <hr>
+                                                      <div class="row">
+                                                          <div class="col-6 text-center">
+                                                              Acho:
+                                                          </div>
+                                                          <div class="col-6 text-center">
+                                                              <strong>{{$toldo->width}}</strong>
+                                                          </div>
+                                                      </div>
+                                                      <hr>
+                                                      <div class="row">
+                                                          <div class="col-6 text-center">
+                                                              Proyección:
+                                                          </div>
+                                                          <div class="col-6 text-center">
+                                                              <strong>{{$toldo->projection}}</strong>
+                                                          </div>
+                                                      </div>
+                                                      <hr>
+                                                      <h5><strong>Accesorios</strong></h5>
+                                                      @if($toldo->bambalina == 1)
+                                                      <div class="row">
+                                                          <div class="col-6 text-center">
+                                                              Bambalina:
+                                                          </div>
+                                                          <div class="col-6 text-center">
+                                                              <strong>X</strong>
+                                                          </div>
+                                                      </div>
+                                                      <hr>
+                                                      @endif
+                                                      @if($toldo->canopy_id == 1)
+                                                          <div class="row">
+                                                              <div class="col-6 text-center">
+                                                                  Tejadillo:
+                                                              </div>
+                                                              <div class="col-6 text-center">
+                                                                  <strong>X</strong>
+                                                              </div>
+                                                          </div>
+                                                          <hr>
+                                                      @endif
+                                                      @if($toldo->handle && $toldo->handle_quantity > 0)
+                                                          <div class="row">
+                                                              <div class="col-6 text-center">
+                                                                  Manivela:
+                                                              </div>
+                                                              <div class="col-6 text-center">
+                                                                  <strong>{{$toldo->handle->measure}}</strong>
+                                                              </div>
+                                                          </div>
+                                                          <div class="row">
+                                                              <div class="col-6 text-center">
+                                                                  Cantidad:
+                                                              </div>
+                                                              <div class="col-6 text-center">
+                                                                  <strong>{{$toldo->handle_quantity}}</strong>
+                                                              </div>
+                                                          </div>
+                                                          <hr>
+                                                      @endif
+                                                      @if($toldo->control && $toldo->control_quantity > 0)
+                                                          <div class="row">
+                                                              <div class="col-6 text-center">
+                                                                  Control:
+                                                              </div>
+                                                              <div class="col-6 text-center">
+                                                                  <strong>{{$toldo->control->name}}</strong>
+                                                              </div>
+                                                          </div>
+                                                          <div class="row">
+                                                              <div class="col-6 text-center">
+                                                                  Cantidad:
+                                                              </div>
+                                                              <div class="col-6 text-center">
+                                                                  <strong>{{$toldo->control_quantity}}</strong>
+                                                              </div>
+                                                          </div>
+                                                          <hr>
+                                                      @endif
+                                                      @if($toldo->voice && $toldo->voice_quantity > 0)
+                                                          <div class="row">
+                                                              <div class="col-6 text-center">
+                                                                  Control de voz:
+                                                              </div>
+                                                              <div class="col-6 text-center">
+                                                                  <strong>{{$toldo->voice->name}}</strong>
+                                                              </div>
+                                                          </div>
+                                                          <div class="row">
+                                                              <div class="col-6 text-center">
+                                                                  Cantidad:
+                                                              </div>
+                                                              <div class="col-6 text-center">
+                                                                  <strong>{{$toldo->voice_quantity}}</strong>
+                                                              </div>
+                                                          </div>
+                                                          <hr>
+                                                      @endif
+                                                      @if($toldo->sensor && $toldo->sensor_quantity > 0)
+                                                          <div class="row">
+                                                              <div class="col-6 text-center">
+                                                                  Sensor:
+                                                              </div>
+                                                              <div class="col-6 text-center">
+                                                                  <strong>{{$toldo->sensor->name}}</strong>
+                                                              </div>
+                                                          </div>
+                                                          <div class="row">
+                                                              <div class="col-6 text-center">
+                                                                  Cantidad:
+                                                              </div>
+                                                              <div class="col-6 text-center">
+                                                                  <strong>{{$toldo->sensor_quantity}}</strong>
+                                                              </div>
+                                                          </div>
+                                                          <hr>
+                                                      @endif
+                                                      <h5><strong>Precios</strong></h5>
+                                                      <div class="row">
+                                                          <div class="col-6 text-center">
+                                                              Precio unitario:
+                                                          </div>
+                                                          <div class="col-6 text-center">
+                                                              <strong>${{number_format($toldo->price/$toldo->quantity, 2)}}</strong>
+                                                          </div>
+                                                      </div>
+                                                      <hr>
+                                                      <div class="row">
+                                                          <div class="col-6 text-center">
+                                                              Cantidad:
+                                                          </div>
+                                                          <div class="col-6 text-center">
+                                                              <strong>{{$toldo->quantity}}</strong>
+                                                          </div>
+                                                      </div>
+                                                      <hr>
+                                                      <div class="row">
+                                                          <div class="col-6 text-center">
+                                                              Total:
+                                                          </div>
+                                                          <div class="col-6 text-center">
+                                                              <strong>${{number_format($toldo->price, 2)}}</strong>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="modal fade" id="deleteToldoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                          <div class="modal-dialog" role="document">
+                                              <div class="modal-content">
+                                                  <div class="modal-header">
+                                                      <h5 class="modal-title" id="exampleModalLabel">Eliminar Toldo</h5>
+                                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                          <span aria-hidden="true">&times;</span>
+                                                      </button>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                      Seguro que desea eliminar el producto de su order? Esta acción es irreversible.
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                      {!! Form::open(['method'=>'DELETE', 'action'=>['App\Http\Controllers\ToldosController@destroy', $toldo->id]]) !!}
+                                                      {!! Form::submit('Eliminar', ['class'=>'btn btn-danger', "id"=>'delete_toldo']) !!}
+                                                      {!! Form::close() !!}
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  @endforeach
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
       @endif
       <div class="modal fade" id="sendModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">

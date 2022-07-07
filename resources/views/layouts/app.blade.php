@@ -127,31 +127,18 @@
         <!-- (Optional) Latest compiled and minified JavaScript translation files -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
         <script>
+            $('#orders-list a').on('click', function (e) {
+                e.preventDefault()
+                $(this).tab('show')
+            })
+        </script>
+        <script>
             $('#inputGroupFile01').on('change',function(){
                 //get the file name
                 var fileName = $(this).val();
                 //replace the "Choose a file" label
                 $(this).next('.custom-file-label').html(fileName);
             })
-        </script>
-        <script>
-            $('.dynamic').on('input', function (event) {
-                event.preventDefault();
-                if($(this).val() != '') {
-                    var select = $(this).attr("id");
-                    var value = $(this).val();
-                    var dependent =  $(this).data('dependent');
-                    var _token = $('input[name="_token"]').val();
-                    $.ajax({
-                        url: '{{ route('toldo.fetch.numbers') }}',
-                        method: 'POST',
-                        data: {select:select, value:value, _token:_token, dependent:dependent},
-                        success: function(result) {
-                            $('#'+dependent).html(result);
-                        }
-                    })
-                }
-            });
         </script>
         <script>
             $('.dynamic').on('input', function (event) {
@@ -186,6 +173,44 @@
                         data: {select:select, value:value, _token:_token, dependent2:dependent2},
                         success: function(result) {
                             $('#'+dependent2).html(result);
+                        }
+                    })
+                }
+            });
+        </script>
+        <script>
+            $('.dynamic3').on('input', function (event) {
+                event.preventDefault();
+                if($(this).val() != '') {
+                    var select = $(this).attr("id");
+                    var value = $(this).val();
+                    var dependent3 =  $(this).data('dependent3');
+                    var _token = $('input[name="_token"]').val();
+                    $.ajax({
+                        url: '{{ route('toldo.fetch.controls') }}',
+                        method: 'POST',
+                        data: {select:select, value:value, _token:_token, dependent3:dependent3},
+                        success: function(result) {
+                            $('#'+dependent3).html(result);
+                        }
+                    })
+                }
+            });
+        </script>
+        <script>
+            $('.dynamic4').on('input', function (event) {
+                event.preventDefault();
+                if($(this).val() != '') {
+                    var select = $(this).attr("id");
+                    var value = $(this).val();
+                    var dependent4 =  $(this).data('dependent4');
+                    var _token = $('input[name="_token"]').val();
+                    $.ajax({
+                        url: '{{ route('toldo.fetch.voices') }}',
+                        method: 'POST',
+                        data: {select:select, value:value, _token:_token, dependent4:dependent4},
+                        success: function(result) {
+                            $('#'+dependent4).html(result);
                         }
                     })
                 }
@@ -280,18 +305,8 @@
                     cover_id = $wrapper.find('#cover_id').val(),
                     width = $wrapper.find('#width').val(),
                     projection = $wrapper.find('#projection').val(),
-                    handle_id = $wrapper.find('#handle_id').val(),
-                    control_id = $wrapper.find('#control_id').val(),
                     mechanism_id = $wrapper.find('#mechanism_id').val(),
                     quantity = $wrapper.find('#quantity').val(),
-                    handle_quantity = $wrapper.find('#handle_quantity').val(),
-                    sensor_id = $wrapper.find('#sensor_id').val(),
-                    control_quantity = $wrapper.find('#control_quantity').val(),
-                    voice_id = $wrapper.find('#voice_id').val(),
-                    sensor_quantity = $wrapper.find('#sensor_quantity').val(),
-                    voice_quantity = $wrapper.find('#voice_quantity').val(),
-                    bambalina = $wrapper.find('#bambalina').val(),
-                    canopy_id = $wrapper.find('#canopy_id').val(),
                     _token = $('input[name="_token"]').val();
                 $.ajaxSetup({
                     headers: {
@@ -306,18 +321,8 @@
                         cover_id: cover_id,
                         width:  width,
                         projection: projection,
-                        control_id: control_id,
                         mechanism_id: mechanism_id,
                         quantity: quantity,
-                        handle_quantity: handle_quantity,
-                        sensor_id: sensor_id,
-                        control_quantity: control_quantity,
-                        handle_id: handle_id,
-                        sensor_quantity: sensor_quantity,
-                        voice_id: voice_id,
-                        voice_quantity: voice_quantity,
-                        bambalina: bambalina,
-                        canopy_id: canopy_id,
                         _token: _token },
                     success: function (result) {
                         $('#dynamicInfoT').html(result);
@@ -340,6 +345,70 @@
                             msg = 'Uncaught Error.\n' + jqXHR.responseText;
                         }
                         $('#dynamicInfoT').html(msg);
+                    }
+                });
+            });
+        </script>
+        <script>
+            $('#toldoForm').on('input', function (event) {
+                event.preventDefault();
+                let $wrapper = $('#toldoForm'),
+                    width = $wrapper.find('#width').val(),
+                    handle_id = $wrapper.find('#handle_id').val(),
+                    control_id = $wrapper.find('#control_id').val(),
+                    mechanism_id = $wrapper.find('#mechanism_id').val(),
+                    handle_quantity = $wrapper.find('#handle_quantity').val(),
+                    sensor_id = $wrapper.find('#sensor_id').val(),
+                    control_quantity = $wrapper.find('#control_quantity').val(),
+                    voice_id = $wrapper.find('#voice_id').val(),
+                    sensor_quantity = $wrapper.find('#sensor_quantity').val(),
+                    voice_quantity = $wrapper.find('#voice_quantity').val(),
+                    bambalina = $wrapper.find('#bambalina').val(),
+                    canopy_id = $wrapper.find('#canopy_id').val(),
+                    _token = $('input[name="_token"]').val();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('[name="_token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url: "{{ route('toldo.fetch.accesories') }}",
+                    method: "POST",
+                    data: {
+                        width:  width,
+                        control_id: control_id,
+                        mechanism_id: mechanism_id,
+                        handle_quantity: handle_quantity,
+                        sensor_id: sensor_id,
+                        control_quantity: control_quantity,
+                        handle_id: handle_id,
+                        sensor_quantity: sensor_quantity,
+                        voice_id: voice_id,
+                        voice_quantity: voice_quantity,
+                        bambalina: bambalina,
+                        canopy_id: canopy_id,
+                        _token: _token },
+                    success: function (result) {
+                        $('#dynamicInfoA').html(result);
+                    },
+                    error: function (jqXHR, exception) {
+                        var msg = '';
+                        if (jqXHR.status === 0) {
+                            msg = 'Not connect.\n Verify Network.';
+                        } else if (jqXHR.status == 404) {
+                            msg = 'Requested page not found. [404]';
+                        } else if (jqXHR.status == 500) {
+                            msg = 'Por favor elija una combinación de valores válidos.';
+                        } else if (exception === 'parsererror') {
+                            msg = 'Requested JSON parse failed.';
+                        } else if (exception === 'timeout') {
+                            msg = 'Time out error.';
+                        } else if (exception === 'abort') {
+                            msg = 'Ajax request aborted.';
+                        } else {
+                            msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                        }
+                        $('#dynamicInfoA').html(msg);
                     }
                 });
             });

@@ -43,6 +43,10 @@ class Toldo extends Model
         return $this->belongsTo(CurtainCanopy::class);
     }
 
+    public function handle() {
+        return $this->belongsTo(CurtainHandle::class);
+    }
+
     protected $fillable = [
         'width',
 'projection',
@@ -58,5 +62,7 @@ class Toldo extends Model
 'sensor_id',
 'bambalina',
 'voice_id',
+        'model_id',
+        'handle_id'
     ];
 }

@@ -10,7 +10,7 @@
             <div class="card-header card-header-primary">
                 <ul class="nav nav-tabs" id="orders-list" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#pedidos" role="tab" aria-controls="ofertas" aria-selected="true">Pedidos</a>
+                        <a class="nav-link active" href="#pedidos" role="tab" aria-controls="pedidos" aria-selected="true">Pedidos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#ofertas" role="tab" aria-controls="ofertas" aria-selected="false">Ofertas</a>

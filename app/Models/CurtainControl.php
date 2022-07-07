@@ -19,5 +19,6 @@ class CurtainControl extends Model
         return $this->hasMany(Toldo::class);
     }
 
+
     protected $fillable = ['id','name', 'price'];
 }

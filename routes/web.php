@@ -117,6 +117,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('toldos/fetch/data', 'App\Http\Controllers\ToldosController@fetchData')->name('toldo.fetch.data');
     Route::post('toldos/fetch/numbers', 'App\Http\Controllers\ToldosController@fetchNumbers')->name('toldo.fetch.numbers');
     Route::post('toldos/fetch/projection', 'App\Http\Controllers\ToldosController@fetchProjection')->name('toldo.fetch.projection');
+    Route::post('toldos/fetch/controls', 'App\Http\Controllers\ToldosController@fetchControls')->name('toldo.fetch.controls');
+    Route::post('toldos/fetch/voices', 'App\Http\Controllers\ToldosController@fetchVoices')->name('toldo.fetch.voices');
+    Route::post('toldos/fetch/accesories', 'App\Http\Controllers\ToldosController@fetchAccesories')->name('toldo.fetch.accesories');
 
     Route::resource('admin/canopies', 'App\Http\Controllers\CurtainCanopiesController', ['except' => ['show']]);
     Route::resource('admin/handles', 'App\Http\Controllers\CurtainHandlesController', ['except' => ['show']]);

@@ -46,7 +46,7 @@
                     <div class="form-row">
                         <div class="col-md-12 col-sm-12">
 
-                            <select class="form-control" name="mechanism_id" id="mechanism_id" >
+                            <select class="form-control dynamic3 dynamic4" name="mechanism_id" id="mechanism_id" data-dependent3="control_id" data-dependent4="voice_id" >
                                 @foreach($mechanisms as $mechanism)
                                     <option value="{{$mechanism->id}}">{{$mechanism->name}}</option>
                                 @endforeach
@@ -92,9 +92,7 @@
                         <div class="col-md-9 col-sm-9">
                             {!! Form::label('control_id', 'Control:' )  !!}
                             <select class="form-control" name="control_id" id="control_id">
-                                @foreach($controls as $control)
-                                    <option value="{{$control->id}}">{{$control->name}}</option>
-                                @endforeach
+                                <option value="">Seleccionar control</option>
                             </select>
                         </div>
                         <div class="col-md-3 col-sm-3">
@@ -123,9 +121,7 @@
                         <div class="col-md-9 col-sm-9">
                             {!! Form::label('voice_id', 'Voz:' )  !!}
                             <select class="form-control" name="voice_id" id="voice_id" >
-                                @foreach($voices as $voice)
-                                    <option value="{{$voice->id}}">{{$voice->name}}</option>
-                                @endforeach
+                                    <option value="">Seleccionar control de voz</option>
                             </select>
                         </div>
 
@@ -157,8 +153,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-sm-6" id="dynamicInfoT">
+                <div class="col-md-6 col-sm-6">
+                    <div class="row" id="dynamicInfoT">
 
+                    </div>
+                    <hr>
+                    <div class="row" id="dynamicInfoA">
+
+                    </div>
                 </div>
                 </div>
 
