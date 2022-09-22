@@ -28,6 +28,6 @@ class CreateCurtainControlsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('controllers');
+        Schema::dropIfExists('curtain_controls');
     }
 }

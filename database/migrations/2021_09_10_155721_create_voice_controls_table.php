@@ -18,6 +18,7 @@ class CreateVoiceControlsTable extends Migration
             $table->string('name');
             $table->float('price');
             $table->string('type');
+            $table->integer('mechanism_id')->index();
         });
     }
 

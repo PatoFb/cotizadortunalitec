@@ -5,16 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/cotizadortunalitec.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/cotizadortunalitec.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainCoversController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CurtainCoversController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ToldosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ToldosController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/CurtainControl.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/CurtainControl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TypesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TypesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Curtain.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Curtain.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/CurtainCover.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Cover.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Toldo.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Toldo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_09_10_154533_create_toldos_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_09_10_154533_create_toldos_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/orders/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/orders/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/orders/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/orders/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_22_194818_create_curtain_models_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_22_194818_create_curtain_models_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_22_194832_create_curtain_covers_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_22_194832_create_curtain_covers_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_22_194854_create_curtain_handles_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_22_194854_create_curtain_handles_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_22_194927_create_curtain_canopies_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_22_194927_create_curtain_canopies_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_22_194941_create_curtain_controls_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_22_194941_create_curtain_controls_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_22_195001_create_curtains_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_22_195001_create_curtains_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_09_10_155721_create_voice_controls_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_09_10_155721_create_voice_controls_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/curtains/covers/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/curtains/covers/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/curtains/models/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/curtains/models/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/curtains/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/curtains/create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/navbars/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/navbars/sidebar.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/orders/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/orders/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/toldos/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/toldos/create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -30,11 +44,14 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/app/Models/CurtainPanel.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/app/Models/CurtainTube.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/Models/CurtainTube.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/Models/CurtainPanel.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/app/Models/CurtainModel.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -149,6 +166,13 @@
       <path value="$PROJECT_DIR$/vendor/laravelcollective/html" />
       <path value="$PROJECT_DIR$/vendor/snapappointments/bootstrap-select" />
       <path value="$PROJECT_DIR$/vendor/dnoegel/php-xdg-base-dir" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php81" />
+      <path value="$PROJECT_DIR$/vendor/laravel/serializable-closure" />
+      <path value="$PROJECT_DIR$/vendor/dflydev/dot-access-data" />
+      <path value="$PROJECT_DIR$/vendor/league/config" />
+      <path value="$PROJECT_DIR$/vendor/nette/utils" />
+      <path value="$PROJECT_DIR$/vendor/nette/schema" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
     </include_path>
   </component>
   <component name="ProjectId" id="1pHPbY30g1VNK72qrSfGMDazFBu" />
@@ -161,7 +185,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/storage" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
@@ -172,11 +196,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\cotizadortunalitec\public\storage" />
+      <recent name="C:\xampp\htdocs\cotizadortunalitec\storage\app\public" />
+      <recent name="C:\xampp\htdocs\cotizadortunalitec\storage" />
+      <recent name="C:\xampp\htdocs\cotizadortunalitec" />
       <recent name="D:\xampp\htdocs\cotizadortunalitec\resources\views\toldos" />
-      <recent name="D:\xampp\htdocs\cotizadortunalitec\resources\views" />
-      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\admin\curtains" />
-      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\mail" />
-      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\admin\orders" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\admin\orders" />
@@ -273,6 +297,13 @@
       <workItem from="1646418728039" duration="705000" />
       <workItem from="1646693850140" duration="1202000" />
       <workItem from="1647548355587" duration="739000" />
+      <workItem from="1657221095894" duration="981000" />
+      <workItem from="1657901177849" duration="3325000" />
+      <workItem from="1662471953637" duration="1130000" />
+      <workItem from="1662989194891" duration="215000" />
+      <workItem from="1663038046992" duration="2774000" />
+      <workItem from="1663598967708" duration="798000" />
+      <workItem from="1663809406517" duration="14307000" />
     </task>
     <servers />
   </component>
@@ -289,6 +320,5 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

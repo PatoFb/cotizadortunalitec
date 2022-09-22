@@ -12,7 +12,7 @@ class Toldo extends Model
     }
 
     public function cover() {
-        return $this->belongsTo(CurtainCover::class);
+        return $this->belongsTo(Cover::class);
     }
 
     public function control() {

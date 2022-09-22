@@ -35,6 +35,6 @@ class CreateCurtainModelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('models');
+        Schema::dropIfExists('curtain_models');
     }
 }

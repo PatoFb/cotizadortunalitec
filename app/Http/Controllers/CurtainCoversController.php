@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CurtainCoversEditRequest;
 use App\Http\Requests\CurtainCoversRequest;
+use App\Models\Cover;
 use App\Models\CurtainCover;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,7 @@ class CurtainCoversController extends Controller
      */
     public function index()
     {
-        $covers = CurtainCover::all();
+        $covers = Cover::all();
         return view('admin.curtains.covers.index', compact('covers'));
     }
 
@@ -49,7 +50,7 @@ class CurtainCoversController extends Controller
         } else {
             $input['photo'] = 'default-avatar.png';
         }
-        CurtainCover::create($input);
+        Cover::create($input);
         return redirect('/admin/covers')->withStatus(__('Cubierta guardada correctamente'));
     }
 
@@ -72,7 +73,7 @@ class CurtainCoversController extends Controller
      */
     public function edit($id)
     {
-        $cover = CurtainCover::findOrFail($id);
+        $cover = Cover::findOrFail($id);
         return view('admin.curtains.covers.edit', compact('cover'));
     }
 
@@ -85,7 +86,7 @@ class CurtainCoversController extends Controller
      */
     public function update(CurtainCoversEditRequest $request, $id)
     {
-        $cover = CurtainCover::findOrFail($id);
+        $cover = Cover::findOrFail($id);
         $input = $request->all();
         //get file value from input
         $file = $request->file('photo');
@@ -109,7 +110,7 @@ class CurtainCoversController extends Controller
      */
     public function destroy($id)
     {
-        $cover = CurtainCover::findOrFail($id);
+        $cover = Cover::findOrFail($id);
         $cover->delete();
         return redirect('/admin/covers')->withStatus(__('Cubierta eliminada correctamente'));
     }

@@ -16,11 +16,12 @@
             <div class="row">
                 <div class="col-md-6 col-sm-6" id="curtainForm">
                     <h4>Producto</h4>
+                    <br>
                     <h6>Modelo</h6>
                     <div class="form-row">
 
                         <div class="col-md-12 col-sm-12">
-                                <select class="form-control " name="model_id" id="model_id">
+                                <select class="form-control dynamicC" name="model_id" id="model_id" data-dependent="width">
                                 @foreach($models as $model)
                                         <option value="{{$model->id}}">{{$model->name}}</option>
                                 @endforeach
@@ -45,7 +46,7 @@
                     <div class="form-row">
                         <div class="col-md-12 col-sm-12">
 
-                            <select class="form-control" name="mechanism_id" id="mechanism_id" >
+                            <select class="form-control dynamic3 dynamic4" name="mechanism_id" id="mechanism_id" data-dependent3="control_id" data-dependent4="voice_id" >
                                 @foreach($mechanisms as $mechanism)
                                     <option value="{{$mechanism->id}}">{{$mechanism->name}}</option>
                                 @endforeach
@@ -59,7 +60,9 @@
 
                         <div class="col-md-6 col-sm-6">
                             {!! Form::label('width', 'Ancho:') !!}
-                            {!! Form::number('width', 0 , ['class'=>'form-control', "step"=>0.1, "id"=>"width"]) !!}
+                            <select class="form-control" name="width" id="width">
+                                <option value="">Seleccionar ancho</option>
+                            </select>
                         </div>
 
                         <div class="col-md-6 col-sm-6">
@@ -70,26 +73,7 @@
                     <br>
                     <h6>Características</h6>
                     <div class="form-row">
-                        <div class="col-md-6 col-sm-12">
-                            {!! Form::label('control_id', 'Control:' )  !!}
-                            <select class="form-control" name="control_id" id="control_id">
-                                @foreach($controls as $control)
-                                    <option value="{{$control->id}}">{{$control->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="col-md-6 col-sm-12">
-                            {!! Form::label('canopy_id', 'Tejadillo:' )  !!}
-                            <select class="form-control" name="canopy_id" id="canopy_id">
-                                <option value="0">No</option>
-                                <option value="1">Si</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="col-md-6 col-sm-12">
+                        <div class="col-md-9 col-sm-9">
                             {!! Form::label('handle_id', 'Manivela:' )  !!}
                             <select class="form-control" name="handle_id" id="handle_id" >
                                 @foreach($handles as $handle)
@@ -97,12 +81,67 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="col-md-3 col-sm-3">
+                            {!! Form::label('handle_quantity', 'Cantidad:') !!}
+                            {!! Form::number('handle_quantity', 0, ['class'=>'form-control', "step"=>1, "id"=>"handle_quantity"]) !!}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-9 col-sm-9">
+                            {!! Form::label('control_id', 'Control:' )  !!}
+                            <select class="form-control" name="control_id" id="control_id">
+                                <option value="">Seleccionar control</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 col-sm-3">
+                            {!! Form::label('control_quantity', 'Cantidad:') !!}
+                            {!! Form::number('control_quantity', 0, ['class'=>'form-control', "step"=>1, "id"=>"control_quantity"]) !!}
+                        </div>
+                    </div>
 
-                        <div class="col-md-6 col-sm-12">
+                    <div class="form-row">
+                        <div class="col-md-9 col-sm-9">
+                            {!! Form::label('sensor_id', 'Sensores:' )  !!}
+                            <select class="form-control" name="sensor_id" id="sensor_id" >
+                                @foreach($sensors as $sensor)
+                                    <option value="{{$sensor->id}}">{{$sensor->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="col-md-3 col-sm-3">
+                            {!! Form::label('sensor_quantity', 'Cantidad:') !!}
+                            {!! Form::number('sensor_quantity', 0 , ['class'=>'form-control', 'id'=>'sensor_quantity']) !!}
+                        </div>
+
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-9 col-sm-9">
+                            {!! Form::label('voice_id', 'Voz:' )  !!}
+                            <select class="form-control" name="voice_id" id="voice_id" >
+                                <option value="">Seleccionar control de voz</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-3 col-sm-3">
+                            {!! Form::label('voice_quantity', 'Cantidad:') !!}
+                            {!! Form::number('voice_quantity', 0 , ['class'=>'form-control', 'id'=>'voice_quantity']) !!}
+                        </div>
+
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12 col-sm-12">
+                            {!! Form::label('canopy_id', 'Tejadillo:' )  !!}
+                            <select class="form-control" name="canopy_id" id="canopy_id" >
+                                <option value="1">Si</option>
+                                <option value="0">No</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12">
                             {!! Form::label('quantity', 'Cantidad:') !!}
                             {!! Form::number('quantity', 1 , ['class'=>'form-control', 'id'=>'quantity']) !!}
                         </div>
-
                     </div>
                     @if($order->activity == "Pedido")
                     <br>
@@ -136,8 +175,14 @@
                     </div>
                     @endif
                 </div>
-                <div class="col-md-6 col-sm-6" id="dynamicInfo">
+                <div class="col-md-6 col-sm-6">
+                    <div class="row" id="dynamicInfoCT">
 
+                    </div>
+                    <hr>
+                    <div class="row" id="dynamicInfoCA">
+
+                    </div>
                 </div>
                 </div>
 

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Curtain;
 use App\Models\CurtainControl;
-use App\Models\CurtainCover;
+use App\Models\Cover;
 use App\Models\CurtainHandle;
 use App\Models\CurtainMechanism;
 use App\Models\CurtainModel;
@@ -24,7 +24,7 @@ class ToldosController extends Controller
     {
         $order_id = $id;
         $order = Order::findOrFail($id);
-        $covers = CurtainCover::all();
+        $covers = Cover::all();
         $controls = CurtainControl::all();
         $mechanisms = CurtainMechanism::all();
         $models = ModeloToldo::all();
@@ -67,7 +67,7 @@ class ToldosController extends Controller
         $toldo['model_id'] = $input['modelo_toldo_id'];
         $toldo->fill($validatedData);
         $cover_id = $input['cover_id'];
-        $cover = CurtainCover::find($cover_id);
+        $cover = Cover::find($cover_id);
 
         $model_id = $input['modelo_toldo_id'];
         $model = ModeloToldo::find($model_id);
@@ -111,7 +111,7 @@ class ToldosController extends Controller
         $control_total = $control->price * $cquant * 1.16;
         $voice_total = $voice->price * $vquant * 1.16;
         $sensor_total = $sensor->price * $squant * 1.16;
-        $handle_total = $handle->prince * $hquant * 1.16;
+        $handle_total = $handle->price * $hquant * 1.16;
 
         $ceiledWidth = ceil($width);
         $diff = $ceiledWidth - $width;
@@ -180,7 +180,7 @@ class ToldosController extends Controller
         $input = $request->all();
         $user = Auth::user();
         $cover_id = $input['cover_id'];
-        $cover = CurtainCover::find($cover_id);
+        $cover = Cover::find($cover_id);
 
         $model_id = $input['modelo_toldo_id'];
         $model = ModeloToldo::find($model_id);
@@ -423,7 +423,7 @@ class ToldosController extends Controller
         $control_total = $control->price * $cquant * 1.16;
         $voice_total = $voice->price * $vquant * 1.16;
         $sensor_total = $sensor->price * $squant * 1.16;
-        $handle_total = $handle->prince * $hquant * 1.16;
+        $handle_total = $handle->price * $hquant * 1.16;
 
         if($canopy == 1) {
             if($width > 3.5) {

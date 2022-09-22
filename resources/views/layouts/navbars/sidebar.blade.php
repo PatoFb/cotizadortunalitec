@@ -67,7 +67,7 @@
               <li class="nav-item{{ $activePage == 'tipos' ? ' active' : '' }}">
                   <a class="nav-link" href="{{ route('types.index') }}">
                       <span class="sidebar-mini"> TP </span>
-                      <span class="sidebar-normal"> {{ __('Tipos de productos') }} </span>
+                      <span class="sidebar-normal"> {{ __('Tipos de producto') }} </span>
                   </a>
               </li>
               <li class="nav-item{{ $activePage == 'modelos_cortina' ? ' active' : '' }}">
@@ -79,7 +79,7 @@
               <li class="nav-item{{ $activePage == 'cubiertas_cortina' ? ' active' : '' }}">
                   <a class="nav-link" href="{{ route('covers.index') }}">
                       <span class="sidebar-mini"> CU </span>
-                      <span class="sidebar-normal"> {{ __('Cubiertas para cortina') }} </span>
+                      <span class="sidebar-normal"> {{ __('Cubiertas') }} </span>
                   </a>
               </li>
               <li class="nav-item{{ $activePage == 'mecanismos_cortina' ? ' active' : '' }}">
@@ -91,7 +91,7 @@
               <li class="nav-item{{ $activePage == 'controles_cortina' ? ' active' : '' }}">
                   <a class="nav-link" href="{{ route('controls.index') }}">
                       <span class="sidebar-mini"> CC </span>
-                      <span class="sidebar-normal"> {{ __('Controles para cortina') }} </span>
+                      <span class="sidebar-normal"> {{ __('Controles') }} </span>
                   </a>
               </li>
               <li class="nav-item{{ $activePage == 'tejadillos_cortina' ? ' active' : '' }}">
@@ -104,18 +104,6 @@
                   <a class="nav-link" href="{{ route('handles.index') }}">
                       <span class="sidebar-mini"> MA </span>
                       <span class="sidebar-normal"> {{ __('Manivelas') }} </span>
-                  </a>
-              </li>
-              <li class="nav-item{{ $activePage == 'tubos_cortina' ? ' active' : '' }}">
-                  <a class="nav-link" href="{{ route('tubes.index') }}">
-                      <span class="sidebar-mini"> TU </span>
-                      <span class="sidebar-normal"> {{ __('Tubos para cortinas') }} </span>
-                  </a>
-              </li>
-              <li class="nav-item{{ $activePage == 'paneles_cortina' ? ' active' : '' }}">
-                  <a class="nav-link" href="{{ route('panels.index') }}">
-                      <span class="sidebar-mini"> PA </span>
-                      <span class="sidebar-normal"> {{ __('Páneles frontales') }} </span>
                   </a>
               </li>
           </ul>

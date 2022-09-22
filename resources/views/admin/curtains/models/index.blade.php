@@ -29,9 +29,6 @@
                         <th class="text-center">Tiempo Prod</th>
                         <th class="text-center">Ancho máximo</th>
                         <th class="text-center">Caída máxima</th>
-                        <th class="text-center">Tubo</th>
-                        <th class="text-center">Pánel Frontal</th>
-                        <th class="text-center">Precio</th>
                         <th class="text-right">
                             Acciones
                         </th>
@@ -57,9 +54,6 @@
                       <td class="text-center">{{$model->production_time}}</td>
                       <td class="text-center">{{$model->max_width}}</td>
                       <td class="text-center">{{$model->max_height}}</td>
-                      <td class="text-center">{{$model->tube->name}}</td>
-                      <td class="text-center">{{$model->panel->name}}</td>
-                        <td class="text-center">${{number_format($model->base_price, 2)}}</td>
                         <td class="td-actions text-right">
                             <a rel="tooltip" class="btn btn-success btn-link" href="{{route('models.edit', $model->id)}}" data-original-title="" title="">
                               <i class="material-icons">edit</i>

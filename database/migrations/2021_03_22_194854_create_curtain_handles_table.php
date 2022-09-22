@@ -28,6 +28,6 @@ class CreateCurtainHandlesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('handles');
+        Schema::dropIfExists('curtain_handles');
     }
 }

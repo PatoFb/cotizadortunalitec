@@ -160,6 +160,25 @@
             });
         </script>
         <script>
+            $('.dynamicC').on('input', function (event) {
+                event.preventDefault();
+                if($(this).val() != '') {
+                    var select = $(this).attr("id");
+                    var value = $(this).val();
+                    var dependent =  $(this).data('dependent');
+                    var _token = $('input[name="_token"]').val();
+                    $.ajax({
+                        url: '{{ route('curtain.fetch.numbers') }}',
+                        method: 'POST',
+                        data: {select:select, value:value, _token:_token, dependent:dependent},
+                        success: function(result) {
+                            $('#'+dependent).html(result);
+                        }
+                    })
+                }
+            });
+        </script>
+        <script>
             $('.dynamic2').on('input', function (event) {
                 event.preventDefault();
                 if($(this).val() != '') {
@@ -214,45 +233,6 @@
                         }
                     })
                 }
-            });
-        </script>
-        <script>
-            $('#curtainForm').on('input', function (event) {
-                event.preventDefault();
-                let $wrapper = $('#curtainForm'),
-                    model_id = $wrapper.find('#model_id').val(),
-                    cover_id = $wrapper.find('#cover_id').val(),
-                    width = $wrapper.find('#width').val(),
-                    height = $wrapper.find('#height').val(),
-                    control_id = $wrapper.find('#control_id').val(),
-                    canopy_id = $wrapper.find('#canopy_id').val(),
-                    handle_id = $wrapper.find('#handle_id').val(),
-                    mechanism_id = $wrapper.find('#mechanism_id').val(),
-                    quantity = $wrapper.find('#quantity').val(),
-                    _token = $('input[name="_token"]').val();
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('[name="_token"]').attr('content')
-                    }
-                });
-                $.ajax({
-                    url: "{{ route('curtain.fetch.data') }}",
-                    method: "POST",
-                    data: {
-                        model_id: model_id,
-                        cover_id: cover_id,
-                        width:  width,
-                        height: height,
-                        control_id: control_id,
-                        handle_id: handle_id,
-                        canopy_id: canopy_id,
-                        mechanism_id: mechanism_id,
-                        quantity: quantity,
-                        _token: _token },
-                    success: function (result) {
-                        $('#dynamicInfo').html(result);
-                    }
-                });
             });
         </script>
 
@@ -350,6 +330,58 @@
             });
         </script>
         <script>
+            $('#curtainForm').on('input', function (event) {
+                event.preventDefault();
+                let $wrapper = $('#curtainForm'),
+                    model_id = $wrapper.find('#model_id').val(),
+                    cover_id = $wrapper.find('#cover_id').val(),
+                    width = $wrapper.find('#width').val(),
+                    height = $wrapper.find('#height').val(),
+                    mechanism_id = $wrapper.find('#mechanism_id').val(),
+                    quantity = $wrapper.find('#quantity').val(),
+                    _token = $('input[name="_token"]').val();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('[name="_token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url: "{{ route('curtain.fetch.data') }}",
+                    method: "POST",
+                    data: {
+                        model_id: model_id,
+                        cover_id: cover_id,
+                        width:  width,
+                        height: height,
+                        mechanism_id: mechanism_id,
+                        quantity: quantity,
+                        _token: _token },
+                    success: function (result) {
+                        $('#dynamicInfoCT').html(result);
+                    },
+                    error: function (jqXHR, exception) {
+                        var msg = '';
+                        if (jqXHR.status === 0) {
+                            msg = 'Not connect.\n Verify Network.';
+                        } else if (jqXHR.status == 404) {
+                            msg = 'Requested page not found. [404]';
+                        } else if (jqXHR.status == 500) {
+                            msg = 'Por favor elija una combinación de valores válidos.';
+                        } else if (exception === 'parsererror') {
+                            msg = 'Requested JSON parse failed.';
+                        } else if (exception === 'timeout') {
+                            msg = 'Time out error.';
+                        } else if (exception === 'abort') {
+                            msg = 'Ajax request aborted.';
+                        } else {
+                            msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                        }
+                        $('#dynamicInfoCT').html(msg);
+                    }
+                });
+            });
+        </script>
+        <script>
             $('#toldoForm').on('input', function (event) {
                 event.preventDefault();
                 let $wrapper = $('#toldoForm'),
@@ -409,6 +441,68 @@
                             msg = 'Uncaught Error.\n' + jqXHR.responseText;
                         }
                         $('#dynamicInfoA').html(msg);
+                    }
+                });
+            });
+        </script>
+        <script>
+            $('#curtainForm').on('input', function (event) {
+                event.preventDefault();
+                let $wrapper = $('#curtainForm'),
+                    width = $wrapper.find('#width').val(),
+                    handle_id = $wrapper.find('#handle_id').val(),
+                    control_id = $wrapper.find('#control_id').val(),
+                    mechanism_id = $wrapper.find('#mechanism_id').val(),
+                    handle_quantity = $wrapper.find('#handle_quantity').val(),
+                    sensor_id = $wrapper.find('#sensor_id').val(),
+                    control_quantity = $wrapper.find('#control_quantity').val(),
+                    voice_id = $wrapper.find('#voice_id').val(),
+                    sensor_quantity = $wrapper.find('#sensor_quantity').val(),
+                    voice_quantity = $wrapper.find('#voice_quantity').val(),
+                    canopy_id = $wrapper.find('#canopy_id').val(),
+                    _token = $('input[name="_token"]').val();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('[name="_token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url: "{{ route('curtain.fetch.accesories') }}",
+                    method: "POST",
+                    data: {
+                        width:  width,
+                        control_id: control_id,
+                        mechanism_id: mechanism_id,
+                        handle_quantity: handle_quantity,
+                        sensor_id: sensor_id,
+                        control_quantity: control_quantity,
+                        handle_id: handle_id,
+                        sensor_quantity: sensor_quantity,
+                        voice_id: voice_id,
+                        voice_quantity: voice_quantity,
+                        canopy_id: canopy_id,
+                        _token: _token },
+                    success: function (result) {
+                        $('#dynamicInfoCA').html(result);
+                    },
+                    error: function (jqXHR, exception) {
+                        var msg = '';
+                        if (jqXHR.status === 0) {
+                            msg = 'Not connect.\n Verify Network.';
+                        } else if (jqXHR.status == 404) {
+                            msg = 'Requested page not found. [404]';
+                        } else if (jqXHR.status == 500) {
+                            msg = 'Por favor elija una combinación de valores válidos.';
+                        } else if (exception === 'parsererror') {
+                            msg = 'Requested JSON parse failed.';
+                        } else if (exception === 'timeout') {
+                            msg = 'Time out error.';
+                        } else if (exception === 'abort') {
+                            msg = 'Ajax request aborted.';
+                        } else {
+                            msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                        }
+                        $('#dynamicInfoCA').html(msg);
                     }
                 });
             });

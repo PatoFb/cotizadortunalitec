@@ -16,7 +16,7 @@ class Curtain extends Model
     }
 
     public function cover() {
-        return $this->belongsTo('App\Models\CurtainCover');
+        return $this->belongsTo('App\Models\Cover');
     }
 
     public function handle() {
@@ -33,6 +33,10 @@ class Curtain extends Model
 
     public function mechanism() {
         return $this->belongsTo(CurtainMechanism::class);
+    }
+
+    public function system() {
+        return $this->belongsTo(SystemCurtain::class);
     }
 
     protected $fillable = [

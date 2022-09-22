@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CurtainCover extends Model
+class Cover extends Model
 {
     public function curtains() {
         return $this->hasMany('App\Models\Curtain');

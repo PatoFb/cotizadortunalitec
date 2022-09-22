@@ -27,6 +27,6 @@ class CreateCurtainCanopiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('canopies');
+        Schema::dropIfExists('curtain_canopies');
     }
 }
