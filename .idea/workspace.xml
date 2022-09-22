@@ -5,31 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/cotizadortunalitec.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/cotizadortunalitec.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainCoversController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CurtainCoversController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ToldosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ToldosController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TypesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TypesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Curtain.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Curtain.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/CurtainCover.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Cover.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Toldo.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Toldo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_22_194818_create_curtain_models_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_22_194818_create_curtain_models_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_22_194832_create_curtain_covers_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_22_194832_create_curtain_covers_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_22_194854_create_curtain_handles_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_22_194854_create_curtain_handles_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_22_194927_create_curtain_canopies_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_22_194927_create_curtain_canopies_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_22_194941_create_curtain_controls_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_22_194941_create_curtain_controls_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_22_195001_create_curtains_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_22_195001_create_curtains_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_09_10_155721_create_voice_controls_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_09_10_155721_create_voice_controls_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/curtains/covers/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/curtains/covers/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/curtains/models/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/curtains/models/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/curtains/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/curtains/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/navbars/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/navbars/sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/orders/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/orders/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -303,7 +280,7 @@
       <workItem from="1662989194891" duration="215000" />
       <workItem from="1663038046992" duration="2774000" />
       <workItem from="1663598967708" duration="798000" />
-      <workItem from="1663809406517" duration="14307000" />
+      <workItem from="1663809406517" duration="16277000" />
     </task>
     <servers />
   </component>
