@@ -64,48 +64,6 @@
                 <span class="sidebar-normal"> {{ __('Usuarios') }} </span>
               </a>
             </li>
-              <li class="nav-item{{ $activePage == 'tipos' ? ' active' : '' }}">
-                  <a class="nav-link" href="{{ route('types.index') }}">
-                      <span class="sidebar-mini"> TP </span>
-                      <span class="sidebar-normal"> {{ __('Tipos de producto') }} </span>
-                  </a>
-              </li>
-              <li class="nav-item{{ $activePage == 'modelos_cortina' ? ' active' : '' }}">
-                  <a class="nav-link" href="{{ route('models.index') }}">
-                      <span class="sidebar-mini"> MO </span>
-                      <span class="sidebar-normal"> {{ __('Modelos de cortina') }} </span>
-                  </a>
-              </li>
-              <li class="nav-item{{ $activePage == 'cubiertas_cortina' ? ' active' : '' }}">
-                  <a class="nav-link" href="{{ route('covers.index') }}">
-                      <span class="sidebar-mini"> CU </span>
-                      <span class="sidebar-normal"> {{ __('Cubiertas') }} </span>
-                  </a>
-              </li>
-              <li class="nav-item{{ $activePage == 'mecanismos_cortina' ? ' active' : '' }}">
-                  <a class="nav-link" href="{{ route('mechanisms.index') }}">
-                      <span class="sidebar-mini"> ME </span>
-                      <span class="sidebar-normal"> {{ __('Mecanismos') }} </span>
-                  </a>
-              </li>
-              <li class="nav-item{{ $activePage == 'controles_cortina' ? ' active' : '' }}">
-                  <a class="nav-link" href="{{ route('controls.index') }}">
-                      <span class="sidebar-mini"> CC </span>
-                      <span class="sidebar-normal"> {{ __('Controles') }} </span>
-                  </a>
-              </li>
-              <li class="nav-item{{ $activePage == 'tejadillos_cortina' ? ' active' : '' }}">
-                  <a class="nav-link" href="{{ route('canopies.index') }}">
-                      <span class="sidebar-mini"> TE </span>
-                      <span class="sidebar-normal"> {{ __('Tejadillos') }} </span>
-                  </a>
-              </li>
-              <li class="nav-item{{ $activePage == 'manivelas_cortina' ? ' active' : '' }}">
-                  <a class="nav-link" href="{{ route('handles.index') }}">
-                      <span class="sidebar-mini"> MA </span>
-                      <span class="sidebar-normal"> {{ __('Manivelas') }} </span>
-                  </a>
-              </li>
           </ul>
         </div>
       </li>

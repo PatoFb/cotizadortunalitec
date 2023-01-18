@@ -20,12 +20,16 @@
                     <h6>Modelo</h6>
                     <div class="form-row">
 
-                        <div class="col-md-12 col-sm-12">
+                        <div class="col-md-9 col-sm-9">
                             <select class="form-control dynamic dynamic2" name="modelo_toldo_id" id="modelo_toldo_id" data-dependent="width" data-dependent2="projection">
                                 @foreach($models as $model)
                                     <option value="{{$model->id}}">{{$model->name}}</option>
                                 @endforeach
                             </select>
+                        </div>
+                        <div class="col-md-3 col-sm-3">
+                            {!! Form::label('quantity', 'Cantidad:') !!}
+                            {!! Form::number('quantity', 1 , ['class'=>'form-control', 'id'=>'quantity']) !!}
                         </div>
                     </div>
                     <br>
@@ -76,7 +80,7 @@
                     <h6>Características</h6>
                     <div class="form-row">
                         <div class="col-md-9 col-sm-9">
-                            {!! Form::label('handle_id', 'Manivela:' )  !!}
+                            {!! Form::label('handle_id', 'Manivela (medida en metros):' )  !!}
                             <select class="form-control" name="handle_id" id="handle_id" >
                                 @foreach($handles as $handle)
                                     <option value="{{$handle->id}}">{{$handle->measure}}</option>
@@ -146,10 +150,6 @@
                                 <option value="1">Si</option>
                                 <option value="0">No</option>
                             </select>
-                        </div>
-                        <div class="col-md-12 col-sm-12">
-                        {!! Form::label('quantity', 'Cantidad:') !!}
-                        {!! Form::number('quantity', 1 , ['class'=>'form-control', 'id'=>'quantity']) !!}
                         </div>
                     </div>
                 </div>

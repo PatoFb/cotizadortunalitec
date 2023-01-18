@@ -12,11 +12,15 @@ class Palilleria extends Model
     }
 
     public function cover() {
-        return $this->belongsTo(CurtainCover::class);
+        return $this->belongsTo(Cover::class);
     }
 
     public function control() {
         return $this->belongsTo(CurtainControl::class);
+    }
+
+    public function voice() {
+        return $this->belongsTo(VoiceControl::class);
     }
 
     public function mechanism() {
@@ -27,18 +31,32 @@ class Palilleria extends Model
         return $this->belongsTo(Reinforcement::class);
     }
 
+    public function model() {
+        return $this->belongsTo(PalilleriaModel::class);
+    }
+
     protected $fillable = [
         'width',
         'height',
         'quantity',
         'order_id',
-        'goals',
+        'model_id',
         'reinforcement_id',
         'reinforcement_quantity',
         'control_id',
         'control_quantity',
         'cover_id',
         'mechanism_id',
-        'price'
+        'price',
+        'sensor_id',
+        'sensor_quantity',
+        'trave',
+        'semigoal',
+        'goal',
+        'trave_quantity',
+        'semigoal_quantity',
+        'goal_quantity',
+        'voice_id',
+        'voice_quantity'
     ];
 }

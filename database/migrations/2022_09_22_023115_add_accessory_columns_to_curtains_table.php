@@ -36,7 +36,7 @@ class AddAccessoryColumnsToCurtainsTable extends Migration
             $table->dropColumn('handle_quantity');
             $table->dropColumn('control_quantity');
             $table->dropColumn('voice_id');
-            $table->dropColumn('handle_id');
+            $table->dropColumn('sensor_id');
         });
     }
 }

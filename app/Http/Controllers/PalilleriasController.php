@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cover;
 use App\Models\CurtainCanopy;
 use App\Models\CurtainControl;
 use App\Models\CurtainCover;
@@ -10,9 +11,14 @@ use App\Models\CurtainMechanism;
 use App\Models\CurtainModel;
 use App\Models\Order;
 use App\Models\Palilleria;
+use App\Models\PalilleriaModel;
 use App\Models\PalilleriasPrice;
 use App\Models\Reinforcement;
+use App\Models\Sensor;
+use App\Models\VoiceControl;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class PalilleriasController extends Controller
 {
@@ -36,16 +42,19 @@ class PalilleriasController extends Controller
     {
         $order_id = $id;
         $order = Order::findOrFail($id);
-        $covers = CurtainCover::all();
+        $covers = Cover::all();
         $controls = CurtainControl::all();
-        $mechanisms = CurtainMechanism::all();
+        $mechanisms = CurtainMechanism::whereIn('id', [1, 2, 4])->get();
         $reinforcements = Reinforcement::all();
-        return view('palillerias.create', compact('order_id',  'covers', 'controls', 'order', 'mechanisms', 'reinforcements'));
+        $sensors = Sensor::where('type', 'P')->get();
+        $models = PalilleriaModel::all();
+        return view('palillerias.create', compact('order_id',  'covers', 'controls', 'order', 'mechanisms', 'reinforcements', 'sensors', 'models'));
     }
 
     public function save(Request $request, $id)
     {
         $order_id = $id;
+        $user = Auth::user();
         $order = Order::findOrFail($id);
             $validatedData = $request->validate([
                 'cover_id' => 'required',
@@ -57,120 +66,220 @@ class PalilleriasController extends Controller
                 'mechanism_id'=>'required',
                 'reinforcement_id'=>'required',
                 'reinforcement_quantity'=>'required',
-                'goals'=>'required'
+                'model_id'=>'required',
+                'sensor_id' => 'required',
+                'sensor_quantity'=>'required',
+                'trave'=>'required',
+                'semigoal'=>'required',
+                'goal'=>'required',
+                'trave_quantity'=>'required',
+                'semigoal_quantity'=>'required',
+                'goal_quantity'=>'required',
+                'voice_id'=>'required',
+                'voice_quantity'=>'required'
             ]);
         $palilleria = new Palilleria();
         $palilleria['order_id'] = $order_id;
         $palilleria->fill($validatedData);
+        $cover = Cover::where('id', $palilleria['cover_id'])->first();
+
         $control = CurtainControl::where('id', $palilleria['control_id'])->first();
-        $cover = CurtainCover::where('id', $palilleria['cover_id'])->first();
-        $mechanism = CurtainMechanism::where('id', $palilleria['mechanism_id'])->first();
-        $reinforcement = Reinforcement::where('id', $palilleria['reinforcement_id'])->first();
+
+        $mechanism_id = $palilleria['mechanism_id'];
+
+        $model = PalilleriaModel::where('id', $palilleria['model_id'])->first();
+        $sensor = Sensor::where('id', $palilleria['sensor_id'])->first();
+
+        $voice = VoiceControl::where('id', $palilleria['voice_id'])->first();
 
         $width = $palilleria['width'];
         $height = $palilleria['height'];
         $quantity = $palilleria['quantity'];
+
+        $goal = $palilleria['goal'];
+        $semigoal= $palilleria['semigoal'];
+        $trave = $palilleria['trave'];
+        $guide = $palilleria['reinforcement_id'];
+
         $cquant = $palilleria['control_quantity'];
         $rquant = $palilleria['reinforcement_quantity'];
-        $goals = $palilleria['goals'];
+        $squant = $palilleria['sensor_quantity'];
+        $tquant = $palilleria['trave_quantity'];
+        $gquant = $palilleria['goal_quantity'];
+        $sgquant = $palilleria['semigoal_quantity'];
+        $vquant = $palilleria['voice_quantity'];
+        if($cover->roll_width == 1.16 || $cover->roll_width == 1.2) {
+            $useful_subrolls = 2;
+        } elseif ($cover->roll_width == 1.52 || $cover->roll_width == 1.77) {
+            $useful_subrolls = 3;
+        } elseif ($cover->roll_width == 2.67 || $cover->roll_width == 3.04) {
+            $useful_subrolls = 5;
+        } elseif ($cover->roll_width == 2.5) {
+            $useful_subrolls = 4;
+        } else {
+            $useful_subrolls = 6;
+        }
 
-        //Calculates number of fabric needed for pricing
-        $num_lienzos = ceil($width/$cover->roll_width);
-        $measure = $height + 0.45;
-        $total_fabric = $measure * $num_lienzos;
 
-        $reinforcement_total = (($reinforcement->guide_price * $height + 400) + ($reinforcement->sop_price * 3) + ($reinforcement->hook_price) + (ceil($height * 0.45) * 42.68)) * $rquant;
+        if($cover->roll_width == 1.16 || $cover->roll_width == 1.2 || $cover->roll_width == 3.2 || $cover->roll_width == 1.77) {
+            $factor = 0.45;
+        } else {
+            $factor = 0.4;
+        }
 
-        $goals_total= 5172.04 * 1.16 * $goals;
+        $sub_rolls = ceil($height/$factor);
+        $full_rolls = ceil($sub_rolls/$useful_subrolls);
+        $measure = $height + 0.07;
+        $total_fabric = $measure * $full_rolls;
+        $total_cover = $cover->price * $total_fabric;
 
-        //Calculates total pricing of fabric plus handiwork plus IVA
-        $cover_price = $cover->price * $total_fabric;
-        $work_price = (53 * $total_fabric)/(1 - 0.40);
-        $total_cover = ($cover_price + $work_price) * 1.16;
+        $work_price = 50 * (ceil($width * $height));
+        $bubble_price = (900/35) * ($width*6) + (($width*6)/3) + 257.14;
+        $operation_costs = $work_price + $bubble_price;
 
         //Control plus IVA
-        $control_total = $control->price * $cquant * 1.16;
+        $control_total = $control->price * $cquant;
+        $sensor_total = $sensor->price * $squant;
+        $voice_total = $voice->price * $vquant;
+        Log::info($total_cover);
+        Log::info($operation_costs);
+
+        if($height <= 5) {
+            $sop_quant = 2;
+        } elseif($height >= 9) {
+            $sop_quant = 4;
+        } else {
+            $sop_quant = 3;
+        }
+
+        if($guide != 0){
+            $extra_guides  = ((462.89*$height+400) + (136.14 * $sop_quant) + (129.23) + (46.46*$sub_rolls)) * $rquant;
+        } else {
+            $extra_guides  = 0;
+        }
+
+        if($goal != 0){
+            $total_goals = 6361 * $gquant;
+        } else {
+            $total_goals = 0;
+        }
+
+        if($semigoal != 0){
+            $total_semigoals = 4550 * $sgquant;
+        } else {
+            $total_semigoals = 0;
+        }
+
+        if($trave != 0){
+            $total_trave = 2996.45 * $tquant;
+        } else {
+            $total_trave = 0;
+        }
+
+        $reinforcement_total = $total_trave + $total_semigoals + $total_goals + $extra_guides;
+        $goals_total = $model->price;
 
         $palilleria_price = PalilleriasPrice::where('width', ceil($width))->where('height', ceil($height))->first();
         $pprice = $palilleria_price->price;
+
+
         //Pricing of user selected option
-        $palilleria['price'] = ($pprice + $reinforcement_total + $goals_total + $control_total + $total_cover + ($mechanism->price * 1.16)) * $quantity;
+        switch($mechanism_id) {
+            case 1:
+                $acc = $reinforcement_total;
+                $p = $pprice + $goals_total + $total_cover + $operation_costs;
+                $palilleria['price'] = ($acc + $p) / 0.6 * (1 - ($user->discount/100)) * $quantity * 1.16;
+                break;
+            case 2:
+                $acc = $reinforcement_total + $control_total + $voice_total + $sensor_total;
+                $p = $pprice + $goals_total + $total_cover + $operation_costs + 15021;
+                $palilleria['price'] = ($acc + $p) / 0.6 * (1 - ($user->discount/100)) * $quantity * 1.16;
+                break;
+            case 4:
+                $acc = $reinforcement_total + $control_total + $voice_total;
+                $p = $pprice + $goals_total + $total_cover + $operation_costs + 10416;
+                $palilleria['price'] = ($acc + $p) / 0.6 * (1 - ($user->discount/100)) * $quantity * 1.16;
+                break;
+            default:
+                $palilleria['price'] = 0;
+                break;
+        }
         $palilleria->save();
         $order->price = $order->price + $palilleria['price'];
         $order->total = $order->total + ($palilleria['price'] * (1 - ($order->discount/100)));
+        $order->user_id = $user->getAuthIdentifier();
         $order->save();
         return redirect()->route('orders.show', $order_id)->withStatus(__('Palillería agregada correctamente'));
     }
 
     public function fetchData(Request $request){
+        $user = Auth::user();
         $input = $request->all();
 
-        $cover_id = $input['cover_id'];
-        $cover = CurtainCover::find($cover_id);
-
-
-        $control_id = $input['control_id'];
-        $control = CurtainControl::find($control_id);
+        $cover = Cover::where('id', $input['cover_id'])->first();
 
         $mechanism_id = $input['mechanism_id'];
-        $mechanism = CurtainMechanism::find($mechanism_id);
 
-        $reinforcement = Reinforcement::where('id', $input['reinforcement_id'])->first();
-
-        //Gets all mechanisms for the comparison
-        $manual = CurtainMechanism::find(1);
-        $somfy = CurtainMechanism::find(2);
-        $tube = CurtainMechanism::find(4);
+        $model = PalilleriaModel::where('id', $input['model_id'])->first();
 
         $width = $input['width'];
         $height = $input['height'];
         $quantity = $input['quantity'];
 
-        $cquant = $input['control_quantity'];
         $rquant = $input['reinforcement_quantity'];
-        $goals = $input['goals'];
-
-        //Calculates number of fabric needed for pricing
-        $num_lienzos = ceil($width/$cover->roll_width);
-        $measure = $height + 0.45;
-        $total_fabric = $measure * $num_lienzos;
-
-        //Calculates total pricing of fabric plus handiwork plus IVA
-        $cover_price = $cover->price * $total_fabric;
-        $work_price = (53 * $total_fabric)/(1 - 0.40);
-        $total_cover = ($cover_price + $work_price) * 1.16;
-
-        //Control plus IVA
-        $control_total = $control->price * $cquant * 1.16;
-
-        $reinforcement_total = (($reinforcement->guide_price * $height + 400) + ($reinforcement->sop_price * 3) + ($reinforcement->hook_price) + (ceil($height * 0.45) * 42.68)) * $rquant;
-
-        $goals_total = 5172.04 * 1.16 * $goals;
-
-        $total_guides = 0;
-        if ($width <= 7 && $width > 0) {
-            $guides = 2;
-        } else if ($width > 7) {
-            $guides = 3;
+        if($cover->roll_width == 1.16 || $cover->roll_width == 1.2) {
+            $useful_subrolls = 2;
+        } elseif ($cover->roll_width == 1.52 || $cover->roll_width == 1.77) {
+            $useful_subrolls = 3;
+        } elseif ($cover->roll_width == 2.67 || $cover->roll_width == 3.04) {
+            $useful_subrolls = 5;
+        } elseif ($cover->roll_width == 2.5) {
+            $useful_subrolls = 4;
         } else {
-            $guides = 0;
+            $useful_subrolls = 6;
         }
 
-        $total_guides = $guides + $rquant;
+
+        if($cover->roll_width == 1.16 || $cover->roll_width == 1.2 || $cover->roll_width == 3.2 || $cover->roll_width == 1.77) {
+            $factor = 0.45;
+        } else {
+            $factor = 0.4;
+        }
+
+        $sub_rolls = ceil($height/$factor);
+        $full_rolls = ceil($sub_rolls/$useful_subrolls);
+        $measure = $height + 0.07;
+        $total_fabric = $measure * $full_rolls;
+        $total_cover = $cover->price * $total_fabric;
+
+        $work_price = 50 * (ceil($width * $height));
+        $bubble_price = (900/35) * ($width*6) + (($width*6)/3) + 257.14;
+        $operation_costs = $work_price + $bubble_price;
+
+
+        if($width <= 5) {
+            $guide_t = 2;
+        } else {
+            $guide_t = 3;
+        }
+
+        $total_guides = $guide_t + $rquant;
+
+        $goals_total = $model->price;
 
         $palilleria_price = PalilleriasPrice::where('width', ceil($width))->where('height', ceil($height))->first();
         $pprice = $palilleria_price->price;
 
         //Pricing of user selected option
-        switch($mechanism->id) {
+        switch($mechanism_id) {
             case 1:
-                $price = ($pprice + $reinforcement_total + $goals_total + $total_cover + ($manual->price * 1.16)) * $quantity;
+                $price = (($pprice + $goals_total + $total_cover + $operation_costs) / 0.6) * (1 - ($user->discount/100)) * $quantity * 1.16;
                 break;
             case 2:
-                $price = ($pprice + $reinforcement_total + $goals_total + $control_total + $total_cover + (($somfy->price + 6575) * 1.16)) * $quantity;
+                $price = (($pprice + $goals_total + $total_cover + $operation_costs + 15021) / 0.6) * (1 - ($user->discount/100)) * $quantity * 1.16;
                 break;
             case 4:
-                $price = ($pprice + $reinforcement_total + $goals_total + $total_cover + (($tube->price + 6575) * 1.16)) * $quantity;
+                $price = (($pprice + $goals_total + $total_cover + $operation_costs + 10416) / 0.6) * (1 - ($user->discount/100)) * $quantity * 1.16;
                 break;
             default:
                 $price = 0;
@@ -179,17 +288,18 @@ class PalilleriasController extends Controller
         $price = number_format($price, 2);
 
         //Pricing of manual mechanism
-        $price_manual = ($pprice + $reinforcement_total + $goals_total + $total_cover + ($manual->price * 1.16)) * $quantity;
+        $price_manual = (($pprice + $goals_total + $total_cover + $operation_costs) / 0.6) * (1 - ($user->discount/100)) * $quantity * 1.16;
         $price_manual = number_format($price_manual, 2);
 
         //Pricing of somfy mechanism
-        $price_somfy = ($pprice + $reinforcement_total + $goals_total + $control_total + $total_cover + (($somfy->price + 6575) * 1.16)) * $quantity;
+        $price_somfy = (($pprice + $goals_total + $total_cover + $operation_costs + 15021) / 0.6) * (1 - ($user->discount/100)) * $quantity * 1.16;
         $price_somfy = number_format($price_somfy, 2);
 
         //Pricing of tube mechanism
-        $price_tube = ($pprice + $reinforcement_total + $goals_total + $total_cover + (($tube->price + 6575) * 1.16)) * $quantity;
+        $price_tube = (($pprice + $goals_total + $total_cover + $operation_costs + 10416) / 0.6) * (1 - ($user->discount/100)) * $quantity * 1.16;
         $price_tube = number_format($price_tube,2);
-        echo "<div class='text-right'><h3><strong>Precio seleccionado: $$price</strong></h3></div>
+        echo "<div class='text-right'>
+<div class='col-md-12 col-sm-12'><h3><strong>Precio seleccionado: $$price</strong></h3></div></div>
             <div class='row text-right'>
 <div class='col-md-4 col-sm-6'>
             <strong>Somfy <br>$$price_somfy</strong>
@@ -202,12 +312,12 @@ class PalilleriasController extends Controller
 </div>
 </div>
 <hr>
+<br>
 <div class='row'>
-<div class='col-md-5 col-sm-12'>
-                   <img src=".asset('storage')."/images/".$cover->photo." style='width: 100%;'>
+<div class='col-md-4 col-sm-12'>
+                   <img src=".asset('storage')."/images/".$model->photo." style='width: 100%;' alt='Image not found'>
               </div>
               <div class='col-md-7 col-sm-12'>
-<div>
             <h4>Detalles de sistema</h4>
             <div class='row'>
               <div class='col-md-12 col-sm-12'>
@@ -217,23 +327,23 @@ class PalilleriasController extends Controller
                    <br>
                    <h7 style='color: grey;'>Tiempo de producción: <strong>7 días hábiles</strong></h7>
                    <br>
-                   <h7 style='color: grey;'>Ancho máximo: <strong>7.00 m</strong></h7>
+                   <h7 style='color: grey;'>Ancho máximo: <strong>5.00 m</strong></h7>
                    <br>
-                   <h7 style='color: grey;'>Salida máxima: <strong>7.00 m</strong></h7>
+                   <h7 style='color: grey;'>Salida máxima: <strong>5.00 m</strong></h7>
               </div>
               </div>
-              <br>
-              </div>
-              <div>
+              <hr>
                 <div class='row'>
               <div class='col-md-12 col-sm-12'>
                    <h7 style='color: grey;'><strong>$cover->name</strong></h7>
                    <br>
                    <h7 style='color: grey;'>Ancho de rollo: <strong>$cover->roll_width mts</strong></h7>
                    <br>
+                   <h7 style='color: grey;'>Número de sublienzos: <strong>$sub_rolls</strong></h7>
+                   <br>
                    <h7 style='color: grey;'>Uniones: <strong>$cover->unions</strong></h7>
                    <br>
-                   <h7 style='color: grey;'>Número de lienzos: <strong>$num_lienzos</strong></h7>
+                   <h7 style='color: grey;'>Número de lienzos: <strong>$full_rolls</strong></h7>
                    <br>
                    <h7 style='color: grey;'>Medida de lienzos: <strong>$measure</strong></h7>
                    <br>
@@ -241,18 +351,146 @@ class PalilleriasController extends Controller
               </div>
                 </div>
               </div>
-              </div>
-              </div>
-              <img src=".asset('storage')."/images/".$goals."palillerias.png"." style='width: 100%;'>";
+              </div>";
     }
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function fetchAccessories(Request $request){
+        $user = Auth::user();
+        $input = $request->all();
+        $mechanism_id = $input['mechanism_id'];
+        $cover = Cover::where('id', $input['cover_id'])->first();
+        $quantity = $input['quantity'];
+
+        $control = CurtainControl::where('id', $input['control_id'])->first();
+
+        $sensor = Sensor::where('id', $input['sensor_id'])->first();
+
+        $voice = VoiceControl::where('id', $input['voice_id'])->first();
+
+        $height = $input['height'];
+
+        $goal = $input['goal'];
+        $semigoal= $input['semigoal'];
+        $trave = $input['trave'];
+        $guide = $input['reinforcement_id'];
+
+        $cquant = $input['control_quantity'];
+        $rquant = $input['reinforcement_quantity'];
+        $squant = $input['sensor_quantity'];
+        $tquant = $input['trave_quantity'];
+        $gquant = $input['goal_quantity'];
+        $sgquant = $input['semigoal_quantity'];
+        $vquant = $input['voice_quantity'];
+
+
+        if($cover->roll_width == 1.16 || $cover->roll_width == 1.2 || $cover->roll_width == 3.2 || $cover->roll_width == 1.77) {
+            $factor = 0.45;
+        } else {
+            $factor = 0.4;
+        }
+
+        $sub_rolls = ceil($height/$factor);
+
+        //Control plus IVA
+        $control_total = $control->price * $cquant;
+        $sensor_total = $sensor->price * $squant;
+        $voice_total = $voice->price * $vquant;
+
+
+        if($height <= 5) {
+            $sop_quant = 2;
+        } elseif($height >= 9) {
+            $sop_quant = 4;
+        } else {
+            $sop_quant = 3;
+        }
+
+        if($guide != 0){
+            $extra_guides  = ((462.89*$height+400) + (136.14 * $sop_quant) + (129.23) + (46.46*$sub_rolls)) * $rquant;
+        } else {
+            $extra_guides  = 0;
+        }
+
+        if($goal != 0){
+            $total_goals = 6361 * $gquant;
+        } else {
+            $total_goals = 0;
+        }
+
+        if($semigoal != 0){
+            $total_semigoals = 4550 * $sgquant;
+        } else {
+            $total_semigoals = 0;
+        }
+
+        if($trave != 0){
+            $total_trave = 2996.45 * $tquant;
+        } else {
+            $total_trave = 0;
+        }
+
+        $reinforcement_total = $total_trave + $total_semigoals + $total_goals + $extra_guides;
+
+
+        //Pricing of user selected option
+        switch($mechanism_id) {
+            case 1:
+                $price = (($reinforcement_total) / 0.6) * (1 - ($user->discount/100)) * $quantity * 1.16;
+                break;
+            case 2:
+                $price = (($reinforcement_total + $control_total + $voice_total + $sensor_total) / 0.6) * (1 - ($user->discount/100)) * $quantity * 1.16;
+                break;
+            case 4:
+                $price = (($reinforcement_total + $control_total + $voice_total) / 0.6) * (1 - ($user->discount/100)) * $quantity * 1.16;
+                break;
+            default:
+                $price = 0;
+                break;
+        }
+        $accp = number_format($price, 2);
+        echo "<div class='text-right'><h3><strong>Total de accesorios: $$accp</strong></h3></div>";
+    }
+
+    public function fetchControls(Request $request)
     {
-        //
+        $select = $request->get('select');
+        $value = $request->get('value');
+        $dependent = $request->get('dependentP1');
+        if($value == '4' or $value == '1'){
+            $type = 'Tube';
+        } else {
+            $type = 'Somfy';
+        }
+        $data = CurtainControl::where('type', $type)->get();
+        $output = '<option value="">Seleccionar control</option>';
+        foreach($data as $row){
+            $output .= '<option value="'.$row->id.'">'.$row->name.'</option>';
+        }
+        echo $output;
+    }
+
+    public function fetchVoices(Request $request)
+    {
+        $select = $request->get('select');
+        $value = $request->get('value');
+        $dependent = $request->get('dependentP2');
+        if($value == '4' or $value == '1'){
+            $type = 'Tube';
+        } else {
+            $type = 'Somfy';
+        }
+        $data = VoiceControl::where('type', $type)->get();
+
+        $output = '<option value="">Seleccionar control de voz</option>';
+        foreach($data as $row){
+            $output .= '<option value="'.$row->id.'">'.$row->name.'</option>';
+        }
+        Log::info($output);
+        echo $output;
     }
 
     /**

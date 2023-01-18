@@ -17,7 +17,6 @@ class CreateSystemCurtainsTable extends Migration
             $table->id();
             $table->integer('model_id')->unsigned()->index()->nullable(true);
             $table->float('width');
-            $table->integer('mechanism_id')->unsigned()->index()->nullable(true);
             $table->float('price');
         });
     }

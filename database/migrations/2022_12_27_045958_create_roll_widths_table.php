@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCurtainCoversTable extends Migration
+class CreateRollWidthsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateCurtainCoversTable extends Migration
      */
     public function up()
     {
-        Schema::create('covers', function (Blueprint $table) {
+        Schema::create('roll_widths', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->float('roll_width');
-            $table->string('unions');
-            $table->float('price');
-            $table->timestamps();
+            $table->float('width');
+            $table->float('meters');
+            $table->float('range');
         });
     }
 
@@ -30,6 +28,6 @@ class CreateCurtainCoversTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('covers');
+        Schema::dropIfExists('roll_widths');
     }
 }

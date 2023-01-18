@@ -5,7 +5,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/public/material/img/login.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/screeny/create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PalilleriasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PalilleriasController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ToldosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ToldosController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TypesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TypesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Curtain.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Curtain.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Order.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Palilleria.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Palilleria.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Sensor.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Sensor.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_22_194832_create_curtain_covers_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_22_194832_create_curtain_covers_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_08_03_180749_create_palillerias_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_08_03_180749_create_palillerias_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2022_09_22_011719_create_system_curtains_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2022_09_22_011719_create_system_curtains_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2022_09_22_023115_add_accessory_columns_to_curtains_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2022_09_22_023115_add_accessory_columns_to_curtains_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/contact.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contact.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/curtains/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/curtains/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/navbars/navs/guest.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/navbars/navs/guest.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/navbars/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/navbars/sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/page_templates/guest.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/page_templates/guest.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/orders/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/orders/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/palillerias/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/palillerias/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/products/type.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/products/type.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/toldos/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/toldos/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,7 +188,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/storage" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../vendedores" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
@@ -172,16 +199,16 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\cotizadortunalitec\public\storage\images" />
+      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\screeny" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\public\storage" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\storage\app\public" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\storage" />
-      <recent name="C:\xampp\htdocs\cotizadortunalitec" />
-      <recent name="D:\xampp\htdocs\cotizadortunalitec\resources\views\toldos" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\cotizadortunalitec\public\material\img" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\admin\orders" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\public\material\js\plugins" />
-      <recent name="C:\xampp\htdocs\cotizadortunalitec\public\material\img" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\public\material\css" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\public\images" />
     </key>
@@ -280,6 +307,20 @@
       <workItem from="1663038046992" duration="2774000" />
       <workItem from="1663598967708" duration="798000" />
       <workItem from="1663809406517" duration="19301000" />
+      <workItem from="1665418491713" duration="441000" />
+      <workItem from="1666547263166" duration="1199000" />
+      <workItem from="1667188322444" duration="8716000" />
+      <workItem from="1667570244865" duration="7116000" />
+      <workItem from="1669221913840" duration="535000" />
+      <workItem from="1669647904184" duration="225000" />
+      <workItem from="1670265967700" duration="438000" />
+      <workItem from="1670270604853" duration="4443000" />
+      <workItem from="1670279192645" duration="6183000" />
+      <workItem from="1670287079595" duration="17764000" />
+      <workItem from="1672114491373" duration="4901000" />
+      <workItem from="1672120143484" duration="9011000" />
+      <workItem from="1673638319043" duration="912000" />
+      <workItem from="1673841827107" duration="10275000" />
     </task>
     <servers />
   </component>

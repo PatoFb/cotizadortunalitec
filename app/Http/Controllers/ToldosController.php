@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Complement;
 use App\Models\Curtain;
 use App\Models\CurtainControl;
 use App\Models\Cover;
@@ -10,6 +11,7 @@ use App\Models\CurtainMechanism;
 use App\Models\CurtainModel;
 use App\Models\Order;
 use App\Models\ModeloToldo;
+use App\Models\RollWidth;
 use App\Models\Sensor;
 use App\Models\SistemaToldo;
 use App\Models\Toldo;
@@ -192,15 +194,30 @@ class ToldosController extends Controller
         $projection = $input['projection'];
         $quantity = $input['quantity'];
 
-        //Calculates number of fabric needed for pricing
-        $num_lienzos = ceil($width/$cover->roll_width);
         $measure = $projection + 0.75;
-        $total_fabric = $measure * $num_lienzos;
+        $squared_meters = $measure * $width;
 
-        //Calculates total pricing of fabric plus handiwork plus IVA
-        $cover_price = $cover->price * $total_fabric;
-        $work_price = (40 * $total_fabric);
-        $total_cover = ($cover_price + $work_price) / (1-0.30);
+        if($cover->unions == 'Verticales') {
+            //Calculates number of fabric needed for pricing
+            $num_lienzos = ceil($width / $cover->roll_width);
+            $total_fabric = $measure * $num_lienzos;
+
+            //Calculates total pricing of fabric plus handiwork plus IVA
+            $cover_price = $cover->price * $total_fabric;
+        } else {
+            $range = RollWidth::where('width', $cover->roll_width)->where('meters', $projection)->get('range');
+            $num_lienzos = Complement::where('range', $range)->get('complete');
+            $complement = Complement::where('range', $range)->get('complement');
+            $total_fabric = $num_lienzos * $width;
+
+            $full_price = $cover->price * $total_fabric;
+            $complement_price = $cover->price / $cover->roll_width * 2.5 * $complement;
+            $cover_price = $full_price + $complement_price;
+        }
+
+
+        $work_price = $squared_meters * (60/(1 - 0.3));
+        $total_cover = ($cover_price + $work_price);
 
 
         $ceiledWidth = ceil($width);
@@ -214,6 +231,7 @@ class ToldosController extends Controller
         }
 
         $system = SistemaToldo::where('modelo_toldo_id', $model_id)->where('mechanism_id', $mechanism_id)->where('projection', $projection)->where('width', $newWidth)->first();
+        Log::info($system);
         $sprice = $system->price;
 
         $manual = SistemaToldo::where('modelo_toldo_id', $model_id)->where('mechanism_id', 1)->where('projection', $projection)->where('width', $newWidth)->first();
@@ -284,34 +302,28 @@ class ToldosController extends Controller
 </div>
 <hr>
 <div>
-            <h4>Detalles de sistema</h4>
-            <div class='row'>
+<div class='row'>
                 <div class='col-md-4 col-sm-12'>
                    <img src=" . asset('storage') . "/images/" . $model->photo . " style='width: 100%;' alt='Image not found'>
               </div>
-              <div class='col-md-8 col-sm-12'>
+              <div class='col-md-7 col-sm-12'>
+            <h4>Detalles de sistema</h4>
+            <div class='row'>
+              <div class='col-md-12 col-sm-12'>
                    <h7 style='color: grey;'><strong>$model->description</strong></h7>
                    <br>
                    <h7 style='color: grey;'>Máxima resistencia al viento de <strong>$model->max_resistance km/h</strong></h7>
                    <br>
                    <h7 style='color: grey;'>Tiempo de producción: <strong>$model->production_time días hábiles</strong></h7>
                    <br>
-                   <h7 style='color: grey;'>Ancho máximo: <strong>$model->max_width</strong></h7>
+                   <h7 style='color: grey;'>Ancho máximo: <strong>$model->max_width m</strong></h7>
                    <br>
-                   <h7 style='color: grey;'>Ancho mínimo: <strong>$model->min_width</strong></h7>
+                   <h7 style='color: grey;'>Ancho mínimo: <strong>$model->min_width m</strong></h7>
               </div>
               </div>
               <hr>
-              </div>
-              <div>
-              <div class='col-12'>
-                <h4>Detalles de cubierta</h4>
-               </div>
                 <div class='row'>
-                <div class='col-md-4 col-sm-12'>
-                   <img src=" . asset('storage') . "/images/" . $cover->photo . " style='width: 100%;'>
-              </div>
-              <div class='col-md-8 col-sm-12'>
+              <div class='col-md-12 col-sm-12'>
                    <h7 style='color: grey;'><strong>$cover->name</strong></h7>
                    <br>
                    <h7 style='color: grey;'>Ancho de rollo: <strong>$cover->roll_width mts</strong></h7>
@@ -323,6 +335,7 @@ class ToldosController extends Controller
                    <h7 style='color: grey;'>Medida de lienzos: <strong>$measure</strong></h7>
                    <br>
                    <h7 style='color: grey;'>Total de textil: <strong>$total_fabric</strong></h7>
+              </div>
               </div>
                 </div>
               </div>";
@@ -356,10 +369,8 @@ class ToldosController extends Controller
 
     public function fetchControls(Request $request)
     {
-        $select = $request->get('select');
         $value = $request->get('value');
-        $dependent = $request->get('dependent3');
-        Log::info($value);
+
         if($value == '4' or $value == '1'){
             $type = 'Tube';
         } else {
@@ -375,10 +386,7 @@ class ToldosController extends Controller
 
     public function fetchVoices(Request $request)
     {
-        $select = $request->get('select');
         $value = $request->get('value');
-        $dependent = $request->get('dependent4');
-        Log::info($value);
         if($value == '4' or $value == '1'){
             $type = 'Tube';
         } else {
@@ -393,7 +401,10 @@ class ToldosController extends Controller
     }
 
     public function fetchAccesories(Request $request){
+        $user = Auth::user();
+
         $input = $request->all();
+        $quantity = $input['quantity'];
 
         $control_id = $input['control_id'];
         $control = CurtainControl::find($control_id);
@@ -444,23 +455,22 @@ class ToldosController extends Controller
         //Pricing of user selected option
         switch($mechanism_id) {
             case 1:
-                $accesories = $handle_total + $total_canopy + $total_bambalina;
+                $accesories = (($handle_total + $total_canopy + $total_bambalina) / 0.6) * (1 - ($user->discount/100)) * $quantity * 1.16;;
                 break;
             case 2:
-                $accesories = $control_total + $sensor_total + $voice_total + $total_canopy + $total_bambalina;
+                $accesories = (($control_total + $sensor_total + $voice_total + $total_canopy + $total_bambalina) / 0.6) * (1 - ($user->discount/100)) * $quantity * 1.16;;
                 break;
             case 3:
-                $accesories = $control_total + $handle_total + $sensor_total + $voice_total + $total_canopy + $total_bambalina;
+                $accesories = (($control_total + $handle_total + $sensor_total + $voice_total + $total_canopy + $total_bambalina) / 0.6) * (1 - ($user->discount/100)) * $quantity * 1.16;;
                 break;
             case 4:
-                $accesories = $handle_total + $voice_total + $total_canopy + $total_bambalina + $control_total;
+                $accesories = (($handle_total + $voice_total + $total_canopy + $total_bambalina + $control_total) / 0.6) * (1 - ($user->discount/100)) * $quantity * 1.16;;
                 break;
             default:
                 $accesories = 0;
                 break;
         }
         $accesories_price = number_format($accesories, 2);
-        Log::info($accesories_price);
 
         echo "<div class='text-right'><h3><strong>Total de accesorios: $$accesories_price</strong></h3></div>";
     }

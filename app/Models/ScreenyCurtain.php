@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Curtain extends Model
+class ScreenyCurtain extends Model
 {
     public function model() {
         return $this->belongsTo('App\Models\CurtainModel');

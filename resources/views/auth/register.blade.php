@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container" style="height: auto;">
+    @include('alerts.success')
   <div class="row align-items-center">
     <div class="col-lg-8 col-md-8 col-sm-8 ml-auto mr-auto">
       <form class="form" method="POST" action="{{ route('register') }}">
@@ -22,7 +23,23 @@
               </a>
             </div>--}}
           </div>
+
           <div class="card-body ">
+              <div class="bmd-form-group{{ $errors->has('number') ? ' has-danger' : '' }}">
+                  <div class="input-group">
+                      <div class="input-group-prepend">
+                  <span class="input-group-text">
+                      <i class="material-icons">face</i>
+                  </span>
+                      </div>
+                      <input type="text" name="number" class="form-control" placeholder="{{ __('Número de socio*') }}" value="{{ old('number') }}" required>
+                  </div>
+                  @if ($errors->has('number'))
+                      <div id="name-error" class="error text-danger pl-3" for="number" style="display: block;">
+                          <strong>{{ $errors->first('number') }}</strong>
+                      </div>
+                  @endif
+              </div>
             <div class="bmd-form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
               <div class="input-group">
                 <div class="input-group-prepend">

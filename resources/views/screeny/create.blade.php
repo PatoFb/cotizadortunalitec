@@ -11,17 +11,17 @@
               <h4 class="card-title">Crear cortina</h4>
             </div>
             <div class="card-body">
-                {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\CurtainsController@save', $order_id]]) !!}
+                {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\ScreenyCurtainsController@save', $order_id]]) !!}
                 {!! csrf_field() !!}
             <div class="row">
-                <div class="col-md-6 col-sm-6" id="curtainForm">
+                <div class="col-md-6 col-sm-6" id="screenyForm">
                     <h4>Producto</h4>
                     <br>
                     <h6>Modelo</h6>
                     <div class="form-row">
                         <div class="col-md-9 col-sm-9">
                             {!! Form::label('model_id', 'Modelo:') !!}
-                            <select class="form-control dynamicC" name="model_id" id="model_id" data-dependent="width" >
+                            <select class="form-control" name="model_id" id="model_id" >
                                 @foreach($models as $model)
                                     <option value="{{$model->id}}">{{$model->name}}</option>
                                 @endforeach
@@ -51,7 +51,7 @@
                     <div class="form-row">
                         <div class="col-md-12 col-sm-12">
 
-                            <select class="form-control dynamic6 dynamic7" name="mechanism_id" id="mechanism_id" >
+                            <select class="form-control dynamic7 dynamic8" name="mechanism_id" id="mechanism_id" >
                                 @foreach($mechanisms as $mechanism)
                                     <option value="{{$mechanism->id}}">{{$mechanism->name}}</option>
                                 @endforeach
@@ -66,20 +66,32 @@
                         <div class="col-md-6 col-sm-6">
                             {!! Form::label('width', 'Ancho:') !!}
                             <select class="form-control" name="width" id="width">
-                                <option value="">Seleccionar ancho</option>
+                                <option value="1.5">1.5</option>
+                                <option value="2">2</option>
+                                <option value="2.5">2.5</option>
+                                <option value="3">3</option>
+                                <option value="3.5">3.5</option>
+                                <option value="4">4</option>
+                                <option value="4.5">4.5</option>
+                                <option value="5">5</option>
                             </select>
                         </div>
 
                         <div class="col-md-6 col-sm-6">
                             {!! Form::label('height', 'Caida:') !!}
-                            {!! Form::number('height', 0.5, ['class'=>'form-control', "step"=>0.1, "id"=>"height"]) !!}
+                            <select class="form-control" name="height" id="height">
+                                <option value="1.5">1.5</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
                         </div>
                     </div>
                     <br>
                     <h6>Características</h6>
                     <div class="form-row">
                         <div class="col-md-9 col-sm-9">
-                            {!! Form::label('handle_id', 'Manivela (Medida en metros:' )  !!}
+                            {!! Form::label('handle_id', 'Manivela (Medida en metros):' )  !!}
                             <select class="form-control" name="handle_id" id="handle_id" >
                                 @foreach($handles as $handle)
                                     <option value="{{$handle->id}}">{{$handle->measure}}</option>
@@ -145,43 +157,43 @@
 
                     </div>
                     @if($order->activity == "Pedido")
-                    <br>
-                    <h6>Datos para producción (solo requeridos para pedidos)</h6>
-                    <div class="form-row">
-                        <div class="col-md-4 col-sm-12">
-                            {!! Form::label('installation_type', 'Tipo de instalación:') !!}
-                            <select class="form-control" name="installation_type">
-                                <option>Pared</option>
-                                <option>Techo</option>
-                                <option>Entre muros</option>
-                            </select>
-                        </div>
+                        <br>
+                        <h6>Datos para producción (solo requeridos para pedidos)</h6>
+                        <div class="form-row">
+                            <div class="col-md-4 col-sm-12">
+                                {!! Form::label('installation_type', 'Tipo de instalación:') !!}
+                                <select class="form-control" name="installation_type">
+                                    <option>Pared</option>
+                                    <option>Techo</option>
+                                    <option>Entre muros</option>
+                                </select>
+                            </div>
 
-                        <div class="col-md-4 col-sm-12">
-                            {!! Form::label('mechanism_side', 'Lado de mecanismo:') !!}
-                            <select class="form-control" name="mechanism_side" >
-                                <option>Izquierdo</option>
-                                <option>Derecho</option>
-                            </select>
-                        </div>
+                            <div class="col-md-4 col-sm-12">
+                                {!! Form::label('mechanism_side', 'Lado de mecanismo:') !!}
+                                <select class="form-control" name="mechanism_side" >
+                                    <option>Izquierdo</option>
+                                    <option>Derecho</option>
+                                </select>
+                            </div>
 
-                        <div class="col-md-4 col-sm-12">
-                            {!! Form::label('view_type', 'Tipo de vista:') !!}
-                            <select class="form-control" name="view_type" >
-                                <option>Exterior</option>
-                                <option>Interior</option>
-                            </select>
-                        </div>
+                            <div class="col-md-4 col-sm-12">
+                                {!! Form::label('view_type', 'Tipo de vista:') !!}
+                                <select class="form-control" name="view_type" >
+                                    <option>Exterior</option>
+                                    <option>Interior</option>
+                                </select>
+                            </div>
 
-                    </div>
+                        </div>
                     @endif
                 </div>
                 <div class="col-md-6 col-sm-6">
-                    <div class="row" id="dynamicInfoCT">
+                    <div class="row" id="dynamicInfoST">
 
                     </div>
                     <hr>
-                    <div class="row" id="dynamicInfoCA">
+                    <div class="row" id="dynamicInfoSA">
 
                     </div>
                 </div>

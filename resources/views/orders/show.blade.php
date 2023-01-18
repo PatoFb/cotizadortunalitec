@@ -67,7 +67,7 @@
           <div class="col-md-12">
               <div class="card">
                   <div class="card-header card-header-primary">
-                      <h4 class="card-title">Cortinas ({{count($order->curtains)}})</h4>
+                      <h4 class="card-title">Cortinas ({{count($order->curtains) + count($order->screenies)}})</h4>
                       {{--<p class="card-category"> Here you can manage users</p>--}}
                   </div>
                   <div class="card-body">
@@ -369,6 +369,273 @@
                                   </div>
                               </div>
                                   @endforeach
+                              @foreach($order->screenies as $screeny)
+                                  <tr>
+                                      <td>{{$screeny->model->name}}</td>
+                                      <td>{{$screeny->cover->name}}</td>
+                                      <td>{{$screeny->mechanism->name}}</td>
+                                      <td>{{$screeny->width}} m</td>
+                                      <td>{{$screeny->height}} m</td>
+                                      <td>{{$screeny->quantity}}</td>
+                                      <td class="text-right">${{number_format($screeny->price, 2)}}</td>
+                                      <td class="td-actions text-right">
+                                          <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#screenyDetailsModal{{$screeny->id}}" id="screeny_details_modal">
+                                              Ver detalle
+                                          </button>
+                                          <button type="button" class="btn btn-danger btn-link" data-toggle="modal" data-target="#deleteModal" id="delete_product_modal">
+                                              <i class="material-icons">delete</i>
+                                              <div class="ripple-container"></div></button>
+                                          @if($order->activity == "Pedido")
+                                              <button type="button" class="btn btn-info btn-link" data-toggle="modal" data-target="#addModal" id="add_data_modal">
+                                                  Añadir datos
+                                              </button>
+                                          @endif
+                                      </td>
+
+                                  </tr>
+                                  <div class="modal fade" id="screenyDetailsModal{{$screeny->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+                                          <div class="modal-content">
+                                              <div class="modal-header">
+                                                  <h5 class="modal-title" id="exampleModalLabel">Detalles</h5>
+                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                      <span aria-hidden="true">&times;</span>
+                                                  </button>
+                                              </div>
+                                              <div class="modal-body">
+                                                  <h5><strong>Estructura</strong></h5>
+                                                  <div class="row">
+                                                      <div class="col-6 text-center">
+                                                          Modelo:
+                                                      </div>
+                                                      <div class="col-6 text-center">
+                                                          <strong>{{$screeny->model->name}}</strong>
+                                                      </div>
+                                                  </div>
+                                                  <hr>
+                                                  <div class="row">
+                                                      <div class="col-6 text-center">
+                                                          Cubierta:
+                                                      </div>
+                                                      <div class="col-6 text-center">
+                                                          <strong>{{$screeny->cover->name}}</strong>
+                                                      </div>
+                                                  </div>
+                                                  <hr>
+                                                  <div class="row">
+                                                      <div class="col-6 text-center">
+                                                          Mecanismo:
+                                                      </div>
+                                                      <div class="col-6 text-center">
+                                                          <strong>{{$screeny->mechanism->name}}</strong>
+                                                      </div>
+                                                  </div>
+                                                  <hr>
+                                                  <div class="row">
+                                                      <div class="col-6 text-center">
+                                                          Ancho:
+                                                      </div>
+                                                      <div class="col-6 text-center">
+                                                          <strong>{{$screeny->width}} m</strong>
+                                                      </div>
+                                                  </div>
+                                                  <hr>
+                                                  <div class="row">
+                                                      <div class="col-6 text-center">
+                                                          Caída:
+                                                      </div>
+                                                      <div class="col-6 text-center">
+                                                          <strong>{{$screeny->height}} m</strong>
+                                                      </div>
+                                                  </div>
+                                                  <hr>
+                                                  <h5><strong>Accesorios</strong></h5>
+                                                  @if($screeny->canopy_id == 1)
+                                                      <div class="row">
+                                                          <div class="col-6 text-center">
+                                                              Tejadillo:
+                                                          </div>
+                                                          <div class="col-6 text-center">
+                                                              <strong>X</strong>
+                                                          </div>
+                                                      </div>
+                                                      <hr>
+                                                  @endif
+                                                  @if($screeny->handle && $screeny->handle_quantity > 0)
+                                                      <div class="row">
+                                                          <div class="col-6 text-center">
+                                                              Manivela:
+                                                          </div>
+                                                          <div class="col-6 text-center">
+                                                              <strong>{{$screeny->handle->measure}}</strong>
+                                                          </div>
+                                                      </div>
+                                                      <div class="row">
+                                                          <div class="col-6 text-center">
+                                                              Cantidad:
+                                                          </div>
+                                                          <div class="col-6 text-center">
+                                                              <strong>{{$screeny->handle_quantity}}</strong>
+                                                          </div>
+                                                      </div>
+                                                      <hr>
+                                                  @endif
+                                                  @if($screeny->control && $screeny->control_quantity > 0)
+                                                      <div class="row">
+                                                          <div class="col-6 text-center">
+                                                              Control:
+                                                          </div>
+                                                          <div class="col-6 text-center">
+                                                              <strong>{{$screeny->control->name}}</strong>
+                                                          </div>
+                                                      </div>
+                                                      <div class="row">
+                                                          <div class="col-6 text-center">
+                                                              Cantidad:
+                                                          </div>
+                                                          <div class="col-6 text-center">
+                                                              <strong>{{$screeny->control_quantity}}</strong>
+                                                          </div>
+                                                      </div>
+                                                      <hr>
+                                                  @endif
+                                                  @if($screeny->voice && $screeny->voice_quantity > 0)
+                                                      <div class="row">
+                                                          <div class="col-6 text-center">
+                                                              Control de voz:
+                                                          </div>
+                                                          <div class="col-6 text-center">
+                                                              <strong>{{$screeny->voice->name}}</strong>
+                                                          </div>
+                                                      </div>
+                                                      <div class="row">
+                                                          <div class="col-6 text-center">
+                                                              Cantidad:
+                                                          </div>
+                                                          <div class="col-6 text-center">
+                                                              <strong>{{$screeny->voice_quantity}}</strong>
+                                                          </div>
+                                                      </div>
+                                                      <hr>
+                                                  @endif
+                                                  @if($screeny->sensor && $screeny->sensor_quantity > 0)
+                                                      <div class="row">
+                                                          <div class="col-6 text-center">
+                                                              Sensor:
+                                                          </div>
+                                                          <div class="col-6 text-center">
+                                                              <strong>{{$screeny->sensor->name}}</strong>
+                                                          </div>
+                                                      </div>
+                                                      <div class="row">
+                                                          <div class="col-6 text-center">
+                                                              Cantidad:
+                                                          </div>
+                                                          <div class="col-6 text-center">
+                                                              <strong>{{$screeny->sensor_quantity}}</strong>
+                                                          </div>
+                                                      </div>
+                                                      <hr>
+                                                  @endif
+                                                  <h5><strong>Precios</strong></h5>
+                                                  <div class="row">
+                                                      <div class="col-6 text-center">
+                                                          Precio unitario:
+                                                      </div>
+                                                      <div class="col-6 text-center">
+                                                          <strong>${{number_format($screeny->price/$screeny->quantity, 2)}}</strong>
+                                                      </div>
+                                                  </div>
+                                                  <hr>
+                                                  <div class="row">
+                                                      <div class="col-6 text-center">
+                                                          Cantidad:
+                                                      </div>
+                                                      <div class="col-6 text-center">
+                                                          <strong>{{$screeny->quantity}}</strong>
+                                                      </div>
+                                                  </div>
+                                                  <hr>
+                                                  <div class="row">
+                                                      <div class="col-6 text-center">
+                                                          Total:
+                                                      </div>
+                                                      <div class="col-6 text-center">
+                                                          <strong>${{number_format($screeny->price, 2)}}</strong>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog modal-lg" role="document">
+                                          <div class="modal-content">
+                                              <div class="modal-header">
+                                                  <h5 class="modal-title" id="exampleModalLabel">Agregar datos para pedido</h5>
+                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                      <span aria-hidden="true">&times;</span>
+                                                  </button>
+                                              </div>
+                                              <div class="modal-body">
+                                                  {!! Form::model($screeny, ['method'=>'PUT', 'action'=>['App\Http\Controllers\ScreenyCurtainsController@addData', $screeny->id]]) !!}
+                                                  <input name="id" type="hidden" value="{{$screeny->id}}">
+                                                  <div class="col-12">
+                                                      {!! Form::label('installation_type', 'Tipo de instalación:') !!}
+                                                      <select class="form-control" name="installation_type">
+                                                          <option value="">Selecciona tipo de instalacion</option>
+                                                          <option>Pared</option>
+                                                          <option>Techo</option>
+                                                          <option>Entre muros</option>
+                                                      </select>
+                                                  </div>
+                                                  <br>
+                                                  <div class="col-12">
+                                                      {!! Form::label('mechanism_side', 'Lado de mecanismo:') !!}
+                                                      <select class="form-control" name="mechanism_side" >
+                                                          <option value="">Lado del mecanismo</option>
+                                                          <option>Izquierdo</option>
+                                                          <option>Derecho</option>
+                                                      </select>
+                                                  </div>
+                                                  <br>
+                                                  <div class="col-12">
+                                                      {!! Form::label('view_type', 'Tipo de vista:') !!}
+                                                      <select class="form-control" name="view_type" >
+                                                          <option value="">Tipo de vista</option>
+                                                          <option>Exterior</option>
+                                                          <option>Interior</option>
+                                                      </select>
+                                                  </div>
+                                              </div>
+                                              <div class="modal-footer">
+                                                  {!! Form::submit('Aceptar', ['class'=>'btn btn-primary', 'id'=>'add_data']) !!}
+                                                  {!! Form::close() !!}
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog" role="document">
+                                          <div class="modal-content">
+                                              <div class="modal-header">
+                                                  <h5 class="modal-title" id="exampleModalLabel">Eliminar producto</h5>
+                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                      <span aria-hidden="true">&times;</span>
+                                                  </button>
+                                              </div>
+                                              <div class="modal-body">
+                                                  Seguro que desea eliminar el producto de su order? Esta acción es irreversible.
+                                              </div>
+                                              <div class="modal-footer">
+                                                  {!! Form::open(['method'=>'DELETE', 'action'=>['App\Http\Controllers\ScreenyCurtainsController@destroy', $screeny->id]]) !!}
+                                                  {!! Form::submit('Eliminar', ['class'=>'btn btn-danger', "id"=>'delete_curtain']) !!}
+                                                  {!! Form::close() !!}
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              @endforeach
                               </tbody>
                           </table>
                       </div>
@@ -376,6 +643,289 @@
               </div>
           </div>
       </div>
+      @endif
+      @if($order->palillerias)
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="card">
+                      <div class="card-header card-header-primary">
+                          <h4 class="card-title">Palillerias ({{count($order->palillerias)}})</h4>
+                          {{--<p class="card-category"> Here you can manage users</p>--}}
+                      </div>
+                      <div class="card-body">
+                          <div class="table-responsive">
+                              <table class="table">
+                                  <thead class=" text-primary">
+                                  <tr>
+                                      <th>
+                                          Modelo
+                                      </th>
+                                      <th>
+                                          Cubierta
+                                      </th>
+                                      <th>
+                                          Mecanismo
+                                      </th>
+                                      <th>
+                                          Ancho
+                                      </th>
+                                      <th>
+                                          Salida
+                                      </th>
+                                      <th>
+                                          Cantidad
+                                      </th>
+                                      <th class="text-right">
+                                          Precio
+                                      </th>
+                                      <th class="text-right">
+                                          Acciones
+                                      </th>
+
+                                  </tr></thead>
+                                  <tbody>
+                                  @foreach($order->palillerias as $p)
+                                      <tr>
+                                          <td>{{$p->model->name}}</td>
+                                          <td>{{$p->cover->name}}</td>
+                                          <td>{{$p->mechanism->name}}</td>
+                                          <td>{{$p->width}} m</td>
+                                          <td>{{$p->height}} m</td>
+                                          <td>{{$p->quantity}}</td>
+                                          <td class="text-right">${{number_format($p->price, 2)}}</td>
+                                          <td class="td-actions text-right">
+                                              <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#pDetailsModal{{$p->id}}" id="p_details_modal">
+                                                  Ver detalle
+                                              </button>
+                                              <button type="button" class="btn btn-danger btn-link" data-toggle="modal" data-target="#deletePModal" id="delete_product_modal">
+                                                  <i class="material-icons">delete</i>
+                                                  <div class="ripple-container"></div></button>
+                                              @if($order->activity == "Pedido")
+                                                  {{--<button type="button" class="btn btn-info btn-link" data-toggle="modal" data-target="#addModal" id="add_data_modal">
+                                                      Añadir datos
+                                                  </button>--}}
+                                              @endif
+                                          </td>
+
+                                      </tr>
+                                      <div class="modal fade" id="pDetailsModal{{$p->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                          <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+                                              <div class="modal-content">
+                                                  <div class="modal-header">
+                                                      <h5 class="modal-title" id="exampleModalLabel">Detalles</h5>
+                                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                          <span aria-hidden="true">&times;</span>
+                                                      </button>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                      <h5><strong>Estructura</strong></h5>
+                                                      <div class="row">
+                                                          <div class="col-6 text-center">
+                                                              Modelo:
+                                                          </div>
+                                                          <div class="col-6 text-center">
+                                                              <strong>{{$p->model->name}}</strong>
+                                                          </div>
+                                                      </div>
+                                                      <hr>
+                                                      <div class="row">
+                                                          <div class="col-6 text-center">
+                                                              Cubierta:
+                                                          </div>
+                                                          <div class="col-6 text-center">
+                                                              <strong>{{$p->cover->name}}</strong>
+                                                          </div>
+                                                      </div>
+                                                      <hr>
+                                                      <div class="row">
+                                                          <div class="col-6 text-center">
+                                                              Mecanismo:
+                                                          </div>
+                                                          <div class="col-6 text-center">
+                                                              <strong>{{$p->mechanism->name}}</strong>
+                                                          </div>
+                                                      </div>
+                                                      <hr>
+                                                      <div class="row">
+                                                          <div class="col-6 text-center">
+                                                              Acho:
+                                                          </div>
+                                                          <div class="col-6 text-center">
+                                                              <strong>{{$p->width}} m</strong>
+                                                          </div>
+                                                      </div>
+                                                      <hr>
+                                                      <div class="row">
+                                                          <div class="col-6 text-center">
+                                                              Proyección:
+                                                          </div>
+                                                          <div class="col-6 text-center">
+                                                              <strong>{{$p->height}} m</strong>
+                                                          </div>
+                                                      </div>
+                                                      <hr>
+                                                      <h5><strong>Accesorios</strong></h5>
+                                                      @if($p->control && $p->control_quantity > 0)
+                                                          <div class="row">
+                                                              <div class="col-6 text-center">
+                                                                  Control:
+                                                              </div>
+                                                              <div class="col-6 text-center">
+                                                                  <strong>{{$p->control->name}}</strong>
+                                                              </div>
+                                                          </div>
+                                                          <div class="row">
+                                                              <div class="col-6 text-center">
+                                                                  Cantidad:
+                                                              </div>
+                                                              <div class="col-6 text-center">
+                                                                  <strong>{{$p->control_quantity}}</strong>
+                                                              </div>
+                                                          </div>
+                                                          <hr>
+                                                      @endif
+                                                      @if($p->voice && $p->voice_quantity > 0)
+                                                          <div class="row">
+                                                              <div class="col-6 text-center">
+                                                                  Control de voz:
+                                                              </div>
+                                                              <div class="col-6 text-center">
+                                                                  <strong>{{$p->voice->name}}</strong>
+                                                              </div>
+                                                          </div>
+                                                          <div class="row">
+                                                              <div class="col-6 text-center">
+                                                                  Cantidad:
+                                                              </div>
+                                                              <div class="col-6 text-center">
+                                                                  <strong>{{$p->voice_quantity}}</strong>
+                                                              </div>
+                                                          </div>
+                                                          <hr>
+                                                      @endif
+                                                      @if($p->sensor && $p->sensor_quantity > 0)
+                                                          <div class="row">
+                                                              <div class="col-6 text-center">
+                                                                  Sensor:
+                                                              </div>
+                                                              <div class="col-6 text-center">
+                                                                  <strong>{{$p->sensor->name}}</strong>
+                                                              </div>
+                                                          </div>
+                                                          <div class="row">
+                                                              <div class="col-6 text-center">
+                                                                  Cantidad:
+                                                              </div>
+                                                              <div class="col-6 text-center">
+                                                                  <strong>{{$p->sensor_quantity}}</strong>
+                                                              </div>
+                                                          </div>
+                                                          <hr>
+                                                      @endif
+                                                      <h5><strong>Refuerzos</strong></h5>
+                                                      @if($p->reinforcement_id == 1 && $p->reinforcement_quantity > 0)
+                                                          <div class="row">
+                                                              <div class="col-6 text-center">
+                                                                  Guía+
+                                                              </div>
+                                                              <div class="col-6 text-center">
+                                                                  <strong>{{$p->reinforcement_quantity}}</strong>
+                                                              </div>
+                                                          </div>
+                                                          <hr>
+                                                      @endif
+                                                      @if($p->trave == 1 && $p->trave_quantity > 0)
+                                                          <div class="row">
+                                                              <div class="col-6 text-center">
+                                                                  Travesaño+
+                                                              </div>
+                                                              <div class="col-6 text-center">
+                                                                  <strong>{{$p->trave_quantity}}</strong>
+                                                              </div>
+                                                          </div>
+                                                          <hr>
+                                                      @endif
+                                                      @if($p->semigoal == 1 && $p->semigoal_quantity > 0)
+                                                          <div class="row">
+                                                              <div class="col-6 text-center">
+                                                                  Semiporterías+
+                                                              </div>
+                                                              <div class="col-6 text-center">
+                                                                  <strong>{{$p->semigoal_quantity}}</strong>
+                                                              </div>
+                                                          </div>
+                                                          <hr>
+                                                      @endif
+                                                      @if($p->goal == 1 && $p->goal_quantity > 0)
+                                                          <div class="row">
+                                                              <div class="col-6 text-center">
+                                                                  Porterías+
+                                                              </div>
+                                                              <div class="col-6 text-center">
+                                                                  <strong>{{$p->goal_quantity}}</strong>
+                                                              </div>
+                                                          </div>
+                                                          <hr>
+                                                      @endif
+                                                      <h5><strong>Precios</strong></h5>
+                                                      <div class="row">
+                                                          <div class="col-6 text-center">
+                                                              Precio unitario:
+                                                          </div>
+                                                          <div class="col-6 text-center">
+                                                              <strong>${{number_format($p->price/$p->quantity, 2)}}</strong>
+                                                          </div>
+                                                      </div>
+                                                      <hr>
+                                                      <div class="row">
+                                                          <div class="col-6 text-center">
+                                                              Cantidad:
+                                                          </div>
+                                                          <div class="col-6 text-center">
+                                                              <strong>{{$p->quantity}}</strong>
+                                                          </div>
+                                                      </div>
+                                                      <hr>
+                                                      <div class="row">
+                                                          <div class="col-6 text-center">
+                                                              Total:
+                                                          </div>
+                                                          <div class="col-6 text-center">
+                                                              <strong>${{number_format($p->price, 2)}}</strong>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="modal fade" id="deletePModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                          <div class="modal-dialog" role="document">
+                                              <div class="modal-content">
+                                                  <div class="modal-header">
+                                                      <h5 class="modal-title" id="exampleModalLabel">Eliminar Palilleria</h5>
+                                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                          <span aria-hidden="true">&times;</span>
+                                                      </button>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                      Seguro que desea eliminar el producto de su order? Esta acción es irreversible.
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                      {!! Form::open(['method'=>'DELETE', 'action'=>['App\Http\Controllers\PalilleriasController@destroy', $p->id]]) !!}
+                                                      {!! Form::submit('Eliminar', ['class'=>'btn btn-danger', "id"=>'delete_palilleria']) !!}
+                                                      {!! Form::close() !!}
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  @endforeach
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
       @endif
       @if($order->toldos)
           <div class="row">

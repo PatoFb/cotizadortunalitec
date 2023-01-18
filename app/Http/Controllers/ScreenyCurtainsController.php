@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Complement;
 use App\Models\Cover;
 use App\Models\Curtain;
-use App\Models\CurtainCanopy;
 use App\Models\CurtainControl;
 use App\Models\CurtainHandle;
 use App\Models\CurtainMechanism;
@@ -13,17 +12,16 @@ use App\Models\CurtainModel;
 use App\Models\ModeloToldo;
 use App\Models\Order;
 use App\Models\RollWidth;
+use App\Models\ScreenyCurtain;
 use App\Models\Sensor;
 use App\Models\SystemCurtain;
+use App\Models\SystemScreenyCurtain;
 use App\Models\VoiceControl;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use mysql_xdevapi\Table;
-use phpDocumentor\Reflection\DocBlock\Tags\Covers;
 
-class CurtainsController extends Controller
+class ScreenyCurtainsController extends Controller
 {
     /**
      * This function recieves the order_id through the URI and returns a view containing the form for the curtain creation.
@@ -35,14 +33,14 @@ class CurtainsController extends Controller
     {
         $order_id = $id;
         $order = Order::findOrFail($id);
-        $models = CurtainModel::whereIn('id', [1, 2, 3])->get();
+        $models = CurtainModel::whereIn('id', [4, 5])->get();
         $covers = Cover::all();
         $controls = CurtainControl::all();
-        $mechanisms = CurtainMechanism::all();
+        $mechanisms = CurtainMechanism::whereIn('id', [1, 2, 4])->get();
         $voices = VoiceControl::all();
         $sensors =  Sensor::all();
         $handles = CurtainHandle::all();
-        return view('curtains.create', compact('order_id',  'handles', 'covers', 'controls', 'order', 'mechanisms', 'models', 'voices', 'sensors'));
+        return view('screeny.create', compact('order_id',  'handles', 'covers', 'controls', 'order', 'mechanisms', 'models', 'voices', 'sensors'));
     }
 
     /**
@@ -60,10 +58,10 @@ class CurtainsController extends Controller
             'installation_type' => 'required',
             'view_type' => 'required'
         ]);
-        $curtain = Curtain::findOrFail($validatedData['id']);
+        $curtain = ScreenyCurtain::findOrFail($validatedData['id']);
         $curtain->fill($validatedData);
         $curtain->save();
-        return redirect()->back()->withStatus(_('Datos guardados correctamente'));
+        return redirect()->back()->withStatus(__('Datos guardados correctamente'));
     }
 
     /**
@@ -120,7 +118,7 @@ class CurtainsController extends Controller
                 'sensor_quantity'=>'required'
             ]);
         }
-        $curtain = new Curtain();
+        $curtain = new ScreenyCurtain();
         $curtain['order_id'] = $order_id;
         $curtain['model_id'] = $validatedData['model_id'];
         $curtain->fill($validatedData);
@@ -195,7 +193,7 @@ class CurtainsController extends Controller
             $newWidth = $width;
         }
 
-        $system = SystemCurtain::where('model_id', $model_id)->where('width', $newWidth)->first();
+        $system = SystemScreenyCurtain::where('model_id', $model_id)->where('width', $newWidth)->where('height', $height)->first();
         $sprice = $system->price;
 
         //If user chooses canopy, it will calculate the price by width plus IVA
@@ -219,10 +217,6 @@ class CurtainsController extends Controller
             case 2:
                 $accesories = $control_total + $sensor_total + $voice_total + $total_canopy;
                 $curtain['price'] = (((((($sprice+6321.96+$total_cover)*1.16) + $accesories) / (1-$utility)) * $quantity) * (1-($user->discount/100)));
-                break;
-            case 3:
-                $accesories = $control_total + $handle_total + $sensor_total + $voice_total + $total_canopy;
-                $curtain['price'] = (((((($sprice+8133.75+$total_cover)*1.16)  + $accesories) / (1-$utility)) * $quantity) * (1-($user->discount/100)));
                 break;
             case 4:
                 $accesories = $handle_total + $voice_total + $total_canopy + $control_total;
@@ -251,11 +245,10 @@ class CurtainsController extends Controller
     public function fetchData(Request $request){
         $input = $request->all();
         $user = Auth::user();
-        $model_id = $input['model_id'];
-        $model = CurtainModel::find($model_id);
-
+        $model = CurtainModel::where('id', $input['model_id'])->first();
+        $model_id = $model->id;
         $cover_id = $input['cover_id'];
-        $cover = Cover::find($cover_id);
+        $cover = Cover::where('id', $cover_id)->first();
 
         $mechanism_id = $input['mechanism_id'];
 
@@ -264,17 +257,8 @@ class CurtainsController extends Controller
         $height = $input['height'];
         $quantity = $input['quantity'];
 
-        $ceiledWidth = ceil($width);
-        $diff = $ceiledWidth - $width;
-        if ($diff < 0.5 && $diff != 0) {
-            $newWidth = $ceiledWidth - 0.5;
-        } else if ($diff > 0.5 && $diff != 0) {
-            $newWidth = $ceiledWidth;
-        } else {
-            $newWidth = $width;
-        }
 
-        $system = SystemCurtain::where('model_id', $model_id)->where('width', $newWidth)->first();
+        $system = SystemScreenyCurtain::where('model_id', $model_id)->where('width', $width)->where('height', $height)->first();
         $sprice = $system->price;
 
 
@@ -343,28 +327,23 @@ class CurtainsController extends Controller
         $price_somfy = ((((($sprice+6321.96+$total_cover)*1.16) / (1-$utility)) * $quantity) * (1-($user->discount/100)));
         $price_somfy = number_format($price_somfy, 2);
 
-        //Pricing of cmo mechanism
-        //$accesories_cmo = $control_total + $handle_total + $sensor_total + $voice_total + $total_canopy + $total_bambalina;
-        $price_cmo = ((((($sprice+8133.75 + $total_cover)*1.16) / (1-$utility)) * $quantity) * (1-($user->discount/100)));
-        $price_cmo = number_format($price_cmo, 2);
 
         //Pricing of tube mechanism
         //$accesories_tube = $handle_total + $voice_total + $total_canopy + $total_bambalina + $control_total;
         $price_tube = ((((($sprice+2258.71+$total_cover)*1.16) / (1-$utility)) * $quantity) * (1-($user->discount/100)));
         $price_tube = number_format($price_tube,2);
-        echo "<div class='text-right'><h3><strong>Precio seleccionado: $$price</strong></h3></div>
+
+
+        echo "<div class='text-right'><div class='col-md-12 col-sm-12'><h3><strong>Precio seleccionado: $$price</strong></h3></div></div>
             <div class='row text-right'>
-            <div class='col-md-3 col-sm-6'>
-            <strong>Manual-Eléctrico <br>$$price_cmo</strong>
-</div>
-<div class='col-md-3 col-sm-6'>
+<div class='col-md-4 col-sm-4'>
             <strong>Somfy <br>$$price_somfy</strong>
 </div>
-<div class='col-md-3 col-sm-6'>
-            <strong>Tube <br>$$price_tube</strong>
-</div>
-<div class='col-md-3 col-sm-6'>
+<div class='col-md-4 col-sm-4'>
             <strong>Manual <br>$$price_manual</strong>
+</div>
+<div class='col-md-4 col-sm-4'>
+            <strong>Tube <br>$$price_tube</strong>
 </div>
 </div>
 <hr>
@@ -407,296 +386,24 @@ class CurtainsController extends Controller
               </div>";
     }
 
-    /**
-     * This function works exactly as the model one but retrieves the cover
-     *
-     * @param Request $request
-     */
-    /*public function fetchCover(Request $request){
-        //$select = $request->get('select');
-        $value = $request->get('value');
-        //$dependant = $request->get('dependant');
-        $cover = Cover::findOrFail($value);
-
-        echo "<div class='col-12'>
-                <h4>Detalles de cubierta</h4>
-               </div>
-                <div class='row'>
-                <div class='col-md-6 col-sm-12'>
-                   <img src=".asset('storage')."/images/".$cover->photo." style='width: 100%;'>
-              </div>
-              <div class='col-md-6 col-sm-12'>
-                   <h7 style='color: grey;'>$cover->name</h7>
-                   <br>
-                   <h7 style='color: grey;'>Ancho de rollo: $cover->roll_width mts</h7>
-                   <br>
-                   <h7 style='color: grey;'>Uniones: $cover->unions</h7>
-                   <br>
-                   <h7 style='color: grey;'>Número de lienzos:<h7 class='number'> </h7></h7>
-                   <br>
-                   <h7 style='color: grey;'>Medida de lienzos:<h7 class='measure'> </h7></h7>
-                   <br>
-                   <h7 style='color: grey;'>Total de textil:<h7 class='numbertotal'> </h7></h7>
-              </div>
-                </div>
-              ";
-    }*/
-
-    /**
-     * Function that retrieves the data in the height and width fields (In progress)
-     *
-     * @param Request $request
-     */
-
     public function fetchNumbers(Request $request)
     {
         $select = $request->get('select');
         $value = $request->get('value');
         $dependent = $request->get('dependent');
-        $data = SystemCurtain::where($select, $value)->groupBy($dependent)->get();
+        $data = SystemScreenyCurtain::where($select, $value)->groupBy($dependent)->get();
         $output = '<option value="">Seleccionar opcion</option>';
         foreach($data as $row){
             $output .= '<option value="'.$row->$dependent.'">'.$row->$dependent.'</option>';
         }
         echo $output;
     }
-    /**
-     * Receives order id through URI and sends it to the next step.
-     *
-     * Sends all models to the view
-     *
-     * Creates a session for the product in which information will be stored and sends it
-     * to the view so the data the user enters is saved as well
-     *
-     * @param Request $request
-     * @param $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
-    /*public function addModel(Request $request, $id)
-    {
-        $order_id = $id;
-        $models = CurtainModel::all();
-        $curtain = $request->session()->get('curtain');
-        return view('curtains.model', compact('order_id', 'models', 'curtain'));
-    }*/
 
-    /**
-     * Post route
-     *
-     * Gets order id from URI and sends it again to the view
-     *
-     * Validation requirement for the model
-     *
-     * If session is empty it will create a new Curtain object, save the order id there and the validated data
-     *
-     * If session isn't empty it will just update the data
-     *
-     * @param Request $request
-     * @param $id
-     * @return \Illuminate\Http\RedirectResponse
-     */
-
-    /*public function addModelPost(Request $request, $id)
-    {
-        $order_id = $id;
-        $validatedData = $request->validate([
-            'model_id' => 'required',
-        ]);
-        if(empty($request->session()->get('curtain'))){
-            $curtain = new Curtain();
-            $curtain['order_id'] = $order_id;
-            $curtain->fill($validatedData);
-            $request->session()->put('curtain', $curtain);
-        }else{
-            $curtain = $request->session()->get('curtain');
-            $curtain->fill($validatedData);
-            $request->session()->put('curtain', $curtain);
-        }
-        return redirect()->route('curtain.cover', $order_id);
-    }*/
-
-    /**
-     * Works exactly the same as the model function, but with covers
-     *
-     * @param Request $request
-     * @param $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
-
-    /*public function addCover(Request $request, $id)
-    {
-        $order_id = $id;
-        $covers = CurtainCover::all();
-        $curtain = $request->session()->get('curtain');
-        return view('curtains.cover', compact('order_id', 'covers', 'curtain'));
-    }*/
-
-    /**
-     * It works exactly the same as the model post function, but without the if statement since
-     * thanks to the validation, the session wont be empty once you reach this point
-     *
-     * @param Request $request
-     * @param $id
-     * @return \Illuminate\Http\RedirectResponse
-     */
-
-    /*public function addCoverPost(Request $request, $id)
-    {
-        $order_id = $id;
-        $validatedData = $request->validate([
-            'cover_id' => 'required',
-        ]);
-        $curtain = $request->session()->get('curtain');
-        $curtain->fill($validatedData);
-        $request->session()->put('curtain', $curtain);
-        return redirect()->route('curtain.data', $order_id);
-    }*/
-
-    /**
-     * Works the same as the model and cover functions, but since we don't need any data for a radio list,
-     * we won't send any objects but the curtain stored in session
-     *
-     * @param Request $request
-     * @param $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
-
-    /*public function addData(Request $request, $id)
-    {
-        $order_id = $id;
-        $curtain = $request->session()->get('curtain');
-        return view('curtains.data', compact('order_id', 'curtain'));
-    }*/
-
-    /**
-     * Validation for the two numeric fields, store in session and then go to next step
-     *
-     * @param Request $request
-     * @param $id
-     * @return \Illuminate\Http\RedirectResponse
-     */
-
-    /*public function addDataPost(Request $request, $id)
-    {
-        $order_id = $id;
-        $validatedData = $request->validate([
-            'width' => 'required',
-            'height' => 'required',
-        ]);
-        $curtain = $request->session()->get('curtain');
-        $curtain->fill($validatedData);
-        $request->session()->put('curtain', $curtain);
-        return redirect()->route('curtain.features', $order_id);
-    }*/
-
-    /**
-     * We have three fields with relationships, we will get these with select forms, so we have to send the object
-     * to the view.
-     *
-     * We keep sending the session
-     *
-     * @param Request $request
-     * @param $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
-
-    /*public function addFeatures(Request $request, $id)
-    {
-        $order_id = $id;
-        $handles = CurtainHandle::all();
-        $canopies = CurtainCanopy::all();
-        $controls = CurtainControl::all();
-        $curtain = $request->session()->get('curtain');
-        return view('curtains.features', compact('order_id', 'curtain', 'handles', 'canopies', 'controls'));
-    }*/
-
-    /**
-     * Validation for the four fields asked on this step, store in session
-     *
-     * We get the prices of the other objects from other tables using all the ids stored in the session
-     *
-     * For now, price calculating is just a simple sum multiplied by the quantity selected
-     *
-     * @param Request $request
-     * @param $id
-     * @return \Illuminate\Http\RedirectResponse
-     */
-
-    /*public function addFeaturesPost(Request $request, $id)
-    {
-        $order_id = $id;
-        $validatedData = $request->validate([
-            'handle_id' => 'required',
-            'canopy_id' => 'required',
-            'control_id' => 'required',
-            'quantity' => 'required'
-        ]);
-        $curtain = $request->session()->get('curtain');
-        $curtain->fill($validatedData);
-        $request->session()->put('curtain', $curtain);
-        $handle = CurtainHandle::where('id', $curtain['handle_id'])->first();
-        $canopy = CurtainCanopy::where('id', $curtain['canopy_id'])->first();
-        $control = CurtainControl::where('id', $curtain['control_id'])->first();
-        $model = CurtainModel::where('id', $curtain['model_id'])->first();
-        $cover = CurtainCover::where('id', $curtain['cover_id'])->first();
-        $curtain['price'] = ($handle->price + $canopy->price + $control->price + $model->base_price + $cover->price) * $curtain['quantity'];
-        return redirect()->route('curtain.review', $order_id);
-    }*/
-
-    /**
-     * This is the last step and you will be able to review all the details of your product
-     *
-     * @param Request $request
-     * @param $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
-
-    /*public function review(Request $request, $id)
-    {
-        $order_id = $id;
-        $curtain = $request->session()->get('curtain');
-        return view('curtains.review', compact('order_id', 'curtain'));
-    }*/
-
-    /**
-     * Here it will save the product once you hit submit
-     *
-     * It will calculate the price and total with discount here to display it with your order,
-     * updating the object after calculating it
-     *
-     * You can go back to any previous step at any point until you save the product
-     *
-     * It will clean the object in the session once you save it
-     *
-     * It will redirect you to a view with your order details (OrdersController)
-     *
-     * @param Request $request
-     * @param $id
-     * @return \Illuminate\Http\RedirectResponse
-     */
-
-    /*public function reviewPost(Request $request, $id)
-    {
-        $order_id = $id;
-        $curtain = $request->session()->get('curtain');
-        $curtain->save();
-        $order = Order::findOrFail($id);
-        $order->price = $order->price + $curtain['price'];
-        $order->total = $order->total + ($curtain['price']*(1 - ($order->discount/100)));
-        $order->save();
-        $request->session()->forget('curtain');
-        return redirect()->route('orders.show', $order_id);
-    }*/
-
-    /**
-     * Delete a curtain from an order and subtract the total price
-     *
-     * @param $id
-     * @return mixed
-     */
     public function fetchControls(Request $request)
     {
+
         $value = $request->get('value');
+
 
         if($value == '4' or $value == '1'){
             $type = 'Tube';
@@ -704,7 +411,6 @@ class CurtainsController extends Controller
             $type = 'Somfy';
         }
         $data = CurtainControl::where('type', $type)->get();
-        Log::info($data);
         $output = '<option value="">Seleccionar control</option>';
         foreach($data as $row){
             $output .= '<option value="'.$row->id.'">'.$row->name.'</option>';
@@ -714,6 +420,7 @@ class CurtainsController extends Controller
 
     public function fetchVoices(Request $request)
     {
+
         $value = $request->get('value');
         if($value == '4' or $value == '1'){
             $type = 'Tube';
@@ -737,14 +444,13 @@ class CurtainsController extends Controller
 
         $mechanism_id = $input['mechanism_id'];
 
-        $sensor_id = $input['sensor_id'];
-        $sensor = Sensor::find($sensor_id);
+        $sensor = Sensor::where('id', $input['sensor_id'])->first();
 
         $voice_id = $input['voice_id'];
-        $voice = VoiceControl::find($voice_id);
+        $voice = VoiceControl::where('id', $voice_id)->first();
 
         $handle_id = $input['handle_id'];
-        $handle = CurtainHandle::find($handle_id);
+        $handle = CurtainHandle::where('id', $handle_id)->first();
 
         $canopy = $input['canopy_id'];
 
@@ -771,6 +477,7 @@ class CurtainsController extends Controller
             $total_canopy = 0;
         }
 
+        //Pricing of user selected option
         switch($mechanism_id) {
             case 1:
                 $accesories = (($handle_total + $total_canopy) / 0.6) * (1 - ($user->discount/100)) * $quantity * 1.16;
@@ -789,14 +496,13 @@ class CurtainsController extends Controller
                 break;
         }
         $accesories_price = number_format($accesories, 2);
-        Log::info($accesories_price);
 
         echo "<div class='text-right'><h3><strong>Total de accesorios: $$accesories_price</strong></h3></div>";
     }
 
     public function destroy($id)
     {
-        $curtain = Curtain::findOrFail($id);
+        $curtain = ScreenyCurtain::findOrFail($id);
         $order = Order::where('id', $curtain->order_id)->first();
         $order->price = $order->price - $curtain->price;
         $order->total = $order->price - ($order->price * ($order->discount/100));
