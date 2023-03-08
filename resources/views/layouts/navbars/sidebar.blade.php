@@ -23,6 +23,13 @@
                 <p>{{ __('Perfil') }}</p>
             </a>
         </li>
+        <li class="nav-item{{ $activePage == 'contact' ? ' active' : '' }}">
+            <a class="nav-link" href="{{ route('contact') }}">
+                <i class="material-icons">contact_page</i>
+                <p>{{ __('Contacto') }}</p>
+            </a>
+        </li>
+        @if (\Illuminate\Support\Facades\Auth::user()->role_id != 3)
         <li class="nav-item{{ $activePage == 'orders' ? ' active' : '' }}">
             <a class="nav-link" href="{{ route('orders.new') }}">
                 <i class="material-icons">add_shopping_cart</i>
@@ -35,12 +42,7 @@
                 <p>{{ __('Mis ordenes') }}</p>
             </a>
         </li>
-        <li class="nav-item{{ $activePage == 'contact' ? ' active' : '' }}">
-            <a class="nav-link" href="{{ route('contact') }}">
-                <i class="material-icons">contact_page</i>
-                <p>{{ __('Contacto') }}</p>
-            </a>
-        </li>
+        @if (\Illuminate\Support\Facades\Auth::user()->role_id == 1)
         <li class="nav-item{{ $activePage == 'allorders' ? ' active' : '' }}">
             <a class="nav-link" href="{{ route('orders.all') }}">
                 <i class="material-icons">list</i>
@@ -67,6 +69,8 @@
           </ul>
         </div>
       </li>
+            @endif
+        @endif
         {{--<li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">
             <a class="nav-link" href="{{ route('table') }}">
                 <i class="material-icons">payments</i>

@@ -21,6 +21,17 @@ class UsersController extends Controller
         return view('admin.users.index', compact('users'));
     }
 
+    public function search(Request $request)
+    {
+        $input = $request->input('partner_id');
+        if($input != null) {
+            $users = User::orderBy('name')->where('partner_id', $input)->get();
+        } else {
+            $users = User::orderBy('name')->paginate(20);
+        }
+        return view('admin.users.index', compact('users'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

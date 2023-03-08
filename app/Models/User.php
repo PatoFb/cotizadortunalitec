@@ -62,6 +62,13 @@ class User extends Authenticatable
         return false;
     }
 
+    public function unauthorized(){
+        if($this->role_id == 3){
+            return true;
+        }
+        return false;
+    }
+
     public function orders() {
         return $this->hasMany('App\Models\Order');
     }

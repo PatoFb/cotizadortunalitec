@@ -126,6 +126,7 @@
 
         <!-- (Optional) Latest compiled and minified JavaScript translation files -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
+        <script src="https://www.google.com/recaptcha/api.js"></script>
         <script>
             $('#orders-list a').on('click', function (e) {
                 e.preventDefault()

@@ -12,6 +12,22 @@
               {{--<p class="card-category"> Here you can manage users</p>--}}
             </div>
             <div class="card-body">
+                <toolbox>
+                    {!! Form::open(['method'=>'POST', 'action'=>'App\Http\Controllers\UsersController@search']) !!}
+                    @csrf
+
+                    <div class="form-group">
+                        <label for="partner_id">Número de socio:</label>
+                        {!! Form::text('partner_id', null, ['class'=>'form-control', 'id'=>'partner_id']) !!}
+                    </div>
+
+
+                    <div class="form-group text-right">
+                        {!! Form::submit('Buscar', ['class'=>'btn btn-primary btn-sm']) !!}
+                    </div>
+
+                    {!! Form::close() !!}
+                </toolbox>
                               <div class="row">
                     <div class="col-12 text-right">
                         <a href="{{route('users.create')}}" class="btn btn-sm btn-primary">Agregar usuario</a>
