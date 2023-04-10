@@ -50,19 +50,9 @@ class ToldosController extends Controller
             'cover_id' => 'required',
             'width' => 'required',
             'projection' => 'required',
-            'control_id' => 'required',
-            'control_quantity'=>'required',
             'quantity' => 'required',
             'mechanism_id'=>'required',
             'modelo_toldo_id'=>'required',
-            'canopy_id'=>'required',
-            'sensor_id'=>'required',
-            'sensor_quantity'=>'required',
-            'bambalina'=>'required',
-            'voice_id'=>'required',
-            'voice_quantity'=>'required',
-            'handle_id'=>'required',
-            'handle_quantity'=>'required',
         ]);
         $toldo = new Toldo();
         $toldo['order_id'] = $order_id;

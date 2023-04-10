@@ -60,23 +60,9 @@ class PalilleriasController extends Controller
                 'cover_id' => 'required',
                 'width' => 'required',
                 'height' => 'required',
-                'control_id' => 'required',
-                'control_quantity'=>'required',
                 'quantity' => 'required',
                 'mechanism_id'=>'required',
-                'reinforcement_id'=>'required',
-                'reinforcement_quantity'=>'required',
                 'model_id'=>'required',
-                'sensor_id' => 'required',
-                'sensor_quantity'=>'required',
-                'trave'=>'required',
-                'semigoal'=>'required',
-                'goal'=>'required',
-                'trave_quantity'=>'required',
-                'semigoal_quantity'=>'required',
-                'goal_quantity'=>'required',
-                'voice_id'=>'required',
-                'voice_quantity'=>'required'
             ]);
         $palilleria = new Palilleria();
         $palilleria['order_id'] = $order_id;
