@@ -284,7 +284,63 @@ class ToldosController extends Controller
         //$accesories_tube = $handle_total + $voice_total + $total_canopy + $total_bambalina + $control_total;
         $price_tube = ((((($tube->price+$total_cover)*1.16) / (1-$utility)) * $quantity) * (1-($user->discount/100)));
         $price_tube = number_format($price_tube,2);
-        Log::info($system);
+        if($width > $model->max_width or $width < $model->min_width) {
+            echo "<div class='text-right'><h3><strong>Precio seleccionado: $$price</strong></h3></div>
+            <div class='row text-right'>
+            <div class='col-md-3 col-sm-6'>
+            <strong>Manual-Eléctrico <br>$$price_cmo</strong>
+</div>
+<div class='col-md-3 col-sm-6'>
+            <strong>Somfy <br>$$price_somfy</strong>
+</div>
+<div class='col-md-3 col-sm-6'>
+            <strong>Tube <br>$$price_tube</strong>
+</div>
+<div class='col-md-3 col-sm-6'>
+            <strong>Manual <br>$$price_manual</strong>
+</div>
+</div>
+<hr>
+<div>
+<div class='row'>
+                <div class='col-md-4 col-sm-12'>
+                   <img src=" . asset('storage') . "/images/" . $model->photo . " style='width: 100%;' alt='Image not found'>
+              </div>
+              <div class='col-md-7 col-sm-12'>
+            <h4>Detalles de sistema</h4>
+             <h4 class='text-danger'>Sistema no entra en garantía!</h4>
+            <div class='row'>
+              <div class='col-md-12 col-sm-12'>
+                   <h7 style='color: grey;'><strong>$model->description</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Máxima resistencia al viento de <strong>$model->max_resistance km/h</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Tiempo de producción: <strong>$model->production_time días hábiles</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Ancho máximo: <strong>$model->max_width m</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Ancho mínimo: <strong>$model->min_width m</strong></h7>
+              </div>
+              </div>
+              <hr>
+                <div class='row'>
+              <div class='col-md-12 col-sm-12'>
+                   <h7 style='color: grey;'><strong>$cover->name</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Ancho de rollo: <strong>$cover->roll_width mts</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Uniones: <strong>$cover->unions</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Número de lienzos: <strong>$num_lienzos</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Medida de lienzos: <strong>$measure</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Total de textil: <strong>$total_fabric</strong></h7>
+              </div>
+              </div>
+                </div>
+              </div>";
+        } else {
             echo "<div class='text-right'><h3><strong>Precio seleccionado: $$price</strong></h3></div>
             <div class='row text-right'>
             <div class='col-md-3 col-sm-6'>
@@ -339,6 +395,7 @@ class ToldosController extends Controller
               </div>
                 </div>
               </div>";
+        }
     }
 
     public function fetchNumbers(Request $request)

@@ -298,7 +298,8 @@ class PalilleriasController extends Controller
         //Pricing of tube mechanism
         $price_tube = (($pprice + $goals_total + $total_cover + $operation_costs + 10416) / 0.6) * (1 - ($user->discount/100)) * $quantity * 1.16;
         $price_tube = number_format($price_tube,2);
-        echo "<div class='text-right'>
+        if($width > 5 or $height > 5) {
+            echo "<div class='text-right'>
 <div class='col-md-12 col-sm-12'><h3><strong>Precio seleccionado: $$price</strong></h3></div></div>
             <div class='row text-right'>
 <div class='col-md-4 col-sm-6'>
@@ -315,7 +316,63 @@ class PalilleriasController extends Controller
 <br>
 <div class='row'>
 <div class='col-md-4 col-sm-12'>
-                   <img src=".asset('storage')."/images/".$model->photo." style='width: 100%;' alt='Image not found'>
+                   <img src=" . asset('storage') . "/images/" . $model->photo . " style='width: 100%;' alt='Image not found'>
+              </div>
+              <div class='col-md-7 col-sm-12'>
+            <h4>Detalles de sistema</h4>
+             <h4 class='text-danger'>Sistema no entra en garantía!</h4>
+            <div class='row'>
+              <div class='col-md-12 col-sm-12'>
+                   <h7 style='color: grey;'>Número de guías calculadas: <strong>$total_guides</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Máxima resistencia al viento de <strong>38 km/h</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Tiempo de producción: <strong>7 días hábiles</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Ancho máximo: <strong>5.00 m</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Salida máxima: <strong>5.00 m</strong></h7>
+              </div>
+              </div>
+              <hr>
+                <div class='row'>
+              <div class='col-md-12 col-sm-12'>
+                   <h7 style='color: grey;'><strong>$cover->name</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Ancho de rollo: <strong>$cover->roll_width mts</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Número de sublienzos: <strong>$sub_rolls</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Uniones: <strong>$cover->unions</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Número de lienzos: <strong>$full_rolls</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Medida de lienzos: <strong>$measure</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Total de textil: <strong>$total_fabric</strong></h7>
+              </div>
+                </div>
+              </div>
+              </div>";
+        } else {
+            echo "<div class='text-right'>
+<div class='col-md-12 col-sm-12'><h3><strong>Precio seleccionado: $$price</strong></h3></div></div>
+            <div class='row text-right'>
+<div class='col-md-4 col-sm-6'>
+            <strong>Somfy <br>$$price_somfy</strong>
+</div>
+<div class='col-md-4 col-sm-6'>
+            <strong>Tube <br>$$price_tube</strong>
+</div>
+<div class='col-md-4 col-sm-6'>
+            <strong>Manual <br>$$price_manual</strong>
+</div>
+</div>
+<hr>
+<br>
+<div class='row'>
+<div class='col-md-4 col-sm-12'>
+                   <img src=" . asset('storage') . "/images/" . $model->photo . " style='width: 100%;' alt='Image not found'>
               </div>
               <div class='col-md-7 col-sm-12'>
             <h4>Detalles de sistema</h4>
@@ -352,6 +409,7 @@ class PalilleriasController extends Controller
                 </div>
               </div>
               </div>";
+        }
     }
     /**
      * Show the form for creating a new resource.

@@ -86,20 +86,11 @@ class CurtainsController extends Controller
                 'cover_id' => 'required',
                 'width' => 'required',
                 'height' => 'required',
-                'handle_id' => 'required',
-                'canopy_id' => 'required',
-                'control_id' => 'required',
-                'control_quantity'=>'required',
                 'quantity' => 'required',
                 'installation_type' => 'required',
                 'mechanism_side' => 'required',
                 'view_type' => 'required',
                 'mechanism_id'=>'required',
-                'voice_id'=>'required',
-                'voice_quantity'=>'required',
-                'handle_quantity'=>'required',
-                'sensor_id'=>'required',
-                'sensor_quantity'=>'required'
             ]);
         } else {
             $validatedData = $request->validate([
@@ -107,17 +98,8 @@ class CurtainsController extends Controller
                 'cover_id' => 'required',
                 'width' => 'required',
                 'height' => 'required',
-                'handle_id' => 'required',
-                'canopy_id' => 'required',
-                'control_id' => 'required',
-                'control_quantity'=>'required',
                 'quantity' => 'required',
                 'mechanism_id'=>'required',
-                'voice_id'=>'required',
-                'voice_quantity'=>'required',
-                'handle_quantity'=>'required',
-                'sensor_id'=>'required',
-                'sensor_quantity'=>'required'
             ]);
         }
         $curtain = new Curtain();
@@ -173,7 +155,7 @@ class CurtainsController extends Controller
         } else {
             $range = RollWidth::where('width', $cover->roll_width)->where('meters', $height)->get('range');
             $num_lienzos = Complement::where('range', $range)->get('complete');
-            $complement = Complement::where('range', $range)->get('complement');
+            $complement = Complement::where('range', $range)->get('complements');
             $total_fabric = $num_lienzos * $width;
 
             $full_price = $cover->price * $total_fabric;
@@ -352,7 +334,8 @@ class CurtainsController extends Controller
         //$accesories_tube = $handle_total + $voice_total + $total_canopy + $total_bambalina + $control_total;
         $price_tube = ((((($sprice+2258.71+$total_cover)*1.16) / (1-$utility)) * $quantity) * (1-($user->discount/100)));
         $price_tube = number_format($price_tube,2);
-        echo "<div class='text-right'><h3><strong>Precio seleccionado: $$price</strong></h3></div>
+        if($width > $model->max_width or $height > $model->max_height) {
+            echo "<div class='text-right'><h3><strong>Precio seleccionado: $$price</strong></h3></div>
             <div class='row text-right'>
             <div class='col-md-3 col-sm-6'>
             <strong>Manual-Eléctrico <br>$$price_cmo</strong>
@@ -370,7 +353,62 @@ class CurtainsController extends Controller
 <hr>
 <div class='row'>
 <div class='col-md-4 col-sm-12'>
-                   <img src=".asset('storage')."/images/".$model->photo." style='width: 100%;' alt='Image not found'>
+                   <img src=" . asset('storage') . "/images/" . $model->photo . " style='width: 100%;' alt='Image not found'>
+              </div>
+              <div class='col-md-7 col-sm-12'>
+            <h4>Detalles de sistema</h4>
+             <h4 class='text-danger'>Sistema no entra en garantía!</h4>
+            <div class='row'>
+              <div class='col-md-12 col-sm-12'>
+                   <h7 style='color: grey;'><strong>$model->description</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Máxima resistencia al viento de <strong>$model->max_resistance km/h</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Tiempo de producción: <strong>$model->production_time días hábiles</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Ancho máximo: <strong>$model->max_width m</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Caída máxima: <strong>$model->max_height m</strong></h7>
+              </div>
+              </div>
+              <hr>
+                <div class='row'>
+              <div class='col-md-12 col-sm-12'>
+                   <h7 style='color: grey;'><strong>$cover->name</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Ancho de rollo: <strong>$cover->roll_width mts</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Uniones: <strong>$cover->unions</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Número de lienzos: <strong>$num_lienzos</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Medida de lienzos: <strong>$measure</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Total de textil: <strong>$total_fabric</strong></h7>
+              </div>
+              </div>
+              </div>
+              </div>";
+        } else {
+            echo "<div class='text-right'><h3><strong>Precio seleccionado: $$price</strong></h3></div>
+            <div class='row text-right'>
+            <div class='col-md-3 col-sm-6'>
+            <strong>Manual-Eléctrico <br>$$price_cmo</strong>
+</div>
+<div class='col-md-3 col-sm-6'>
+            <strong>Somfy <br>$$price_somfy</strong>
+</div>
+<div class='col-md-3 col-sm-6'>
+            <strong>Tube <br>$$price_tube</strong>
+</div>
+<div class='col-md-3 col-sm-6'>
+            <strong>Manual <br>$$price_manual</strong>
+</div>
+</div>
+<hr>
+<div class='row'>
+<div class='col-md-4 col-sm-12'>
+                   <img src=" . asset('storage') . "/images/" . $model->photo . " style='width: 100%;' alt='Image not found'>
               </div>
               <div class='col-md-7 col-sm-12'>
             <h4>Detalles de sistema</h4>
@@ -405,6 +443,7 @@ class CurtainsController extends Controller
               </div>
               </div>
               </div>";
+        }
     }
 
     /**
@@ -698,13 +737,14 @@ class CurtainsController extends Controller
     {
         $value = $request->get('value');
 
-        if($value == '4' or $value == '1'){
+        if($value == '4'){
             $type = 'Tube';
+        } elseif ($value == '1') {
+            $type = "Manual";
         } else {
             $type = 'Somfy';
         }
         $data = CurtainControl::where('type', $type)->get();
-        Log::info($data);
         $output = '<option value="">Seleccionar control</option>';
         foreach($data as $row){
             $output .= '<option value="'.$row->id.'">'.$row->name.'</option>';
@@ -715,8 +755,10 @@ class CurtainsController extends Controller
     public function fetchVoices(Request $request)
     {
         $value = $request->get('value');
-        if($value == '4' or $value == '1'){
-            $type = 'Tube';
+        if($value == '1'){
+            $type = 'Manual';
+        } elseif ($value == '4') {
+            $type = "Tube";
         } else {
             $type = 'Somfy';
         }
