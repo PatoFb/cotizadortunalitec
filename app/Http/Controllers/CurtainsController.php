@@ -511,13 +511,13 @@ class CurtainsController extends Controller
      * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    /*public function addModel(Request $request, $id)
+    public function addModel(Request $request, $id)
     {
         $order_id = $id;
         $models = CurtainModel::all();
         $curtain = $request->session()->get('curtain');
         return view('curtains.model', compact('order_id', 'models', 'curtain'));
-    }*/
+    }
 
     /**
      * Post route
@@ -535,7 +535,7 @@ class CurtainsController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
 
-    /*public function addModelPost(Request $request, $id)
+    public function addModelPost(Request $request, $id)
     {
         $order_id = $id;
         $validatedData = $request->validate([
@@ -552,7 +552,7 @@ class CurtainsController extends Controller
             $request->session()->put('curtain', $curtain);
         }
         return redirect()->route('curtain.cover', $order_id);
-    }*/
+    }
 
     /**
      * Works exactly the same as the model function, but with covers
@@ -562,13 +562,13 @@ class CurtainsController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
 
-    /*public function addCover(Request $request, $id)
+    public function addCover(Request $request, $id)
     {
         $order_id = $id;
-        $covers = CurtainCover::all();
+        $covers = Cover::all();
         $curtain = $request->session()->get('curtain');
         return view('curtains.cover', compact('order_id', 'covers', 'curtain'));
-    }*/
+    }
 
     /**
      * It works exactly the same as the model post function, but without the if statement since
@@ -579,7 +579,7 @@ class CurtainsController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
 
-    /*public function addCoverPost(Request $request, $id)
+    public function addCoverPost(Request $request, $id)
     {
         $order_id = $id;
         $validatedData = $request->validate([
@@ -589,7 +589,7 @@ class CurtainsController extends Controller
         $curtain->fill($validatedData);
         $request->session()->put('curtain', $curtain);
         return redirect()->route('curtain.data', $order_id);
-    }*/
+    }
 
     /**
      * Works the same as the model and cover functions, but since we don't need any data for a radio list,
@@ -600,12 +600,12 @@ class CurtainsController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
 
-    /*public function addData(Request $request, $id)
+    public function addDat(Request $request, $id)
     {
         $order_id = $id;
         $curtain = $request->session()->get('curtain');
         return view('curtains.data', compact('order_id', 'curtain'));
-    }*/
+    }
 
     /**
      * Validation for the two numeric fields, store in session and then go to next step
@@ -615,7 +615,7 @@ class CurtainsController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
 
-    /*public function addDataPost(Request $request, $id)
+    public function addDataPost(Request $request, $id)
     {
         $order_id = $id;
         $validatedData = $request->validate([
@@ -626,7 +626,7 @@ class CurtainsController extends Controller
         $curtain->fill($validatedData);
         $request->session()->put('curtain', $curtain);
         return redirect()->route('curtain.features', $order_id);
-    }*/
+    }
 
     /**
      * We have three fields with relationships, we will get these with select forms, so we have to send the object
@@ -639,7 +639,7 @@ class CurtainsController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
 
-    /*public function addFeatures(Request $request, $id)
+    public function addFeatures(Request $request, $id)
     {
         $order_id = $id;
         $handles = CurtainHandle::all();
@@ -647,7 +647,7 @@ class CurtainsController extends Controller
         $controls = CurtainControl::all();
         $curtain = $request->session()->get('curtain');
         return view('curtains.features', compact('order_id', 'curtain', 'handles', 'canopies', 'controls'));
-    }*/
+    }
 
     /**
      * Validation for the four fields asked on this step, store in session
@@ -661,7 +661,7 @@ class CurtainsController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
 
-    /*public function addFeaturesPost(Request $request, $id)
+    public function addFeaturesPost(Request $request, $id)
     {
         $order_id = $id;
         $validatedData = $request->validate([
@@ -677,10 +677,10 @@ class CurtainsController extends Controller
         $canopy = CurtainCanopy::where('id', $curtain['canopy_id'])->first();
         $control = CurtainControl::where('id', $curtain['control_id'])->first();
         $model = CurtainModel::where('id', $curtain['model_id'])->first();
-        $cover = CurtainCover::where('id', $curtain['cover_id'])->first();
+        $cover = Cover::where('id', $curtain['cover_id'])->first();
         $curtain['price'] = ($handle->price + $canopy->price + $control->price + $model->base_price + $cover->price) * $curtain['quantity'];
         return redirect()->route('curtain.review', $order_id);
-    }*/
+    }
 
     /**
      * This is the last step and you will be able to review all the details of your product
@@ -690,12 +690,12 @@ class CurtainsController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
 
-    /*public function review(Request $request, $id)
+    public function review(Request $request, $id)
     {
         $order_id = $id;
         $curtain = $request->session()->get('curtain');
         return view('curtains.review', compact('order_id', 'curtain'));
-    }*/
+    }
 
     /**
      * Here it will save the product once you hit submit
@@ -714,7 +714,7 @@ class CurtainsController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
 
-    /*public function reviewPost(Request $request, $id)
+    public function reviewPost(Request $request, $id)
     {
         $order_id = $id;
         $curtain = $request->session()->get('curtain');
@@ -725,7 +725,7 @@ class CurtainsController extends Controller
         $order->save();
         $request->session()->forget('curtain');
         return redirect()->route('orders.show', $order_id);
-    }*/
+    }
 
     /**
      * Delete a curtain from an order and subtract the total price

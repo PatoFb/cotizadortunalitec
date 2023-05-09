@@ -81,6 +81,21 @@ Route::group(['middleware' => 'user'], function () {
     Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
     Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 
+    Route::get('curtains/model/{id}', 'App\Http\Controllers\CurtainsController@addModel')->name('curtain.model');
+    Route::post('curtains/model/{id}', 'App\Http\Controllers\CurtainsController@addModelPost')->name('curtain.model.post');
+
+    Route::get('curtains/cover/{id}', 'App\Http\Controllers\CurtainsController@addCover')->name('curtain.cover');
+    Route::post('curtains/cover/{id}', 'App\Http\Controllers\CurtainsController@addCoverPost')->name('curtain.cover.post');
+
+    Route::get('curtains/data/{id}', 'App\Http\Controllers\CurtainsController@addDat')->name('curtain.data');
+    Route::post('curtains/data/{id}', 'App\Http\Controllers\CurtainsController@addDataPost')->name('curtain.data.post');
+
+    Route::get('curtains/features/{id}', 'App\Http\Controllers\CurtainsController@addFeatures')->name('curtain.features');
+    Route::post('curtains/features/{id}', 'App\Http\Controllers\CurtainsController@addFeaturesPost')->name('curtain.features.post');
+
+    Route::get('curtains/review/{id}', 'App\Http\Controllers\CurtainsController@review')->name('curtain.review');
+    Route::post('curtains/review/{id}', 'App\Http\Controllers\CurtainsController@reviewPost')->name('curtain.review.post');
+
     Route::resource('orders', 'App\Http\Controllers\OrdersController');
     Route::resource('curtains', 'App\Http\Controllers\CurtainsController');
     Route::resource('screeny', 'App\Http\Controllers\ScreenyCurtainsController');
@@ -93,6 +108,7 @@ Route::group(['middleware' => 'user'], function () {
     Route::post('curtains/fetch/accesories', 'App\Http\Controllers\CurtainsController@fetchAccesories')->name('curtain.fetch.accesories');
     Route::post('curtains/fetch/controls', 'App\Http\Controllers\CurtainsController@fetchControls')->name('curtain.fetch.controls');
     Route::post('curtains/fetch/voices', 'App\Http\Controllers\CurtainsController@fetchVoices')->name('curtain.fetch.voices');
+
 
     Route::post('screeny/fetch/model', 'App\Http\Controllers\ScreenyCurtainsController@fetchModel')->name('screeny.fetch.model');
     Route::post('screeny/fetch/data', 'App\Http\Controllers\ScreenyCurtainsController@fetchData')->name('screeny.fetch.data');
