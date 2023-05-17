@@ -451,10 +451,8 @@ class CurtainsController extends Controller
      *
      * @param Request $request
      */
-    /*public function fetchCover(Request $request){
-        //$select = $request->get('select');
-        $value = $request->get('value');
-        //$dependant = $request->get('dependant');
+    public function fetchCover(Request $request){
+        $value = $request->get('cover_id');
         $cover = Cover::findOrFail($value);
 
         echo "<div class='col-12'>
@@ -471,15 +469,10 @@ class CurtainsController extends Controller
                    <br>
                    <h7 style='color: grey;'>Uniones: $cover->unions</h7>
                    <br>
-                   <h7 style='color: grey;'>Número de lienzos:<h7 class='number'> </h7></h7>
-                   <br>
-                   <h7 style='color: grey;'>Medida de lienzos:<h7 class='measure'> </h7></h7>
-                   <br>
-                   <h7 style='color: grey;'>Total de textil:<h7 class='numbertotal'> </h7></h7>
               </div>
                 </div>
               ";
-    }*/
+    }
 
     /**
      * Function that retrieves the data in the height and width fields (In progress)
@@ -588,6 +581,7 @@ class CurtainsController extends Controller
         $curtain = $request->session()->get('curtain');
         $curtain->fill($validatedData);
         $request->session()->put('curtain', $curtain);
+        Log::info($curtain->cover->name);
         return redirect()->route('curtain.data', $order_id);
     }
 
@@ -604,7 +598,8 @@ class CurtainsController extends Controller
     {
         $order_id = $id;
         $curtain = $request->session()->get('curtain');
-        return view('curtains.data', compact('order_id', 'curtain'));
+        $mechs = CurtainMechanism::all();
+        return view('curtains.data', compact('order_id', 'curtain', 'mechs'));
     }
 
     /**
@@ -621,6 +616,8 @@ class CurtainsController extends Controller
         $validatedData = $request->validate([
             'width' => 'required',
             'height' => 'required',
+            'mechanism_id' => 'required',
+            'quantity' => 'required',
         ]);
         $curtain = $request->session()->get('curtain');
         $curtain->fill($validatedData);

@@ -546,6 +546,48 @@
             });
         </script>
         <script>
+            $('#coverForm').on('input', function (event) {
+                event.preventDefault();
+                let $wrapper = $('#coverForm'),
+                    cover_id = $wrapper.find('#cover_id').val(),
+                    _token = $('input[name="_token"]').val();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('[name="_token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url: "{{ route('curtain.fetch.cover') }}",
+                    method: "POST",
+                    data: {
+                        cover_id: cover_id,
+                        _token: _token },
+                    success: function (result) {
+                        $('#coverDynamic').html(result);
+                    },
+                    error: function (jqXHR, exception) {
+                        var msg = '';
+                        if (jqXHR.status === 0) {
+                            msg = 'Not connect.\n Verify Network.';
+                        } else if (jqXHR.status == 404) {
+                            msg = 'Requested page not found. [404]';
+                        } else if (jqXHR.status == 500) {
+                            msg = 'Por favor elija una combinación de valores válidos.';
+                        } else if (exception === 'parsererror') {
+                            msg = 'Requested JSON parse failed.';
+                        } else if (exception === 'timeout') {
+                            msg = 'Time out error.';
+                        } else if (exception === 'abort') {
+                            msg = 'Ajax request aborted.';
+                        } else {
+                            msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                        }
+                        $('#coverDynamic').html(msg);
+                    }
+                });
+            });
+        </script>
+        <script>
             $('#screenyForm').on('input', function (event) {
                 event.preventDefault();
                 let $wrapper = $('#screenyForm'),

@@ -46,6 +46,7 @@ class TypesController extends Controller
         switch ($request['type_id']){
             case 1:
                 //return redirect()->route('curtain.add', $order_id);
+                $request->session()->forget('curtain');
                 return redirect()->route('curtain.model', $order_id);
                 break;
             case 2:

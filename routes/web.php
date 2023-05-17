@@ -96,6 +96,8 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('curtains/review/{id}', 'App\Http\Controllers\CurtainsController@review')->name('curtain.review');
     Route::post('curtains/review/{id}', 'App\Http\Controllers\CurtainsController@reviewPost')->name('curtain.review.post');
 
+    Route::post('curtains/fetch/cover', 'App\Http\Controllers\CurtainsController@fetchCover')->name('curtain.fetch.cover');
+
     Route::resource('orders', 'App\Http\Controllers\OrdersController');
     Route::resource('curtains', 'App\Http\Controllers\CurtainsController');
     Route::resource('screeny', 'App\Http\Controllers\ScreenyCurtainsController');

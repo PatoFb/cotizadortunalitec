@@ -13,18 +13,36 @@
             </div>
             <div class="card-body">
                 {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\CurtainsController@addDataPost', $order_id]]) !!}
-
+                <div class="form-row">
+                    <div class="col-md-12 col-sm-12">
+                        {!! Form::label('mechanism_id', 'Mecanismo') !!}
+                        <select class="form-control" name="mechanism_id" id="mechanism_id" >
+                            @foreach($mechs as $mech)
+                                <option value="{{$mech->id}}">{{$mech->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <br>
                 <div class="form-row">
                     <div class="col-md-6 col-sm-6">
-                        {!! Form::label('width', 'Ancho:') !!}
+                        {!! Form::label('width', 'Ancho') !!}
                         {!! Form::number('width', $curtain->width ?? null , ['class'=>'form-control', "step"=>0.1]) !!}
                     </div>
 
                     <div class="col-md-6 col-sm-6">
-                        {!! Form::label('height', 'Caida:') !!}
+                        {!! Form::label('height', 'Caida') !!}
                         {!! Form::number('height', $curtain->height ?? null, ['class'=>'form-control', "step"=>0.1]) !!}
                     </div>
                 </div>
+                <br>
+                <div class="form-row">
+                    <div class="col-md-12 col-sm-12">
+                        {!! Form::label('quantity', 'Cantidad de sistemas') !!}
+                        {!! Form::number('quantity', $curtain->height ?? null, ['class'=>'form-control', "step"=>1]) !!}
+                    </div>
+                </div>
+                <br>
                 <div class="form-row">
                     <div class="col-md-6 text-left">
                         <a href="{{ route('curtain.cover', $order_id) }}" class="btn btn-danger">Anterior</a>

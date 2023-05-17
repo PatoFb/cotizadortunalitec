@@ -15,13 +15,28 @@
                 {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\CurtainsController@addModelPost', $order_id]]) !!}
 
                     <div class="form-row">
-                        <div class="col-md-2 col-sm-12 text-center text-justify">
+                        <div class="col-md-12 col-sm-12">
                             @if($models)
                                 @foreach($models as $model)
                             <div class="form-check form-check-radio">
                                 <label class="form-check-label">
                                     <input class="form-check-input" type="radio" name="model_id" id="exampleRadios1" value="{{$model->id}}" {{ (isset($curtain->model_id) && $curtain->model_id == $model->id) ? "checked" : "" }} >
-                                        <img src="{{asset('storage')}}/images/{{$model->photo}}" style="max-width: 250px">
+                                    <div class='row'>
+                                        <div class='col-md-7 col-sm-12'>
+                                            <h7 style='color: grey;'><h3><strong>{{$model->description}}</strong></h3></h7>
+                                            <br>
+                                            <h7 style='color: grey;'>Máxima resistencia al viento de <strong>{{$model->max_resistance}} km/h</strong></h7>
+                                            <br>
+                                            <h7 style='color: grey;'>Tiempo de producción: <strong>{{$model->production_time}} días hábiles</strong></h7>
+                                            <br>
+                                            <h7 style='color: grey;'>Ancho máximo: <strong>{{$model->max_width}} m</strong></h7>
+                                            <br>
+                                            <h7 style='color: grey;'>Caída máxima: <strong>{{$model->max_height}} m</strong></h7>
+                                        </div>
+                                        <div class='col-md-5 col-sm-12'>
+                                            <img src="{{asset('storage')}}/images/{{$model->photo}}" style="max-width: 250px">
+                                        </div>
+                                    </div>
                                     <span class="circle">
                                         <span class="check"></span>
                                     </span>
