@@ -35,6 +35,14 @@ class Curtain extends Model
         return $this->belongsTo(CurtainMechanism::class);
     }
 
+    public function voice() {
+        return $this->belongsTo(VoiceControl::class);
+    }
+
+    public function sensor() {
+        return $this->belongsTo(Sensor::class);
+    }
+
     public function system() {
         return $this->belongsTo(SystemCurtain::class);
     }

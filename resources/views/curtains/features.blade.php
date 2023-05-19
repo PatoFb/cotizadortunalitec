@@ -14,51 +14,79 @@
                 {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\CurtainsController@addFeaturesPost', $order_id]]) !!}
 
 
-                <div class="form-group">
-                    <div class="col-md-6 col-sm-6">
-                        {!! Form::label('control_id', 'Control:' )  !!}
-                        <select class="form-control" name="control_id" >
-                            <option value="">Selecciona el control</option>
-                            @foreach($controls as $control)
-                                <option {{isset($curtain) && $curtain->control_id ? 'selected' : ''}} value="{{$control->id}}">{{$control->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-6 col-sm-6">
-                        {!! Form::label('canopy_id', 'Tejadillo:' )  !!}
-                        <select class="form-control" name="canopy_id" >
-                            <option value="">Selecciona el tejadillo</option>
-                            @foreach($canopies as $canopy)
-                                <option {{isset($curtain) && $curtain->canopy_id ? 'selected' : ''}} value="{{$canopy->id}}">{{$canopy->price}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-6 col-sm-6">
-                        {!! Form::label('handle_id', 'Manivela:' )  !!}
-                        <select class="form-control" name="handle_id" >
-                            <option value="">Selecciona la manivela</option>
+                <div class="form-row">
+                    <div class="col-md-9 col-sm-9">
+                        {!! Form::label('handle_id', 'Manivela (Medida en metros):' )  !!}
+                        <select class="form-control" name="handle_id" id="handle_id" >
                             @foreach($handles as $handle)
-                                <option {{isset($curtain) && $curtain->handle_id ? 'selected' : ''}} value="{{$handle->id}}">{{$handle->measure}}</option>
+                                <option value="{{$handle->id}}" {{{ (isset($curtain->handle_id) && $curtain->handle_id == $handle->id) ? "selected=\"selected\"" : "" }}}>{{$handle->measure}}</option>
                             @endforeach
                         </select>
                     </div>
+                    <div class="col-md-3 col-sm-3">
+                        {!! Form::label('handle_quantity', 'Cantidad:') !!}
+                        {!! Form::number('handle_quantity', $curtain->handle_quantity ?? 0, ['class'=>'form-control', "step"=>1, "id"=>"handle_quantity"]) !!}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-9 col-sm-9">
+                        {!! Form::label('control_id', 'Control:' )  !!}
+                        <select class="form-control" name="control_id" id="control_id">
+                            @foreach($controls as $control)
+                                <option value="{{$control->id}}" {{{ (isset($curtain->control_id) && $curtain->control_id == $control->id) ? "selected=\"selected\"" : "" }}}>{{$control->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                        {!! Form::label('control_quantity', 'Cantidad:') !!}
+                        {!! Form::number('control_quantity', $curtain->control_quantity ?? 0, ['class'=>'form-control', "step"=>1, "id"=>"control_quantity"]) !!}
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <div class="col-md-6 col-sm-6">
-                        {!! Form::label('quantity', 'Cantidad:') !!}
-                        {!! Form::number('quantity', $curtain->quantity ?? null , ['class'=>'form-control']) !!}
+                <div class="form-row">
+                    <div class="col-md-9 col-sm-9">
+                        {!! Form::label('sensor_id', 'Sensores:' )  !!}
+                        <select class="form-control" name="sensor_id" id="sensor_id" >
+                            @foreach($sensors as $sensor)
+                                <option value="{{$sensor->id}}" {{{ (isset($curtain->sensor_id) && $curtain->sensor_id == $sensor->id) ? "selected=\"selected\"" : "" }}}>{{$sensor->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="col-md-3 col-sm-3">
+                        {!! Form::label('sensor_quantity', 'Cantidad:') !!}
+                        {!! Form::number('sensor_quantity', $curtain->sensor_quantity ?? 0 , ['class'=>'form-control', 'id'=>'sensor_quantity']) !!}
+                    </div>
+
+                </div>
+                <div class="form-row">
+                    <div class="col-md-9 col-sm-9">
+                        {!! Form::label('voice_id', 'Voz:' )  !!}
+                        <select class="form-control" name="voice_id" id="voice_id" >
+                            @foreach($voices as $voice)
+                                <option value="{{$voice->id}}" {{{ (isset($curtain->voice_id) && $curtain->voice_id == $voice->id) ? "selected=\"selected\"" : "" }}}>{{$voice->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="col-md-3 col-sm-3">
+                        {!! Form::label('voice_quantity', 'Cantidad:') !!}
+                        {!! Form::number('voice_quantity', $curtain->voice_quantity ?? 0, ['class'=>'form-control', 'id'=>'voice_quantity']) !!}
+                    </div>
+
+                </div>
+                <div class="form-row">
+                    <div class="col-md-12 col-sm-12">
+                        {!! Form::label('canopy_id', 'Tejadillo:' )  !!}
+                        <select class="form-control" name="canopy_id" id="canopy_id" >
+                            <option value="1" {{{ (isset($curtain->canopy_id) && $curtain->canopy_id == '1') ? "selected=\"selected\"" : "" }}}>Si</option>
+                            <option value="0" {{{ (isset($curtain->canopy_id) && $curtain->canopy_id == '2') ? "selected=\"selected\"" : "" }}}>No</option>
+                        </select>
                     </div>
 
                 </div>
 
-
+                <br>
 
                 <div class="form-row text-center">
                     <div class="col-6 text-left">

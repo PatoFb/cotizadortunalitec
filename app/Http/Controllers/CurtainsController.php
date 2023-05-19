@@ -454,7 +454,7 @@ class CurtainsController extends Controller
     public function fetchCover(Request $request){
         $value = $request->get('cover_id');
         $cover = Cover::findOrFail($value);
-
+        Log::info($request->session()->get('curtain'));
         echo "<div class='col-12'>
                 <h4>Detalles de cubierta</h4>
                </div>
@@ -544,6 +544,7 @@ class CurtainsController extends Controller
             $curtain->fill($validatedData);
             $request->session()->put('curtain', $curtain);
         }
+        Log::info($request->session()->get('curtain'));
         return redirect()->route('curtain.cover', $order_id);
     }
 
@@ -558,9 +559,10 @@ class CurtainsController extends Controller
     public function addCover(Request $request, $id)
     {
         $order_id = $id;
-        $covers = Cover::all();
+        $cov = Cover::all();
         $curtain = $request->session()->get('curtain');
-        return view('curtains.cover', compact('order_id', 'covers', 'curtain'));
+        Log::info($request->session()->get('curtain'));
+        return view('curtains.cover', compact('order_id', 'cov', 'curtain'));
     }
 
     /**
@@ -579,9 +581,10 @@ class CurtainsController extends Controller
             'cover_id' => 'required',
         ]);
         $curtain = $request->session()->get('curtain');
-        $curtain->fill($validatedData);
+        Log::info($request->session()->get('curtain'));
+        $curtain->cover_id = $validatedData['cover_id'];
         $request->session()->put('curtain', $curtain);
-        Log::info($curtain->cover->name);
+        Log::info($request->session()->get('curtain'));
         return redirect()->route('curtain.data', $order_id);
     }
 
@@ -598,6 +601,7 @@ class CurtainsController extends Controller
     {
         $order_id = $id;
         $curtain = $request->session()->get('curtain');
+        Log::info($request->session()->get('curtain'));
         $mechs = CurtainMechanism::all();
         return view('curtains.data', compact('order_id', 'curtain', 'mechs'));
     }
@@ -642,8 +646,10 @@ class CurtainsController extends Controller
         $handles = CurtainHandle::all();
         $canopies = CurtainCanopy::all();
         $controls = CurtainControl::all();
+        $sensors = Sensor::all();
+        $voices = VoiceControl::all();
         $curtain = $request->session()->get('curtain');
-        return view('curtains.features', compact('order_id', 'curtain', 'handles', 'canopies', 'controls'));
+        return view('curtains.features', compact('order_id', 'curtain', 'handles', 'canopies', 'controls', 'sensors', 'voices'));
     }
 
     /**
@@ -661,21 +667,130 @@ class CurtainsController extends Controller
     public function addFeaturesPost(Request $request, $id)
     {
         $order_id = $id;
+        $user = Auth::user();
         $validatedData = $request->validate([
             'handle_id' => 'required',
             'canopy_id' => 'required',
             'control_id' => 'required',
-            'quantity' => 'required'
+            'sensor_id' => 'required',
+            'voice_id' => 'required',
+            'control_quantity' => 'required',
+            'handle_quantity' => 'required',
+            'sensor_quantity' => 'required',
+            'voice_quantity' => 'required'
         ]);
         $curtain = $request->session()->get('curtain');
         $curtain->fill($validatedData);
+
+        $cover_id = $curtain['cover_id'];
+        $cover = Cover::find($cover_id);
+
+        $model_id = $curtain['model_id'];
+        $model = CurtainModel::find($model_id);
+
+        $control_id = $curtain['control_id'];
+        $control = CurtainControl::find($control_id);
+
+        $mechanism_id = $curtain['mechanism_id'];
+
+        $sensor_id = $curtain['sensor_id'];
+        $sensor = Sensor::find($sensor_id);
+
+        $voice_id = $curtain['voice_id'];
+        $voice = VoiceControl::find($voice_id);
+
+        $handle_id = $curtain['handle_id'];
+        $handle = CurtainHandle::find($handle_id);
+
+        $canopy = $curtain['canopy_id'];
+
+        $width = $curtain['width'];
+        $height = $curtain['height'];
+        $quantity = $curtain['quantity'];
+        $cquant = $curtain['control_quantity'];
+        $vquant = $curtain['voice_quantity'];
+        $squant = $curtain['sensor_quantity'];
+        $hquant = $curtain['handle_quantity'];
+
+        //Control plus IVA
+        $control_total = $control->price * $cquant * 1.16;
+        $voice_total = $voice->price * $vquant * 1.16;
+        $sensor_total = $sensor->price * $squant * 1.16;
+        $handle_total = $handle->price * $hquant * 1.16;
+
+        $measure = $height + 0.4;
+        $squared_meters = $measure * $width;
+
+        if($cover->unions == 'Verticales') {
+            //Calculates number of fabric needed for pricing
+            $num_lienzos = ceil($width / $cover->roll_width);
+            $total_fabric = $measure * $num_lienzos;
+
+            //Calculates total pricing of fabric plus handiwork plus IVA
+            $cover_price = $cover->price * $total_fabric;
+        } else {
+            $range = RollWidth::where('width', $cover->roll_width)->where('meters', $height)->get('range');
+            $num_lienzos = Complement::where('range', $range)->get('complete');
+            $complement = Complement::where('range', $range)->get('complements');
+            $total_fabric = $num_lienzos * $width;
+
+            $full_price = $cover->price * $total_fabric;
+            $complement_price = $cover->price / $cover->roll_width * 2.5 * $complement;
+            $cover_price = $full_price + $complement_price;
+        }
+
+
+        $work_price = $squared_meters * (60/(1 - 0.3));
+        $total_cover = ($cover_price + $work_price);
+
+        $ceiledWidth = ceil($width);
+        $diff = $ceiledWidth - $width;
+        if ($diff < 0.5 && $diff != 0) {
+            $newWidth = $ceiledWidth - 0.5;
+        } else if ($diff > 0.5 && $diff != 0) {
+            $newWidth = $ceiledWidth;
+        } else {
+            $newWidth = $width;
+        }
+
+        $system = SystemCurtain::where('model_id', $model_id)->where('width', $newWidth)->first();
+        $sprice = $system->price;
+
+        //If user chooses canopy, it will calculate the price by width plus IVA
+        if($canopy == 1) {
+            if($width > 3.5) {
+                $total_canopy = ((4268.18 / 5 * $width) + 498.79 + (271.07 * $width) + (629.69 * 2))* 1.16;
+            } else {
+                $total_canopy = ((4268.18/5*$width) + 498.79 + (271.07*$width) + (629.69))* 1.16;
+            }
+        } else {
+            $total_canopy = 0;
+        }
+
+        $utility = 0.40;
+
+        switch($mechanism_id) {
+            case 1:
+                $accesories = $handle_total + $total_canopy;
+                $curtain['price'] = (((((($sprice+$total_cover)*1.16)  + $accesories) / (1-$utility)) * $quantity) * (1-($user->discount/100)));
+                break;
+            case 2:
+                $accesories = $control_total + $sensor_total + $voice_total + $total_canopy;
+                $curtain['price'] = (((((($sprice+6321.96+$total_cover)*1.16) + $accesories) / (1-$utility)) * $quantity) * (1-($user->discount/100)));
+                break;
+            case 3:
+                $accesories = $control_total + $handle_total + $sensor_total + $voice_total + $total_canopy;
+                $curtain['price'] = (((((($sprice+8133.75+$total_cover)*1.16)  + $accesories) / (1-$utility)) * $quantity) * (1-($user->discount/100)));
+                break;
+            case 4:
+                $accesories = $handle_total + $voice_total + $total_canopy + $control_total;
+                $curtain['price'] = (((((($sprice+2258.71+$total_cover)*1.16)  + $accesories) / (1-$utility)) * $quantity) * (1-($user->discount/100)));
+                break;
+            default:
+                $curtain['price'] = 0;
+                break;
+        }
         $request->session()->put('curtain', $curtain);
-        $handle = CurtainHandle::where('id', $curtain['handle_id'])->first();
-        $canopy = CurtainCanopy::where('id', $curtain['canopy_id'])->first();
-        $control = CurtainControl::where('id', $curtain['control_id'])->first();
-        $model = CurtainModel::where('id', $curtain['model_id'])->first();
-        $cover = Cover::where('id', $curtain['cover_id'])->first();
-        $curtain['price'] = ($handle->price + $canopy->price + $control->price + $model->base_price + $cover->price) * $curtain['quantity'];
         return redirect()->route('curtain.review', $order_id);
     }
 
@@ -718,7 +833,7 @@ class CurtainsController extends Controller
         $curtain->save();
         $order = Order::findOrFail($id);
         $order->price = $order->price + $curtain['price'];
-        $order->total = $order->total + ($curtain['price']*(1 - ($order->discount/100)));
+        $order->total = $order->total + $curtain['price'];
         $order->save();
         $request->session()->forget('curtain');
         return redirect()->route('orders.show', $order_id);

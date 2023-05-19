@@ -17,17 +17,10 @@
                 <div class="form-row">
                     <div class="col-md-6 col-sm-12" id="coverForm">
 
-                        <select class="form-control" name="cover_id" id="cover_id" >
-                            @if(isset($curtain->cover_id))
-                                <option value="{{$curtain->cover_id}}">{{$curtain->cover->name}}</option>
-                                @foreach($covers as $cover)
-                                    <option value="{{$cover->id}}">{{$cover->name}}</option>
-                                @endforeach
-                            @else
-                                @foreach($covers as $cover)
-                                    <option value="{{$cover->id}}">{{$cover->name}}</option>
-                                @endforeach
-                            @endif
+                        <select class="form-control" name="cover_id" id="cover_id">
+                            @foreach($cov as $cover)
+                                <option value="{{$cover->id}}" {{{ (isset($curtain->cover_id) && $curtain->cover_id == $cover->id) ? "selected=\"selected\"" : "" }}}>{{$cover->name}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="col-md-6 col-sm-12" id="coverDynamic">

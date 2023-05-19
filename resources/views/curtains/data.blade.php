@@ -18,7 +18,7 @@
                         {!! Form::label('mechanism_id', 'Mecanismo') !!}
                         <select class="form-control" name="mechanism_id" id="mechanism_id" >
                             @foreach($mechs as $mech)
-                                <option value="{{$mech->id}}">{{$mech->name}}</option>
+                                <option value="{{$mech->id}}" {{{ (isset($curtain->mechanism_id) && $curtain->mechanism_id== $mech->id) ? "selected=\"selected\"" : "" }}}>{{$mech->name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -39,7 +39,7 @@
                 <div class="form-row">
                     <div class="col-md-12 col-sm-12">
                         {!! Form::label('quantity', 'Cantidad de sistemas') !!}
-                        {!! Form::number('quantity', $curtain->height ?? null, ['class'=>'form-control', "step"=>1]) !!}
+                        {!! Form::number('quantity', $curtain->quantity ?? null, ['class'=>'form-control', "step"=>1]) !!}
                     </div>
                 </div>
                 <br>
