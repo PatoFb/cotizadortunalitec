@@ -729,9 +729,9 @@ class CurtainsController extends Controller
             //Calculates total pricing of fabric plus handiwork plus IVA
             $cover_price = $cover->price * $total_fabric;
         } else {
-            $range = RollWidth::where('width', $cover->roll_width)->where('meters', $height)->get('range');
-            $num_lienzos = Complement::where('range', $range)->get('complete');
-            $complement = Complement::where('range', $range)->get('complements');
+            $range = RollWidth::where('width', $cover->roll_width)->where('meters', $height)->value('range');
+            $num_lienzos = Complement::where('range', $range)->value('complete');
+            $complement = Complement::where('range', $range)->value('complements');
             $total_fabric = $num_lienzos * $width;
 
             $full_price = $cover->price * $total_fabric;
