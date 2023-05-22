@@ -24,7 +24,7 @@
                             <td><strong>{{$curtain->cover->name}}</strong></td>
                         </tr>
                         <tr>
-                            <td class="text-center">Cubierta:</td>
+                            <td class="text-center">Mecanismo:</td>
                             <td><strong>{{$curtain->mechanism->name}}</strong></td>
                         </tr>
                         <tr>
@@ -41,7 +41,7 @@
                                     Tejadillo:
                                 </td>
                                 <td>
-                                    <strong>X</strong>
+                                    <strong>SI</strong>
                                 </td>
                             </tr>
                         @endif
@@ -114,7 +114,6 @@
                             <td><strong>${{number_format($curtain->price, 2)}}</strong></td>
                         </tr>
                     </table>
-                </div>
                 <div class="form-row text-center">
                     <div class="col-6 text-left">
                         <a href="{{ route('curtain.features', $order_id) }}" class="btn btn-danger">Anterior</a>
@@ -125,7 +124,7 @@
                     </div>
                 </div>
 
-
+          </div>
 
 </div>
             </div>
