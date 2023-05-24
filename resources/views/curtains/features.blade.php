@@ -90,7 +90,7 @@
 
                 <div class="form-row text-center">
                     <div class="col-6 text-left">
-                        <a href="{{ route('curtain.data', $order_id) }}" class="btn btn-danger">Anterior</a>
+                        <a href="{{ route('curtain.cover', $order_id) }}" class="btn btn-danger">Anterior</a>
                     </div>
                     <div class="col-6 text-right">
                         {!! Form::submit('Siguiente', ['class'=>'btn btn-primary', $order_id]) !!}

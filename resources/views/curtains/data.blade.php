@@ -45,7 +45,7 @@
                 <br>
                 <div class="form-row">
                     <div class="col-md-6 text-left">
-                        <a href="{{ route('curtain.cover', $order_id) }}" class="btn btn-danger">Anterior</a>
+                        <a href="{{ route('curtain.model', $order_id) }}" class="btn btn-danger">Anterior</a>
                     </div>
                     <div class="col-md-6 text-right">
                         {!! Form::submit('Siguiente', ['class'=>'btn btn-primary', $order_id]) !!}

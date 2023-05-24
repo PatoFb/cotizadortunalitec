@@ -453,9 +453,17 @@ class CurtainsController extends Controller
      */
     public function fetchCover(Request $request){
         $value = $request->get('cover_id');
+        $curtain = $request->session()->get('curtain');
         $cover = Cover::findOrFail($value);
-        Log::info($request->session()->get('curtain'));
-        echo "<div class='col-12'>
+        $width = $curtain['width'];
+        $height = $curtain['height'];
+        $measure = $height + 0.4;
+
+        if($cover->unions == 'Verticales') {
+            //Calculates number of fabric needed for pricing
+            $num_lienzos = ceil($width / $cover->roll_width);
+            $total_fabric = $measure * $num_lienzos;
+            echo "<div class='col-12'>
                 <h4>Detalles de cubierta</h4>
                </div>
                 <div class='row'>
@@ -463,15 +471,51 @@ class CurtainsController extends Controller
                    <img src=".asset('storage')."/images/".$cover->photo." style='width: 100%;'>
               </div>
               <div class='col-md-6 col-sm-12'>
-                   <h7 style='color: grey;'>$cover->name</h7>
+                   <h7 style='color: grey;'><strong>$cover->name</strong></h7>
                    <br>
-                   <h7 style='color: grey;'>Ancho de rollo: $cover->roll_width mts</h7>
+                   <h7 style='color: grey;'>Ancho de rollo: <strong>$cover->roll_width mts</strong></h7>
                    <br>
-                   <h7 style='color: grey;'>Uniones: $cover->unions</h7>
+                   <h7 style='color: grey;'>Uniones: <strong>$cover->unions</strong></h7>
                    <br>
+                   <h7 style='color: grey;'>Número de lienzos: <strong>$num_lienzos</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Medida de lienzos: <strong>$measure mts</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Total de textil: <strong>$total_fabric mts</strong></h7>
               </div>
                 </div>
               ";
+            //Calculates total pricing of fabric plus handiwork plus IVA
+        } else {
+            $range = RollWidth::where('width', $cover->roll_width)->where('meters', $height)->value('range');
+            $num_lienzos = Complement::where('range', $range)->value('complete');
+            $complement = Complement::where('range', $range)->value('complements');
+            $total_fabric = $num_lienzos * $width;
+            echo "<div class='col-12'>
+                <h4>Detalles de cubierta</h4>
+               </div>
+                <div class='row'>
+                <div class='col-md-6 col-sm-12'>
+                   <img src=".asset('storage')."/images/".$cover->photo." style='width: 100%;'>
+              </div>
+              <div class='col-md-6 col-sm-12'>
+                   <h7 style='color: grey;'><strong>$cover->name</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Ancho de rollo: <strong>$cover->roll_width mts</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Uniones: <strong>$cover->unions</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Número de lienzos: <strong>$num_lienzos</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Medida de lienzos: <strong>$measure mts</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Complementos: <strong>$complement</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Total de textil: <strong>$total_fabric mts</strong></h7>
+              </div>
+                </div>
+              ";
+        }
     }
 
     /**
@@ -545,7 +589,7 @@ class CurtainsController extends Controller
             $request->session()->put('curtain', $curtain);
         }
         Log::info($request->session()->get('curtain'));
-        return redirect()->route('curtain.cover', $order_id);
+        return redirect()->route('curtain.data', $order_id);
     }
 
     /**
@@ -585,7 +629,7 @@ class CurtainsController extends Controller
         $curtain->cover_id = $validatedData['cover_id'];
         $request->session()->put('curtain', $curtain);
         Log::info($request->session()->get('curtain'));
-        return redirect()->route('curtain.data', $order_id);
+        return redirect()->route('curtain.features', $order_id);
     }
 
     /**
@@ -626,7 +670,7 @@ class CurtainsController extends Controller
         $curtain = $request->session()->get('curtain');
         $curtain->fill($validatedData);
         $request->session()->put('curtain', $curtain);
-        return redirect()->route('curtain.features', $order_id);
+        return redirect()->route('curtain.cover', $order_id);
     }
 
     /**
