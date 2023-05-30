@@ -6,10 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/curtains/cover.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/curtains/cover.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/curtains/data.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/curtains/data.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/curtains/features.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/curtains/features.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,16 +158,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/cotizadortunalitec&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/xampp/htdocs/vendedores",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\cotizadortunalitec\public\storage" />
@@ -312,7 +308,9 @@
       <workItem from="1684508725252" duration="63000" />
       <workItem from="1684510483146" duration="21437000" />
       <workItem from="1684768418551" duration="4342000" />
-      <workItem from="1684940830352" duration="3586000" />
+      <workItem from="1684940830352" duration="4198000" />
+      <workItem from="1685132853982" duration="646000" />
+      <workItem from="1685375790556" duration="606000" />
     </task>
     <servers />
   </component>
