@@ -5,7 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/views/palillerias/cover.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/palillerias/data.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/palillerias/features.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/palillerias/model.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/palillerias/review.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PalilleriasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PalilleriasController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +171,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/xampp/htdocs/vendedores",
+    "last_opened_file_path": "C:/xampp/htdocs/cotizadortunalitec/resources/views/palillerias",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
@@ -311,6 +319,19 @@
       <workItem from="1684940830352" duration="4198000" />
       <workItem from="1685132853982" duration="646000" />
       <workItem from="1685375790556" duration="606000" />
+      <workItem from="1685472601610" duration="1445000" />
+      <workItem from="1685978201014" duration="22000" />
+      <workItem from="1688491711911" duration="1215000" />
+      <workItem from="1688568279388" duration="363000" />
+      <workItem from="1688760890561" duration="2138000" />
+      <workItem from="1688770330694" duration="598000" />
+      <workItem from="1689002052461" duration="2417000" />
+      <workItem from="1689091795020" duration="1822000" />
+      <workItem from="1689175944241" duration="1192000" />
+      <workItem from="1689188406487" duration="610000" />
+      <workItem from="1689268906545" duration="599000" />
+      <workItem from="1689351256768" duration="4463000" />
+      <workItem from="1689604909274" duration="6134000" />
     </task>
     <servers />
   </component>

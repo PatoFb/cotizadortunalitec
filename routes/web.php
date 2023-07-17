@@ -96,6 +96,21 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('curtains/review/{id}', 'App\Http\Controllers\CurtainsController@review')->name('curtain.review');
     Route::post('curtains/review/{id}', 'App\Http\Controllers\CurtainsController@reviewPost')->name('curtain.review.post');
 
+    Route::get('palillerias/model/{id}', 'App\Http\Controllers\PalilleriasController@addModel')->name('palilleria.model');
+    Route::post('palillerias/model/{id}', 'App\Http\Controllers\PalilleriasController@addModelPost')->name('palilleria.model.post');
+
+    Route::get('palillerias/cover/{id}', 'App\Http\Controllers\PalilleriasController@addCover')->name('palilleria.cover');
+    Route::post('palillerias/cover/{id}', 'App\Http\Controllers\PalilleriasController@addCoverPost')->name('palilleria.cover.post');
+
+    Route::get('palillerias/data/{id}', 'App\Http\Controllers\PalilleriasController@addDat')->name('palilleria.data');
+    Route::post('palillerias/data/{id}', 'App\Http\Controllers\PalilleriasController@addDataPost')->name('palilleria.data.post');
+
+    Route::get('palillerias/features/{id}', 'App\Http\Controllers\PalilleriasController@addFeatures')->name('palilleria.features');
+    Route::post('palillerias/features/{id}', 'App\Http\Controllers\PalilleriasController@addFeaturesPost')->name('palilleria.features.post');
+
+    Route::get('palillerias/review/{id}', 'App\Http\Controllers\PalilleriasController@review')->name('palilleria.review');
+    Route::post('palillerias/review/{id}', 'App\Http\Controllers\PalilleriasController@reviewPost')->name('palilleria.review.post');
+
     Route::post('curtains/fetch/cover', 'App\Http\Controllers\CurtainsController@fetchCover')->name('curtain.fetch.cover');
 
     Route::resource('orders', 'App\Http\Controllers\OrdersController');

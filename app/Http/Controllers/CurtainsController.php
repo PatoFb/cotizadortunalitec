@@ -20,8 +20,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use mysql_xdevapi\Table;
-use phpDocumentor\Reflection\DocBlock\Tags\Covers;
 
 class CurtainsController extends Controller
 {
@@ -611,7 +609,7 @@ class CurtainsController extends Controller
 
     /**
      * It works exactly the same as the model post function, but without the if statement since
-     * thanks to the validation, the session wont be empty once you reach this point
+     * thanks to the validation, the session won't be empty once you reach this point
      *
      * @param Request $request
      * @param $id
