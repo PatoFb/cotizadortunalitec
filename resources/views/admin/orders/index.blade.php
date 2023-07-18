@@ -64,7 +64,7 @@
                       <td>{{$order->discount}}%</td>
                       <td>${{number_format($order->total, 2)}}</td>
                         <td class="text-right">
-                            <a rel="tooltip" class="btn btn-info btn-link" href="{{route('orders.details', $order->id)}}" data-original-title="" title="">
+                            <a rel="tooltip" class="btn btn-info btn-link" href="{{route('orders.show', $order->id)}}" data-original-title="" title="">
                               <i class="material-icons">arrow_forward_ios</i>
                               <div class="ripple-container"></div>
                             </a>
@@ -117,7 +117,7 @@
                                             <td>{{$offer->discount}}%</td>
                                             <td>${{number_format($offer->total, 2)}}</td>
                                             <td class="text-right">
-                                                <a rel="tooltip" class="btn btn-info btn-link" href="{{route('orders.details', $offer->id)}}" data-original-title="" title="">
+                                                <a rel="tooltip" class="btn btn-info btn-link" href="{{route('orders.show', $offer->id)}}" data-original-title="" title="">
                                                     <i class="material-icons">arrow_forward_ios</i>
                                                     <div class="ripple-container"></div>
                                                 </a>
@@ -170,7 +170,7 @@
                                             <td>{{$prod->discount}}%</td>
                                             <td>${{number_format($prod->total, 2)}}</td>
                                             <td class="text-right">
-                                                <a rel="tooltip" class="btn btn-info btn-link" href="{{route('orders.details', $prod->id)}}" data-original-title="" title="">
+                                                <a rel="tooltip" class="btn btn-info btn-link" href="{{route('orders.show', $prod->id)}}" data-original-title="" title="">
                                                     <i class="material-icons">arrow_forward_ios</i>
                                                     <div class="ripple-container"></div>
                                                 </a>

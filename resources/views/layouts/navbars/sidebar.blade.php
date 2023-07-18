@@ -33,7 +33,7 @@
         <li class="nav-item{{ $activePage == 'orders' ? ' active' : '' }}">
             <a class="nav-link" href="{{ route('orders.new') }}">
                 <i class="material-icons">add_shopping_cart</i>
-                <p>{{ __('Crear orden') }}</p>
+                <p>{{ __('Cotizar') }}</p>
             </a>
         </li>
         <li class="nav-item{{ $activePage == 'myorders' ? ' active' : '' }}">

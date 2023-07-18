@@ -23,7 +23,7 @@
                                     <input class="form-check-input" type="radio" name="model_id" id="exampleRadios1" value="{{$model->id}}" {{ (isset($curtain->model_id) && $curtain->model_id == $model->id) ? "checked" : "" }} >
                                     <div class='row'>
                                         <div class='col-md-7 col-sm-12'>
-                                            <h7 style='color: grey;'><h3><strong>{{$model->description}}</strong></h3></h7>
+                                            <h7 style='color: grey;'><h3><strong>{{$model->name}}</strong></h3></h7>
                                             <br>
                                             <h7 style='color: grey;'>Máxima resistencia al viento de <strong>38 km/h</strong></h7>
                                             <br>
@@ -31,7 +31,7 @@
                                             <br>
                                             <h7 style='color: grey;'>Ancho máximo: <strong>5 m</strong></h7>
                                             <br>
-                                            <h7 style='color: grey;'>Caída máxima: <strong>5 m</strong></h7>
+                                            <h7 style='color: grey;'>Salida máxima: <strong>5 m</strong></h7>
                                         </div>
                                         <div class='col-md-5 col-sm-12'>
                                             <img src="{{asset('storage')}}/images/{{$model->photo}}" style="max-width: 250px">
@@ -42,6 +42,7 @@
                                     </span>
                                 </label>
                             </div>
+                                    <br>
                                 @endforeach
                             @endif
                         </div>

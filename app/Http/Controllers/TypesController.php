@@ -53,7 +53,7 @@ class TypesController extends Controller
                 return redirect()->route('screeny.add', $order_id);
                 break;
             case 3:
-                return redirect()->route('palilleria.add', $order_id);
+                return redirect()->route('palilleria.model', $order_id);
                 break;
             case 4:
                 return redirect()->route('toldo.add', $order_id);

@@ -5,14 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/palillerias/cover.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/palillerias/data.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/palillerias/features.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/palillerias/model.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/palillerias/review.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrdersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OrdersController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PalilleriasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PalilleriasController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TypesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TypesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Palilleria.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Palilleria.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/orders/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/orders/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/curtains/features.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/curtains/features.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/orders/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/orders/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/palillerias/cover.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/palillerias/cover.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/palillerias/data.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/palillerias/data.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/palillerias/features.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/palillerias/features.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/palillerias/model.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/palillerias/model.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/palillerias/review.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/palillerias/review.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -166,23 +172,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/xampp/htdocs/cotizadortunalitec/resources/views/palillerias",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/cotizadortunalitec/resources/views/palillerias&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\palillerias" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\public\storage" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\public\storage\images" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\screeny" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\storage\app\public" />
-      <recent name="C:\xampp\htdocs\cotizadortunalitec\storage" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\cotizadortunalitec\public\material\img" />
@@ -331,7 +337,8 @@
       <workItem from="1689188406487" duration="610000" />
       <workItem from="1689268906545" duration="599000" />
       <workItem from="1689351256768" duration="4463000" />
-      <workItem from="1689604909274" duration="6134000" />
+      <workItem from="1689604909274" duration="6610000" />
+      <workItem from="1689693381571" duration="6291000" />
     </task>
     <servers />
   </component>

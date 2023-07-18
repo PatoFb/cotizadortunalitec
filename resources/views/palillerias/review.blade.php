@@ -12,54 +12,30 @@
               {{--<p class="card-category"> Here you can manage users</p>--}}
             </div>
             <div class="card-body">
-                {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\CurtainsController@reviewPost', $order_id]]) !!}
+                {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\PalilleriasController@reviewPost', $order_id]]) !!}
                 <tr class="table-responsive">
                     <table class="table">
                         <tr>
                             <td class="text-center">Modelo:</td>
-                            <td><strong>{{$curtain->model->name}}</strong></td>
+                            <td><strong>{{$palilleria->model->name}}</strong></td>
                         </tr>
                         <tr>
                             <td class="text-center">Cubierta:</td>
-                            <td><strong>{{$curtain->cover->name}}</strong></td>
+                            <td><strong>{{$palilleria->cover->name}}</strong></td>
                         </tr>
                         <tr>
                             <td class="text-center">Mecanismo:</td>
-                            <td><strong>{{$curtain->mechanism->name}}</strong></td>
+                            <td><strong>{{$palilleria->mechanism->name}}</strong></td>
                         </tr>
                         <tr>
                             <td class="text-center">Ancho:</td>
-                            <td><strong>{{$curtain->width}} mts</strong></td>
+                            <td><strong>{{$palilleria->width}} mts</strong></td>
                         </tr>
                         <tr>
-                            <td class="text-center">Caida:</td>
-                            <td><strong>{{$curtain->height}} mts</strong></td>
+                            <td class="text-center">Salida:</td>
+                            <td><strong>{{$palilleria->height}} mts</strong></td>
                         </tr>
-                        @if($curtain->canopy_id == 1)
-                            <tr>
-                                <td class="text-center">
-                                    Tejadillo:
-                                </td>
-                                <td>
-                                    <strong>SI</strong>
-                                </td>
-                            </tr>
-                        @endif
-                        @if($curtain->handle && $curtain->handle_quantity > 0)
-                            <tr>
-                                <td class="text-center">
-                                    Manivela:
-                                    <br>
-                                    Cantidad:
-                                </td>
-                                <td>
-                                    <strong>{{$curtain->handle->measure}} mts</strong>
-                                    <br>
-                                    <strong>{{$curtain->handle_quantity}}</strong>
-                                </td>
-                            </tr>
-                        @endif
-                        @if($curtain->control && $curtain->control_quantity > 0)
+                        @if($palilleria->control && $palilleria->control_quantity > 0)
                             <tr>
                                 <td class="text-center">
                                     Control:
@@ -67,27 +43,13 @@
                                     Cantidad:
                                 </td>
                                 <td>
-                                    <strong>{{$curtain->control->name}}</strong>
+                                    <strong>{{$palilleria->control->name}}</strong>
                                     <br>
-                                    <strong>{{$curtain->control_quantity}}</strong>
+                                    <strong>{{$palilleria->control_quantity}}</strong>
                                 </td>
                             </tr>
                         @endif
-                        @if($curtain->voice_id && $curtain->voice_quantity > 0)
-                            <tr>
-                                <td class="text-center">
-                                    Control de voz:
-                                    <br>
-                                    Cantidad:
-                                </td>
-                                <td>
-                                    <strong>{{$curtain->voice->name}}</strong>
-                                    <br>
-                                    <strong>{{$curtain->voice_quantity}}</strong>
-                                </td>
-                            </tr>
-                        @endif
-                        @if($curtain->sensor_id && $curtain->sensor_quantity > 0)
+                        @if($palilleria->sensor_id && $palilleria->sensor_quantity > 0)
                             <tr>
                                 <td class="text-center">
                                     Sensor:
@@ -95,28 +57,98 @@
                                     Cantidad:
                                 </td>
                                 <td>
-                                    <strong>{{$curtain->sensor->name}}</strong>
+                                    <strong>{{$palilleria->sensor->name}}</strong>
                                     <br>
-                                    <strong>{{$curtain->sensor_quantity}}</strong>
+                                    <strong>{{$palilleria->sensor_quantity}}</strong>
+                                </td>
+                            </tr>
+                        @endif
+                        @if($palilleria->voice_id && $palilleria->voice_quantity > 0)
+                            <tr>
+                                <td class="text-center">
+                                    Control de voz:
+                                    <br>
+                                    Cantidad:
+                                </td>
+                                <td>
+                                    <strong>{{$palilleria->voice->name}}</strong>
+                                    <br>
+                                    <strong>{{$palilleria->voice_quantity}}</strong>
+                                </td>
+                            </tr>
+                        @endif
+                        @if($palilleria->reinforcement_id && $palilleria->reinforcement_quantity > 0)
+                            <tr>
+                                <td class="text-center">
+                                    Guia+:
+                                    <br>
+                                    Cantidad:
+                                </td>
+                                <td>
+                                    <strong>SI</strong>
+                                    <br>
+                                    <strong>{{$palilleria->reinforcement_quantity}}</strong>
+                                </td>
+                            </tr>
+                        @endif
+                        @if($palilleria->trave && $palilleria->trave_quantity > 0)
+                            <tr>
+                                <td class="text-center">
+                                    Trave+:
+                                    <br>
+                                    Cantidad:
+                                </td>
+                                <td>
+                                    <strong>SI</strong>
+                                    <br>
+                                    <strong>{{$palilleria->trave_quantity}}</strong>
+                                </td>
+                            </tr>
+                        @endif
+                        @if($palilleria->semigoal_id && $palilleria->semigoal_quantity > 0)
+                            <tr>
+                                <td class="text-center">
+                                    Semiportería+:
+                                    <br>
+                                    Cantidad:
+                                </td>
+                                <td>
+                                    <strong>SI</strong>
+                                    <br>
+                                    <strong>{{$palilleria->semigoal_quantity}}</strong>
+                                </td>
+                            </tr>
+                        @endif
+                        @if($palilleria->goal_id && $palilleria->goal_quantity > 0)
+                            <tr>
+                                <td class="text-center">
+                                    Portería+:
+                                    <br>
+                                    Cantidad:
+                                </td>
+                                <td>
+                                    <strong>SI</strong>
+                                    <br>
+                                    <strong>{{$palilleria->goal_quantity}}</strong>
                                 </td>
                             </tr>
                         @endif
                         <tr>
                             <td class="text-center">Precio unitario:</td>
-                            <td><strong>${{number_format($curtain->price/$curtain->quantity, 2)}}</strong></td>
+                            <td><strong>${{number_format($palilleria->price/$palilleria->quantity, 2)}}</strong></td>
                         </tr>
                         <tr>
                             <td class="text-center">Cantidad:</td>
-                            <td><strong>{{$curtain->quantity}}</strong></td>
+                            <td><strong>{{$palilleria->quantity}}</strong></td>
                         </tr>
                         <tr>
                             <td class="text-center">Total:</td>
-                            <td><strong>${{number_format($curtain->price, 2)}}</strong></td>
+                            <td><strong>${{number_format($palilleria->price, 2)}}</strong></td>
                         </tr>
                     </table>
                 <div class="form-row text-center">
                     <div class="col-6 text-left">
-                        <a href="{{ route('curtain.features', $order_id) }}" class="btn btn-danger">Anterior</a>
+                        <a href="{{ route('palilleria.features', $order_id) }}" class="btn btn-danger">Anterior</a>
                     </div>
                     <div class="col-6 text-right">
                         {!! Form::submit('Guardar', ['class'=>'btn btn-primary', $order_id]) !!}

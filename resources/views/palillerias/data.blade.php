@@ -31,7 +31,7 @@
                     </div>
 
                     <div class="col-md-6 col-sm-6">
-                        {!! Form::label('height', 'Caida') !!}
+                        {!! Form::label('height', 'Salida') !!}
                         {!! Form::number('height', $palilleria->height ?? null, ['class'=>'form-control', "step"=>0.1]) !!}
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                 <br>
                 <div class="form-row">
                     <div class="col-md-6 text-left">
-                        <a href="{{ route('curtain.model', $order_id) }}" class="btn btn-danger">Anterior</a>
+                        <a href="{{ route('palilleria.model', $order_id) }}" class="btn btn-danger">Anterior</a>
                     </div>
                     <div class="col-md-6 text-right">
                         {!! Form::submit('Siguiente', ['class'=>'btn btn-primary', $order_id]) !!}

@@ -14,6 +14,11 @@
                   <div class="card-body">
                       <div class="form-row float-right">
                           @if($order->activity == 'Pedido')
+
+                                  <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#authorizeModal" id="authorize_order_modal">
+                                      Autorizar y enviar a producción
+                                  </button>
+
                           <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#fileModal" id="file_order_modal">
                               Agregar comprobante
                           </button>
@@ -31,6 +36,9 @@
                                       Proyecto
                                   </th>
                                   <th>
+                                      Usuario
+                                  </th>
+                                  <th>
                                       Actividad
                                   </th>
                                   <th>
@@ -46,6 +54,7 @@
                               <tbody>
                               <tr>
                                   <td>{{$order->project}}</td>
+                                  <td>{{$order->user->name}}</td>
                                   <td>{{$order->activity}}</td>
                                   <td>{{$order->discount}}%</td>
                                   <td class="text-right">${{number_format($order->total, 2)}}</td>
@@ -1257,7 +1266,11 @@
                     <br>
                     <div class="col-12">
                         {!! Form::label('discount', 'Descuento:') !!}
-                        {!! Form::number('discount', null, ['class'=>'form-control', 'step'=>0.1]) !!}
+                        @if($role == 1)
+                            {!! Form::number('discount', null, ['class'=>'form-control', 'step'=>0.1]) !!}
+                        @else
+                            {!! Form::number('discount', null, ['class'=>'form-control', 'step'=>0.1, 'readonly']) !!}
+                        @endif
                     </div>
 
 
@@ -1325,6 +1338,26 @@
                     {!! Form::submit('Eliminar', ['class'=>'btn btn-danger', 'id'=>'delete_order']) !!}
                     {!! Form::close() !!}
 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="authorizeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Autorizar orden</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Autorizar orden y enviar a producción?
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-primary" href="{{route('orders.production', $order->id)}}" data-original-title="" title="">
+                        Autorizar
+                    </a>
                 </div>
             </div>
         </div>

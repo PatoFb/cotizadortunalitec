@@ -23,6 +23,10 @@ class Palilleria extends Model
         return $this->belongsTo(VoiceControl::class);
     }
 
+    public function sensor() {
+        return $this->belongsTo(Sensor::class);
+    }
+
     public function mechanism() {
         return $this->belongsTo(CurtainMechanism::class);
     }

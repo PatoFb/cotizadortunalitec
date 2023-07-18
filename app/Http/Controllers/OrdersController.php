@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\View\View;
 
 class OrdersController extends Controller
 {
@@ -110,12 +111,14 @@ class OrdersController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function show($id)
     {
         $order = Order::findOrFail($id);
-        return view('orders.show', compact('order'));
+        $user = Auth::user();
+        $role = $user->role_id;
+        return view('orders.show', compact('order', 'role'));
     }
 
     public function details($id)

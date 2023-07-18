@@ -15,7 +15,7 @@
                 {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\PalilleriasController@addCoverPost', $order_id]]) !!}
 
                 <div class="form-row">
-                    <div class="col-md-6 col-sm-12" id="coverForm">
+                    <div class="col-md-6 col-sm-12" id="coverFormP">
 
                         <select class="form-control" name="cover_id" id="cover_id">
                             @foreach($cov as $cover)
@@ -23,7 +23,7 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="col-md-6 col-sm-12" id="coverDynamic">
+                    <div class="col-md-6 col-sm-12" id="coverDynamicP">
 
                     </div>
                 </div>

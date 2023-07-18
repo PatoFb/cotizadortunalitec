@@ -96,6 +96,8 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('curtains/review/{id}', 'App\Http\Controllers\CurtainsController@review')->name('curtain.review');
     Route::post('curtains/review/{id}', 'App\Http\Controllers\CurtainsController@reviewPost')->name('curtain.review.post');
 
+    Route::post('curtains/fetch/cover', 'App\Http\Controllers\CurtainsController@fetchCover')->name('curtain.fetch.cover');
+
     Route::get('palillerias/model/{id}', 'App\Http\Controllers\PalilleriasController@addModel')->name('palilleria.model');
     Route::post('palillerias/model/{id}', 'App\Http\Controllers\PalilleriasController@addModelPost')->name('palilleria.model.post');
 
@@ -111,7 +113,7 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('palillerias/review/{id}', 'App\Http\Controllers\PalilleriasController@review')->name('palilleria.review');
     Route::post('palillerias/review/{id}', 'App\Http\Controllers\PalilleriasController@reviewPost')->name('palilleria.review.post');
 
-    Route::post('curtains/fetch/cover', 'App\Http\Controllers\CurtainsController@fetchCover')->name('curtain.fetch.cover');
+    Route::post('palillerias/fetch/cover', 'App\Http\Controllers\PalilleriasController@fetchCover')->name('palilleria.fetch.cover');
 
     Route::resource('orders', 'App\Http\Controllers\OrdersController');
     Route::resource('curtains', 'App\Http\Controllers\CurtainsController');

@@ -558,7 +558,7 @@ class PalilleriasController extends Controller
         $order_id = $id;
         $models = PalilleriaModel::all();
         $palilleria = $request->session()->get('palilleria');
-        return view('palilleria.model', compact('order_id', 'models', 'palilleria'));
+        return view('palillerias.model', compact('order_id', 'models', 'palilleria'));
     }
 
     /**
@@ -690,8 +690,9 @@ class PalilleriasController extends Controller
         $reinforcements = Reinforcement::all();
         $sensors = Sensor::where('type', 'P')->get();
         $voices = VoiceControl::all();
+        $controls = CurtainControl::all();
         $palilleria = $request->session()->get('palilleria');
-        return view('palillerias.features', compact('order_id', 'palilleria', 'sensors', 'voices', 'reinforcements'));
+        return view('palillerias.features', compact('order_id', 'palilleria', 'sensors', 'voices', 'reinforcements', 'controls'));
     }
 
     /**
@@ -899,6 +900,95 @@ class PalilleriasController extends Controller
         $order->save();
         $request->session()->forget('palilleria');
         return redirect()->route('orders.show', $order_id);
+    }
+
+    public function fetchCover(Request $request){
+        $value = $request->get('cover_id');
+        $palilleria = $request->session()->get('palilleria');
+        $cover = Cover::findOrFail($value);
+        $width = $palilleria['width'];
+        $height = $palilleria['height'];
+        if($cover->roll_width == 1.16 || $cover->roll_width == 1.2) {
+            $useful_subrolls = 2;
+        } elseif ($cover->roll_width == 1.52 || $cover->roll_width == 1.77) {
+            $useful_subrolls = 3;
+        } elseif ($cover->roll_width == 2.67 || $cover->roll_width == 3.04) {
+            $useful_subrolls = 5;
+        } elseif ($cover->roll_width == 2.5) {
+            $useful_subrolls = 4;
+        } else {
+            $useful_subrolls = 6;
+        }
+
+
+        if($cover->roll_width == 1.16 || $cover->roll_width == 1.2 || $cover->roll_width == 3.2 || $cover->roll_width == 1.77) {
+            $factor = 0.45;
+        } else {
+            $factor = 0.4;
+        }
+
+        $sub_rolls = ceil($height/$factor);
+        $full_rolls = ceil($sub_rolls/$useful_subrolls);
+        $measure = $height + 0.07;
+
+        if($cover->unions == 'Verticales') {
+            //Calculates number of fabric needed for pricing
+            $total_fabric = $measure * $full_rolls;
+            echo "<div class='col-12'>
+                <h4>Detalles de cubierta</h4>
+               </div>
+                <div class='row'>
+                <div class='col-md-6 col-sm-12'>
+                   <img src=".asset('storage')."/images/".$cover->photo." style='width: 100%;'>
+              </div>
+              <div class='col-md-6 col-sm-12'>
+                   <h7 style='color: grey;'><strong>$cover->name</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Ancho de rollo: <strong>$cover->roll_width mts</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Uniones: <strong>$cover->unions</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Medida de lienzos: <strong>$measure mts</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Número de sublienzos: <strong>$sub_rolls</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Número de lienzos: <strong>$full_rolls</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Total de textil: <strong>$total_fabric mts</strong></h7>
+              </div>
+                </div>
+              ";
+            //Calculates total pricing of fabric plus handiwork plus IVA
+        } else {
+            $range = RollWidth::where('width', $cover->roll_width)->where('meters', $height)->value('range');
+            $num_lienzos = Complement::where('range', $range)->value('complete');
+            $complement = Complement::where('range', $range)->value('complements');
+            $total_fabric = $num_lienzos * $width;
+            echo "<div class='col-12'>
+                <h4>Detalles de cubierta</h4>
+               </div>
+                <div class='row'>
+                <div class='col-md-6 col-sm-12'>
+                   <img src=".asset('storage')."/images/".$cover->photo." style='width: 100%;'>
+              </div>
+              <div class='col-md-6 col-sm-12'>
+                   <h7 style='color: grey;'><strong>$cover->name</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Ancho de rollo: <strong>$cover->roll_width mts</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Uniones: <strong>$cover->unions</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Número de lienzos: <strong>$num_lienzos</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Medida de lienzos: <strong>$measure mts</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Complementos: <strong>$complement</strong></h7>
+                   <br>
+                   <h7 style='color: grey;'>Total de textil: <strong>$total_fabric mts</strong></h7>
+              </div>
+                </div>
+              ";
+        }
     }
 
     /**
