@@ -180,7 +180,7 @@
             });
         </script>
         <script>
-            $('.dynamic2').on('input', function (event) {
+            $('.dynamicPro').on('input', function (event) {
                 event.preventDefault();
                 if($(this).val() != '') {
                     var select = $(this).attr("id");

@@ -63,6 +63,9 @@ class Toldo extends Model
 'bambalina',
 'voice_id',
         'model_id',
-        'handle_id'
+        'handle_id',
+        'handle_quantity',
+        'voice_quantity',
+        'sensor_quantity',
     ];
 }

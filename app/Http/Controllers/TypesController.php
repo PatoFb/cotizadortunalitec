@@ -56,7 +56,7 @@ class TypesController extends Controller
                 return redirect()->route('palilleria.model', $order_id);
                 break;
             case 4:
-                return redirect()->route('toldo.add', $order_id);
+                return redirect()->route('toldo.model', $order_id);
                 break;
             default:
                 return redirect()->route('orders.type', $order_id)->withStatus(__('Elija un producto válido'));

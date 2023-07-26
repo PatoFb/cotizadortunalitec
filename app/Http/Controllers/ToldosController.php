@@ -404,14 +404,24 @@ class ToldosController extends Controller
 
     public function fetchProjection(Request $request)
     {
-        $select = $request->get('select');
         $value = $request->get('value');
+        $ceiledWidth = ceil($value);
+        $diff = $ceiledWidth - $value;
+        if ($diff < 0.5 && $diff != 0) {
+            $newWidth = $ceiledWidth - 0.5;
+        } else if ($diff > 0.5 && $diff != 0) {
+            $newWidth = $ceiledWidth;
+        } else {
+            $newWidth = $value;
+        }
+        $toldo = $request->session()->get('toldo');
         $dependent = $request->get('dependent2');
-        $data = SistemaToldo::where($select, $value)->groupBy($dependent)->get();
+        $data = SistemaToldo::where('modelo_toldo_id', $toldo->model_id)->where('width', $newWidth)->groupBy('projection')->get();
         $output = '<option value="">Seleccionar opcion</option>';
         foreach($data as $row){
-            $output .= '<option value="'.$row->$dependent.'">'.$row->$dependent.'</option>';
+            $output .= '<option value="'.$row->projection.'">'.$row->projection.'</option>';
         }
+        Log::info($output);
         echo $output;
     }
 
@@ -712,7 +722,7 @@ class ToldosController extends Controller
         ]);
         $toldo = $request->session()->get('toldo');
         $toldo->fill($validatedData);
-        $toldo->session()->put('toldo', $toldo);
+        $request->session()->put('toldo', $toldo);
         return redirect()->route('toldo.cover', $order_id);
     }
 
