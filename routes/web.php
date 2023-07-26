@@ -115,6 +115,23 @@ Route::group(['middleware' => 'user'], function () {
 
     Route::post('palillerias/fetch/cover', 'App\Http\Controllers\PalilleriasController@fetchCover')->name('palilleria.fetch.cover');
 
+    Route::get('toldos/model/{id}', 'App\Http\Controllers\ToldosController@addModel')->name('toldo.model');
+    Route::post('toldos/model/{id}', 'App\Http\Controllers\ToldosController@addModelPost')->name('toldo.model.post');
+
+    Route::get('toldos/cover/{id}', 'App\Http\Controllers\ToldosController@addCover')->name('toldo.cover');
+    Route::post('toldos/cover/{id}', 'App\Http\Controllers\ToldosController@addCoverPost')->name('toldo.cover.post');
+
+    Route::get('toldos/data/{id}', 'App\Http\Controllers\ToldosController@addDat')->name('toldo.data');
+    Route::post('toldos/data/{id}', 'App\Http\Controllers\ToldosController@addDataPost')->name('toldo.data.post');
+
+    Route::get('toldos/features/{id}', 'App\Http\Controllers\ToldosController@addFeatures')->name('toldo.features');
+    Route::post('toldos/features/{id}', 'App\Http\Controllers\ToldosController@addFeaturesPost')->name('toldo.features.post');
+
+    Route::get('toldos/review/{id}', 'App\Http\Controllers\ToldosController@review')->name('toldo.review');
+    Route::post('toldos/review/{id}', 'App\Http\Controllers\ToldosController@reviewPost')->name('toldo.review.post');
+
+    Route::post('toldos/fetch/cover', 'App\Http\Controllers\ToldosController@fetchCover')->name('toldo.fetch.cover');
+
     Route::resource('orders', 'App\Http\Controllers\OrdersController');
     Route::resource('curtains', 'App\Http\Controllers\CurtainsController');
     Route::resource('screeny', 'App\Http\Controllers\ScreenyCurtainsController');
