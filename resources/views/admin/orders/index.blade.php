@@ -10,10 +10,10 @@
             <div class="card-header card-header-primary">
                 <ul class="nav nav-tabs" id="orders-list" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#pedidos" role="tab" aria-controls="pedidos" aria-selected="true">Pedidos</a>
+                        <a class="nav-link active" href="#ofertas" role="tab" aria-controls="ofertas" aria-selected="true">Ofertas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#ofertas" role="tab" aria-controls="ofertas" aria-selected="false">Ofertas</a>
+                        <a class="nav-link" href="#pedidos" role="tab" aria-controls="pedidos" aria-selected="false">Pedidos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#produccion" role="tab" aria-controls="produccion" aria-selected="false">Producción</a>
@@ -23,7 +23,7 @@
             </div>
             <div class="card-body">
                 <div class="tab-content mt-3">
-                    <div class="tab-pane active" id="pedidos" role="tabpanel" aria-labelledby="pedidos-tab">
+                    <div class="tab-pane" id="pedidos" role="tabpanel" aria-labelledby="pedidos-tab">
               <div class="table-responsive">
                 <table class="table">
                   <thead class=" text-primary">
@@ -76,7 +76,7 @@
                 </table>
               </div>
                     </div>
-                    <div class="tab-pane" id="ofertas" role="tabpanel" aria-labelledby="ofertas-tab">
+                    <div class="tab-pane active" id="ofertas" role="tabpanel" aria-labelledby="ofertas-tab">
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class=" text-primary">

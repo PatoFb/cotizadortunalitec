@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'orders', 'titlePage' => __('Características')])
+@extends('layouts.app', ['activePage' => 'orders', 'titlePage' => __('Cortina')])
 
 @section('content')
 <div class="content">
@@ -8,7 +8,7 @@
       <div class="col-md-12">
           <div class="card">
             <div class="card-header card-header-primary">
-              <h4 class="card-title">Características de cortina</h4>
+              <h4 class="card-title">Características de cortina (Paso 6 de 7)</h4>
             </div>
             <div class="card-body">
                 {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\CurtainsController@addFeaturesPost', $order_id]]) !!}
@@ -43,22 +43,6 @@
                     </div>
                 </div>
 
-                <div class="form-row">
-                    <div class="col-md-9 col-sm-9">
-                        {!! Form::label('sensor_id', 'Sensores:' )  !!}
-                        <select class="form-control" name="sensor_id" id="sensor_id" >
-                            @foreach($sensors as $sensor)
-                                <option value="{{$sensor->id}}" {{{ (isset($curtain->sensor_id) && $curtain->sensor_id == $sensor->id) ? "selected=\"selected\"" : "" }}}>{{$sensor->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="col-md-3 col-sm-3">
-                        {!! Form::label('sensor_quantity', 'Cantidad:') !!}
-                        {!! Form::number('sensor_quantity', $curtain->sensor_quantity ?? 0 , ['class'=>'form-control', 'id'=>'sensor_quantity']) !!}
-                    </div>
-
-                </div>
                 <div class="form-row">
                     <div class="col-md-9 col-sm-9">
                         {!! Form::label('voice_id', 'Voz:' )  !!}

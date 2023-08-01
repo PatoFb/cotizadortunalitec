@@ -12,10 +12,6 @@ class Sensor extends Model
 
     }
 
-    public function curtains() {
-        return $this->hasMany(Curtain::class);
-    }
-
     public function palillerias() {
         return $this->hasMany(Palilleria::class);
     }

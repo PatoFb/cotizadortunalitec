@@ -91,7 +91,8 @@ class RegisterController extends Controller
                 'zip_code' => $data['zip_code'],
                 'line1' => $data['line1'],
                 'line2' => $data['line2'],
-                'reference' => $data['reference']
+                'reference' => $data['reference'],
+                'role_id' => 3
             ]);
 
     }

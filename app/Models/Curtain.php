@@ -39,10 +39,6 @@ class Curtain extends Model
         return $this->belongsTo(VoiceControl::class);
     }
 
-    public function sensor() {
-        return $this->belongsTo(Sensor::class);
-    }
-
     public function system() {
         return $this->belongsTo(SystemCurtain::class);
     }
@@ -63,8 +59,6 @@ class Curtain extends Model
         'mechanism_side',
         'view_type',
         'voice_id',
-        'sensor_id',
-        'sensor_quantity',
         'voice_quantity',
         'handle_quantity',
         'control_quantity'

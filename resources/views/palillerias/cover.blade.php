@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'orders', 'titlePage' => __('Cubiertas')])
+@extends('layouts.app', ['activePage' => 'orders', 'titlePage' => __('Palilleria')])
 
 @section('content')
 <div class="content">
@@ -8,7 +8,7 @@
       <div class="col-md-12">
           <div class="card">
             <div class="card-header card-header-primary">
-              <h4 class="card-title">Selecciona una cubierta</h4>
+              <h4 class="card-title">Selecciona una cubierta (Paso 5 de 7)</h4>
               {{--<p class="card-category"> Here you can manage users</p>--}}
             </div>
             <div class="card-body">
@@ -17,11 +17,7 @@
                 <div class="form-row">
                     <div class="col-md-6 col-sm-12" id="coverFormP">
 
-                        <select class="form-control" name="cover_id" id="cover_id">
-                            @foreach($cov as $cover)
-                                <option value="{{$cover->id}}" {{{ (isset($curtain->cover_id) && $curtain->cover_id == $cover->id) ? "selected=\"selected\"" : "" }}}>{{$cover->name}}</option>
-                            @endforeach
-                        </select>
+                        {!! Form::number('cover_id', $palilleria->cover_id ?? null, ['class'=>'form-control', "id"=>"cover_id"]) !!}
                     </div>
                     <div class="col-md-6 col-sm-12" id="coverDynamicP">
 

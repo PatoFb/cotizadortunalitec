@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'orders', 'titlePage' => __('Datos de cortina')])
+@extends('layouts.app', ['activePage' => 'orders', 'titlePage' => __('Palilleria')])
 
 @section('content')
 <div class="content">
@@ -8,7 +8,7 @@
       <div class="col-md-12">
           <div class="card">
             <div class="card-header card-header-primary">
-              <h4 class="card-title">Especificaciones</h4>
+              <h4 class="card-title">Especificaciones (Paso 4 de 7)</h4>
               {{--<p class="card-category"> Here you can manage users</p>--}}
             </div>
             <div class="card-body">

@@ -6,11 +6,29 @@
   <component name="ChangeListManager">
     <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ToldosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ToldosController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TypesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TypesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Toldo.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Toldo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Curtain.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Curtain.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Sensor.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Sensor.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/orders/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/orders/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/contact.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contact.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/curtains/cover.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/curtains/cover.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/curtains/data.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/curtains/data.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/curtains/features.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/curtains/features.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/curtains/model.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/curtains/model.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/curtains/review.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/curtains/review.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/orders/new.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/orders/new.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/palillerias/cover.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/palillerias/cover.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/palillerias/data.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/palillerias/data.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/palillerias/features.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/palillerias/features.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/palillerias/model.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/palillerias/model.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/palillerias/review.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/palillerias/review.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/products/type.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/products/type.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/toldos/cover.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/toldos/cover.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/toldos/data.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/toldos/data.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/toldos/features.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/toldos/features.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/toldos/model.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/toldos/model.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/toldos/review.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/toldos/review.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -334,7 +352,9 @@
       <workItem from="1689961689406" duration="2283000" />
       <workItem from="1690235811771" duration="304000" />
       <workItem from="1690326370503" duration="4762000" />
-      <workItem from="1690383935829" duration="4935000" />
+      <workItem from="1690383935829" duration="6679000" />
+      <workItem from="1690816298314" duration="2406000" />
+      <workItem from="1690903824275" duration="5336000" />
     </task>
     <servers />
   </component>

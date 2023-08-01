@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'orders', 'titlePage' => __('Características')])
+@extends('layouts.app', ['activePage' => 'orders', 'titlePage' => __('Toldo')])
 
 @section('content')
 <div class="content">
@@ -8,7 +8,7 @@
       <div class="col-md-12">
           <div class="card">
             <div class="card-header card-header-primary">
-              <h4 class="card-title">Características de cortina</h4>
+              <h4 class="card-title">Características (Paso 6 de 7)</h4>
             </div>
             <div class="card-body">
                 {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\ToldosController@addFeaturesPost', $order_id]]) !!}

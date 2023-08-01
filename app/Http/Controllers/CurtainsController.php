@@ -688,10 +688,9 @@ class CurtainsController extends Controller
         $handles = CurtainHandle::all();
         $canopies = CurtainCanopy::all();
         $controls = CurtainControl::all();
-        $sensors = Sensor::all();
         $voices = VoiceControl::all();
         $curtain = $request->session()->get('curtain');
-        return view('curtains.features', compact('order_id', 'curtain', 'handles', 'canopies', 'controls', 'sensors', 'voices'));
+        return view('curtains.features', compact('order_id', 'curtain', 'handles', 'canopies', 'controls', 'voices'));
     }
 
     /**
@@ -714,11 +713,9 @@ class CurtainsController extends Controller
             'handle_id' => 'required',
             'canopy_id' => 'required',
             'control_id' => 'required',
-            'sensor_id' => 'required',
             'voice_id' => 'required',
             'control_quantity' => 'required',
             'handle_quantity' => 'required',
-            'sensor_quantity' => 'required',
             'voice_quantity' => 'required'
         ]);
         $curtain = $request->session()->get('curtain');
@@ -735,9 +732,6 @@ class CurtainsController extends Controller
 
         $mechanism_id = $curtain['mechanism_id'];
 
-        $sensor_id = $curtain['sensor_id'];
-        $sensor = Sensor::find($sensor_id);
-
         $voice_id = $curtain['voice_id'];
         $voice = VoiceControl::find($voice_id);
 
@@ -751,13 +745,11 @@ class CurtainsController extends Controller
         $quantity = $curtain['quantity'];
         $cquant = $curtain['control_quantity'];
         $vquant = $curtain['voice_quantity'];
-        $squant = $curtain['sensor_quantity'];
         $hquant = $curtain['handle_quantity'];
 
         //Control plus IVA
         $control_total = $control->price * $cquant * 1.16;
         $voice_total = $voice->price * $vquant * 1.16;
-        $sensor_total = $sensor->price * $squant * 1.16;
         $handle_total = $handle->price * $hquant * 1.16;
 
         $measure = $height + 0.4;
@@ -817,11 +809,11 @@ class CurtainsController extends Controller
                 $curtain['price'] = (((((($sprice+$total_cover)*1.16)  + $accesories) / (1-$utility)) * $quantity) * (1-($user->discount/100)));
                 break;
             case 2:
-                $accesories = $control_total + $sensor_total + $voice_total + $total_canopy;
+                $accesories = $control_total + $voice_total + $total_canopy;
                 $curtain['price'] = (((((($sprice+6321.96+$total_cover)*1.16) + $accesories) / (1-$utility)) * $quantity) * (1-($user->discount/100)));
                 break;
             case 3:
-                $accesories = $control_total + $handle_total + $sensor_total + $voice_total + $total_canopy;
+                $accesories = $control_total + $handle_total + $voice_total + $total_canopy;
                 $curtain['price'] = (((((($sprice+8133.75+$total_cover)*1.16)  + $accesories) / (1-$utility)) * $quantity) * (1-($user->discount/100)));
                 break;
             case 4:
