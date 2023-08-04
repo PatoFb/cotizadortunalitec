@@ -18,9 +18,13 @@
                     <div class="col-md-9 col-sm-9">
                         {!! Form::label('handle_id', 'Manivela (Medida en metros):' )  !!}
                         <select class="form-control" name="handle_id" id="handle_id" >
-                            @foreach($handles as $handle)
-                                <option value="{{$handle->id}}" {{{ (isset($curtain->handle_id) && $curtain->handle_id == $handle->id) ? "selected=\"selected\"" : "" }}}>{{$handle->measure}}</option>
-                            @endforeach
+                            @if(isset($handles))
+                                @foreach($handles as $handle)
+                                    <option value="{{$handle->id}}" {{{ (isset($curtain->handle_id) && $curtain->handle_id == $handle->id) ? "selected=\"selected\"" : "" }}}>{{$handle->measure}}</option>
+                                @endforeach
+                            @else
+                                <option value="">No aplica</option>
+                            @endif
                         </select>
                     </div>
                     <div class="col-md-3 col-sm-3">
@@ -32,9 +36,13 @@
                     <div class="col-md-9 col-sm-9">
                         {!! Form::label('control_id', 'Control:' )  !!}
                         <select class="form-control" name="control_id" id="control_id">
-                            @foreach($controls as $control)
-                                <option value="{{$control->id}}" {{{ (isset($curtain->control_id) && $curtain->control_id == $control->id) ? "selected=\"selected\"" : "" }}}>{{$control->name}}</option>
-                            @endforeach
+                            @if(isset($controls))
+                                @foreach($controls as $control)
+                                    <option value="{{$control->id}}" {{{ (isset($curtain->control_id) && $curtain->control_id == $control->id) ? "selected=\"selected\"" : "" }}}>{{$control->name}}</option>
+                                @endforeach
+                            @else
+                                <option value="">No aplica</option>
+                            @endif
                         </select>
                     </div>
                     <div class="col-md-3 col-sm-3">
@@ -47,9 +55,13 @@
                     <div class="col-md-9 col-sm-9">
                         {!! Form::label('voice_id', 'Voz:' )  !!}
                         <select class="form-control" name="voice_id" id="voice_id" >
-                            @foreach($voices as $voice)
-                                <option value="{{$voice->id}}" {{{ (isset($curtain->voice_id) && $curtain->voice_id == $voice->id) ? "selected=\"selected\"" : "" }}}>{{$voice->name}}</option>
-                            @endforeach
+                            @if(isset($voices))
+                                @foreach($voices as $voice)
+                                    <option value="{{$voice->id}}" {{{ (isset($curtain->voice_id) && $curtain->voice_id == $voice->id) ? "selected=\"selected\"" : "" }}}>{{$voice->name}}</option>
+                                @endforeach
+                            @else
+                                <option value="">No aplica</option>
+                            @endif
                         </select>
                     </div>
 

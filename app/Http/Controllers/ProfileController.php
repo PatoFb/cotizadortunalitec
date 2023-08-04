@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\PasswordRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
@@ -28,7 +29,20 @@ class ProfileController extends Controller
     {
         auth()->user()->update($request->all());
 
-        return back()->withStatus(__('Profile successfully updated.'));
+        return back()->withStatus(__('Perfil actualizado correctamente.'));
+    }
+
+    /**
+     * Update the address
+     *
+     * @param  \App\Http\Requests\ProfileRequest  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function address(Request $request)
+    {
+        auth()->user()->update($request->all());
+
+        return back()->withStatus(__('Dirección actualizada correctamente.'));
     }
 
     /**
@@ -41,6 +55,6 @@ class ProfileController extends Controller
     {
         auth()->user()->update(['password' => Hash::make($request->get('password'))]);
 
-        return back()->withStatusPassword(__('Password successfully updated.'));
+        return back()->withStatusPassword(__('Constraseña actualizada correctamente.'));
     }
 }

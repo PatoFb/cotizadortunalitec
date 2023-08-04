@@ -80,6 +80,7 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
     Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
     Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
+    Route::put('profile/address', ['as' => 'profile.address', 'uses' => 'App\Http\Controllers\ProfileController@address']);
 
     Route::get('curtains/model/{id}', 'App\Http\Controllers\CurtainsController@addModel')->name('curtain.model');
     Route::post('curtains/model/{id}', 'App\Http\Controllers\CurtainsController@addModelPost')->name('curtain.model.post');

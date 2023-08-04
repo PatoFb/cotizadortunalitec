@@ -49,13 +49,12 @@ class TypesController extends Controller
                 $request->session()->forget('curtain');
                 return redirect()->route('curtain.model', $order_id);
                 break;
-            case 2:
-                return redirect()->route('screeny.add', $order_id);
-                break;
             case 3:
+                $request->session()->forget('palilleria');
                 return redirect()->route('palilleria.model', $order_id);
                 break;
             case 4:
+                $request->session()->forget('toldo');
                 return redirect()->route('toldo.model', $order_id);
                 break;
             default:

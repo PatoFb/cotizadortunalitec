@@ -829,9 +829,9 @@ class ToldosController extends Controller
 
         $ceiledWidth = ceil($width);
         $diff = $ceiledWidth - $width;
-        if ($diff < 0.5 && $diff != 0) {
+        if ($diff > 0.5 && $diff != 0) {
             $newWidth = $ceiledWidth - 0.5;
-        } else if ($diff > 0.5 && $diff != 0) {
+        } else if ($diff < 0.5 && $diff != 0) {
             $newWidth = $ceiledWidth;
         } else {
             $newWidth = $width;

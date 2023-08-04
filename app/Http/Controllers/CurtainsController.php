@@ -15,11 +15,13 @@ use App\Models\Order;
 use App\Models\RollWidth;
 use App\Models\Sensor;
 use App\Models\SystemCurtain;
+use App\Models\SystemScreenyCurtain;
 use App\Models\VoiceControl;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 
 class CurtainsController extends Controller
 {
@@ -582,11 +584,11 @@ class CurtainsController extends Controller
             $curtain->fill($validatedData);
             $request->session()->put('curtain', $curtain);
         }else{
-            $curtain = $request->session()->get('curtain');
+            $curtain = Session::get('curtain');
             $curtain->fill($validatedData);
-            $request->session()->put('curtain', $curtain);
+            Session::put('curtain', $curtain);
         }
-        Log::info($request->session()->get('curtain'));
+        Log::info(Session::get('curtain'));
         return redirect()->route('curtain.data', $order_id);
     }
 
@@ -602,8 +604,7 @@ class CurtainsController extends Controller
     {
         $order_id = $id;
         $cov = Cover::all();
-        $curtain = $request->session()->get('curtain');
-        Log::info($request->session()->get('curtain'));
+        $curtain = Session::get('curtain');
         return view('curtains.cover', compact('order_id', 'cov', 'curtain'));
     }
 
@@ -622,11 +623,10 @@ class CurtainsController extends Controller
         $validatedData = $request->validate([
             'cover_id' => 'required',
         ]);
-        $curtain = $request->session()->get('curtain');
-        Log::info($request->session()->get('curtain'));
+        $curtain = Session::get('curtain');
         $curtain->cover_id = $validatedData['cover_id'];
-        $request->session()->put('curtain', $curtain);
-        Log::info($request->session()->get('curtain'));
+        Session::put('curtain', $curtain);
+        Log::info(Session::get('curtain'));
         return redirect()->route('curtain.features', $order_id);
     }
 
@@ -643,7 +643,6 @@ class CurtainsController extends Controller
     {
         $order_id = $id;
         $curtain = $request->session()->get('curtain');
-        Log::info($request->session()->get('curtain'));
         $mechs = CurtainMechanism::all();
         return view('curtains.data', compact('order_id', 'curtain', 'mechs'));
     }
@@ -667,7 +666,13 @@ class CurtainsController extends Controller
         ]);
         $curtain = $request->session()->get('curtain');
         $curtain->fill($validatedData);
-        $request->session()->put('curtain', $curtain);
+        if($curtain['mechanism_id'] == 1){
+            $curtain->control_id = 9999;
+            $curtain->voice_id = 9999;
+        } elseif ($curtain['mechanism_id'] == 2) {
+            $curtain->handle_id = 9999;
+        }
+        Session::put('curtain', $curtain);
         return redirect()->route('curtain.cover', $order_id);
     }
 
@@ -685,11 +690,25 @@ class CurtainsController extends Controller
     public function addFeatures(Request $request, $id)
     {
         $order_id = $id;
-        $handles = CurtainHandle::all();
+        $curtain = Session::get('curtain');
+        if($curtain->mechanism_id == 1){
+            $controls = CurtainControl::where('type', 'Manual')->get();
+            $voices = VoiceControl::where('type', 'Manual')->get();
+            $handles = CurtainHandle::all();
+        } elseif ($curtain->mechanism_id == 4) {
+            $controls = CurtainControl::where('type', 'Tube')->get();
+            $voices = VoiceControl::where('type', 'Tube')->get();
+            $handles = CurtainHandle::all();
+        } else {
+            if($curtain->mechanism_id == 3){
+                $handles = CurtainHandle::all();
+            } else {
+                $handles = CurtainHandle::where('id', 9999)->get();
+            }
+            $controls = CurtainControl::where('type', 'Somfy')->get();
+            $voices = VoiceControl::where('type', 'Somfy')->get();
+        }
         $canopies = CurtainCanopy::all();
-        $controls = CurtainControl::all();
-        $voices = VoiceControl::all();
-        $curtain = $request->session()->get('curtain');
         return view('curtains.features', compact('order_id', 'curtain', 'handles', 'canopies', 'controls', 'voices'));
     }
 
@@ -718,9 +737,8 @@ class CurtainsController extends Controller
             'handle_quantity' => 'required',
             'voice_quantity' => 'required'
         ]);
-        $curtain = $request->session()->get('curtain');
+        $curtain = Session::get('curtain');
         $curtain->fill($validatedData);
-
         $cover_id = $curtain['cover_id'];
         $cover = Cover::find($cover_id);
 
@@ -779,15 +797,32 @@ class CurtainsController extends Controller
 
         $ceiledWidth = ceil($width);
         $diff = $ceiledWidth - $width;
-        if ($diff < 0.5 && $diff != 0) {
+        if ($diff > 0.5 && $diff != 0) {
             $newWidth = $ceiledWidth - 0.5;
-        } else if ($diff > 0.5 && $diff != 0) {
+        } else if ($diff < 0.5 && $diff != 0) {
             $newWidth = $ceiledWidth;
         } else {
             $newWidth = $width;
         }
 
-        $system = SystemCurtain::where('model_id', $model_id)->where('width', $newWidth)->first();
+        if($model_id > 3 && $model_id < 7){
+            $ceiledHeight = ceil($height);
+            if($height <= 1.5) {
+                $diffh = $ceiledHeight - $height;
+                if ($diffh > 0.5 && $diffh != 0) {
+                    $newHeight = $ceiledHeight - 0.5;
+                } else if ($diffh < 0.5 && $diffh != 0) {
+                    $newHeight = $ceiledHeight;
+                } else {
+                    $newHeight = $height;
+                }
+            } else {
+                $newHeight = $ceiledHeight;
+            }
+            $system = SystemScreenyCurtain::where('model_id', $model_id)->where('width', $width)->where('height', $newHeight)->first();
+        } else{
+            $system = SystemCurtain::where('model_id', $model_id)->where('width', $newWidth)->first();
+        }
         $sprice = $system->price;
 
         //If user chooses canopy, it will calculate the price by width plus IVA
@@ -806,25 +841,26 @@ class CurtainsController extends Controller
         switch($mechanism_id) {
             case 1:
                 $accesories = $handle_total + $total_canopy;
-                $curtain['price'] = (((((($sprice+$total_cover)*1.16)  + $accesories) / (1-$utility)) * $quantity) * (1-($user->discount/100)));
+                $curtain->price = (((((($sprice+$total_cover)*1.16)  + $accesories) / (1-$utility)) * $quantity) * (1-($user->discount/100)));
                 break;
             case 2:
                 $accesories = $control_total + $voice_total + $total_canopy;
-                $curtain['price'] = (((((($sprice+6321.96+$total_cover)*1.16) + $accesories) / (1-$utility)) * $quantity) * (1-($user->discount/100)));
+                $curtain->price = (((((($sprice+6321.96+$total_cover)*1.16) + $accesories) / (1-$utility)) * $quantity) * (1-($user->discount/100)));
                 break;
             case 3:
                 $accesories = $control_total + $handle_total + $voice_total + $total_canopy;
-                $curtain['price'] = (((((($sprice+8133.75+$total_cover)*1.16)  + $accesories) / (1-$utility)) * $quantity) * (1-($user->discount/100)));
+                $curtain->price = (((((($sprice+8133.75+$total_cover)*1.16)  + $accesories) / (1-$utility)) * $quantity) * (1-($user->discount/100)));
                 break;
             case 4:
                 $accesories = $handle_total + $voice_total + $total_canopy + $control_total;
-                $curtain['price'] = (((((($sprice+2258.71+$total_cover)*1.16)  + $accesories) / (1-$utility)) * $quantity) * (1-($user->discount/100)));
+                $curtain->price = (((((($sprice+2258.71+$total_cover)*1.16)  + $accesories) / (1-$utility)) * $quantity) * (1-($user->discount/100)));
                 break;
             default:
-                $curtain['price'] = 0;
+                $curtain->price = 0;
                 break;
         }
-        $request->session()->put('curtain', $curtain);
+        Session::put('curtain', $curtain);
+        Log::info(Session::get('curtain'));
         return redirect()->route('curtain.review', $order_id);
     }
 
@@ -839,7 +875,7 @@ class CurtainsController extends Controller
     public function review(Request $request, $id)
     {
         $order_id = $id;
-        $curtain = $request->session()->get('curtain');
+        $curtain = Session::get('curtain');
         return view('curtains.review', compact('order_id', 'curtain'));
     }
 
@@ -863,13 +899,13 @@ class CurtainsController extends Controller
     public function reviewPost(Request $request, $id)
     {
         $order_id = $id;
-        $curtain = $request->session()->get('curtain');
+        $curtain = Session::get('curtain');
         $curtain->save();
         $order = Order::findOrFail($id);
         $order->price = $order->price + $curtain['price'];
         $order->total = $order->total + $curtain['price'];
         $order->save();
-        $request->session()->forget('curtain');
+        Session::forget('curtain');
         return redirect()->route('orders.show', $order_id);
     }
 

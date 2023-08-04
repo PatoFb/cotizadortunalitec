@@ -20,7 +20,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role_id',
         'rfc',
         'cfdi',
         'razon_social',
