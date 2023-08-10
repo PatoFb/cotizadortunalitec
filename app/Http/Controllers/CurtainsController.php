@@ -913,7 +913,6 @@ class CurtainsController extends Controller
      * Delete a curtain from an order and subtract the total price
      *
      * @param $id
-     * @return mixed
      */
     public function fetchControls(Request $request)
     {
