@@ -29,7 +29,11 @@
                     </div>
                     <div class="col-md-3 col-sm-3">
                         {!! Form::label('handle_quantity', 'Cantidad:') !!}
-                        {!! Form::number('handle_quantity', $curtain->handle_quantity ?? 0, ['class'=>'form-control', "step"=>1, "id"=>"handle_quantity"]) !!}
+                        @if($curtain->handle_id == 9999)
+                            {!! Form::number('handle_quantity', 0, ['class'=>'form-control', "step"=>1, "id"=>"handle_quantity", 'readonly']) !!}
+                        @else
+                            {!! Form::number('handle_quantity', $curtain->handle_quantity ?? 0, ['class'=>'form-control', "step"=>1, "id"=>"handle_quantity"]) !!}
+                        @endif
                     </div>
                 </div>
                 <div class="form-row">
@@ -47,7 +51,11 @@
                     </div>
                     <div class="col-md-3 col-sm-3">
                         {!! Form::label('control_quantity', 'Cantidad:') !!}
-                        {!! Form::number('control_quantity', $curtain->control_quantity ?? 0, ['class'=>'form-control', "step"=>1, "id"=>"control_quantity"]) !!}
+                        @if($curtain->control_id == 9999)
+                            {!! Form::number('control_quantity', 0, ['class'=>'form-control', "step"=>1, "id"=>"control_quantity", 'readonly']) !!}
+                        @else
+                            {!! Form::number('control_quantity', $curtain->control_quantity ?? 0, ['class'=>'form-control', "step"=>1, "id"=>"control_quantity"]) !!}
+                        @endif
                     </div>
                 </div>
 
@@ -67,7 +75,11 @@
 
                     <div class="col-md-3 col-sm-3">
                         {!! Form::label('voice_quantity', 'Cantidad:') !!}
-                        {!! Form::number('voice_quantity', $curtain->voice_quantity ?? 0, ['class'=>'form-control', 'id'=>'voice_quantity']) !!}
+                        @if($curtain->voice_id == 9999)
+                            {!! Form::number('voice_quantity', 0, ['class'=>'form-control', 'id'=>'voice_quantity', 'readonly']) !!}
+                        @else
+                            {!! Form::number('voice_quantity', $curtain->voice_quantity ?? 0, ['class'=>'form-control', 'id'=>'voice_quantity']) !!}
+                        @endif
                     </div>
 
                 </div>

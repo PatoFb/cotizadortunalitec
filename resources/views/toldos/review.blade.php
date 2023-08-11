@@ -55,7 +55,7 @@
                                 </td>
                             </tr>
                         @endif
-                        @if($toldo->handle && $toldo->handle_quantity > 0)
+                        @if($toldo->handle_id != 9999 && $toldo->handle_quantity > 0)
                             <tr>
                                 <td class="text-center">
                                     Manivela:
@@ -69,7 +69,7 @@
                                 </td>
                             </tr>
                         @endif
-                        @if($toldo->control && $toldo->control_quantity > 0)
+                        @if($toldo->control_id != 9999 && $toldo->control_quantity > 0)
                             <tr>
                                 <td class="text-center">
                                     Control:
@@ -83,7 +83,7 @@
                                 </td>
                             </tr>
                         @endif
-                        @if($toldo->voice_id && $toldo->voice_quantity > 0)
+                        @if($toldo->voice_id != 9999 && $toldo->voice_quantity > 0)
                             <tr>
                                 <td class="text-center">
                                     Control de voz:
@@ -97,7 +97,7 @@
                                 </td>
                             </tr>
                         @endif
-                        @if($toldo->sensor_id && $toldo->sensor_quantity > 0)
+                        @if($toldo->sensor_id != 9999 && $toldo->sensor_quantity > 0)
                             <tr>
                                 <td class="text-center">
                                     Sensor:

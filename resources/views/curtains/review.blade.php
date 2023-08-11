@@ -45,7 +45,7 @@
                                 </td>
                             </tr>
                         @endif
-                        @if($curtain->handle && $curtain->handle_quantity > 0)
+                        @if($curtain->handle_id != 9999 && $curtain->handle_quantity > 0)
                             <tr>
                                 <td class="text-center">
                                     Manivela:
@@ -59,7 +59,7 @@
                                 </td>
                             </tr>
                         @endif
-                        @if($curtain->control && $curtain->control_quantity > 0)
+                        @if($curtain->control_id != 9999 && $curtain->control_quantity > 0)
                             <tr>
                                 <td class="text-center">
                                     Control:
@@ -73,7 +73,7 @@
                                 </td>
                             </tr>
                         @endif
-                        @if($curtain->voice_id && $curtain->voice_quantity > 0)
+                        @if($curtain->voice_id != 9999 && $curtain->voice_quantity > 0)
                             <tr>
                                 <td class="text-center">
                                     Control de voz:
@@ -84,20 +84,6 @@
                                     <strong>{{$curtain->voice->name}}</strong>
                                     <br>
                                     <strong>{{$curtain->voice_quantity}}</strong>
-                                </td>
-                            </tr>
-                        @endif
-                        @if($curtain->sensor_id && $curtain->sensor_quantity > 0)
-                            <tr>
-                                <td class="text-center">
-                                    Sensor:
-                                    <br>
-                                    Cantidad:
-                                </td>
-                                <td>
-                                    <strong>{{$curtain->sensor->name}}</strong>
-                                    <br>
-                                    <strong>{{$curtain->sensor_quantity}}</strong>
                                 </td>
                             </tr>
                         @endif

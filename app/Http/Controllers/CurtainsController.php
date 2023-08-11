@@ -581,11 +581,11 @@ class CurtainsController extends Controller
         if(empty($request->session()->get('curtain'))){
             $curtain = new Curtain();
             $curtain['order_id'] = $order_id;
-            $curtain->fill($validatedData);
+            $curtain['model_id'] = $validatedData['model_id'];
             $request->session()->put('curtain', $curtain);
         }else{
             $curtain = Session::get('curtain');
-            $curtain->fill($validatedData);
+            $curtain->model_id = $validatedData['model_id'];
             Session::put('curtain', $curtain);
         }
         Log::info(Session::get('curtain'));
@@ -669,8 +669,15 @@ class CurtainsController extends Controller
         if($curtain['mechanism_id'] == 1){
             $curtain->control_id = 9999;
             $curtain->voice_id = 9999;
+            $curtain->handle_id = 1;
         } elseif ($curtain['mechanism_id'] == 2) {
             $curtain->handle_id = 9999;
+            $curtain->control_id = 1;
+            $curtain->voice_id = 1;
+        } else {
+            $curtain->handle_id = 1;
+            $curtain->control_id = 1;
+            $curtain->voice_id = 1;
         }
         Session::put('curtain', $curtain);
         return redirect()->route('curtain.cover', $order_id);
@@ -738,23 +745,26 @@ class CurtainsController extends Controller
             'voice_quantity' => 'required'
         ]);
         $curtain = Session::get('curtain');
+        if($curtain->model){
+            $keys = ['model', 'cover', 'mechanism', 'handle', 'control', 'voice'];
+            foreach ($keys as $key) {
+                unset($curtain[$key]);
+            }
+            Session::forget('curtain');
+        }
         $curtain->fill($validatedData);
-        $cover_id = $curtain['cover_id'];
-        $cover = Cover::find($cover_id);
+
+        $cover = Cover::find($curtain['cover_id']);
 
         $model_id = $curtain['model_id'];
-        $model = CurtainModel::find($model_id);
 
-        $control_id = $curtain['control_id'];
-        $control = CurtainControl::find($control_id);
+        $control = CurtainControl::find($curtain['control_id']);
 
         $mechanism_id = $curtain['mechanism_id'];
 
-        $voice_id = $curtain['voice_id'];
-        $voice = VoiceControl::find($voice_id);
+        $voice = VoiceControl::find($curtain['voice_id']);
 
-        $handle_id = $curtain['handle_id'];
-        $handle = CurtainHandle::find($handle_id);
+        $handle = CurtainHandle::find($curtain['handle_id']);
 
         $canopy = $curtain['canopy_id'];
 
@@ -859,8 +869,7 @@ class CurtainsController extends Controller
                 $curtain->price = 0;
                 break;
         }
-        Session::put('curtain', $curtain);
-        Log::info(Session::get('curtain'));
+        $request->session()->put('curtain', $curtain);
         return redirect()->route('curtain.review', $order_id);
     }
 
@@ -909,113 +918,6 @@ class CurtainsController extends Controller
         return redirect()->route('orders.show', $order_id);
     }
 
-    /**
-     * Delete a curtain from an order and subtract the total price
-     *
-     * @param $id
-     */
-    public function fetchControls(Request $request)
-    {
-        $value = $request->get('value');
-
-        if($value == '4'){
-            $type = 'Tube';
-        } elseif ($value == '1') {
-            $type = "Manual";
-        } else {
-            $type = 'Somfy';
-        }
-        $data = CurtainControl::where('type', $type)->get();
-        $output = '<option value="">Seleccionar control</option>';
-        foreach($data as $row){
-            $output .= '<option value="'.$row->id.'">'.$row->name.'</option>';
-        }
-        echo $output;
-    }
-
-    public function fetchVoices(Request $request)
-    {
-        $value = $request->get('value');
-        if($value == '1'){
-            $type = 'Manual';
-        } elseif ($value == '4') {
-            $type = "Tube";
-        } else {
-            $type = 'Somfy';
-        }
-        $data = VoiceControl::where('type', $type)->get();
-        $output = '<option value="">Seleccionar control de voz</option>';
-        foreach($data as $row){
-            $output .= '<option value="'.$row->id.'">'.$row->name.'</option>';
-        }
-        echo $output;
-    }
-
-    public function fetchAccesories(Request $request){
-        $user = Auth::user();
-
-        $input = $request->all();
-        $quantity = $input['quantity'];
-        $control = CurtainControl::where('id', $input['control_id'])->first();
-
-        $mechanism_id = $input['mechanism_id'];
-
-        $sensor_id = $input['sensor_id'];
-        $sensor = Sensor::find($sensor_id);
-
-        $voice_id = $input['voice_id'];
-        $voice = VoiceControl::find($voice_id);
-
-        $handle_id = $input['handle_id'];
-        $handle = CurtainHandle::find($handle_id);
-
-        $canopy = $input['canopy_id'];
-
-        $width = $input['width'];
-
-        $cquant = $input['control_quantity'];
-        $vquant = $input['voice_quantity'];
-        $squant = $input['sensor_quantity'];
-        $hquant = $input['handle_quantity'];
-
-        //Control plus IVA
-        $control_total = $control->price * $cquant * 1.16;
-        $voice_total = $voice->price * $vquant * 1.16;
-        $sensor_total = $sensor->price * $squant * 1.16;
-        $handle_total = $handle->price * $hquant * 1.16;
-
-        if($canopy == 1) {
-            if($width > 3.5) {
-                $total_canopy = ((4268.18 / 5 * $width) + 498.79 + (271.07 * $width) + (629.69 * 2))* 1.16;
-            } else {
-                $total_canopy = ((4268.18/5*$width) + 498.79 + (271.07*$width) + (629.69))* 1.16;
-            }
-        } else {
-            $total_canopy = 0;
-        }
-
-        switch($mechanism_id) {
-            case 1:
-                $accesories = (($handle_total + $total_canopy) / 0.6) * (1 - ($user->discount/100)) * $quantity * 1.16;
-                break;
-            case 2:
-                $accesories = (($control_total + $sensor_total + $voice_total + $total_canopy) / 0.6) * (1 - ($user->discount/100)) * $quantity * 1.16;
-                break;
-            case 3:
-                $accesories = (($control_total + $handle_total + $sensor_total + $voice_total + $total_canopy) / 0.6) * (1 - ($user->discount/100)) * $quantity * 1.16;
-                break;
-            case 4:
-                $accesories = (($handle_total + $voice_total + $total_canopy + $control_total) / 0.6) * (1 - ($user->discount/100)) * $quantity * 1.16;
-                break;
-            default:
-                $accesories = 0;
-                break;
-        }
-        $accesories_price = number_format($accesories, 2);
-        Log::info($accesories_price);
-
-        echo "<div class='text-right'><h3><strong>Total de accesorios: $$accesories_price</strong></h3></div>";
-    }
 
     public function destroy($id)
     {

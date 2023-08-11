@@ -20,6 +20,7 @@ use App\Models\VoiceControl;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 
 class ToldosController extends Controller
 {
@@ -722,6 +723,27 @@ class ToldosController extends Controller
         ]);
         $toldo = $request->session()->get('toldo');
         $toldo->fill($validatedData);
+        if($toldo['mechanism_id'] == 1) {
+            $toldo->control_id = 9999;
+            $toldo->voice_id = 9999;
+            $toldo->sensor_id = 9999;
+            $toldo->handle_id = 1;
+        } elseif ($toldo['mechanism_id'] == 4) {
+            $toldo->sensor_id = 9999;
+            $toldo->handle_id = 1;
+            $toldo->control_id = 1;
+            $toldo->voice_id = 1;
+        } elseif ($toldo['mechanism_id'] == 2) {
+            $toldo->handle_id = 9999;
+            $toldo->sensor_id = 1;
+            $toldo->control_id = 1;
+            $toldo->voice_id = 1;
+        } else {
+            $toldo->sensor_id = 1;
+            $toldo->handle_id = 1;
+            $toldo->control_id = 1;
+            $toldo->voice_id = 1;
+        }
         $request->session()->put('toldo', $toldo);
         return redirect()->route('toldo.cover', $order_id);
     }
@@ -740,12 +762,28 @@ class ToldosController extends Controller
     public function addFeatures(Request $request, $id)
     {
         $order_id = $id;
-        $handles = CurtainHandle::all();
-        $controls = CurtainControl::all();
         $canopy = CurtainCanopy::all();
-        $sensors = Sensor::all();
-        $voices = VoiceControl::all();
         $toldo = $request->session()->get('toldo');
+        if($toldo->mechanism_id == 1){
+            $controls = CurtainControl::where('type', 'Manual')->get();
+            $voices = VoiceControl::where('type', 'Manual')->get();
+            $handles = CurtainHandle::all();
+            $sensors = Sensor::where('id', 9999)->get();
+        } elseif ($toldo->mechanism_id == 4) {
+            $controls = CurtainControl::where('type', 'Tube')->get();
+            $voices = VoiceControl::where('type', 'Tube')->get();
+            $handles = CurtainHandle::all();
+            $sensors = Sensor::where('id', 9999)->get();
+        } else {
+            if($toldo->mechanism_id == 3){
+                $handles = CurtainHandle::all();
+            } else {
+                $handles = CurtainHandle::where('id', 9999)->get();
+            }
+            $controls = CurtainControl::where('type', 'Somfy')->get();
+            $voices = VoiceControl::where('type', 'Somfy')->get();
+            $sensors = Sensor::where('type', 'T')->get();
+        }
         return view('toldos.features', compact('order_id', 'toldo', 'handles', 'controls', 'sensors', 'voices', 'canopy'));
     }
 
@@ -778,6 +816,13 @@ class ToldosController extends Controller
             'voice_quantity' => 'required'
         ]);
         $toldo = $request->session()->get('toldo');
+        if($toldo->model){
+            $keys = ['model', 'cover', 'mechanism', 'handle', 'control', 'voice', 'sensor', 'canopy'];
+            foreach ($keys as $key) {
+                unset($toldo[$key]);
+            }
+            Session::forget('toldo');
+        }
         $toldo->fill($validatedData);
 
         $cover_id = $toldo['cover_id'];

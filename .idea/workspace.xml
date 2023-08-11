@@ -7,6 +7,14 @@
     <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PalilleriasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PalilleriasController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ToldosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ToldosController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/curtains/features.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/curtains/features.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/curtains/review.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/curtains/review.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/palillerias/features.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/palillerias/features.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/palillerias/review.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/palillerias/review.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/toldos/features.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/toldos/features.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/toldos/review.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/toldos/review.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -341,7 +349,8 @@
       <workItem from="1691522101047" duration="1551000" />
       <workItem from="1691593168608" duration="603000" />
       <workItem from="1691614541892" duration="911000" />
-      <workItem from="1691679018128" duration="4076000" />
+      <workItem from="1691679018128" duration="5132000" />
+      <workItem from="1691766197754" duration="17605000" />
     </task>
     <servers />
   </component>

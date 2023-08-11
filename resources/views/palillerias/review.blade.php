@@ -35,7 +35,7 @@
                             <td class="text-center">Salida:</td>
                             <td><strong>{{$palilleria->height}} mts</strong></td>
                         </tr>
-                        @if($palilleria->control && $palilleria->control_quantity > 0)
+                        @if($palilleria->control_id != 9999 && $palilleria->control_quantity > 0)
                             <tr>
                                 <td class="text-center">
                                     Control:
@@ -49,7 +49,7 @@
                                 </td>
                             </tr>
                         @endif
-                        @if($palilleria->sensor_id && $palilleria->sensor_quantity > 0)
+                        @if($palilleria->sensor_id != 9999 && $palilleria->sensor_quantity > 0)
                             <tr>
                                 <td class="text-center">
                                     Sensor:
@@ -63,7 +63,7 @@
                                 </td>
                             </tr>
                         @endif
-                        @if($palilleria->voice_id && $palilleria->voice_quantity > 0)
+                        @if($palilleria->voice_id != 9999 && $palilleria->voice_quantity > 0)
                             <tr>
                                 <td class="text-center">
                                     Control de voz:

@@ -23,6 +23,7 @@ use App\Models\VoiceControl;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 
 class PalilleriasController extends Controller
 {
@@ -658,8 +659,7 @@ class PalilleriasController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
 
-    public function addDataPost(Request $request, $id)
-    {
+    public function addDataPost(Request $request, $id) {
         $order_id = $id;
         $validatedData = $request->validate([
             'width' => 'required',
@@ -669,6 +669,19 @@ class PalilleriasController extends Controller
         ]);
         $palilleria = $request->session()->get('palilleria');
         $palilleria->fill($validatedData);
+        if($palilleria['mechanism_id'] == 1) {
+            $palilleria->control_id = 9999;
+            $palilleria->voice_id = 9999;
+            $palilleria->sensor_id = 9999;
+        } elseif ($palilleria['mechanism_id'] == 4) {
+            $palilleria->sensor_id = 9999;
+            $palilleria->control_id = 1;
+            $palilleria->voice_id = 1;
+        } else {
+            $palilleria->sensor_id = 1;
+            $palilleria->control_id = 1;
+            $palilleria->voice_id = 1;
+        }
         $request->session()->put('palilleria', $palilleria);
         return redirect()->route('palilleria.cover', $order_id);
     }
@@ -684,14 +697,23 @@ class PalilleriasController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
 
-    public function addFeatures(Request $request, $id)
-    {
+    public function addFeatures(Request $request, $id) {
         $order_id = $id;
         $reinforcements = Reinforcement::all();
-        $sensors = Sensor::where('type', 'P')->get();
-        $voices = VoiceControl::all();
-        $controls = CurtainControl::all();
         $palilleria = $request->session()->get('palilleria');
+        if($palilleria->mechanism_id == 1) {
+            $controls = CurtainControl::where('type', 'Manual')->get();
+            $voices = VoiceControl::where('type', 'Manual')->get();
+            $sensors = Sensor::where('id', 9999)->get();
+        } elseif ($palilleria->mechanism_id == 4) {
+            $controls = CurtainControl::where('type', 'Tube')->get();
+            $voices = VoiceControl::where('type', 'Tube')->get();
+            $sensors = Sensor::where('id', 9999)->get();
+        } else {
+            $controls = CurtainControl::where('type', 'Somfy')->get();
+            $voices = VoiceControl::where('type', 'Somfy')->get();
+            $sensors = Sensor::where('type', 'P')->get();
+        }
         return view('palillerias.features', compact('order_id', 'palilleria', 'sensors', 'voices', 'reinforcements', 'controls'));
     }
 
@@ -728,8 +750,15 @@ class PalilleriasController extends Controller
             'goal_quantity' => 'required',
         ]);
         $palilleria = $request->session()->get('palilleria');
-        $palilleria['order_id'] = $order_id;
         $palilleria->fill($validatedData);
+
+        if($palilleria->model){
+            $keys = ['model', 'cover', 'mechanism', 'control', 'voice', 'sensor', 'reinforcement'];
+            foreach ($keys as $key) {
+                unset($palilleria[$key]);
+            }
+            Session::forget('palilleria');
+        }
         $cover = Cover::where('id', $palilleria['cover_id'])->first();
 
         $control = CurtainControl::where('id', $palilleria['control_id'])->first();
@@ -790,8 +819,6 @@ class PalilleriasController extends Controller
         $control_total = $control->price * $cquant;
         $sensor_total = $sensor->price * $squant;
         $voice_total = $voice->price * $vquant;
-        Log::info($total_cover);
-        Log::info($operation_costs);
 
         if($height <= 5) {
             $sop_quant = 2;

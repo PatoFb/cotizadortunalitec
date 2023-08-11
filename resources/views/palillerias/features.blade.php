@@ -24,7 +24,11 @@
                     </div>
                     <div class="col-md-3 col-sm-3">
                         {!! Form::label('control_quantity', 'Cantidad:') !!}
-                        {!! Form::number('control_quantity', $palilleria->control_quantity ?? 0, ['class'=>'form-control', "step"=>1, "id"=>"control_quantity"]) !!}
+                        @if($palilleria->control_id == 9999)
+                            {!! Form::number('control_quantity', 0, ['class'=>'form-control', "step"=>1, "id"=>"control_quantity", 'readonly']) !!}
+                        @else
+                            {!! Form::number('control_quantity', $palilleria->control_quantity ?? 0, ['class'=>'form-control', "step"=>1, "id"=>"control_quantity"]) !!}
+                        @endif
                     </div>
                 </div>
 
@@ -39,7 +43,11 @@
                     </div>
                     <div class="col-md-3 col-sm-3">
                         {!! Form::label('sensor_quantity', 'Cantidad:') !!}
-                        {!! Form::number('sensor_quantity', $palilleria->sensor_quantity ?? 0, ['class'=>'form-control', "step"=>1, "id"=>"sensor_quantity"]) !!}
+                        @if($palilleria->sensor_id == 9999)
+                            {!! Form::number('sensor_quantity', 0, ['class'=>'form-control', "step"=>1, "id"=>"control_quantity", 'readonly']) !!}
+                        @else
+                            {!! Form::number('sensor_quantity', $palilleria->sensor_quantity ?? 0, ['class'=>'form-control', "step"=>1, "id"=>"sensor_quantity"]) !!}
+                        @endif
                     </div>
 
                 </div>
@@ -55,7 +63,11 @@
 
                     <div class="col-md-3 col-sm-3">
                         {!! Form::label('voice_quantity', 'Cantidad:') !!}
-                        {!! Form::number('voice_quantity', $palilleria->voice_quantity ?? 0, ['class'=>'form-control', 'id'=>'voice_quantity']) !!}
+                        @if($palilleria->voice_id == 9999)
+                            {!! Form::number('voice_quantity', 0, ['class'=>'form-control', "step"=>1, "id"=>"control_quantity", 'readonly']) !!}
+                        @else
+                            {!! Form::number('voice_quantity', $palilleria->voice_quantity ?? 0, ['class'=>'form-control', 'id'=>'voice_quantity']) !!}
+                        @endif
                     </div>
 
                 </div>
