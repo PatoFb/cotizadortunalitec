@@ -15,18 +15,22 @@
 
                 <div class="form-row">
                     <div class="col-md-9 col-sm-9">
-                        {!! Form::label('control_id', 'Control:' )  !!}
-                        <select class="form-control" name="control_id" id="control_id">
-                            @foreach($controls as $control)
-                                <option value="{{$control->id}}" {{{ (isset($palilleria->control_id) && $palilleria->control_id == $control->id) ? "selected=\"selected\"" : "" }}}>{{$control->name}}</option>
-                            @endforeach
-                        </select>
+                        @if($palilleria->control_id == 9999)
+                            {!! Form::number('control_id', 9999, ['class'=>'form-control', "step"=>1, "id"=>"control_id", 'hidden']) !!}
+                        @else
+                            {!! Form::label('control_id', 'Control:' )  !!}
+                            <select class="form-control" name="control_id" id="control_id">
+                                @foreach($controls as $control)
+                                    <option value="{{$control->id}}" {{{ (isset($palilleria->control_id) && $palilleria->control_id == $control->id) ? "selected=\"selected\"" : "" }}}>{{$control->name}}</option>
+                                @endforeach
+                            </select>
+                        @endif
                     </div>
                     <div class="col-md-3 col-sm-3">
-                        {!! Form::label('control_quantity', 'Cantidad:') !!}
                         @if($palilleria->control_id == 9999)
-                            {!! Form::number('control_quantity', 0, ['class'=>'form-control', "step"=>1, "id"=>"control_quantity", 'readonly']) !!}
+                            {!! Form::number('control_quantity', 0, ['class'=>'form-control', "step"=>1, "id"=>"control_quantity", 'hidden']) !!}
                         @else
+                            {!! Form::label('control_quantity', 'Cantidad:') !!}
                             {!! Form::number('control_quantity', $palilleria->control_quantity ?? 0, ['class'=>'form-control', "step"=>1, "id"=>"control_quantity"]) !!}
                         @endif
                     </div>
@@ -34,18 +38,23 @@
 
                 <div class="form-row">
                     <div class="col-md-9 col-sm-9">
-                        {!! Form::label('sensor_id', 'Sensor:' )  !!}
-                        <select class="form-control" name="sensor_id" id="sensor_id">
-                            @foreach($sensors as $sensor)
-                                <option value="{{$sensor->id}}" {{{ (isset($palilleria->sensor_id) && $palilleria->sensor_id == $sensor->id) ? "selected=\"selected\"" : "" }}}>{{$sensor->name}}</option>
-                            @endforeach
-                        </select>
+                        @if($palilleria->sensor_id == 9999)
+                            {!! Form::number('sensor_id', 9999, ['class'=>'form-control', "step"=>1, "id"=>"sensor_id", 'hidden']) !!}
+                        @else
+                            {!! Form::label('sensor_id', 'Sensor:' )  !!}
+                            <select class="form-control" name="sensor_id" id="sensor_id">
+                                @foreach($sensors as $sensor)
+                                    <option value="{{$sensor->id}}" {{{ (isset($palilleria->sensor_id) && $palilleria->sensor_id == $sensor->id) ? "selected=\"selected\"" : "" }}}>{{$sensor->name}}</option>
+                                @endforeach
+                            </select>
+                        @endif
+
                     </div>
                     <div class="col-md-3 col-sm-3">
-                        {!! Form::label('sensor_quantity', 'Cantidad:') !!}
                         @if($palilleria->sensor_id == 9999)
-                            {!! Form::number('sensor_quantity', 0, ['class'=>'form-control', "step"=>1, "id"=>"control_quantity", 'readonly']) !!}
+                            {!! Form::number('sensor_quantity', 0, ['class'=>'form-control', "step"=>1, "id"=>"sensor_quantity", 'hidden']) !!}
                         @else
+                            {!! Form::label('sensor_quantity', 'Cantidad:') !!}
                             {!! Form::number('sensor_quantity', $palilleria->sensor_quantity ?? 0, ['class'=>'form-control', "step"=>1, "id"=>"sensor_quantity"]) !!}
                         @endif
                     </div>
@@ -53,19 +62,23 @@
                 </div>
                 <div class="form-row">
                     <div class="col-md-9 col-sm-9">
-                        {!! Form::label('voice_id', 'Voz:' )  !!}
-                        <select class="form-control" name="voice_id" id="voice_id" >
-                            @foreach($voices as $voice)
-                                <option value="{{$voice->id}}" {{{ (isset($palilleria->voice_id) && $palilleria->voice_id == $voice->id) ? "selected=\"selected\"" : "" }}}>{{$voice->name}}</option>
-                            @endforeach
-                        </select>
+                        @if($palilleria->voice_id == 9999)
+                            {!! Form::number('voice_id', 9999, ['class'=>'form-control', "step"=>1, "id"=>"voice_id", 'hidden']) !!}
+                        @else
+                            {!! Form::label('voice_id', 'Voz:' )  !!}
+                            <select class="form-control" name="voice_id" id="voice_id" >
+                                @foreach($voices as $voice)
+                                    <option value="{{$voice->id}}" {{{ (isset($palilleria->voice_id) && $palilleria->voice_id == $voice->id) ? "selected=\"selected\"" : "" }}}>{{$voice->name}}</option>
+                                @endforeach
+                            </select>
+                        @endif
                     </div>
 
                     <div class="col-md-3 col-sm-3">
-                        {!! Form::label('voice_quantity', 'Cantidad:') !!}
                         @if($palilleria->voice_id == 9999)
-                            {!! Form::number('voice_quantity', 0, ['class'=>'form-control', "step"=>1, "id"=>"control_quantity", 'readonly']) !!}
+                            {!! Form::number('voice_quantity', 0, ['class'=>'form-control', "step"=>1, "id"=>"voice_quantity", 'hidden']) !!}
                         @else
+                            {!! Form::label('voice_quantity', 'Cantidad:') !!}
                             {!! Form::number('voice_quantity', $palilleria->voice_quantity ?? 0, ['class'=>'form-control', 'id'=>'voice_quantity']) !!}
                         @endif
                     </div>
@@ -77,8 +90,8 @@
                     <div class="col-md-9 col-sm-9">
                         {!! Form::label('reinforcement_id', 'Guía+:' )  !!}
                         <select class="form-control" name="reinforcement_id" id="reinforcement_id" >
-                            <option value="0" {{{ (isset($palilleria->canopy_id) && $palilleria->canopy_id == '0') ? "selected=\"selected\"" : "" }}}>NO</option>
-                            <option value="1" {{{ (isset($palilleria->canopy_id) && $palilleria->canopy_id == '1') ? "selected=\"selected\"" : "" }}}>SI</option>
+                            <option value="0" {{{ (isset($palilleria->reinforcement_id) && $palilleria->reinforcement_id == '0') ? "selected=\"selected\"" : "" }}}>NO</option>
+                            <option value="1" {{{ (isset($palilleria->reinforcement_id) && $palilleria->reinforcement_id == '1') ? "selected=\"selected\"" : "" }}}>SI</option>
                         </select>
                     </div>
                     <div class="col-md-3 col-sm-3">

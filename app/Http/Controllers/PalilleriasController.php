@@ -958,7 +958,7 @@ class PalilleriasController extends Controller
         $full_rolls = ceil($sub_rolls/$useful_subrolls);
         $measure = $height + 0.07;
 
-        if($cover->unions == 'Verticales') {
+        if($cover->unions == 'Vertical') {
             //Calculates number of fabric needed for pricing
             $total_fabric = $measure * $full_rolls;
             echo "<div class='col-12'>

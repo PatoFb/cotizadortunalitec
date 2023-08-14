@@ -18,7 +18,6 @@ class CreateSystemScreenyCurtainsTable extends Migration
             $table->integer('model_id')->unsigned()->index()->nullable(true);
             $table->float('width');
             $table->float('height');
-            $table->integer('mechanism_id')->unsigned()->index()->nullable(true);
             $table->float('price');
         });
     }

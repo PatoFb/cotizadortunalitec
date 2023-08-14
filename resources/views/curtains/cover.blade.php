@@ -16,7 +16,7 @@
 
                 <div class="form-row">
                     <div class="col-md-6 col-sm-12" id="coverForm">
-
+                        {!! Form::label('cover_id', 'Clave (del 1 al 10 son estilos pendientes)') !!}
                         {!! Form::number('cover_id', $curtain->cover_id ?? null, ['class'=>'form-control', "id"=>"cover_id"]) !!}
                     </div>
                     <div class="col-md-6 col-sm-12" id="coverDynamic">

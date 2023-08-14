@@ -189,7 +189,7 @@ class ToldosController extends Controller
         $measure = $projection + 0.75;
         $squared_meters = $measure * $width;
 
-        if($cover->unions == 'Verticales') {
+        if($cover->unions == 'Vertical') {
             //Calculates number of fabric needed for pricing
             $num_lienzos = ceil($width / $cover->roll_width);
             $total_fabric = $measure * $num_lienzos;
@@ -544,7 +544,7 @@ class ToldosController extends Controller
         $measure = $projection + 0.75;
         $total_fabric = $measure * $num_lienzos;
 
-        if($cover->unions == 'Verticales') {
+        if($cover->unions == 'Vertical') {
             //Calculates number of fabric needed for pricing
             echo "<div class='col-12'>
                 <h4>Detalles de cubierta</h4>
@@ -730,7 +730,7 @@ class ToldosController extends Controller
             $toldo->handle_id = 1;
         } elseif ($toldo['mechanism_id'] == 4) {
             $toldo->sensor_id = 9999;
-            $toldo->handle_id = 1;
+            $toldo->handle_id = 9999;
             $toldo->control_id = 1;
             $toldo->voice_id = 1;
         } elseif ($toldo['mechanism_id'] == 2) {
@@ -772,7 +772,7 @@ class ToldosController extends Controller
         } elseif ($toldo->mechanism_id == 4) {
             $controls = CurtainControl::where('type', 'Tube')->get();
             $voices = VoiceControl::where('type', 'Tube')->get();
-            $handles = CurtainHandle::all();
+            $handles = CurtainHandle::where('id', 9999)->get();
             $sensors = Sensor::where('id', 9999)->get();
         } else {
             if($toldo->mechanism_id == 3){

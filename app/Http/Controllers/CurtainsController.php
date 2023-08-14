@@ -145,7 +145,7 @@ class CurtainsController extends Controller
         $measure = $height + 0.4;
         $squared_meters = $measure * $width;
 
-        if($cover->unions == 'Verticales') {
+        if($cover->unions == 'Vertical') {
             //Calculates number of fabric needed for pricing
             $num_lienzos = ceil($width / $cover->roll_width);
             $total_fabric = $measure * $num_lienzos;
@@ -264,7 +264,7 @@ class CurtainsController extends Controller
         $measure = $height + 0.4;
         $squared_meters = $measure * $width;
 
-        if($cover->unions == 'Verticales') {
+        if($cover->unions == 'Vertical') {
             //Calculates number of fabric needed for pricing
             $num_lienzos = ceil($width / $cover->roll_width);
             $total_fabric = $measure * $num_lienzos;
@@ -447,7 +447,7 @@ class CurtainsController extends Controller
     }
 
     /**
-     * This function works exactly as the model one but retrieves the cover
+     * Dynamic function to return values of the cover through a JavaScript function using Ajax, data changes a bit with each union
      *
      * @param Request $request
      */
@@ -457,9 +457,9 @@ class CurtainsController extends Controller
         $cover = Cover::findOrFail($value);
         $width = $curtain['width'];
         $height = $curtain['height'];
-        $measure = $height + 0.4;
+        $measure = $height + 0.35;
 
-        if($cover->unions == 'Verticales') {
+        if($cover->unions == 'Vertical') {
             //Calculates number of fabric needed for pricing
             $num_lienzos = ceil($width / $cover->roll_width);
             $total_fabric = $measure * $num_lienzos;
@@ -588,7 +588,6 @@ class CurtainsController extends Controller
             $curtain->model_id = $validatedData['model_id'];
             Session::put('curtain', $curtain);
         }
-        Log::info(Session::get('curtain'));
         return redirect()->route('curtain.data', $order_id);
     }
 
@@ -626,13 +625,11 @@ class CurtainsController extends Controller
         $curtain = Session::get('curtain');
         $curtain->cover_id = $validatedData['cover_id'];
         Session::put('curtain', $curtain);
-        Log::info(Session::get('curtain'));
         return redirect()->route('curtain.features', $order_id);
     }
 
     /**
-     * Works the same as the model and cover functions, but since we don't need any data for a radio list,
-     * we won't send any objects but the curtain stored in session
+     * Sendind the session and mechanisms to the data view
      *
      * @param Request $request
      * @param $id
@@ -648,7 +645,7 @@ class CurtainsController extends Controller
     }
 
     /**
-     * Validation for the two numeric fields, store in session and then go to next step
+     * Saving data in session, we store 9999 for incompatible accessories, and 1 for compatible ones
      *
      * @param Request $request
      * @param $id
@@ -670,12 +667,12 @@ class CurtainsController extends Controller
             $curtain->control_id = 9999;
             $curtain->voice_id = 9999;
             $curtain->handle_id = 1;
-        } elseif ($curtain['mechanism_id'] == 2) {
-            $curtain->handle_id = 9999;
+        } elseif ($curtain['mechanism_id'] == 3) {
+            $curtain->handle_id = 1;
             $curtain->control_id = 1;
             $curtain->voice_id = 1;
         } else {
-            $curtain->handle_id = 1;
+            $curtain->handle_id = 9999;
             $curtain->control_id = 1;
             $curtain->voice_id = 1;
         }
@@ -684,8 +681,8 @@ class CurtainsController extends Controller
     }
 
     /**
-     * We have three fields with relationships, we will get these with select forms, so we have to send the object
-     * to the view.
+     * The accessories page, we get the valid ones according to the mechanism selected, if the mechanism isn't compatible,
+     * it returns the "No valido" option, with id 9999
      *
      * We keep sending the session
      *
@@ -705,7 +702,7 @@ class CurtainsController extends Controller
         } elseif ($curtain->mechanism_id == 4) {
             $controls = CurtainControl::where('type', 'Tube')->get();
             $voices = VoiceControl::where('type', 'Tube')->get();
-            $handles = CurtainHandle::all();
+            $handles = CurtainHandle::where('id', 9999)->get();
         } else {
             if($curtain->mechanism_id == 3){
                 $handles = CurtainHandle::all();
@@ -724,7 +721,7 @@ class CurtainsController extends Controller
      *
      * We get the prices of the other objects from other tables using all the ids stored in the session
      *
-     * For now, price calculating is just a simple sum multiplied by the quantity selected
+     * Price of the system is calculated in this step, so you can review the totals in the review page
      *
      * @param Request $request
      * @param $id
@@ -780,15 +777,13 @@ class CurtainsController extends Controller
         $voice_total = $voice->price * $vquant * 1.16;
         $handle_total = $handle->price * $hquant * 1.16;
 
-        $measure = $height + 0.4;
+        $measure = $height + 0.35;
         $squared_meters = $measure * $width;
 
-        if($cover->unions == 'Verticales') {
+        if($cover->unions == 'Vertical') {
             //Calculates number of fabric needed for pricing
             $num_lienzos = ceil($width / $cover->roll_width);
             $total_fabric = $measure * $num_lienzos;
-
-            //Calculates total pricing of fabric plus handiwork plus IVA
             $cover_price = $cover->price * $total_fabric;
         } else {
             $range = RollWidth::where('width', $cover->roll_width)->where('meters', $height)->value('range');
@@ -801,23 +796,26 @@ class CurtainsController extends Controller
             $cover_price = $full_price + $complement_price;
         }
 
-
-        $work_price = $squared_meters * (60/(1 - 0.3));
+        $work_price = $squared_meters * (70/(1 - 0.3));
         $total_cover = ($cover_price + $work_price);
 
         $ceiledWidth = ceil($width);
-        $diff = $ceiledWidth - $width;
-        if ($diff > 0.5 && $diff != 0) {
-            $newWidth = $ceiledWidth - 0.5;
-        } else if ($diff < 0.5 && $diff != 0) {
-            $newWidth = $ceiledWidth;
+        if($width >= 1) {
+            $diff = $ceiledWidth - $width;
+            if ($diff > 0.5 && $diff != 0) {
+                $newWidth = $ceiledWidth - 0.5;
+            } else if ($diff < 0.5 && $diff != 0) {
+                $newWidth = $ceiledWidth;
+            } else {
+                $newWidth = $width;
+            }
         } else {
-            $newWidth = $width;
+            $newWidth = 1;
         }
 
         if($model_id > 3 && $model_id < 7){
             $ceiledHeight = ceil($height);
-            if($height <= 1.5) {
+            if($height >= 1.5) {
                 $diffh = $ceiledHeight - $height;
                 if ($diffh > 0.5 && $diffh != 0) {
                     $newHeight = $ceiledHeight - 0.5;
@@ -827,21 +825,21 @@ class CurtainsController extends Controller
                     $newHeight = $height;
                 }
             } else {
-                $newHeight = $ceiledHeight;
+                $newHeight = 1.5;
             }
-            $system = SystemScreenyCurtain::where('model_id', $model_id)->where('width', $width)->where('height', $newHeight)->first();
-        } else{
+            $system = SystemScreenyCurtain::where('model_id', $model_id)->where('width', $newWidth)->where('height', $newHeight)->first();
+        } else {
             $system = SystemCurtain::where('model_id', $model_id)->where('width', $newWidth)->first();
         }
-        $sprice = $system->price;
+
+        $manual = $system->price;
+        $tube = 1959.235294 + $manual;
+        $somfy = 6927.693627 + $manual;
+        $cmo = 7971.151961 + $manual;
 
         //If user chooses canopy, it will calculate the price by width plus IVA
         if($canopy == 1) {
-            if($width > 3.5) {
-                $total_canopy = ((4268.18 / 5 * $width) + 498.79 + (271.07 * $width) + (629.69 * 2))* 1.16;
-            } else {
-                $total_canopy = ((4268.18/5*$width) + 498.79 + (271.07*$width) + (629.69))* 1.16;
-            }
+            $total_canopy = ((1023 * $width) + (145 * $width) + (142 * ($newWidth/2)) + 377) * 1.16;
         } else {
             $total_canopy = 0;
         }
@@ -850,20 +848,20 @@ class CurtainsController extends Controller
 
         switch($mechanism_id) {
             case 1:
-                $accesories = $handle_total + $total_canopy;
-                $curtain->price = (((((($sprice+$total_cover)*1.16)  + $accesories) / (1-$utility)) * $quantity) * (1-($user->discount/100)));
+                $accessories = $handle_total + $total_canopy;
+                $curtain->price = ((((($manual+$total_cover)*1.16) / (1-$utility)) * (1-($user->discount/100))) * $quantity) + $accessories;
                 break;
             case 2:
-                $accesories = $control_total + $voice_total + $total_canopy;
-                $curtain->price = (((((($sprice+6321.96+$total_cover)*1.16) + $accesories) / (1-$utility)) * $quantity) * (1-($user->discount/100)));
+                $accessories = $control_total + $voice_total + $total_canopy;
+                $curtain->price = ((((($somfy+$total_cover)*1.16) / (1-$utility)) * (1-($user->discount/100))) * $quantity) + $accessories;
                 break;
             case 3:
-                $accesories = $control_total + $handle_total + $voice_total + $total_canopy;
-                $curtain->price = (((((($sprice+8133.75+$total_cover)*1.16)  + $accesories) / (1-$utility)) * $quantity) * (1-($user->discount/100)));
+                $accessories = $control_total + $handle_total + $voice_total + $total_canopy;
+                $curtain->price = ((((($cmo+$total_cover)*1.16) / (1-$utility)) * (1-($user->discount/100))) * $quantity) + $accessories;
                 break;
             case 4:
-                $accesories = $handle_total + $voice_total + $total_canopy + $control_total;
-                $curtain->price = (((((($sprice+2258.71+$total_cover)*1.16)  + $accesories) / (1-$utility)) * $quantity) * (1-($user->discount/100)));
+                $accessories = $voice_total + $total_canopy + $control_total;
+                $curtain->price = ((((($tube+$total_cover)*1.16) / (1-$utility)) * (1-($user->discount/100))) * $quantity) + $accessories;
                 break;
             default:
                 $curtain->price = 0;
