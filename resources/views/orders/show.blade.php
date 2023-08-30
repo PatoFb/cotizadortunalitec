@@ -13,7 +13,12 @@
                   </div>
                   <div class="card-body">
                       <div class="form-row float-right">
-                          @if($order->activity == 'Pedido')
+                          @if($order->activity == 'Produccion' && $role == 1)
+                              <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#closeModal" id="close_order_modal">
+                                  Cerrar pedido
+                              </button>
+                          @endif
+                          @if($order->activity == 'Pedido' && $role == 1)
 
                                   <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#authorizeModal" id="authorize_order_modal">
                                       Autorizar y enviar a producción
@@ -23,10 +28,12 @@
                               Agregar comprobante
                           </button>
                           @endif
+                              @if($order->activity == 'Oferta')
                           <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#editModal" id="edit_order_modal">
                               Editar Orden
                           </button>
                           <a href="{{route('orders.type', $order->id)}}" class="btn btn-sm btn-primary" >Agregar producto</a>
+                              @endif
                       </div>
                       <div class="table-responsive">
                           <table class="table">
@@ -1356,6 +1363,26 @@
                 </div>
                 <div class="modal-footer">
                     <a class="btn btn-primary" href="{{route('orders.production', $order->id)}}" data-original-title="" title="">
+                        Autorizar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="closeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cerrar pedido</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Confirmar el pedido como cerrado?
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-primary" href="{{route('orders.close', $order->id)}}" data-original-title="" title="">
                         Autorizar
                     </a>
                 </div>

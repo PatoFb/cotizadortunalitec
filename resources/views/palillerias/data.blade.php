@@ -27,12 +27,12 @@
                 <div class="form-row">
                     <div class="col-md-6 col-sm-6">
                         {!! Form::label('width', 'Ancho') !!}
-                        {!! Form::number('width', $palilleria->width ?? null , ['class'=>'form-control', "step"=>0.01]) !!}
+                        {!! Form::number('width', $palilleria->width ?? null , ['class'=>'form-control', "step"=>0.01, "max"=>5, "min"=>0.1]) !!}
                     </div>
 
                     <div class="col-md-6 col-sm-6">
                         {!! Form::label('height', 'Salida') !!}
-                        {!! Form::number('height', $palilleria->height ?? null, ['class'=>'form-control', "step"=>0.01]) !!}
+                        {!! Form::number('height', $palilleria->height ?? null, ['class'=>'form-control', "step"=>0.01, "min"=>0.1]) !!}
                     </div>
                 </div>
                 <br>

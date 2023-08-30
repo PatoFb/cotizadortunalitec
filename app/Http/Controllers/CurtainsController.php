@@ -641,7 +641,8 @@ class CurtainsController extends Controller
         $order_id = $id;
         $curtain = $request->session()->get('curtain');
         $mechs = CurtainMechanism::all();
-        return view('curtains.data', compact('order_id', 'curtain', 'mechs'));
+        $model = ModeloToldo::find($curtain->model_id);
+        return view('curtains.data', compact('order_id', 'curtain', 'mechs', 'model'));
     }
 
     /**

@@ -27,12 +27,12 @@
                 <div class="form-row">
                     <div class="col-md-6 col-sm-6">
                         {!! Form::label('width', 'Ancho') !!}
-                        {!! Form::number('width', $curtain->width ?? null , ['class'=>'form-control', "step"=>0.01]) !!}
+                        {!! Form::number('width', $curtain->width ?? null , ['class'=>'form-control', "step"=>0.01, "min"=>0.1, "max"=>$model->max_width]) !!}
                     </div>
 
                     <div class="col-md-6 col-sm-6">
                         {!! Form::label('height', 'Caida') !!}
-                        {!! Form::number('height', $curtain->height ?? null, ['class'=>'form-control', "step"=>0.01]) !!}
+                        {!! Form::number('height', $curtain->height ?? null, ['class'=>'form-control', "step"=>0.01, "min"=>0.1, "max"=>$model->max_height]) !!}
                     </div>
                 </div>
                 <br>

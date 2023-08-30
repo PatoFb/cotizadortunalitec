@@ -27,7 +27,7 @@
                 <div class="form-row">
                     <div class="col-md-6 col-sm-12">
                         {!! Form::label('width', 'Ancho') !!}
-                        {!! Form::number('width', $toldo->width ?? null , ['class'=>'form-control dynamicPro', "step"=>0.01, "data-dependent2"=>"projection"]) !!}
+                        {!! Form::number('width', $toldo->width ?? null , ['class'=>'form-control dynamicPro', "step"=>0.01, "data-dependent2"=>"projection", "min"=>$model->min_width, "max"=>$model->max_width]) !!}
                     </div>
 
                     <div class="col-md-6 col-sm-12">

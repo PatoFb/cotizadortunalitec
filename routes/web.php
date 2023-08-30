@@ -43,9 +43,13 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::get('orders/all', 'App\Http\Controllers\OrdersController@all')->name('orders.all');
 
+    Route::get('orders/record', 'App\Http\Controllers\OrdersController@record')->name('orders.record');
+
     Route::get('orders/{id}/details', 'App\Http\Controllers\OrdersController@details')->name('orders.details');
 
     Route::get('orders/{id}/authorize', 'App\Http\Controllers\OrdersController@production')->name('orders.production');
+
+    Route::get('orders/{id}/close', 'App\Http\Controllers\OrdersController@close')->name('orders.close');
 
     Route::post('orders/{id}/upload', 'App\Http\Controllers\OrdersController@upload')->name('orders.upload');
 

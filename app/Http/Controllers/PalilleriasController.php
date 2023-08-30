@@ -786,6 +786,7 @@ class PalilleriasController extends Controller
         $gquant = $palilleria['goal_quantity'];
         $sgquant = $palilleria['semigoal_quantity'];
         $vquant = $palilleria['voice_quantity'];
+
         if($cover->roll_width == 1.16 || $cover->roll_width == 1.2) {
             $useful_subrolls = 2;
         } elseif ($cover->roll_width == 1.52 || $cover->roll_width == 1.77) {
@@ -807,13 +808,15 @@ class PalilleriasController extends Controller
 
         $sub_rolls = ceil($height/$factor);
         $full_rolls = ceil($sub_rolls/$useful_subrolls);
-        $measure = $height + 0.07;
+        $measure = $width + 0.07;
         $total_fabric = $measure * $full_rolls;
         $total_cover = $cover->price * $total_fabric;
 
         $work_price = 50 * (ceil($width * $height));
-        $bubble_price = (900/35) * ($width*6) + (($width*6)/3) + 257.14;
-        $operation_costs = $work_price + $bubble_price;
+        $bubble_price = (900/35) * ($width*6);
+        $added = $bubble_price/3;
+        $total_bubble = $bubble_price + $added;
+        $operation_costs = $work_price + $total_bubble;
 
         //Control plus IVA
         $control_total = $control->price * $cquant;
@@ -857,7 +860,6 @@ class PalilleriasController extends Controller
 
         $palilleria_price = PalilleriasPrice::where('width', ceil($width))->where('height', ceil($height))->first();
         $pprice = $palilleria_price->price;
-
 
         //Pricing of user selected option
         switch($mechanism_id) {
@@ -958,7 +960,6 @@ class PalilleriasController extends Controller
         $full_rolls = ceil($sub_rolls/$useful_subrolls);
         $measure = $height + 0.07;
 
-        if($cover->unions == 'Vertical') {
             //Calculates number of fabric needed for pricing
             $total_fabric = $measure * $full_rolls;
             echo "<div class='col-12'>
@@ -986,36 +987,6 @@ class PalilleriasController extends Controller
                 </div>
               ";
             //Calculates total pricing of fabric plus handiwork plus IVA
-        } else {
-            $range = RollWidth::where('width', $cover->roll_width)->where('meters', $height)->value('range');
-            $num_lienzos = Complement::where('range', $range)->value('complete');
-            $complement = Complement::where('range', $range)->value('complements');
-            $total_fabric = $num_lienzos * $width;
-            echo "<div class='col-12'>
-                <h4>Detalles de cubierta</h4>
-               </div>
-                <div class='row'>
-                <div class='col-md-6 col-sm-12'>
-                   <img src=".asset('storage')."/images/".$cover->photo." style='width: 100%;'>
-              </div>
-              <div class='col-md-6 col-sm-12'>
-                   <h7 style='color: grey;'><strong>$cover->name</strong></h7>
-                   <br>
-                   <h7 style='color: grey;'>Ancho de rollo: <strong>$cover->roll_width mts</strong></h7>
-                   <br>
-                   <h7 style='color: grey;'>Uniones: <strong>$cover->unions</strong></h7>
-                   <br>
-                   <h7 style='color: grey;'>Número de lienzos: <strong>$num_lienzos</strong></h7>
-                   <br>
-                   <h7 style='color: grey;'>Medida de lienzos: <strong>$measure mts</strong></h7>
-                   <br>
-                   <h7 style='color: grey;'>Complementos: <strong>$complement</strong></h7>
-                   <br>
-                   <h7 style='color: grey;'>Total de textil: <strong>$total_fabric mts</strong></h7>
-              </div>
-                </div>
-              ";
-        }
     }
 
     /**

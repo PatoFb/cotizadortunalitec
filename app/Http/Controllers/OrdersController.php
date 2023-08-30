@@ -36,6 +36,12 @@ class OrdersController extends Controller
         return view('admin.orders.index', compact('orders', 'offers', 'prods'));
     }
 
+    public function record()
+    {
+        $orders = Order::where('activity', 'Cerrada')->get();;
+        return view('admin.orders.record', compact('orders'));
+    }
+
     public function production($id)
     {
         $order = Order::findOrFail($id);
@@ -44,6 +50,16 @@ class OrdersController extends Controller
         $order->save();
         //Mail::to($user->email)->send(new OrdenAProduccion($user, $order));
         return redirect()->back()->withStatus(__('La orden fue autorizada'));
+    }
+
+    public function close($id)
+    {
+        $order = Order::findOrFail($id);
+        $user = User::findOrFail($order->user_id);
+        $order->activity = 'Cerrada';
+        $order->save();
+        //Mail::to($user->email)->send(new OrdenAProduccion($user, $order));
+        return redirect()->back()->withStatus(__('La orden fue cerrada exitosamente'));
     }
 
     /**

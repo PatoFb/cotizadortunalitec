@@ -422,7 +422,6 @@ class ToldosController extends Controller
         foreach($data as $row){
             $output .= '<option value="'.$row->projection.'">'.$row->projection.'</option>';
         }
-        Log::info($output);
         echo $output;
     }
 
@@ -700,8 +699,10 @@ class ToldosController extends Controller
     {
         $order_id = $id;
         $toldo = $request->session()->get('toldo');
-        $mechs = CurtainMechanism::all();
-        return view('toldos.data', compact('order_id', 'toldo', 'mechs'));
+        $system = SistemaToldo::where('modelo_toldo_id', $toldo->model_id)->groupBy('mechanism_id')->get('mechanism_id');
+        $mechs = CurtainMechanism::whereIn('id', $system)->get();
+        $model = ModeloToldo::find($toldo->model_id);
+        return view('toldos.data', compact('order_id', 'toldo', 'mechs', 'model'));
     }
 
     /**
@@ -863,12 +864,18 @@ class ToldosController extends Controller
         $handle_total = $handle->price * $hquant * 1.16;
 
         $num_lienzos = ceil($width/$cover->roll_width);
-        $measure = $projection + 0.75;
+        if($model_id == 1){
+            $measure = $projection + 1.2;
+        } elseif ($model_id == 2) {
+            $measure = $projection * 2 + 0.75;
+        } else {
+            $measure = $projection + 0.75;
+        }
         $total_fabric = $measure * $num_lienzos;
 
         //Calculates total pricing of fabric plus handiwork plus IVA
         $cover_price = $cover->price * $total_fabric;
-        $work_price = (40 * $total_fabric);
+        $work_price = (40 * $measure * $width);
         $total_cover = ($cover_price + $work_price) / (1-0.30);
 
 

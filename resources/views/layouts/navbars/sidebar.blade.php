@@ -49,6 +49,12 @@
                 <p>{{ __('Ordenes') }}</p>
             </a>
         </li>
+                <li class="nav-item{{ $activePage == 'record' ? ' active' : '' }}">
+                    <a class="nav-link" href="{{ route('orders.record') }}">
+                        <i class="material-icons">list</i>
+                        <p>{{ __('Historial Pedidos') }}</p>
+                    </a>
+                </li>
       <li class="nav-item {{ ($activePage == 'usuarios') || ($activePage == 'controles_cortina') || ($activePage == 'tipos') || ($activePage == 'tejaillos_cortina')
                               || ($activePage == 'manivelas_cortina') || ($activePage == 'modelos_cortina') || ($activePage == 'cubiertas_cortina') ||
                               ($activePage == 'mecanismos_cortina') || ($activePage == 'paneles_cortina') || ($activePage == 'tubos_cortina') ? ' active' : '' }}">
