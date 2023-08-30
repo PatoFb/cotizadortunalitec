@@ -923,7 +923,7 @@ class CurtainsController extends Controller
         $curtain = Curtain::findOrFail($id);
         $order = Order::where('id', $curtain->order_id)->first();
         $order->price = $order->price - $curtain->price;
-        $order->total = $order->price - $curtain->price;
+        $order->total = $order->total - $curtain->price;
         $order->save();
         $curtain->delete();
         return redirect()->back()->withStatus('Producto eliminado correctamente');
