@@ -5,21 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/orders/record.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrdersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OrdersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PalilleriasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PalilleriasController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ToldosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ToldosController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/orders/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/orders/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/curtains/data.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/curtains/data.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/curtains/features.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/curtains/features.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/curtains/review.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/curtains/review.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/navbars/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/navbars/sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/orders/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/orders/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/palillerias/data.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/palillerias/data.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/toldos/data.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/toldos/data.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -368,7 +355,7 @@
       <workItem from="1692890323088" duration="6423000" />
       <workItem from="1692979327384" duration="4468000" />
       <workItem from="1693330166113" duration="3044000" />
-      <workItem from="1693406907535" duration="10913000" />
+      <workItem from="1693406907535" duration="12365000" />
     </task>
     <servers />
   </component>
