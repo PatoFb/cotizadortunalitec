@@ -33,7 +33,7 @@
                         <div class="col-sm-12 col-md-4">
                             @if(\Illuminate\Support\Facades\Auth::user()->role_id == 1)
                                 {!! Form::label('discount', 'Descuento:') !!}
-                                {!! Form::number('discount', \Illuminate\Support\Facades\Auth::user()->discount, ['class'=>'form-control']) !!}
+                                {!! Form::number('discount', \Illuminate\Support\Facades\Auth::user()->discount, ['class'=>'form-control', 'min'=>0, 'max'=>99, 'step'=>1]) !!}
                             @else
                                 {!! Form::label('discount', 'Descuento:') !!}
                                 {!! Form::number('discount', \Illuminate\Support\Facades\Auth::user()->discount, ['class'=>'form-control', 'readonly']) !!}
