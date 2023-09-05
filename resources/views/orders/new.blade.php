@@ -31,8 +31,13 @@
                         </div>
 
                         <div class="col-sm-12 col-md-4">
-                            {!! Form::label('discount', 'Descuento:') !!}
-                            {!! Form::number('discount', \Illuminate\Support\Facades\Auth::user()->discount, ['class'=>'form-control', 'readonly']) !!}
+                            @if(\Illuminate\Support\Facades\Auth::user()->role_id == 1)
+                                {!! Form::label('discount', 'Descuento:') !!}
+                                {!! Form::number('discount', \Illuminate\Support\Facades\Auth::user()->discount, ['class'=>'form-control']) !!}
+                            @else
+                                {!! Form::label('discount', 'Descuento:') !!}
+                                {!! Form::number('discount', \Illuminate\Support\Facades\Auth::user()->discount, ['class'=>'form-control', 'readonly']) !!}
+                            @endif
                         </div>
                     </div>
 
