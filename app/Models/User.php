@@ -30,7 +30,9 @@ class User extends Authenticatable
         'zip_code',
         'line1',
         'line2',
-        'reference'
+        'reference',
+        'role_id',
+        'partner_id'
     ];
 
     /**
