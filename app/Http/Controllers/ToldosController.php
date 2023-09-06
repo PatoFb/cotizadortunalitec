@@ -29,15 +29,7 @@ class ToldosController extends Controller
     public function fetchProjection(Request $request)
     {
         $value = $request->get('value');
-        $ceiledWidth = ceil($value);
-        $diff = $ceiledWidth - $value;
-        if ($diff < 0.5 && $diff != 0) {
-            $newWidth = $ceiledWidth - 0.5;
-        } else if ($diff > 0.5 && $diff != 0) {
-            $newWidth = $ceiledWidth;
-        } else {
-            $newWidth = $value;
-        }
+        $newWidth = ceilMeasure($value, 1);
         $toldo = $request->session()->get('toldo');
         $dependent = $request->get('dependent2');
         $data = SistemaToldo::where('modelo_toldo_id', $toldo->model_id)->where('width', $newWidth)->groupBy('projection')->get();
@@ -154,13 +146,11 @@ class ToldosController extends Controller
         if(empty($request->session()->get('toldo'))){
             $toldo = new Toldo();
             $toldo['order_id'] = $order_id;
-            $toldo->fill($validatedData);
-            $request->session()->put('toldo', $toldo);
         }else{
             $toldo = $request->session()->get('toldo');
-            $toldo->fill($validatedData);
-            $request->session()->put('toldo', $toldo);
         }
+        $toldo->fill($validatedData);
+        $request->session()->put('toldo', $toldo);
         return redirect()->route('toldo.data', $order_id);
     }
 
@@ -391,16 +381,7 @@ class ToldosController extends Controller
         $work_price = (40 * $measure * $width);
         $total_cover = ($cover_price + $work_price) / (1-0.30);
 
-
-        $ceiledWidth = ceil($width);
-        $diff = $ceiledWidth - $width;
-        if ($diff > 0.5 && $diff != 0) {
-            $newWidth = $ceiledWidth - 0.5;
-        } else if ($diff < 0.5 && $diff != 0) {
-            $newWidth = $ceiledWidth;
-        } else {
-            $newWidth = $width;
-        }
+        $newWidth = ceilMeasure($width, 1);
 
         $system = SistemaToldo::where('modelo_toldo_id', $model_id)->where('mechanism_id', $mechanism_id)->where('projection', $projection)->where('width', $newWidth)->first();
         $sprice = $system->price;
@@ -483,14 +464,15 @@ class ToldosController extends Controller
 
     public function reviewPost(Request $request, $id)
     {
-        $order_id = $id;
         $toldo = $request->session()->get('toldo');
-        $toldo->save();
-        $order = Order::findOrFail($id);
-        $order->price = $order->price + $toldo['price'];
-        $order->total = $order->total + $toldo['price'];
-        $order->save();
+        saveSystem($toldo, $id);
         $request->session()->forget('toldo');
-        return redirect()->route('orders.show', $order_id);
+        return redirect()->route('orders.show', $id);
+    }
+
+    public function destroy($id)
+    {
+        $toldo = Toldo::findOrFail($id);
+        deleteSystem($toldo);
     }
 }

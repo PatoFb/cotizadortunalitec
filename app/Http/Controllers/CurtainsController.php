@@ -10,15 +10,12 @@ use App\Models\Handle;
 use App\Models\Mechanism;
 use App\Models\CurtainModel;
 use App\Models\ModeloToldo;
-use App\Models\Order;
 use App\Models\RollWidth;
-use App\Models\Sensor;
 use App\Models\SystemCurtain;
 use App\Models\SystemScreenyCurtain;
 use App\Models\VoiceControl;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 
@@ -264,6 +261,8 @@ class CurtainsController extends Controller
             $curtain->control_id = 999;
             $curtain->voice_id = 999;
         }
+        $keys = ['handle_quantity', 'control_quantity', 'voice_quantity'];
+        removeKeys($curtain, $keys);
         Session::put('curtain', $curtain);
         return redirect()->route('curtain.cover', $order_id);
     }
@@ -331,9 +330,7 @@ class CurtainsController extends Controller
         $curtain = Session::get('curtain');
         if($curtain->model){
             $keys = ['model', 'cover', 'mechanism', 'handle', 'control', 'voice'];
-            foreach ($keys as $key) {
-                unset($curtain[$key]);
-            }
+            removeKeys($curtain, $keys);
             Session::forget('curtain');
         }
         $curtain->fill($validatedData);
@@ -386,34 +383,10 @@ class CurtainsController extends Controller
         $work_price = $squared_meters * (70/(1 - 0.3));
         $total_cover = ($cover_price + $work_price);
 
-        $ceiledWidth = ceil($width);
-        if($width >= 1) {
-            $diff = $ceiledWidth - $width;
-            if ($diff > 0.5 && $diff != 0) {
-                $newWidth = $ceiledWidth - 0.5;
-            } else if ($diff < 0.5 && $diff != 0) {
-                $newWidth = $ceiledWidth;
-            } else {
-                $newWidth = $width;
-            }
-        } else {
-            $newWidth = 1;
-        }
+        $newWidth = ceilMeasure($width, 1);
 
         if($model_id > 3 && $model_id < 7){
-            $ceiledHeight = ceil($height);
-            if($height >= 1.5) {
-                $diffh = $ceiledHeight - $height;
-                if ($diffh > 0.5 && $diffh != 0) {
-                    $newHeight = $ceiledHeight - 0.5;
-                } else if ($diffh < 0.5 && $diffh != 0) {
-                    $newHeight = $ceiledHeight;
-                } else {
-                    $newHeight = $height;
-                }
-            } else {
-                $newHeight = 1.5;
-            }
+            $newHeight = ceilMeasure($height, 1.5);
             $system = SystemScreenyCurtain::where('model_id', $model_id)->where('width', $newWidth)->where('height', $newHeight)->first();
         } else {
             $system = SystemCurtain::where('model_id', $model_id)->where('width', $newWidth)->first();
@@ -490,28 +463,16 @@ class CurtainsController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
 
-    public function reviewPost(Request $request, $id)
-    {
-        $order_id = $id;
+    public function reviewPost(Request $request, $id) {
         $curtain = Session::get('curtain');
-        $curtain->save();
-        $order = Order::findOrFail($id);
-        $order->price = $order->price + $curtain['price'];
-        $order->total = $order->total + $curtain['price'];
-        $order->save();
+        saveSystem($curtain, $id);
         Session::forget('curtain');
-        return redirect()->route('orders.show', $order_id);
+        return redirect()->route('orders.show', $id);
     }
 
 
-    public function destroy($id)
-    {
+    public function destroy($id) {
         $curtain = Curtain::findOrFail($id);
-        $order = Order::where('id', $curtain->order_id)->first();
-        $order->price = $order->price - $curtain->price;
-        $order->total = $order->total - $curtain->price;
-        $order->save();
-        $curtain->delete();
-        return redirect()->back()->withStatus('Producto eliminado correctamente');
+        deleteSystem($curtain);
     }
 }

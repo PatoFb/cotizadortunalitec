@@ -21,7 +21,7 @@ class PalilleriasController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return
      */
     public function show($id)
     {
@@ -74,13 +74,11 @@ class PalilleriasController extends Controller
         if(empty($request->session()->get('palilleria'))){
             $palilleria = new Palilleria();
             $palilleria['order_id'] = $order_id;
-            $palilleria->fill($validatedData);
-            $request->session()->put('palilleria', $palilleria);
-        }else{
+        } else {
             $palilleria = $request->session()->get('palilleria');
-            $palilleria->fill($validatedData);
-            $request->session()->put('palilleria', $palilleria);
         }
+        $palilleria->fill($validatedData);
+        $request->session()->put('palilleria', $palilleria);
         return redirect()->route('palilleria.data', $order_id);
     }
 
@@ -273,24 +271,9 @@ class PalilleriasController extends Controller
         $sgquant = $palilleria['semigoal_quantity'];
         $vquant = $palilleria['voice_quantity'];
 
-        if($cover->roll_width == 1.16 || $cover->roll_width == 1.2) {
-            $useful_subrolls = 2;
-        } elseif ($cover->roll_width == 1.52 || $cover->roll_width == 1.77) {
-            $useful_subrolls = 3;
-        } elseif ($cover->roll_width == 2.67 || $cover->roll_width == 3.04) {
-            $useful_subrolls = 5;
-        } elseif ($cover->roll_width == 2.5) {
-            $useful_subrolls = 4;
-        } else {
-            $useful_subrolls = 6;
-        }
+        $useful_subrolls = $this->usefulSubrolls($cover);
 
-
-        if($cover->roll_width == 1.16 || $cover->roll_width == 1.2 || $cover->roll_width == 3.2 || $cover->roll_width == 1.77) {
-            $factor = 0.45;
-        } else {
-            $factor = 0.4;
-        }
+        $factor = $this->factor($cover);
 
         $sub_rolls = ceil($height/$factor);
         $full_rolls = ceil($sub_rolls/$useful_subrolls);
@@ -406,41 +389,20 @@ class PalilleriasController extends Controller
 
     public function reviewPost(Request $request, $id)
     {
-        $order_id = $id;
         $palilleria = $request->session()->get('palilleria');
-        $palilleria->save();
-        $order = Order::findOrFail($id);
-        $order->price = $order->price + $palilleria['price'];
-        $order->total = $order->total + $palilleria['price'];
-        $order->save();
+        saveSystem($palilleria, $id);
         $request->session()->forget('palilleria');
-        return redirect()->route('orders.show', $order_id);
+        return redirect()->route('orders.show', $id);
     }
 
     public function fetchCover(Request $request){
         $value = $request->get('cover_id');
         $palilleria = $request->session()->get('palilleria');
         $cover = Cover::findOrFail($value);
-        $width = $palilleria['width'];
         $height = $palilleria['height'];
-        if($cover->roll_width == 1.16 || $cover->roll_width == 1.2) {
-            $useful_subrolls = 2;
-        } elseif ($cover->roll_width == 1.52 || $cover->roll_width == 1.77) {
-            $useful_subrolls = 3;
-        } elseif ($cover->roll_width == 2.67 || $cover->roll_width == 3.04) {
-            $useful_subrolls = 5;
-        } elseif ($cover->roll_width == 2.5) {
-            $useful_subrolls = 4;
-        } else {
-            $useful_subrolls = 6;
-        }
+        $useful_subrolls = $this->usefulSubrolls($cover);
 
-
-        if($cover->roll_width == 1.16 || $cover->roll_width == 1.2 || $cover->roll_width == 3.2 || $cover->roll_width == 1.77) {
-            $factor = 0.45;
-        } else {
-            $factor = 0.4;
-        }
+        $factor = $this->factor($cover);
 
         $sub_rolls = ceil($height/$factor);
         $full_rolls = ceil($sub_rolls/$useful_subrolls);
@@ -478,17 +440,36 @@ class PalilleriasController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  $id
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         $palilleria = Palilleria::findOrFail($id);
-        $order = Order::where('id', $palilleria->order_id)->first();
-        $order->price = $order->price - $palilleria->price;
-        $order->total = $order->price - ($order->price * ($order->discount/100));
-        $order->save();
-        $palilleria->delete();
-        return redirect()->back()->withStatus('Producto eliminado correctamente');
+        deleteSystem($palilleria);
+    }
+
+    public function usefulSubrolls(Cover $cover): int
+    {
+        if($cover->roll_width == 1.16 || $cover->roll_width == 1.2) {
+            $useful_subrolls = 2;
+        } elseif ($cover->roll_width == 1.52 || $cover->roll_width == 1.77) {
+            $useful_subrolls = 3;
+        } elseif ($cover->roll_width == 2.67 || $cover->roll_width == 3.04) {
+            $useful_subrolls = 5;
+        } elseif ($cover->roll_width == 2.5) {
+            $useful_subrolls = 4;
+        } else {
+            $useful_subrolls = 6;
+        }
+        return $useful_subrolls;
+    }
+
+    public function factor(Cover $cover): float
+    {
+        if($cover->roll_width == 1.16 || $cover->roll_width == 1.2 || $cover->roll_width == 3.2 || $cover->roll_width == 1.77) {
+            $factor = 0.45;
+        } else {
+            $factor = 0.4;
+        }
+        return $factor;
     }
 }
