@@ -321,7 +321,7 @@ class CurtainsController extends Controller
         $user = Auth::user();
         $validatedData = $request->validate([
             'handle_id' => 'required',
-            'canopy_id' => 'required',
+            'canopy' => 'required',
             'control_id' => 'required',
             'voice_id' => 'required',
             'control_quantity' => 'required',
