@@ -11,10 +11,6 @@ class Order extends Model
         return $this->hasMany('App\Models\Curtain');
     }
 
-    public function screenies() {
-        return $this->hasMany('App\Models\ScreenyCurtain');
-    }
-
     public function palillerias() {
         return $this->hasMany(Palilleria::class);
     }
