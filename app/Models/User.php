@@ -50,7 +50,7 @@ class User extends Authenticatable
     }
 
     public function partner() {
-        return $this->belongsTo('App\Models\Partner');
+        return $this->belongsTo('App\Models\Partner', 'number');
     }
 
     public function isAdmin(){
