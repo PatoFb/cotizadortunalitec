@@ -162,12 +162,12 @@ class PalilleriasController extends Controller
             $palilleria->sensor_id = 9999;
         } elseif ($palilleria['mechanism_id'] == 4) {
             $palilleria->sensor_id = 9999;
-            $palilleria->control_id = 1;
-            $palilleria->voice_id = 1;
+            $palilleria->control_id = 999;
+            $palilleria->voice_id = 999;
         } else {
-            $palilleria->sensor_id = 1;
-            $palilleria->control_id = 1;
-            $palilleria->voice_id = 1;
+            $palilleria->sensor_id = 999;
+            $palilleria->control_id = 999;
+            $palilleria->voice_id = 999;
         }
         $request->session()->put('palilleria', $palilleria);
         return redirect()->route('palilleria.cover', $order_id);

@@ -243,22 +243,22 @@ class ToldosController extends Controller
             $toldo->control_id = 9999;
             $toldo->voice_id = 9999;
             $toldo->sensor_id = 9999;
-            $toldo->handle_id = 1;
+            $toldo->handle_id = 999;
         } elseif ($toldo['mechanism_id'] == 4) {
             $toldo->sensor_id = 9999;
             $toldo->handle_id = 9999;
-            $toldo->control_id = 1;
-            $toldo->voice_id = 1;
+            $toldo->control_id = 999;
+            $toldo->voice_id = 999;
         } elseif ($toldo['mechanism_id'] == 2) {
             $toldo->handle_id = 9999;
-            $toldo->sensor_id = 1;
-            $toldo->control_id = 1;
-            $toldo->voice_id = 1;
+            $toldo->sensor_id = 999;
+            $toldo->control_id = 999;
+            $toldo->voice_id = 999;
         } else {
-            $toldo->sensor_id = 1;
-            $toldo->handle_id = 1;
-            $toldo->control_id = 1;
-            $toldo->voice_id = 1;
+            $toldo->sensor_id = 999;
+            $toldo->handle_id = 999;
+            $toldo->control_id = 999;
+            $toldo->voice_id = 999;
         }
         $request->session()->put('toldo', $toldo);
         return redirect()->route('toldo.cover', $order_id);

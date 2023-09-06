@@ -13,6 +13,11 @@
       <change beforePath="$PROJECT_DIR$/database/migrations/2021_09_10_155721_create_voice_controls_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_09_10_155721_create_voice_controls_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2022_12_06_002019_add_type_column_to_sensors_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2022_12_06_002019_add_type_column_to_sensors_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/curtains/features.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/curtains/features.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/curtains/review.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/curtains/review.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/palillerias/features.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/palillerias/features.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/palillerias/review.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/palillerias/review.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/toldos/features.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/toldos/features.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/toldos/review.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/toldos/review.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -361,7 +366,7 @@
       <workItem from="1693330166113" duration="3044000" />
       <workItem from="1693406907535" duration="13162000" />
       <workItem from="1693930974791" duration="4961000" />
-      <workItem from="1694012439795" duration="12009000" />
+      <workItem from="1694012439795" duration="12592000" />
     </task>
     <servers />
   </component>

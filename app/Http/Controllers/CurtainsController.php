@@ -254,15 +254,15 @@ class CurtainsController extends Controller
         if($curtain['mechanism_id'] == 1){
             $curtain->control_id = 9999;
             $curtain->voice_id = 9999;
-            $curtain->handle_id = 1;
+            $curtain->handle_id = 999;
         } elseif ($curtain['mechanism_id'] == 3) {
-            $curtain->handle_id = 1;
-            $curtain->control_id = 1;
-            $curtain->voice_id = 1;
+            $curtain->handle_id = 999;
+            $curtain->control_id = 999;
+            $curtain->voice_id = 999;
         } else {
             $curtain->handle_id = 9999;
-            $curtain->control_id = 1;
-            $curtain->voice_id = 1;
+            $curtain->control_id = 999;
+            $curtain->voice_id = 999;
         }
         Session::put('curtain', $curtain);
         return redirect()->route('curtain.cover', $order_id);
