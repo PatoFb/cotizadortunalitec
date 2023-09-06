@@ -128,6 +128,7 @@ Route::group(['middleware' => 'user'], function () {
     Route::post('toldos/review/{id}', 'App\Http\Controllers\ToldosController@reviewPost')->name('toldo.review.post');
 
     Route::post('toldos/fetch/cover', 'App\Http\Controllers\ToldosController@fetchCover')->name('toldo.fetch.cover');
+    Route::post('toldos/fetch/projection', 'App\Http\Controllers\ToldosController@fetchProjection')->name('toldo.fetch.projection');
 
     Route::resource('orders', 'App\Http\Controllers\OrdersController');
     Route::resource('curtains', 'App\Http\Controllers\CurtainsController');;

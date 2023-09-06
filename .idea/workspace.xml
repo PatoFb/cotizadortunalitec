@@ -5,61 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainCanopiesController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainControlsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ControlsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainCoversController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CoversController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainHandlesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HandlesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainMechanismsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MechanismsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainModelsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CurtainModelsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainPanelsController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainTubesController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PalilleriasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PalilleriasController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ScreenyCurtainsController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ToldosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ToldosController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Curtain.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Curtain.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/CurtainCanopy.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/CurtainControl.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Control.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/CurtainHandle.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Handle.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/CurtainMechanism.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Mechanism.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/CurtainModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/CurtainModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/CurtainPanel.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/CurtainTube.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Palilleria.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Palilleria.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Reinforcement.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ScreenyCurtain.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Toldo.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Toldo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_22_194818_create_curtain_models_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_22_194818_create_curtain_models_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_22_194854_create_curtain_handles_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_22_194854_create_handles_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_22_194927_create_curtain_canopies_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_22_194941_create_curtain_controls_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_22_194941_create_controls_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_22_195001_create_curtains_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_22_195001_create_curtains_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_04_26_175459_add_columns_to_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_04_26_175459_add_columns_to_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_31_052655_create_curtain_mechanisms_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_05_31_052655_create_mechanisms_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_31_052715_create_curtain_tubes_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_31_052726_create_curtain_panels_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_31_054012_add_id_columns_to_curtain_models_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_08_03_173235_create_reinforcements_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_08_03_180749_create_palillerias_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_08_03_180749_create_palillerias_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_09_10_154533_create_toldos_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_09_10_154533_create_toldos_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_09_10_154958_create_toldo_proyeccion_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_09_10_155721_create_voice_controls_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_09_10_155721_create_voice_controls_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2022_02_10_171928_add_model_id_column_to_curtain_controls_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2022_02_10_171928_add_model_id_column_to_curtain_controls_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2022_09_22_023115_add_accessory_columns_to_curtains_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2022_09_22_023115_add_accessory_columns_to_curtains_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2022_11_04_141349_create_screeny_curtains_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2022_11_04_153745_add_timestamps_columns_to_screeny_curtains_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/curtains/panels/edit.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/curtains/panels/index.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/curtains/tubes/edit.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/curtains/tubes/index.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/curtains/create.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/curtains/features.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/curtains/features.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/palillerias/create.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/palillerias/features.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/palillerias/features.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/toldos/create.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/toldos/features.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/toldos/features.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/screeny/create.blade.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -408,7 +355,7 @@
       <workItem from="1693330166113" duration="3044000" />
       <workItem from="1693406907535" duration="13162000" />
       <workItem from="1693930974791" duration="4961000" />
-      <workItem from="1694012439795" duration="9640000" />
+      <workItem from="1694012439795" duration="10063000" />
     </task>
     <servers />
   </component>
