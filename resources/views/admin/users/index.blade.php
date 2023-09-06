@@ -74,7 +74,7 @@
                       <td>{{$user->phone}}</td>
                       <td>{{$user->rfc}}</td>
                       <td>{{$user->cfdi}}</td>
-                      <td>{{$user->razon_social}}</td>
+                      <td>{{$user->partner->description}}</td>
                       <td>{{$user->discount}}%</td>
                         <td class="td-actions text-right">
                             <a rel="tooltip" class="btn btn-success btn-link" href="{{route('users.edit', $user->id)}}" data-original-title="" title="">
