@@ -5,7 +5,7 @@
       Tip 2: you can also add an image using data-image tag
   -->
   <div class="logo">
-    <a href="/" class="simple-text logo-normal">
+    <a href="/home" class="simple-text logo-normal">
       {{ __('Cotizador') }}
     </a>
   </div>
