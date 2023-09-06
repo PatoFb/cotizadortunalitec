@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddTimestampsColumnsToScreenyCurtainsTable extends Migration
+class CreateCurtainControlsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,10 @@ class AddTimestampsColumnsToScreenyCurtainsTable extends Migration
      */
     public function up()
     {
-        Schema::table('screeny_curtains', function (Blueprint $table) {
+        Schema::create('controls', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->float('price');
             $table->timestamps();
         });
     }
@@ -25,9 +28,6 @@ class AddTimestampsColumnsToScreenyCurtainsTable extends Migration
      */
     public function down()
     {
-        Schema::table('screeny_curtains', function (Blueprint $table) {
-            $table->dropColumn('created_at');
-            $table->dropColumn('updated_at');
-        });
+        Schema::dropIfExists('controls');
     }
 }

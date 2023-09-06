@@ -16,7 +16,6 @@ class AddColumnsToUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('cfdi')->nullable(true);
             $table->string('rfc')->nullable(true);
-            $table->string('razon_social')->nullable(true);
             $table->string('phone')->nullable(true);
         });
     }
@@ -31,7 +30,6 @@ class AddColumnsToUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('cfdi');
             $table->dropColumn('rfc');
-            $table->dropColumn('razon_social');
             $table->dropColumn('phone');
         });
     }

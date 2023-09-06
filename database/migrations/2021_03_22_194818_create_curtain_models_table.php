@@ -17,12 +17,10 @@ class CreateCurtainModelsTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
-            $table->bigInteger('type_id')->unsigned()->index()->nullable(true);
             $table->string('max_resistance');
             $table->string('production_time');
             $table->float('max_width');
             $table->float('max_height');
-            $table->float('base_price');
             $table->string('photo')->nullable(true);
             $table->timestamps();
         });

@@ -90,6 +90,7 @@
                         @else
                             {!! Form::label('voice_id', 'Voz:' )  !!}
                             <select class="form-control" name="voice_id" id="voice_id" >
+                                <option value="{{$voice->id}}" {{{ (isset($toldo->voice_id) && $toldo->voice_id == $voice->id) ? "selected=\"selected\"" : "" }}}>{{$voice->name}}</option>
                                 @foreach($voices as $voice)
                                     <option value="{{$voice->id}}" {{{ (isset($toldo->voice_id) && $toldo->voice_id == $voice->id) ? "selected=\"selected\"" : "" }}}>{{$voice->name}}</option>
                                 @endforeach
@@ -109,17 +110,17 @@
                 </div>
                 <div class="form-row">
                     <div class="col-md-6 col-sm-6">
-                        {!! Form::label('canopy_id', 'Tejadillo:' )  !!}
-                        <select class="form-control" name="canopy_id" id="canopy_id" >
-                            <option value="1" {{{ (isset($toldo->canopy_id) && $toldo->canopy_id == '1') ? "selected=\"selected\"" : "" }}}>Si</option>
-                            <option value="0" {{{ (isset($toldo->canopy_id) && $toldo->canopy_id == '0') ? "selected=\"selected\"" : "" }}}>No</option>
+                        {!! Form::label('canopy', 'Tejadillo:' )  !!}
+                        <select class="form-control" name="canopy" id="canopy" >
+                            <option value="0" {{{ (isset($toldo->canopy) && $toldo->canopy == '0') ? "selected=\"selected\"" : "" }}}>No</option>
+                            <option value="1" {{{ (isset($toldo->canopy) && $toldo->canopy == '1') ? "selected=\"selected\"" : "" }}}>Si</option>
                         </select>
                     </div>
                     <div class="col-md-6 col-sm-6">
                         {!! Form::label('bambalina', 'Bambalina enrollable:' )  !!}
                         <select class="form-control" name="bambalina" id="bambalina" >
-                            <option value="1" {{{ (isset($toldo->bambalina) && $toldo->bambalina == '1') ? "selected=\"selected\"" : "" }}}>Si</option>
                             <option value="0" {{{ (isset($toldo->bambalina) && $toldo->bambalina== '0') ? "selected=\"selected\"" : "" }}}>No</option>
+                            <option value="1" {{{ (isset($toldo->bambalina) && $toldo->bambalina == '1') ? "selected=\"selected\"" : "" }}}>Si</option>
                         </select>
                     </div>
                 </div>

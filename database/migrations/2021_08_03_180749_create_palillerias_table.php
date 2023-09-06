@@ -20,8 +20,8 @@ class CreatePalilleriasTable extends Migration
             $table->integer('quantity');
             $table->bigInteger('order_id')->unsigned()->index()->nullable(true);
             $table->integer('model_id')->unsigned()->index()->nullable(true);
-            $table->bigInteger('reinforcement_id')->unsigned()->index()->nullable(true);
-            $table->integer('reinforcement_quantity');
+            $table->integer('guide')->nullable(true);
+            $table->integer('guide_quantity');
             $table->bigInteger('control_id')->unsigned()->index()->nullable(true);
             $table->integer('control_quantity');
             $table->bigInteger('cover_id')->unsigned()->index()->nullable(true);

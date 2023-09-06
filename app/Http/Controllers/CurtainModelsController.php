@@ -31,9 +31,7 @@ class CurtainModelsController extends Controller
     public function create()
     {
         $types = Type::pluck('name', 'id')->all();
-        $tubes = CurtainTube::pluck('name', 'id')->all();
-        $panels = CurtainPanel::pluck('name', 'id')->all();
-        return view('admin.curtains.models.create', compact('types', 'panels', 'tubes'));
+        return view('admin.curtains.models.create', compact('types'));
     }
 
     /**
@@ -80,9 +78,7 @@ class CurtainModelsController extends Controller
     {
         $types = Type::pluck('name', 'id')->all();
         $model = CurtainModel::findOrFail($id);
-        $tubes = CurtainTube::pluck('name', 'id')->all();
-        $panels = CurtainPanel::pluck('name', 'id')->all();
-        return view('admin.curtains.models.edit', compact('types', 'model', 'tubes', 'panels'));
+        return view('admin.curtains.models.edit', compact('types', 'model'));
     }
 
     /**

@@ -5,10 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CurtainCoversEditRequest;
 use App\Http\Requests\CurtainCoversRequest;
 use App\Models\Cover;
-use App\Models\CurtainCover;
 use Illuminate\Http\Request;
 
-class CurtainCoversController extends Controller
+class CoversController extends Controller
 {
     /**
      * Display a listing of the resource.

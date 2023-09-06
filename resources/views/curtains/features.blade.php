@@ -86,10 +86,10 @@
                 </div>
                 <div class="form-row">
                     <div class="col-md-12 col-sm-12">
-                        {!! Form::label('canopy_id', 'Tejadillo:' )  !!}
-                        <select class="form-control" name="canopy_id" id="canopy_id" >
-                            <option value="1" {{{ (isset($curtain->canopy_id) && $curtain->canopy_id == '1') ? "selected=\"selected\"" : "" }}}>Si</option>
-                            <option value="0" {{{ (isset($curtain->canopy_id) && $curtain->canopy_id == '0') ? "selected=\"selected\"" : "" }}}>No</option>
+                        {!! Form::label('canopy', 'Tejadillo:' )  !!}
+                        <select class="form-control" name="canopy" id="canopy" >
+                            <option value="1" {{{ (isset($curtain->canopy) && $curtain->canopy == '1') ? "selected=\"selected\"" : "" }}}>Si</option>
+                            <option value="0" {{{ (isset($curtain->canopy) && $curtain->canopy == '0') ? "selected=\"selected\"" : "" }}}>No</option>
                         </select>
                     </div>
 

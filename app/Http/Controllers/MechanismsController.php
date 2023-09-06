@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CurtainControlsRequest;
-use App\Models\CurtainTube;
+use App\Models\Mechanism;
 use Illuminate\Http\Request;
 
-class CurtainTubesController extends Controller
+class MechanismsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class CurtainTubesController extends Controller
      */
     public function index()
     {
-        $tubes = CurtainTube::all();
-        return view('admin.curtains.tubes.index', compact('tubes'));
+        $mechanisms = Mechanism::all();
+        return view('admin.curtains.mechanisms.index', compact('mechanisms'));
     }
 
     /**
@@ -26,7 +26,7 @@ class CurtainTubesController extends Controller
      */
     public function create()
     {
-        return redirect('/admin/tubes');
+        return redirect('/admin/mechanisms');
     }
 
     /**
@@ -37,9 +37,9 @@ class CurtainTubesController extends Controller
      */
     public function store(CurtainControlsRequest $request)
     {
-        $tube = $request->all();
-        CurtainTube::create($tube);
-        return redirect()->back()->withStatus(__('Tubo guardado correctamente'));
+        $mechanism = $request->all();
+        Mechanism::create($mechanism);
+        return redirect()->back()->withStatus(__('Mecanismo guardado correctamente'));
     }
 
     /**
@@ -61,8 +61,8 @@ class CurtainTubesController extends Controller
      */
     public function edit($id)
     {
-        $tube = CurtainTube::findOrFail($id);
-        return view('admin.curtains.tubes.edit', compact('tube'));
+        $mechanism = Mechanism::findOrFail($id);
+        return view('admin.curtains.mechanisms.edit', compact('mechanism'));
     }
 
     /**
@@ -74,10 +74,10 @@ class CurtainTubesController extends Controller
      */
     public function update(CurtainControlsRequest $request, $id)
     {
-        $tube = CurtainTube::findOrFail($id);
+        $mechanism = Mechanism::findOrFail($id);
         $input = $request->all();
-        $tube->update($input);
-        return redirect('/admin/tubes')->withStatus(__('tube editado correctamente'));
+        $mechanism->update($input);
+        return redirect('/admin/mechanisms')->withStatus(__('Mecanismo editado correctamente'));
     }
 
     /**
@@ -88,9 +88,9 @@ class CurtainTubesController extends Controller
      */
     public function destroy($id)
     {
-        $tube = CurtainTube::findOrFail($id);
-        $tube->delete();
-        return redirect('/admin/tubes')->withStatus(__('Tubo eliminado correctamente'));
+        $mechanism = Mechanism::findOrFail($id);
+        $mechanism->delete();
+        return redirect('/admin/mechanisms')->withStatus(__('Mecanismo eliminado correctamente'));
     }
 
 }

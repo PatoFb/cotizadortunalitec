@@ -25,7 +25,7 @@ class CreateToldosTable extends Migration
             $table->integer('mechanism_id')->unsigned()->index()->nullable(true);
             $table->integer('model_id')->unsigned()->index()->nullable(true);
             $table->float('price')->nullable()->default(0);
-            $table->bigInteger('canopy_id')->unsigned()->index()->nullable(true);
+            $table->integer('canopy')->nullable(true);
             $table->bigInteger('sensor_id')->unsigned()->index()->nullable(true);
             $table->integer('bambalina');
             $table->bigInteger('voice_id')->unsigned()->index()->nullable(true);

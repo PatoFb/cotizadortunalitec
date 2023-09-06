@@ -15,13 +15,6 @@ class CurtainModel extends Model
         return $this->belongsTo('App\Models\Type');
     }
 
-    public function tube() {
-        return $this->belongsTo(CurtainTube::class);
-    }
-
-    public function panel() {
-        return $this->belongsTo(CurtainPanel::class);
-    }
 
     protected $fillable = [
         'name',
@@ -30,10 +23,6 @@ class CurtainModel extends Model
         'max_resistance',
         'production_time',
         'max_width',
-        'max_height',
-        'base_price',
-        'photo',
-        'tube_id',
-        'panel_id'
+        'max_height'
     ];
 }

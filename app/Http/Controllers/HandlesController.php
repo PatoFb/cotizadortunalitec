@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CurtainHandlesRequest;
-use App\Models\CurtainHandle;
+use App\Models\Handle;
 use Illuminate\Http\Request;
 
-class CurtainHandlesController extends Controller
+class HandlesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class CurtainHandlesController extends Controller
      */
     public function index()
     {
-        $handles = CurtainHandle::all();
+        $handles = Handle::all();
         return view('admin.curtains.handles.index', compact('handles'));
     }
 
@@ -37,7 +37,7 @@ class CurtainHandlesController extends Controller
     public function store(CurtainHandlesRequest $request)
     {
         $handle = $request->all();
-        CurtainHandle::create($handle);
+        Handle::create($handle);
         return redirect()->back()->withStatus(__('Manivela guardada correctamente'));
     }
 
@@ -60,7 +60,7 @@ class CurtainHandlesController extends Controller
      */
     public function edit($id)
     {
-        $handle = CurtainHandle::findOrFail($id);
+        $handle = Handle::findOrFail($id);
         return view('admin.curtains.handles.edit', compact('handle'));
     }
 
@@ -73,7 +73,7 @@ class CurtainHandlesController extends Controller
      */
     public function update(CurtainHandlesRequest $request, $id)
     {
-        $handle = CurtainHandle::findOrFail($id);
+        $handle = Handle::findOrFail($id);
         $input = $request->all();
         $handle->update($input);
         return redirect('/admin/handles')->withStatus(__('Manivela editada correctamente'));
@@ -87,7 +87,7 @@ class CurtainHandlesController extends Controller
      */
     public function destroy($id)
     {
-        $handle = CurtainHandle::findOrFail($id);
+        $handle = Handle::findOrFail($id);
         $handle->delete();
         return redirect('/admin/handles')->withStatus(__('Manivela eliminada correctamente'));
     }

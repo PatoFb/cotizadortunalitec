@@ -20,19 +20,15 @@ class Curtain extends Model
     }
 
     public function handle() {
-        return $this->belongsTo('App\Models\CurtainHandle');
+        return $this->belongsTo('App\Models\Handle');
     }
 
     public function control() {
-        return $this->belongsTo('App\Models\CurtainControl');
-    }
-
-    public function canopy() {
-        return $this->belongsTo('App\Models\CurtainCanopy');
+        return $this->belongsTo('App\Models\Control');
     }
 
     public function mechanism() {
-        return $this->belongsTo(CurtainMechanism::class);
+        return $this->belongsTo(Mechanism::class);
     }
 
     public function voice() {
@@ -52,7 +48,7 @@ class Curtain extends Model
         'cover_id',
         'handle_id',
         'control_id',
-        'canopy_id',
+        'canopy',
         'price',
         'mechanism_id',
         'installation_type',

@@ -24,7 +24,7 @@ class CreateCurtainsTable extends Migration
             $table->bigInteger('cover_id')->unsigned()->index()->nullable(true);
             $table->bigInteger('handle_id')->unsigned()->index()->nullable(true);
             $table->bigInteger('control_id')->unsigned()->index()->nullable(true);
-            $table->bigInteger('canopy_id')->unsigned()->index()->nullable(true);
+            $table->integer('canopy')->nullable(true);
             $table->timestamps();
         });
     }

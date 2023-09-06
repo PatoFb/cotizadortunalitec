@@ -36,7 +36,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::group(['middleware' => 'admin'], function () {
     Route::resource('admin/users', 'App\Http\Controllers\UsersController', ['except' => ['show']]);
-    Route::resource('admin/controls', 'App\Http\Controllers\CurtainControlsController', ['except' => ['show']]);
+    Route::resource('admin/controls', 'App\Http\Controllers\ControlsController', ['except' => ['show']]);
     Route::resource('admin/types', 'App\Http\Controllers\TypesController', ['except' => ['show']]);
 
     Route::post('admin/users/search', 'App\Http\Controllers\UsersController@search')->name('users.search');
@@ -58,12 +58,10 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('orders/{id}/send', 'App\Http\Controllers\OrdersController@send')->name('orders.send');
 
     Route::resource('admin/canopies', 'App\Http\Controllers\CurtainCanopiesController', ['except' => ['show']]);
-    Route::resource('admin/handles', 'App\Http\Controllers\CurtainHandlesController', ['except' => ['show']]);
+    Route::resource('admin/handles', 'App\Http\Controllers\HandlesController', ['except' => ['show']]);
     Route::resource('admin/models', 'App\Http\Controllers\CurtainModelsController', ['except' => ['show']]);
-    Route::resource('admin/covers', 'App\Http\Controllers\CurtainCoversController', ['except' => ['show']]);
-    Route::resource('admin/tubes', 'App\Http\Controllers\CurtainTubesController', ['except' => ['show']]);
-    Route::resource('admin/mechanisms', 'App\Http\Controllers\CurtainMechanismsController', ['except' => ['show']]);
-    Route::resource('admin/panels', 'App\Http\Controllers\CurtainPanelsController', ['except' => ['show']]);
+    Route::resource('admin/covers', 'App\Http\Controllers\CoversController', ['except' => ['show']]);
+    Route::resource('admin/mechanisms', 'App\Http\Controllers\MechanismsController', ['except' => ['show']]);
 
 });
 
@@ -74,12 +72,6 @@ Route::group(['middleware' => 'user'], function () {
 
     Route::get('orders/new', 'App\Http\Controllers\OrdersController@newOrder')->name('orders.new');
     Route::post('orders/new', 'App\Http\Controllers\OrdersController@newOrderPost')->name('orders.new.post');
-
-    Route::get('orders/{id}/curtain/add', 'App\Http\Controllers\CurtainsController@add')->name('curtain.add');
-    Route::post('orders/{id}/curtain/add', 'App\Http\Controllers\CurtainsController@save')->name('curtain.save');
-
-    Route::get('orders/{id}/screeny/add', 'App\Http\Controllers\ScreenyCurtainsController@add')->name('screeny.add');
-    Route::post('orders/{id}/screeny/add', 'App\Http\Controllers\ScreenyCurtainsController@save')->name('screeny.save');
 
     Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
     Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
@@ -138,47 +130,8 @@ Route::group(['middleware' => 'user'], function () {
     Route::post('toldos/fetch/cover', 'App\Http\Controllers\ToldosController@fetchCover')->name('toldo.fetch.cover');
 
     Route::resource('orders', 'App\Http\Controllers\OrdersController');
-    Route::resource('curtains', 'App\Http\Controllers\CurtainsController');
-    Route::resource('screeny', 'App\Http\Controllers\ScreenyCurtainsController');
+    Route::resource('curtains', 'App\Http\Controllers\CurtainsController');;
     Route::resource('palillerias', 'App\Http\Controllers\PalilleriasController');
     Route::resource('toldos', 'App\Http\Controllers\ToldosController');
-
-    Route::post('curtains/fetch/model', 'App\Http\Controllers\CurtainsController@fetchModel')->name('curtain.fetch.model');
-    Route::post('curtains/fetch/data', 'App\Http\Controllers\CurtainsController@fetchData')->name('curtain.fetch.data');
-    Route::post('curtains/fetch/numbers', 'App\Http\Controllers\CurtainsController@fetchNumbers')->name('curtain.fetch.numbers');
-    Route::post('curtains/fetch/accesories', 'App\Http\Controllers\CurtainsController@fetchAccesories')->name('curtain.fetch.accesories');
-    Route::post('curtains/fetch/controls', 'App\Http\Controllers\CurtainsController@fetchControls')->name('curtain.fetch.controls');
-    Route::post('curtains/fetch/voices', 'App\Http\Controllers\CurtainsController@fetchVoices')->name('curtain.fetch.voices');
-
-
-    Route::post('screeny/fetch/model', 'App\Http\Controllers\ScreenyCurtainsController@fetchModel')->name('screeny.fetch.model');
-    Route::post('screeny/fetch/data', 'App\Http\Controllers\ScreenyCurtainsController@fetchData')->name('screeny.fetch.data');
-    Route::post('screeny/fetch/numbers', 'App\Http\Controllers\ScreenyCurtainsController@fetchNumbers')->name('screeny.fetch.numbers');
-    Route::post('screeny/fetch/accesories', 'App\Http\Controllers\ScreenyCurtainsController@fetchAccesories')->name('screeny.fetch.accesories');
-    Route::post('screeny/fetch/controls', 'App\Http\Controllers\ScreenyCurtainsController@fetchControls')->name('screeny.fetch.controls');
-    Route::post('screeny/fetch/voices', 'App\Http\Controllers\ScreenyCurtainsController@fetchVoices')->name('screeny.fetch.voices');
-
-    Route::put('curtains/add_data', 'App\Http\Controllers\CurtainsController@addData')->name('curtain.add.data');
-
-    Route::put('screeny/add_data', 'App\Http\Controllers\ScreenyCurtainsController@addData')->name('screeny.add.data');
-
-    Route::get('orders/{id}/palilleria/add', 'App\Http\Controllers\PalilleriasController@add')->name('palilleria.add');
-    Route::post('orders/{id}/palilleria/add', 'App\Http\Controllers\PalilleriasController@save')->name('palilleria.save');
-
-    Route::post('palillerias/fetch/data', 'App\Http\Controllers\PalilleriasController@fetchData')->name('palilleria.fetch.data');
-    Route::post('palillerias/fetch/numbers', 'App\Http\Controllers\PalilleriasController@fetchNumbers')->name('palilleria.fetch.numbers');
-    Route::post('palillerias/fetch/accessories', 'App\Http\Controllers\PalilleriasController@fetchAccessories')->name('palilleria.fetch.accessories');
-    Route::post('palillerias/fetch/controls', 'App\Http\Controllers\PalilleriasController@fetchControls')->name('palilleria.fetch.controls');
-    Route::post('palillerias/fetch/voices', 'App\Http\Controllers\PalilleriasController@fetchVoices')->name('palilleria.fetch.voices');
-
-    Route::get('orders/{id}/toldo/add', 'App\Http\Controllers\ToldosController@add')->name('toldo.add');
-    Route::post('orders/{id}/toldo/add', 'App\Http\Controllers\ToldosController@save')->name('toldo.save');
-
-    Route::post('toldos/fetch/data', 'App\Http\Controllers\ToldosController@fetchData')->name('toldo.fetch.data');
-    Route::post('toldos/fetch/numbers', 'App\Http\Controllers\ToldosController@fetchNumbers')->name('toldo.fetch.numbers');
-    Route::post('toldos/fetch/projection', 'App\Http\Controllers\ToldosController@fetchProjection')->name('toldo.fetch.projection');
-    Route::post('toldos/fetch/controls', 'App\Http\Controllers\ToldosController@fetchControls')->name('toldo.fetch.controls');
-    Route::post('toldos/fetch/voices', 'App\Http\Controllers\ToldosController@fetchVoices')->name('toldo.fetch.voices');
-    Route::post('toldos/fetch/accesories', 'App\Http\Controllers\ToldosController@fetchAccesories')->name('toldo.fetch.accesories');
 });
 

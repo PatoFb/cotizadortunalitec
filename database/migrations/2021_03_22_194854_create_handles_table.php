@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCurtainTubesTable extends Migration
+class CreateCurtainHandlesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateCurtainTubesTable extends Migration
      */
     public function up()
     {
-        Schema::create('curtain_tubes', function (Blueprint $table) {
+        Schema::create('handles', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('measure');
             $table->float('price');
             $table->timestamps();
         });
@@ -28,6 +28,6 @@ class CreateCurtainTubesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('curtain_tubes');
+        Schema::dropIfExists('handles');
     }
 }

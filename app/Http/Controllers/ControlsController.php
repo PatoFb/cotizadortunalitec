@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CurtainCanopiesRequest;
-use App\Models\CurtainCanopy;
+use App\Http\Requests\CurtainControlsRequest;
+use App\Models\Control;
 use Illuminate\Http\Request;
 
-class CurtainCanopiesController extends Controller
+class ControlsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class CurtainCanopiesController extends Controller
      */
     public function index()
     {
-        $canopies = CurtainCanopy::all();
-        return view('admin.curtains.canopies.index', compact('canopies'));
+        $controls = Control::all();
+        return view('admin.curtains.controls.index', compact('controls'));
     }
 
     /**
@@ -26,7 +26,7 @@ class CurtainCanopiesController extends Controller
      */
     public function create()
     {
-        return redirect('/admin/canopies');
+        return redirect('/admin/controls');
     }
 
     /**
@@ -35,11 +35,11 @@ class CurtainCanopiesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CurtainCanopiesRequest $request)
+    public function store(CurtainControlsRequest $request)
     {
-        $canopy = $request->all();
-        CurtainCanopy::create($canopy);
-        return redirect()->back()->withStatus(__('Tejadillo guardado correctamente'));
+        $control = $request->all();
+        Control::create($control);
+        return redirect()->back()->withStatus(__('Control guardado correctamente'));
     }
 
     /**
@@ -61,8 +61,8 @@ class CurtainCanopiesController extends Controller
      */
     public function edit($id)
     {
-        $canopy = CurtainCanopy::findOrFail($id);
-        return view('admin.curtains.canopies.edit', compact('canopy'));
+        $control = Control::findOrFail($id);
+        return view('admin.curtains.controls.edit', compact('control'));
     }
 
     /**
@@ -72,12 +72,12 @@ class CurtainCanopiesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CurtainCanopiesRequest $request, $id)
+    public function update(CurtainControlsRequest $request, $id)
     {
-        $canopy = CurtainCanopy::findOrFail($id);
+        $control = Control::findOrFail($id);
         $input = $request->all();
-        $canopy->update($input);
-        return redirect('/admin/canopies')->withStatus(__('Tejadillo editado correctamente'));
+        $control->update($input);
+        return redirect('/admin/controls')->withStatus(__('Control editado correctamente'));
     }
 
     /**
@@ -88,8 +88,8 @@ class CurtainCanopiesController extends Controller
      */
     public function destroy($id)
     {
-        $canopy = CurtainCanopy::findOrFail($id);
-        $canopy->delete();
-        return redirect('/admin/canopies')->withStatus(__('Tejadillo eliminado correctamente'));
+        $control = Control::findOrFail($id);
+        $control->delete();
+        return redirect('/admin/controls')->withStatus(__('Control eliminado correctamente'));
     }
 }

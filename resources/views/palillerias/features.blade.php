@@ -88,15 +88,15 @@
                 <h6>Refuerzos</h6>
                 <div class="form-row">
                     <div class="col-md-9 col-sm-9">
-                        {!! Form::label('reinforcement_id', 'Guía+:' )  !!}
-                        <select class="form-control" name="reinforcement_id" id="reinforcement_id" >
-                            <option value="0" {{{ (isset($palilleria->reinforcement_id) && $palilleria->reinforcement_id == '0') ? "selected=\"selected\"" : "" }}}>NO</option>
-                            <option value="1" {{{ (isset($palilleria->reinforcement_id) && $palilleria->reinforcement_id == '1') ? "selected=\"selected\"" : "" }}}>SI</option>
+                        {!! Form::label('guide', 'Guía+:' )  !!}
+                        <select class="form-control" name="guide" id="guide" >
+                            <option value="0" {{{ (isset($palilleria->guide) && $palilleria->guide == '0') ? "selected=\"selected\"" : "" }}}>NO</option>
+                            <option value="1" {{{ (isset($palilleria->guide) && $palilleria->guide == '1') ? "selected=\"selected\"" : "" }}}>SI</option>
                         </select>
                     </div>
                     <div class="col-md-3 col-sm-3">
-                        {!! Form::label('reinforcement_quantity', 'Cantidad:') !!}
-                        {!! Form::number('reinforcement_quantity', $palilleria->reinforcement_quantity ?? 0, ['class'=>'form-control', "step"=>1, "id"=>"reinforcement_quantity"]) !!}
+                        {!! Form::label('reinforcement_guide', 'Cantidad:') !!}
+                        {!! Form::number('reinforcement_guide', $palilleria->guide_quantity ?? 0, ['class'=>'form-control', "step"=>1, "id"=>"reinforcement_quantity"]) !!}
                     </div>
                 </div>
 

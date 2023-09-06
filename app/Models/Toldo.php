@@ -16,11 +16,11 @@ class Toldo extends Model
     }
 
     public function control() {
-        return $this->belongsTo(CurtainControl::class);
+        return $this->belongsTo(Control::class);
     }
 
     public function mechanism() {
-        return $this->belongsTo(CurtainMechanism::class);
+        return $this->belongsTo(Mechanism::class);
     }
 
     public function sensor() {
@@ -39,12 +39,8 @@ class Toldo extends Model
         return $this->belongsTo(ModeloToldo::class);
     }
 
-    public function canopy() {
-        return $this->belongsTo(CurtainCanopy::class);
-    }
-
     public function handle() {
-        return $this->belongsTo(CurtainHandle::class);
+        return $this->belongsTo(Handle::class);
     }
 
     protected $fillable = [
@@ -58,7 +54,7 @@ class Toldo extends Model
 'mechanism_id',
 'sistema_toldo_id',
 'price',
-'canopy_id',
+'canopy',
 'sensor_id',
 'bambalina',
 'voice_id',

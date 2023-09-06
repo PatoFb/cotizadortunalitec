@@ -16,7 +16,7 @@ class Palilleria extends Model
     }
 
     public function control() {
-        return $this->belongsTo(CurtainControl::class);
+        return $this->belongsTo(Control::class);
     }
 
     public function voice() {
@@ -28,11 +28,7 @@ class Palilleria extends Model
     }
 
     public function mechanism() {
-        return $this->belongsTo(CurtainMechanism::class);
-    }
-
-    public function reinforcement() {
-        return $this->belongsTo(Reinforcement::class);
+        return $this->belongsTo(Mechanism::class);
     }
 
     public function model() {
@@ -45,8 +41,8 @@ class Palilleria extends Model
         'quantity',
         'order_id',
         'model_id',
-        'reinforcement_id',
-        'reinforcement_quantity',
+        'guide',
+        'guide_quantity',
         'control_id',
         'control_quantity',
         'cover_id',

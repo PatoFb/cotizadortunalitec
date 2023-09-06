@@ -13,8 +13,8 @@ class AddModelIdColumnToCurtainControlsTable extends Migration
      */
     public function up()
     {
-        Schema::table('curtain_controls', function (Blueprint $table) {
-            $table->string('type')->nullable(true);
+        Schema::table('controls', function (Blueprint $table) {
+            $table->integer('mechanism_id')->nullable(true)->index();
         });
     }
 
@@ -25,8 +25,8 @@ class AddModelIdColumnToCurtainControlsTable extends Migration
      */
     public function down()
     {
-        Schema::table('curtain_controls', function (Blueprint $table) {
-            $table->dropColumn('type');
+        Schema::table('controls', function (Blueprint $table) {
+            $table->dropColumn('mechanism_id');
         });
     }
 }
