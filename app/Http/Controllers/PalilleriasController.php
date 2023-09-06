@@ -188,8 +188,8 @@ class PalilleriasController extends Controller
         $order_id = $id;
         $palilleria = $request->session()->get('palilleria');
         if($palilleria->mechanism_id == 1) {
-            $controls = Control::where('mechanism_id', 1)->get();
-            $voices = VoiceControl::where('mechanism_id', 1)->get();
+            $controls = Control::where('id', 9999)->get();
+            $voices = VoiceControl::where('id', 9999)->get();
             $sensors = Sensor::where('id', 9999)->get();
         } elseif ($palilleria->mechanism_id == 4) {
             $controls = Control::where('mechanism_id', 4)->get();

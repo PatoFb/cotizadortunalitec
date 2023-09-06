@@ -14,7 +14,7 @@ class AddTypeColumnToSensorsTable extends Migration
     public function up()
     {
         Schema::table('sensors', function (Blueprint $table) {
-            $table->string('type');
+            $table->string('type')->nullable(true);
         });
     }
 

@@ -20,6 +20,7 @@
                         @else
                             {!! Form::label('control_id', 'Control:' )  !!}
                             <select class="form-control" name="control_id" id="control_id">
+                                <option value="999" {{{ (isset($palilleria->control_id) && $palilleria->control_id == 999) ? "selected=\"selected\"" : "" }}}>No aplica</option>
                                 @foreach($controls as $control)
                                     <option value="{{$control->id}}" {{{ (isset($palilleria->control_id) && $palilleria->control_id == $control->id) ? "selected=\"selected\"" : "" }}}>{{$control->name}}</option>
                                 @endforeach
@@ -43,6 +44,7 @@
                         @else
                             {!! Form::label('sensor_id', 'Sensor:' )  !!}
                             <select class="form-control" name="sensor_id" id="sensor_id">
+                                <option value="999" {{{ (isset($palilleria->sensor_id) && $palilleria->sensor_id == 999) ? "selected=\"selected\"" : "" }}}>No aplica</option>
                                 @foreach($sensors as $sensor)
                                     <option value="{{$sensor->id}}" {{{ (isset($palilleria->sensor_id) && $palilleria->sensor_id == $sensor->id) ? "selected=\"selected\"" : "" }}}>{{$sensor->name}}</option>
                                 @endforeach
@@ -67,6 +69,7 @@
                         @else
                             {!! Form::label('voice_id', 'Voz:' )  !!}
                             <select class="form-control" name="voice_id" id="voice_id" >
+                                <option value="999" {{{ (isset($palilleria->voice_id) && $palilleria->voice_id == 999) ? "selected=\"selected\"" : "" }}}>No aplica</option>
                                 @foreach($voices as $voice)
                                     <option value="{{$voice->id}}" {{{ (isset($palilleria->voice_id) && $palilleria->voice_id == $voice->id) ? "selected=\"selected\"" : "" }}}>{{$voice->name}}</option>
                                 @endforeach

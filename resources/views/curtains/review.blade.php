@@ -43,17 +43,17 @@
                 <h5><strong>Accesorios:</strong></h5>
                         <tr class="table-responsive">
                             <table class="table">
-                        @if($curtain->canopy_id == 1)
+                        @if($curtain->canopy == 1)
                             <tr>
                                 <td style="width: 250px">
                                     Tejadillo:
                                 </td>
                                 <td>
-                                    <strong>SI</strong>
+                                    <strong>Si</strong>
                                 </td>
                             </tr>
                         @endif
-                        @if($curtain->handle_id != 9999 && $curtain->handle_quantity > 0)
+                        @if($curtain->handle_id != 9999 && $curtain->handle_id != 999 && $curtain->handle_quantity > 0)
                             <tr>
                                 <td style="width: 250px">
                                     Manivela:
@@ -67,7 +67,7 @@
                                 </td>
                             </tr>
                         @endif
-                        @if($curtain->control_id != 9999 && $curtain->control_quantity > 0)
+                        @if($curtain->control_id != 9999 && $curtain->control_id != 999 && $curtain->control_quantity > 0)
                             <tr>
                                 <td style="width: 250px">
                                     Control:
@@ -81,7 +81,7 @@
                                 </td>
                             </tr>
                         @endif
-                        @if($curtain->voice_id != 9999 && $curtain->voice_quantity > 0)
+                        @if($curtain->voice_id != 9999 && $curtain->voice_id != 999 && $curtain->voice_quantity > 0)
                             <tr>
                                 <td style="width: 250px">
                                     Control de voz:
@@ -152,16 +152,16 @@
                   <div class="card-body">
                       <h5 class="card-title">Accesorios</h5>
                       <ul class="list-group">
-                          @if($curtain->canopy_id == 1)
+                          @if($curtain->canopy == 1)
                               <li class="list-group-item"><strong>Tejadillo: </strong>Si</li>
                           @endif
-                          @if($curtain->handle_id != 9999 && $curtain->handle_quantity > 0)
+                          @if($curtain->handle_id != 9999 && $curtain->handle_id != 999 && $curtain->handle_quantity > 0)
                               <li class="list-group-item"><strong>Manivela: </strong>{{$curtain->handle->measure}} mts ({{$curtain->handle_quantity}})</li>
                           @endif
-                          @if($curtain->control_id != 9999 && $curtain->control_quantity > 0)
+                          @if($curtain->control_id != 9999 && $curtain->control_id != 999 && $curtain->control_quantity > 0)
                               <li class="list-group-item"><strong>Control: </strong>{{$curtain->control->name}} mts ({{$curtain->control_quantity}})</li>
                           @endif
-                          @if($curtain->voice_id != 9999 && $curtain->voice_quantity > 0)
+                          @if($curtain->voice_id != 9999 && $curtain->voice_id != 999 && $curtain->voice_quantity > 0)
                               <li class="list-group-item"><strong>Control de voz: </strong>{{$curtain->voice->name}} mts ({{$curtain->voice_quantity}})</li>
                           @endif
                       </ul>

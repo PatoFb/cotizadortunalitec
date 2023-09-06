@@ -17,7 +17,7 @@ class CreateVoiceControlsTable extends Migration
             $table->id();
             $table->string('name');
             $table->float('price');
-            $table->integer('mechanism_id')->index();
+            $table->integer('mechanism_id')->index()->nullable(true);
         });
     }
 

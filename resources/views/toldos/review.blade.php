@@ -35,13 +35,13 @@
                             <td class="text-center">Proyección:</td>
                             <td><strong>{{$toldo->projection}} mts</strong></td>
                         </tr>
-                        @if($toldo->canopy_id == 1)
+                        @if($toldo->canopy == 1)
                             <tr>
                                 <td class="text-center">
                                     Tejadillo:
                                 </td>
                                 <td>
-                                    <strong>SI</strong>
+                                    <strong>Si</strong>
                                 </td>
                             </tr>
                         @endif
@@ -51,11 +51,11 @@
                                     Bambalina:
                                 </td>
                                 <td>
-                                    <strong>SI</strong>
+                                    <strong>Si</strong>
                                 </td>
                             </tr>
                         @endif
-                        @if($toldo->handle_id != 9999 && $toldo->handle_quantity > 0)
+                        @if($toldo->handle_id != 9999 && $toldo->handle_id != 999 && $toldo->handle_quantity > 0)
                             <tr>
                                 <td class="text-center">
                                     Manivela:
@@ -69,7 +69,7 @@
                                 </td>
                             </tr>
                         @endif
-                        @if($toldo->control_id != 9999 && $toldo->control_quantity > 0)
+                        @if($toldo->control_id != 9999 && $toldo->control_id != 999 && $toldo->control_quantity > 0)
                             <tr>
                                 <td class="text-center">
                                     Control:
@@ -83,7 +83,7 @@
                                 </td>
                             </tr>
                         @endif
-                        @if($toldo->voice_id != 9999 && $toldo->voice_quantity > 0)
+                        @if($toldo->voice_id != 9999 && $toldo->voice_id != 999 && $toldo->voice_quantity > 0)
                             <tr>
                                 <td class="text-center">
                                     Control de voz:
@@ -97,7 +97,7 @@
                                 </td>
                             </tr>
                         @endif
-                        @if($toldo->sensor_id != 9999 && $toldo->sensor_quantity > 0)
+                        @if($toldo->sensor_id != 9999 && $toldo->sensor_id != 999 && $toldo->sensor_quantity > 0)
                             <tr>
                                 <td class="text-center">
                                     Sensor:

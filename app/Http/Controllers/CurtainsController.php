@@ -284,9 +284,9 @@ class CurtainsController extends Controller
         $order_id = $id;
         $curtain = Session::get('curtain');
         if($curtain->mechanism_id == 1){
-            $controls = Control::where('mechanism_id', 1)->get();
-            $voices = VoiceControl::where('mechanism_id', 1)->get();
-            $handles = Handle::all();
+            $controls = Control::where('id', 9999)->get();
+            $voices = VoiceControl::where('id', 9999)->get();
+            $handles = Handle::where('mechanism_id', 1)->get();
         } elseif ($curtain->mechanism_id == 4) {
             $controls = Control::where('mechanism_id', 4)->get();
             $voices = VoiceControl::where('mechanism_id', 4)->get();

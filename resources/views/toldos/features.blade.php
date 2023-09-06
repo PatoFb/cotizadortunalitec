@@ -21,6 +21,7 @@
                         @else
                             {!! Form::label('handle_id', 'Manivela (Medida en metros):' )  !!}
                             <select class="form-control" name="handle_id" id="handle_id" >
+                                <option value="999" {{{ (isset($toldo->handle_id) && $toldo->handle_id == 999) ? "selected=\"selected\"" : "" }}}>No aplica</option>
                                 @foreach($handles as $handle)
                                     <option value="{{$handle->id}}" {{{ (isset($toldo->handle_id) && $toldo->handle_id == $handle->id) ? "selected=\"selected\"" : "" }}}>{{$handle->measure}}</option>
                                 @endforeach
@@ -43,6 +44,7 @@
                         @else
                             {!! Form::label('control_id', 'Control:' )  !!}
                             <select class="form-control" name="control_id" id="control_id">
+                                <option value="999" {{{ (isset($toldo->control_id) && $toldo->control_id == 999) ? "selected=\"selected\"" : "" }}}>No aplica</option>
                                 @foreach($controls as $control)
                                     <option value="{{$control->id}}" {{{ (isset($toldo->control_id) && $toldo->control_id == $control->id) ? "selected=\"selected\"" : "" }}}>{{$control->name}}</option>
                                 @endforeach
@@ -66,6 +68,7 @@
                         @else
                             {!! Form::label('sensor_id', 'Sensores:' )  !!}
                             <select class="form-control" name="sensor_id" id="sensor_id" >
+                                <option value="999" {{{ (isset($toldo->sensor_id) && $toldo->sensor_id == 999) ? "selected=\"selected\"" : "" }}}>No aplica</option>
                                 @foreach($sensors as $sensor)
                                     <option value="{{$sensor->id}}" {{{ (isset($toldo->sensor_id) && $toldo->sensor_id == $sensor->id) ? "selected=\"selected\"" : "" }}}>{{$sensor->name}}</option>
                                 @endforeach
@@ -90,7 +93,7 @@
                         @else
                             {!! Form::label('voice_id', 'Voz:' )  !!}
                             <select class="form-control" name="voice_id" id="voice_id" >
-                                <option value="{{$voice->id}}" {{{ (isset($toldo->voice_id) && $toldo->voice_id == $voice->id) ? "selected=\"selected\"" : "" }}}>{{$voice->name}}</option>
+                                <option value="999" {{{ (isset($toldo->voice_id) && $toldo->voice_id == 999) ? "selected=\"selected\"" : "" }}}>No aplica</option>
                                 @foreach($voices as $voice)
                                     <option value="{{$voice->id}}" {{{ (isset($toldo->voice_id) && $toldo->voice_id == $voice->id) ? "selected=\"selected\"" : "" }}}>{{$voice->name}}</option>
                                 @endforeach

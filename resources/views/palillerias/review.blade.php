@@ -35,7 +35,7 @@
                             <td class="text-center">Salida:</td>
                             <td><strong>{{$palilleria->height}} mts</strong></td>
                         </tr>
-                        @if($palilleria->control_id != 9999 && $palilleria->control_quantity > 0)
+                        @if($palilleria->control_id != 9999 && $palilleria->control_id != 999 && $palilleria->control_quantity > 0)
                             <tr>
                                 <td class="text-center">
                                     Control:
@@ -49,7 +49,7 @@
                                 </td>
                             </tr>
                         @endif
-                        @if($palilleria->sensor_id != 9999 && $palilleria->sensor_quantity > 0)
+                        @if($palilleria->sensor_id != 9999 && $palilleria->sensor_id != 999 && $palilleria->sensor_quantity > 0)
                             <tr>
                                 <td class="text-center">
                                     Sensor:
@@ -63,7 +63,7 @@
                                 </td>
                             </tr>
                         @endif
-                        @if($palilleria->voice_id != 9999 && $palilleria->voice_quantity > 0)
+                        @if($palilleria->voice_id != 9999 && $palilleria->voice_id != 999 && $palilleria->voice_quantity > 0)
                             <tr>
                                 <td class="text-center">
                                     Control de voz:
@@ -77,7 +77,7 @@
                                 </td>
                             </tr>
                         @endif
-                        @if($palilleria->reinforcement_id && $palilleria->reinforcement_quantity > 0)
+                        @if($palilleria->guide == 1 && $palilleria->guide_quantity > 0)
                             <tr>
                                 <td class="text-center">
                                     Guia+:
@@ -85,13 +85,13 @@
                                     Cantidad:
                                 </td>
                                 <td>
-                                    <strong>SI</strong>
+                                    <strong>Si</strong>
                                     <br>
-                                    <strong>{{$palilleria->reinforcement_quantity}}</strong>
+                                    <strong>{{$palilleria->guide_quantity}}</strong>
                                 </td>
                             </tr>
                         @endif
-                        @if($palilleria->trave && $palilleria->trave_quantity > 0)
+                        @if($palilleria->trave == 1 && $palilleria->trave_quantity > 0)
                             <tr>
                                 <td class="text-center">
                                     Trave+:
@@ -99,13 +99,13 @@
                                     Cantidad:
                                 </td>
                                 <td>
-                                    <strong>SI</strong>
+                                    <strong>Si</strong>
                                     <br>
                                     <strong>{{$palilleria->trave_quantity}}</strong>
                                 </td>
                             </tr>
                         @endif
-                        @if($palilleria->semigoal_id && $palilleria->semigoal_quantity > 0)
+                        @if($palilleria->semigoal_id == 1 && $palilleria->semigoal_quantity > 0)
                             <tr>
                                 <td class="text-center">
                                     Semiportería+:
@@ -113,13 +113,13 @@
                                     Cantidad:
                                 </td>
                                 <td>
-                                    <strong>SI</strong>
+                                    <strong>Si</strong>
                                     <br>
                                     <strong>{{$palilleria->semigoal_quantity}}</strong>
                                 </td>
                             </tr>
                         @endif
-                        @if($palilleria->goal_id && $palilleria->goal_quantity > 0)
+                        @if($palilleria->goal_id == 1 && $palilleria->goal_quantity > 0)
                             <tr>
                                 <td class="text-center">
                                     Portería+:

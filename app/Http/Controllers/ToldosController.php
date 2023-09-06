@@ -280,9 +280,9 @@ class ToldosController extends Controller
         $order_id = $id;
         $toldo = $request->session()->get('toldo');
         if($toldo->mechanism_id == 1){
-            $controls = Control::where('mechanism_id', 1)->get();
-            $voices = VoiceControl::where('mechanism_id', 1)->get();
-            $handles = Handle::all();
+            $controls = Control::where('id', 9999)->get();
+            $voices = VoiceControl::where('id', 9999)->get();
+            $handles = Handle::where('mechanism_id', 1)->get();
             $sensors = Sensor::where('id', 9999)->get();
         } elseif ($toldo->mechanism_id == 4) {
             $controls = Control::where('mechanism_id', 4)->get();
@@ -344,7 +344,6 @@ class ToldosController extends Controller
         $cover = Cover::find($cover_id);
 
         $model_id = $toldo['model_id'];
-        $model = ModeloToldo::find($model_id);
 
         $control_id = $toldo['control_id'];
         $control = Control::find($control_id);

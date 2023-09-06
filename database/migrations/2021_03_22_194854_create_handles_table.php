@@ -17,6 +17,7 @@ class CreateCurtainHandlesTable extends Migration
             $table->id();
             $table->string('measure');
             $table->float('price');
+            $table->integer('mechanism_id')->nullable(true)->unsigned();
             $table->timestamps();
         });
     }
