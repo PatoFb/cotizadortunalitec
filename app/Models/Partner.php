@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Partner extends Model
 {
     use HasFactory;
+
+    public function user() {
+        return $this->hasOne('App\Models\User');
+    }
 }

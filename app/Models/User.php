@@ -49,6 +49,10 @@ class User extends Authenticatable
         return $this->belongsTo('App\Models\Role');
     }
 
+    public function partner() {
+        return $this->belongsTo('App\Models\Partner');
+    }
+
     public function isAdmin(){
         if($this->role_id == 1){
             return true;
