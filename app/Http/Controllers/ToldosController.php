@@ -260,6 +260,8 @@ class ToldosController extends Controller
             $toldo->control_id = 999;
             $toldo->voice_id = 999;
         }
+        $keys = ['sensor_quantity', 'handle_quantity', 'control_quantity', 'voice_quantity'];
+        removeKeys($toldo, $keys);
         $request->session()->put('toldo', $toldo);
         return redirect()->route('toldo.cover', $order_id);
     }
@@ -333,9 +335,7 @@ class ToldosController extends Controller
         $toldo = $request->session()->get('toldo');
         if($toldo->model){
             $keys = ['model', 'cover', 'mechanism', 'handle', 'control', 'voice', 'sensor'];
-            foreach ($keys as $key) {
-                unset($toldo[$key]);
-            }
+            removeKeys($toldo, $keys);
             Session::forget('toldo');
         }
         $toldo->fill($validatedData);
