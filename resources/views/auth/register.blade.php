@@ -119,6 +119,21 @@
                       </div>
                   @endif
               </div>
+              <div class="bmd-form-group{{ $errors->has('rfc') ? ' has-danger' : '' }} mt-3">
+                  <div class="input-group">
+                      <div class="input-group-prepend">
+                  <span class="input-group-text">
+                      <i class="material-icons">description</i>
+                  </span>
+                      </div>
+                      <input type="text" name="rfc" class="form-control" placeholder="{{ __('RFC') }}" value="{{ old('rfc') }}">
+                  </div>
+                  @if ($errors->has('rfc'))
+                      <div id="name-error" class="error text-danger pl-3" for="rfc" style="display: block;">
+                          <strong>{{ $errors->first('rfc') }}</strong>
+                      </div>
+                  @endif
+              </div>
               <div class="bmd-form-group{{ $errors->has('cfdi') ? ' has-danger' : '' }} mt-3">
                   <div class="input-group">
                       <div class="input-group-prepend">
