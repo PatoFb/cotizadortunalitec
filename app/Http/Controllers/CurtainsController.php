@@ -292,7 +292,7 @@ class CurtainsController extends Controller
             $handles = Handle::where('id', 9999)->get();
         } else {
             if($curtain->mechanism_id == 3){
-                $handles = Handle::all();
+                $handles = Handle::where('mechanism_id', 1)->get();
             } else {
                 $handles = Handle::where('id', 9999)->get();
             }
