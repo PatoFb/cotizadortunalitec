@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/screeny/create.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -355,7 +354,7 @@
       <workItem from="1693330166113" duration="3044000" />
       <workItem from="1693406907535" duration="13162000" />
       <workItem from="1693930974791" duration="4961000" />
-      <workItem from="1694012439795" duration="10063000" />
+      <workItem from="1694012439795" duration="10421000" />
     </task>
     <servers />
   </component>
