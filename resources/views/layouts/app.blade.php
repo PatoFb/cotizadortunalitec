@@ -163,25 +163,6 @@
         </script>
 
         <script>
-            $('.dynamic6').on('input', function (event) {
-                event.preventDefault();
-                if($(this).val() != '') {
-                    var select = $(this).attr("id");
-                    var value = $(this).val();
-                    var _token = $('input[name="_token"]').val();
-                    $.ajax({
-                        url: '{{ route('curtain.fetch.voices') }}',
-                        method: 'POST',
-                        data: {select:select, value:value, _token:_token},
-                        success: function(result) {
-                            $('#voice_id').html(result);
-                        }
-                    })
-                }
-            });
-        </script>
-
-        <script>
             $('#coverForm').on('input', function (event) {
                 event.preventDefault();
                 let $wrapper = $('#coverForm'),
