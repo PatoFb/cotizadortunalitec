@@ -130,6 +130,10 @@ Route::group(['middleware' => 'user'], function () {
     Route::post('toldos/fetch/cover', 'App\Http\Controllers\ToldosController@fetchCover')->name('toldo.fetch.cover');
     Route::post('toldos/fetch/projection', 'App\Http\Controllers\ToldosController@fetchProjection')->name('toldo.fetch.projection');
 
+    Route::put('curtains/data/add', 'App\Http\Controllers\CurtainsController@addData')->name('curtain.data.add');
+    Route::put('palillerias/data/add', 'App\Http\Controllers\PalilleriasController@addData')->name('palilleria.data.add');
+    Route::put('toldos/data/add', 'App\Http\Controllers\ToldosController@addData')->name('toldo.data.add');
+
     Route::resource('orders', 'App\Http\Controllers\OrdersController');
     Route::resource('curtains', 'App\Http\Controllers\CurtainsController');;
     Route::resource('palillerias', 'App\Http\Controllers\PalilleriasController');
