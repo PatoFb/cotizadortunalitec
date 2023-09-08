@@ -330,27 +330,26 @@ class PalilleriasController extends Controller
         $palilleria_price = PalilleriasPrice::where('width', ceil($width))->where('height', ceil($height))->first();
         $pprice = $palilleria_price->price;
 
+        $somfy =  15021;
+        $tube = 10416;
+
+        $acc = 0;
+
         //Pricing of user selected option
         switch($mechanism_id) {
             case 1:
                 $acc = $reinforcement_total;
-                $p = $pprice + $goals_total + $total_cover + $operation_costs;
-                $palilleria['price'] = ($acc + $p) / 0.6 * (1 - ($user->discount/100)) * $quantity * 1.16;
                 break;
             case 2:
-                $acc = $reinforcement_total + $control_total + $voice_total + $sensor_total;
-                $p = $pprice + $goals_total + $total_cover + $operation_costs + 15021;
-                $palilleria['price'] = ($acc + $p) / 0.6 * (1 - ($user->discount/100)) * $quantity * 1.16;
+                $acc = $reinforcement_total + $control_total + $voice_total + $sensor_total + $somfy;
                 break;
             case 4:
-                $acc = $reinforcement_total + $control_total + $voice_total;
-                $p = $pprice + $goals_total + $total_cover + $operation_costs + 10416;
-                $palilleria['price'] = ($acc + $p) / 0.6 * (1 - ($user->discount/100)) * $quantity * 1.16;
-                break;
-            default:
-                $palilleria['price'] = 0;
+                $acc = $reinforcement_total + $control_total + $voice_total + $tube;
                 break;
         }
+
+        $p = $pprice + $goals_total + $total_cover + $operation_costs;
+        $palilleria['price'] = ($acc + $p) / 0.6 * (1 - ($user->discount/100)) * $quantity * 1.16;
         $request->session()->put('palilleria', $palilleria);
         return redirect()->route('palilleria.review', $order_id);
     }
@@ -445,6 +444,7 @@ class PalilleriasController extends Controller
     public function destroy($id) {
         $palilleria = Palilleria::findOrFail($id);
         deleteSystem($palilleria);
+        return redirect()->back()->withStatus('Sistema eliminado correctamente');
     }
 
     public function usefulSubrolls(Cover $cover): int

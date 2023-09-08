@@ -31,7 +31,6 @@ class ToldosController extends Controller
         $value = $request->get('value');
         $newWidth = ceilMeasure($value, 1);
         $toldo = $request->session()->get('toldo');
-        $dependent = $request->get('dependent2');
         $data = SistemaToldo::where('modelo_toldo_id', $toldo->model_id)->where('width', $newWidth)->groupBy('projection')->get();
         $output = '<option value="">Seleccionar proyección</option>';
         foreach($data as $row){
@@ -405,27 +404,23 @@ class ToldosController extends Controller
 
         $utility = 0.40;
 
+        $accessories = 0;
+
         switch($mechanism_id) {
             case 1:
-                $accesories = $handle_total + $total_canopy + $total_bambalina;
-                $toldo['price'] = ((((($sprice+$total_cover)*1.16) / (1-$utility)) * $quantity) * (1-($user->discount/100))) + $accesories;
+                $accessories = $handle_total + $total_canopy + $total_bambalina;
                 break;
             case 2:
-                $accesories = $control_total + $sensor_total + $voice_total + $total_canopy + $total_bambalina;
-                $toldo['price'] = ((((($sprice+$total_cover)*1.16) / (1-$utility)) * $quantity) * (1-($user->discount/100))) + $accesories;
+                $accessories = $control_total + $sensor_total + $voice_total + $total_canopy + $total_bambalina;
                 break;
             case 3:
-                $accesories = $control_total + $handle_total + $sensor_total + $voice_total + $total_canopy + $total_bambalina;
-                $toldo['price'] = ((((($sprice+$total_cover)*1.16) / (1-$utility)) * $quantity) * (1-($user->discount/100))) + $accesories;
+                $accessories = $control_total + $handle_total + $sensor_total + $voice_total + $total_canopy + $total_bambalina;
                 break;
             case 4:
-                $accesories = $handle_total + $voice_total + $total_canopy + $total_bambalina + $control_total;
-                $toldo['price'] = ((((($sprice+$total_cover)*1.16) / (1-$utility)) * $quantity) * (1-($user->discount/100))) + $accesories;
-                break;
-            default:
-                $toldo['price'] = 0;
+                $accessories = $handle_total + $voice_total + $total_canopy + $total_bambalina + $control_total;
                 break;
         }
+        $toldo['price'] = ((((($sprice+$total_cover)*1.16) / (1-$utility)) * $quantity) * (1-($user->discount/100))) + $accessories;
         $request->session()->put('toldo', $toldo);
         return redirect()->route('toldo.review', $order_id);
     }
@@ -474,5 +469,6 @@ class ToldosController extends Controller
     {
         $toldo = Toldo::findOrFail($id);
         deleteSystem($toldo);
+        return redirect()->back()->withStatus('Sistema eliminado correctamente');
     }
 }

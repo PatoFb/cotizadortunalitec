@@ -392,10 +392,10 @@ class CurtainsController extends Controller
             $system = SystemCurtain::where('model_id', $model_id)->where('width', $newWidth)->first();
         }
 
-        $manual = $system->price;
-        $tube = 1959.235294 + $manual;
-        $somfy = 6927.693627 + $manual;
-        $cmo = 7971.151961 + $manual;
+        $manual = $system->price * 1.16;
+        $tube = (1959.235294*1.16) + $manual;
+        $somfy = (6927.693627*1.16) + $manual;
+        $cmo = (7971.151961*1.16) + $manual;
 
         //If user chooses canopy, it will calculate the price by width plus IVA
         if($canopy == 1) {
@@ -406,27 +406,23 @@ class CurtainsController extends Controller
 
         $utility = 0.40;
 
+        $accessories = 0;
+
         switch($mechanism_id) {
             case 1:
-                $accessories = $handle_total + $total_canopy;
-                $curtain->price = ((((($manual+$total_cover)*1.16) / (1-$utility)) * (1-($user->discount/100))) * $quantity) + $accessories;
+                $accessories = $handle_total + $total_canopy + $manual;
                 break;
             case 2:
-                $accessories = $control_total + $voice_total + $total_canopy;
-                $curtain->price = ((((($somfy+$total_cover)*1.16) / (1-$utility)) * (1-($user->discount/100))) * $quantity) + $accessories;
+                $accessories = $control_total + $voice_total + $total_canopy + $somfy;
                 break;
             case 3:
-                $accessories = $control_total + $handle_total + $voice_total + $total_canopy;
-                $curtain->price = ((((($cmo+$total_cover)*1.16) / (1-$utility)) * (1-($user->discount/100))) * $quantity) + $accessories;
+                $accessories = $control_total + $handle_total + $voice_total + $total_canopy + $cmo;
                 break;
             case 4:
-                $accessories = $voice_total + $total_canopy + $control_total;
-                $curtain->price = ((((($tube+$total_cover)*1.16) / (1-$utility)) * (1-($user->discount/100))) * $quantity) + $accessories;
-                break;
-            default:
-                $curtain->price = 0;
+                $accessories = $voice_total + $total_canopy + $control_total + $tube;
                 break;
         }
+        $curtain->price = (((($total_cover*1.16) / (1-$utility)) * (1-($user->discount/100))) * $quantity) + $accessories;
         $request->session()->put('curtain', $curtain);
         return redirect()->route('curtain.review', $order_id);
     }
@@ -474,5 +470,6 @@ class CurtainsController extends Controller
     public function destroy($id) {
         $curtain = Curtain::findOrFail($id);
         deleteSystem($curtain);
+        return redirect()->back()->withStatus('Sistema eliminado correctamente');
     }
 }
