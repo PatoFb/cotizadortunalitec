@@ -31,7 +31,6 @@ function deleteSystem($system) {
     $order->total = $order->total - $system->price;
     $order->save();
     $system->delete();
-    return redirect()->back()->withStatus('Producto eliminado correctamente');
 }
 
 function saveSystem($system, $id) {
