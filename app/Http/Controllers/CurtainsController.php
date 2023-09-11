@@ -236,8 +236,6 @@ class CurtainsController extends Controller
         $curtain->fill($validatedData);
         //reset accessory values
         $this->resetAccessories($curtain, $oldMechanismId, $newMechanismId);
-        $keys = ['handle_quantity', 'control_quantity', 'voice_quantity'];
-        removeKeys($curtain, $keys);
         Session::put('curtain', $curtain);
         return redirect()->route('curtain.cover', $order_id);
     }
@@ -340,6 +338,9 @@ class CurtainsController extends Controller
                 $curtain->control_id = 999;
                 $curtain->voice_id = 999;
             }
+            $curtain->handle_quantity = 0;
+            $curtain->control_quantity = 0;
+            $curtain->voice_quantity = 0;
         }
         return $curtain;
     }
