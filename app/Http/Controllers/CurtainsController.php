@@ -354,7 +354,7 @@ class CurtainsController extends Controller
         $user = Auth::user();
         $cover = Cover::find($curtain['cover_id']);
         $model_id = $curtain['model_id'];
-        $canopy = $curtain['canopy_id'];
+        $canopy = $curtain['canopy'];
 
         $width = $curtain['width'];
         $height = $curtain['height'];
