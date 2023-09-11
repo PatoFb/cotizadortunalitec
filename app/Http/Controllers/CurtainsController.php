@@ -24,7 +24,7 @@ class CurtainsController extends Controller
     public function show($id)
     {
         $curtain = Curtain::findOrFail($id);
-        return view('palillerias.show', compact('curtain'));
+        return view('curtains.show', compact('curtain'));
     }
 
     /**
@@ -132,9 +132,8 @@ class CurtainsController extends Controller
      * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function addModel(Request $request, $id)
+    public function addModel(Request $request, $order_id)
     {
-        $order_id = $id;
         $models = CurtainModel::all();
         $curtain = $request->session()->get('curtain');
         return view('curtains.model', compact('order_id', 'models', 'curtain'));
@@ -156,9 +155,8 @@ class CurtainsController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
 
-    public function addModelPost(Request $request, $id)
+    public function addModelPost(Request $request, $order_id)
     {
-        $order_id = $id;
         $validatedData = $request->validate([
             'model_id' => 'required',
         ]);
@@ -183,9 +181,8 @@ class CurtainsController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
 
-    public function addCover(Request $request, $id)
+    public function addCover(Request $request, $order_id)
     {
-        $order_id = $id;
         $cov = Cover::all();
         $curtain = Session::get('curtain');
         return view('curtains.cover', compact('order_id', 'cov', 'curtain'));
@@ -200,9 +197,8 @@ class CurtainsController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
 
-    public function addCoverPost(Request $request, $id)
+    public function addCoverPost(Request $request, $order_id)
     {
-        $order_id = $id;
         $validatedData = $request->validate([
             'cover_id' => 'required',
         ]);
@@ -220,9 +216,8 @@ class CurtainsController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
 
-    public function addDat(Request $request, $id)
+    public function addDat(Request $request, $order_id)
     {
-        $order_id = $id;
         $curtain = $request->session()->get('curtain');
         $mechs = Mechanism::all();
         $model = ModeloToldo::find($curtain->model_id);
@@ -237,9 +232,8 @@ class CurtainsController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
 
-    public function addDataPost(Request $request, $id)
+    public function addDataPost(Request $request, $order_id)
     {
-        $order_id = $id;
         $validatedData = $request->validate([
             'width' => 'required',
             'height' => 'required',
@@ -278,9 +272,8 @@ class CurtainsController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
 
-    public function addFeatures(Request $request, $id)
+    public function addFeatures(Request $request, $order_id)
     {
-        $order_id = $id;
         $curtain = Session::get('curtain');
         if($curtain->mechanism_id == 1){
             $controls = Control::where('id', 9999)->get();
@@ -314,9 +307,8 @@ class CurtainsController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
 
-    public function addFeaturesPost(Request $request, $id)
+    public function addFeaturesPost(Request $request, $order_id)
     {
-        $order_id = $id;
         $user = Auth::user();
         $validatedData = $request->validate([
             'handle_id' => 'required',
@@ -336,63 +328,40 @@ class CurtainsController extends Controller
         $curtain->fill($validatedData);
 
         $cover = Cover::find($curtain['cover_id']);
-
         $model_id = $curtain['model_id'];
-
         $control = Control::find($curtain['control_id']);
-
         $mechanism_id = $curtain['mechanism_id'];
-
         $voice = VoiceControl::find($curtain['voice_id']);
-
         $handle = Handle::find($curtain['handle_id']);
-
         $canopy = $curtain['canopy_id'];
 
         $width = $curtain['width'];
         $height = $curtain['height'];
         $quantity = $curtain['quantity'];
+
         $cquant = $curtain['control_quantity'];
         $vquant = $curtain['voice_quantity'];
         $hquant = $curtain['handle_quantity'];
 
-        //Control plus IVA
+        //Accessories plus IVA
         $control_total = $control->price * $cquant * 1.16;
         $voice_total = $voice->price * $vquant * 1.16;
         $handle_total = $handle->price * $hquant * 1.16;
 
-        $measure = $height + 0.35;
-        $squared_meters = $measure * $width;
+        //Calculate cover plus handwork price
+        $total_cover = $this->calculateCoverPrice($cover, $width, $height);
 
-        if($cover->unions == 'Vertical') {
-            //Calculates number of fabric needed for pricing
-            $num_lienzos = ceil($width / $cover->roll_width);
-            $total_fabric = $measure * $num_lienzos;
-            $cover_price = $cover->price * $total_fabric;
-        } else {
-            $range = RollWidth::where('width', $cover->roll_width)->where('meters', $height)->value('range');
-            $num_lienzos = Complement::where('range', $range)->value('complete');
-            $complement = Complement::where('range', $range)->value('complements');
-            $total_fabric = $num_lienzos * $width;
-
-            $full_price = $cover->price * $total_fabric;
-            $complement_price = $cover->price / $cover->roll_width * 2.5 * $complement;
-            $cover_price = $full_price + $complement_price;
-        }
-
-        $work_price = $squared_meters * (70/(1 - 0.3));
-        $total_cover = ($cover_price + $work_price);
-
+        //Ceil the width to x.5 if width < x.5 or to x.0 if width > x.5
         $newWidth = ceilMeasure($width, 1);
 
         if($model_id > 3 && $model_id < 7){
             $newHeight = ceilMeasure($height, 1.5);
-            $system = SystemScreenyCurtain::where('model_id', $model_id)->where('width', $newWidth)->where('height', $newHeight)->first();
+            $system = SystemScreenyCurtain::where('model_id', $model_id)->where('width', $newWidth)->where('height', $newHeight)->value('price');
         } else {
-            $system = SystemCurtain::where('model_id', $model_id)->where('width', $newWidth)->first();
+            $system = SystemCurtain::where('model_id', $model_id)->where('width', $newWidth)->value('price');
         }
 
-        $manual = $system->price * 1.16;
+        $manual = $system * 1.16;
         $tube = (1959.235294*1.16) + $manual;
         $somfy = (6927.693627*1.16) + $manual;
         $cmo = (7971.151961*1.16) + $manual;
@@ -440,6 +409,31 @@ class CurtainsController extends Controller
         $order_id = $id;
         $curtain = Session::get('curtain');
         return view('curtains.review', compact('order_id', 'curtain'));
+    }
+
+    private function calculateCoverPrice(Cover $cover, float $width, float $height): float {
+        $measure = $height + 0.35;
+        $squared_meters = $measure * $width;
+
+        if($cover->unions == 'Vertical') {
+            //Calculates number of fabric needed for pricing
+            $num_lienzos = ceil($width / $cover->roll_width);
+            $total_fabric = $measure * $num_lienzos;
+            $cover_price = $cover->price * $total_fabric;
+        } else {
+            $range = RollWidth::where('width', $cover->roll_width)->where('meters', $height)->value('range');
+            $num_lienzos = Complement::where('range', $range)->value('complete');
+            $complement = Complement::where('range', $range)->value('complements');
+            $total_fabric = $num_lienzos * $width;
+
+            $full_price = $cover->price * $total_fabric;
+            $complement_price = $cover->price / $cover->roll_width * 2.5 * $complement;
+            $cover_price = $full_price + $complement_price;
+        }
+
+        $work_price = $squared_meters * (70/(1 - 0.3));
+        $total_cover = ($cover_price + $work_price);
+        return $total_cover;
     }
 
     /**
