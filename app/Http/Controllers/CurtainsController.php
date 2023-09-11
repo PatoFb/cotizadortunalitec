@@ -300,7 +300,7 @@ class CurtainsController extends Controller
         }
         $curtain->fill($validatedData);
         $curtain->price = $this->calculateCurtainPrice($curtain);
-        $request->session()->put('curtain', $curtain);
+        Session::put($curtain);
         return redirect()->route('curtain.review', $order_id);
     }
 
