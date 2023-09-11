@@ -242,19 +242,7 @@ class CurtainsController extends Controller
         ]);
         $curtain = $request->session()->get('curtain');
         $curtain->fill($validatedData);
-        if($curtain['mechanism_id'] == 1){
-            $curtain->control_id = 9999;
-            $curtain->voice_id = 9999;
-            $curtain->handle_id = 999;
-        } elseif ($curtain['mechanism_id'] == 3) {
-            $curtain->handle_id = 999;
-            $curtain->control_id = 999;
-            $curtain->voice_id = 999;
-        } else {
-            $curtain->handle_id = 9999;
-            $curtain->control_id = 999;
-            $curtain->voice_id = 999;
-        }
+        $this->resetAccessories($curtain);
         $keys = ['handle_quantity', 'control_quantity', 'voice_quantity'];
         removeKeys($curtain, $keys);
         Session::put('curtain', $curtain);
@@ -309,7 +297,6 @@ class CurtainsController extends Controller
 
     public function addFeaturesPost(Request $request, $order_id)
     {
-        $user = Auth::user();
         $validatedData = $request->validate([
             'handle_id' => 'required',
             'canopy' => 'required',
@@ -326,7 +313,45 @@ class CurtainsController extends Controller
             Session::forget('curtain');
         }
         $curtain->fill($validatedData);
+        $curtain->price = $this->calculateCurtainPrice($curtain);
+        $request->session()->put('curtain', $curtain);
+        return redirect()->route('curtain.review', $order_id);
+    }
 
+    /**
+     * This is the last step and you will be able to review all the details of your product
+     *
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+
+    public function review(Request $request, $id)
+    {
+        $order_id = $id;
+        $curtain = Session::get('curtain');
+        return view('curtains.review', compact('order_id', 'curtain'));
+    }
+
+    private function resetAccessories(Curtain $curtain): Curtain {
+        if($curtain['mechanism_id'] == 1){
+            $curtain->control_id = 9999;
+            $curtain->voice_id = 9999;
+            $curtain->handle_id = 999;
+        } elseif ($curtain['mechanism_id'] == 3) {
+            $curtain->handle_id = 999;
+            $curtain->control_id = 999;
+            $curtain->voice_id = 999;
+        } else {
+            $curtain->handle_id = 9999;
+            $curtain->control_id = 999;
+            $curtain->voice_id = 999;
+        }
+        return $curtain;
+    }
+
+    private function calculateCurtainPrice(Curtain $curtain): float {
+        $user = Auth::user();
         $cover = Cover::find($curtain['cover_id']);
         $model_id = $curtain['model_id'];
         $control = Control::find($curtain['control_id']);
@@ -354,14 +379,9 @@ class CurtainsController extends Controller
         //Ceil the width to x.5 if width < x.5 or to x.0 if width > x.5
         $newWidth = ceilMeasure($width, 1);
 
-        if($model_id > 3 && $model_id < 7){
-            $newHeight = ceilMeasure($height, 1.5);
-            $system = SystemScreenyCurtain::where('model_id', $model_id)->where('width', $newWidth)->where('height', $newHeight)->value('price');
-        } else {
-            $system = SystemCurtain::where('model_id', $model_id)->where('width', $newWidth)->value('price');
-        }
+        $system_price = $this->getSystemPrice($model_id, $height, $newWidth);
 
-        $manual = $system * 1.16;
+        $manual = $system_price * 1.16;
         $tube = (1959.235294*1.16) + $manual;
         $somfy = (6927.693627*1.16) + $manual;
         $cmo = (7971.151961*1.16) + $manual;
@@ -391,24 +411,7 @@ class CurtainsController extends Controller
                 $accessories = $voice_total + $total_canopy + $control_total + $tube;
                 break;
         }
-        $curtain->price = (((($total_cover*1.16) / (1-$utility)) * (1-($user->discount/100))) * $quantity) + $accessories;
-        $request->session()->put('curtain', $curtain);
-        return redirect()->route('curtain.review', $order_id);
-    }
-
-    /**
-     * This is the last step and you will be able to review all the details of your product
-     *
-     * @param Request $request
-     * @param $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
-
-    public function review(Request $request, $id)
-    {
-        $order_id = $id;
-        $curtain = Session::get('curtain');
-        return view('curtains.review', compact('order_id', 'curtain'));
+        $price = (((($total_cover*1.16) / (1-$utility)) * (1-($user->discount/100))) * $quantity) + $accessories;
     }
 
     private function calculateCoverPrice(Cover $cover, float $width, float $height): float {
@@ -434,6 +437,16 @@ class CurtainsController extends Controller
         $work_price = $squared_meters * (70/(1 - 0.3));
         $total_cover = ($cover_price + $work_price);
         return $total_cover;
+    }
+
+    private function getSystemPrice(int $model_id, float $height, float $newWidth): float {
+        if($model_id > 3 && $model_id < 7){
+            $newHeight = ceilMeasure($height, 1.5);
+            $system = SystemScreenyCurtain::where('model_id', $model_id)->where('width', $newWidth)->where('height', $newHeight)->value('price');
+        } else {
+            $system = SystemCurtain::where('model_id', $model_id)->where('width', $newWidth)->value('price');
+        }
+        return $system;
     }
 
     /**
