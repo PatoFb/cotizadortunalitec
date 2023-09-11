@@ -325,7 +325,7 @@ class CurtainsController extends Controller
      * @param Curtain $curtain
      * @return Curtain
      */
-    private function resetAccessories(Curtain $curtain, int $oldMechanismId, int $newMechanismId): Curtain {
+    private function resetAccessories(Curtain $curtain, $oldMechanismId, int $newMechanismId): Curtain {
         if($oldMechanismId != $newMechanismId) {
             if ($curtain['mechanism_id'] == 1) {
                 $curtain->control_id = 9999;
