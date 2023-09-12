@@ -146,7 +146,7 @@ class CurtainsController extends Controller
         $validatedData = $request->validate([
             'model_id' => 'required',
         ]);
-        createSession($validatedData['model_id'], $order_id, 'Curtain');
+        createSession($validatedData['model_id'], $order_id, Curtain::class, 'curtain');
         return redirect()->route('curtain.data', $order_id);
     }
 

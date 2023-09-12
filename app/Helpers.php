@@ -29,15 +29,15 @@ function ceilMeasure(float $measure, float $min): float {
     return $newMeasure;
 }
 
-function createSession(int $model_id, int $order_id, string $object) {
-    if(empty(Session::get('curtain'))){
+function createSession(int $model_id, int $order_id, string $object, string $system) {
+    if(empty(Session::get($system))){
         $object = new $object();
         $object['order_id'] = $order_id;
     }else{
-        $object = Session::get('curtain');
+        $object = Session::get($system);
     }
     $object->model_id = $model_id;
-    Session::put('curtain', $object);
+    Session::put($system, $object);
 }
 
 function deleteSystem($system) {

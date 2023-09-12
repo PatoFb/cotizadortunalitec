@@ -141,7 +141,7 @@ class ToldosController extends Controller
         $validatedData = $request->validate([
             'model_id' => 'required',
         ]);
-        createSession($validatedData['model_id'], $order_id, 'Toldo');
+        createSession($validatedData['model_id'], $order_id, Toldo::class, 'toldo');
         return redirect()->route('toldo.data', $order_id);
     }
 

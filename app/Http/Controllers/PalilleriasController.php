@@ -70,7 +70,7 @@ class PalilleriasController extends Controller
         $validatedData = $request->validate([
             'model_id' => 'required',
         ]);
-        createSession($validatedData['model_id'], $order_id, 'Palilleria');
+        createSession($validatedData['model_id'], $order_id, Palilleria::class, 'palilleria');
         return redirect()->route('palilleria.data', $order_id);
     }
 
