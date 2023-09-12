@@ -63,7 +63,7 @@
               <li class="nav-item{{ $activePage == 'record' ? ' active' : '' }}">
                   <a class="nav-link" href="{{ route('orders.record') }}">
                       <i class="material-icons">list</i>
-                      <p>{{ __('Historial de proyectos') }}</p>
+                      <span class="sidebar-normal">{{ __('Historial de proyectos') }}</span>
                   </a>
               </li>
               <li class="nav-item{{ $activePage == 'usuarios' ? ' active' : '' }}">
