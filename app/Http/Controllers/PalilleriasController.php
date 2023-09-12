@@ -11,6 +11,9 @@ use App\Models\PalilleriaModel;
 use App\Models\PalilleriasPrice;
 use App\Models\Sensor;
 use App\Models\VoiceControl;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -21,7 +24,8 @@ class PalilleriasController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return
+     * @param $id
+     * @return Application|Factory|View
      */
     public function show($id)
     {
@@ -37,15 +41,13 @@ class PalilleriasController extends Controller
      * Creates a session for the product in which information will be stored and sends it
      * to the view so the data the user enters is saved as well
      *
-     * @param Request $request
-     * @param $id
+     * @param $order_id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function addModel(Request $request, $id)
+    public function addModel($order_id)
     {
-        $order_id = $id;
         $models = PalilleriaModel::all();
-        $palilleria = $request->session()->get('palilleria');
+        $palilleria = Session::get('palilleria');
         return view('palillerias.model', compact('order_id', 'models', 'palilleria'));
     }
 
@@ -77,16 +79,14 @@ class PalilleriasController extends Controller
     /**
      * Works exactly the same as the model function, but with covers
      *
-     * @param Request $request
-     * @param $id
+     * @param $order_id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
 
-    public function addCover(Request $request, $id)
+    public function addCover($order_id)
     {
-        $order_id = $id;
         $cov = Cover::all();
-        $palilleria = $request->session()->get('palilleria');
+        $palilleria = Session::get('palilleria');
         return view('palillerias.cover', compact('order_id', 'cov', 'palilleria'));
     }
 
@@ -105,9 +105,9 @@ class PalilleriasController extends Controller
         $validatedData = $request->validate([
             'cover_id' => 'required',
         ]);
-        $palilleria = $request->session()->get('palilleria');
+        $palilleria = Session::get('palilleria');
         $palilleria->cover_id = $validatedData['cover_id'];
-        $request->session()->put('palilleria', $palilleria);
+        Session::put('palilleria', $palilleria);
         return redirect()->route('palilleria.features', $order_id);
     }
 
@@ -115,52 +115,70 @@ class PalilleriasController extends Controller
      * Works the same as the model and cover functions, but since we don't need any data for a radio list,
      * we won't send any objects but the curtain stored in session
      *
-     * @param Request $request
-     * @param $id
+     * @param $order_id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
 
-    public function addDat(Request $request, $id)
+    public function addDat($order_id)
     {
-        $order_id = $id;
-        $palilleria = $request->session()->get('palilleria');
+        $palilleria = Session::get('palilleria');
         $mechs = Mechanism::all()->except(3);
         return view('palillerias.data', compact('order_id', 'palilleria', 'mechs'));
     }
 
     /**
-     * Validation for the two numeric fields, store in session and then go to next step
+     * Validation for the data fields, store in session and then go to next step
      *
      * @param Request $request
-     * @param $id
+     * @param $order_id
      * @return \Illuminate\Http\RedirectResponse
      */
 
-    public function addDataPost(Request $request, $id) {
-        $order_id = $id;
+    public function addDataPost(Request $request, $order_id) {
         $validatedData = $request->validate([
             'width' => 'required',
             'height' => 'required',
             'mechanism_id' => 'required',
             'quantity' => 'required',
         ]);
-        $palilleria = $request->session()->get('palilleria');
+        $palilleria = Session::get('palilleria');
         $palilleria->fill($validatedData);
-        if($palilleria['mechanism_id'] == 1) {
-            $palilleria->control_id = 9999;
-            $palilleria->voice_id = 9999;
-            $palilleria->sensor_id = 9999;
-        } elseif ($palilleria['mechanism_id'] == 4) {
-            $palilleria->sensor_id = 9999;
-            $palilleria->control_id = 999;
-            $palilleria->voice_id = 999;
-        } else {
-            $palilleria->sensor_id = 999;
-            $palilleria->control_id = 999;
-            $palilleria->voice_id = 999;
-        }
-        $request->session()->put('palilleria', $palilleria);
+        $oldMechanismId = $palilleria->mechanism_id;
+        $newMechanismId = $validatedData['mechanism_id'];
+        $this->resetAccessories($palilleria, $oldMechanismId, $newMechanismId);
+        Session::put('palilleria', $palilleria);
         return redirect()->route('palilleria.cover', $order_id);
+    }
+
+    /**
+     * Function to reset accessory values if there's a mechanism change
+     *
+     * @param Palilleria $palilleria
+     * @param $oldMechanismId
+     * @param int $newMechanismId
+     * @return Palilleria
+     */
+
+    private function resetAccessories(Palilleria $palilleria, $oldMechanismId, int $newMechanismId): Palilleria {
+        if($oldMechanismId != $newMechanismId) {
+            if($palilleria['mechanism_id'] == 1) {
+                $palilleria->control_id = 9999;
+                $palilleria->voice_id = 9999;
+                $palilleria->sensor_id = 9999;
+            } elseif ($palilleria['mechanism_id'] == 4) {
+                $palilleria->sensor_id = 9999;
+                $palilleria->control_id = 999;
+                $palilleria->voice_id = 999;
+            } else {
+                $palilleria->sensor_id = 999;
+                $palilleria->control_id = 999;
+                $palilleria->voice_id = 999;
+            }
+            $palilleria->sensor_quantity = 0;
+            $palilleria->control_quantity = 0;
+            $palilleria->voice_quantity = 0;
+        }
+        return $palilleria;
     }
 
     /**
@@ -169,14 +187,12 @@ class PalilleriasController extends Controller
      *
      * We keep sending the session
      *
-     * @param Request $request
-     * @param $id
+     * @param $order_id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
 
-    public function addFeatures(Request $request, $id) {
-        $order_id = $id;
-        $palilleria = $request->session()->get('palilleria');
+    public function addFeatures($order_id) {
+        $palilleria = Session::get('palilleria');
         if($palilleria->mechanism_id == 1) {
             $controls = Control::where('id', 9999)->get();
             $voices = VoiceControl::where('id', 9999)->get();
@@ -194,11 +210,9 @@ class PalilleriasController extends Controller
     }
 
     /**
-     * Validation for the four fields asked on this step, store in session
+     * Validation for the fields asked on this step, store in session
      *
      * We get the prices of the other objects from other tables using all the ids stored in the session
-     *
-     * For now, price calculating is just a simple sum multiplied by the quantity selected
      *
      * @param Request $request
      * @param $id
@@ -208,7 +222,6 @@ class PalilleriasController extends Controller
     public function addFeaturesPost(Request $request, $id)
     {
         $order_id = $id;
-        $user = Auth::user();
         $validatedData = $request->validate([
             'control_id' => 'required',
             'sensor_id' => 'required',
@@ -225,47 +238,74 @@ class PalilleriasController extends Controller
             'semigoal_quantity' => 'required',
             'goal_quantity' => 'required',
         ]);
-        $palilleria = $request->session()->get('palilleria');
+        $palilleria = Session::get('palilleria');
         $palilleria->fill($validatedData);
-
         if($palilleria->model){
             $keys = ['model', 'cover', 'mechanism', 'control', 'voice', 'sensor'];
-            foreach ($keys as $key) {
-                unset($palilleria[$key]);
-            }
+            removeKeys($palilleria, $keys);
             Session::forget('palilleria');
         }
-        $cover = Cover::where('id', $palilleria['cover_id'])->first();
+        $palilleria->price = $this->calculatePalilleriaPrice($palilleria);
+        Session::put('palilleria', $palilleria);
+        return redirect()->route('palilleria.review', $order_id);
+    }
 
-        $control = Control::where('id', $palilleria['control_id'])->first();
+    /**
+     * Function to calculate the total price of the system
+     *
+     * @param Palilleria $palilleria
+     * @return float
+     */
 
-        $mechanism_id = $palilleria['mechanism_id'];
-
-        $model = PalilleriaModel::where('id', $palilleria['model_id'])->first();
-        $sensor = Sensor::where('id', $palilleria['sensor_id'])->first();
-
-        $voice = VoiceControl::where('id', $palilleria['voice_id'])->first();
+    private function calculatePalilleriaPrice(Palilleria $palilleria): float {
+        $user = Auth::user();
+        $cover = Cover::find($palilleria['cover_id']);
 
         $width = $palilleria['width'];
         $height = $palilleria['height'];
         $quantity = $palilleria['quantity'];
 
-        $goal = $palilleria['goal'];
-        $semigoal= $palilleria['semigoal'];
-        $trave = $palilleria['trave'];
-        $guide = $palilleria['guide'];
+        $factor = $this->factor($cover->roll_width);
 
-        $cquant = $palilleria['control_quantity'];
-        $rquant = $palilleria['guide_quantity'];
-        $squant = $palilleria['sensor_quantity'];
-        $tquant = $palilleria['trave_quantity'];
-        $gquant = $palilleria['goal_quantity'];
-        $sgquant = $palilleria['semigoal_quantity'];
-        $vquant = $palilleria['voice_quantity'];
+        $total_cover = $this->calculateCoverPrice($cover, $width, $height, $factor);
 
-        $useful_subrolls = $this->usefulSubrolls($cover);
+        $reinforcement_total = $this->calculateReinforcementsPrice($palilleria, $height, $factor);
 
-        $factor = $this->factor($cover);
+        $model_price = $this->calculateModelPrice($palilleria['model_id'], $width, $height);
+
+        $acc = $this->calculateAccessoriesPrice($palilleria, $reinforcement_total);
+
+        return ($acc + $model_price + $total_cover) / 0.6 * (1 - ($user->discount/100)) * $quantity * 1.16;
+    }
+
+    /**
+     * Function to retrieve and calculate the total price of the model
+     *
+     * @param int $model_id
+     * @param float $width
+     * @param float $height
+     * @return float
+     */
+    private function calculateModelPrice(int $model_id, float $width, float $height): float {
+        $model = PalilleriaModel::find($model_id);
+        $goals_total = $model->price;
+        $pprice = PalilleriasPrice::where('width', ceil($width))->where('height', ceil($height))->value('price');
+        return $goals_total + $pprice;
+    }
+
+    /**
+     * Function to calculate the price of the cover
+     *
+     * @param Cover $cover
+     * @param float $width
+     * @param float $height
+     * @param float $factor
+     * @return float
+     */
+
+    private function calculateCoverPrice(Cover $cover, float $width, float $height, float $factor): float
+    {
+        $useful_subrolls = $this->usefulSubrolls($cover->roll_width);
 
         $sub_rolls = ceil($height/$factor);
         $full_rolls = ceil($sub_rolls/$useful_subrolls);
@@ -279,10 +319,30 @@ class PalilleriasController extends Controller
         $total_bubble = $bubble_price + $added;
         $operation_costs = $work_price + $total_bubble;
 
-        //Control plus IVA
-        $control_total = $control->price * $cquant;
-        $sensor_total = $sensor->price * $squant;
-        $voice_total = $voice->price * $vquant;
+        return $total_cover + $operation_costs;
+    }
+
+    /**
+     * Function to calculate prices of reinforcements
+     *
+     * @param Palilleria $palilleria
+     * @param float $height
+     * @param float $factor
+     * @return float
+     */
+
+    private function calculateReinforcementsPrice(Palilleria $palilleria, float $height, float $factor): float
+    {
+        $goal = $palilleria['goal'];
+        $semigoal= $palilleria['semigoal'];
+        $trave = $palilleria['trave'];
+        $guide = $palilleria['guide'];
+        $rquant = $palilleria['guide_quantity'];
+        $tquant = $palilleria['trave_quantity'];
+        $gquant = $palilleria['goal_quantity'];
+        $sgquant = $palilleria['semigoal_quantity'];
+
+        $sub_rolls = ceil($height/$factor);
 
         if($height <= 5) {
             $sop_quant = 2;
@@ -316,48 +376,96 @@ class PalilleriasController extends Controller
             $total_trave = 0;
         }
 
-        $reinforcement_total = $total_trave + $total_semigoals + $total_goals + $extra_guides;
-        $goals_total = $model->price;
+        return $total_trave + $total_semigoals + $total_goals + $extra_guides;
+    }
 
-        $palilleria_price = PalilleriasPrice::where('width', ceil($width))->where('height', ceil($height))->first();
-        $pprice = $palilleria_price->price;
+    /**
+     * Function to calculate prices of all accessories
+     *
+     * @param Palilleria $palilleria
+     * @param float $reinforcement_total
+     * @return float
+     */
+
+    private function calculateAccessoriesPrice(Palilleria $palilleria, float $reinforcement_total): float {
+        $voice = VoiceControl::find($palilleria['voice_id']);
+        $control = Control::find($palilleria['control_id']);
+        $mechanism_id = $palilleria['mechanism_id'];
+        $sensor = Sensor::find($palilleria['sensor_id']);
+
+        $cquant = $palilleria['control_quantity'];
+        $squant = $palilleria['sensor_quantity'];
+        $vquant = $palilleria['voice_quantity'];
+
+        //Accessories plus IVA
+        $control_total = $control->price * $cquant;
+        $sensor_total = $sensor->price * $squant;
+        $voice_total = $voice->price * $vquant;
 
         $somfy =  15021;
         $tube = 10416;
 
-        $acc = 0;
-
         //Pricing of user selected option
         switch($mechanism_id) {
             case 1:
-                $acc = $reinforcement_total;
-                break;
+                return $reinforcement_total;
             case 2:
-                $acc = $reinforcement_total + $control_total + $voice_total + $sensor_total + $somfy;
-                break;
+                return $reinforcement_total + $control_total + $voice_total + $sensor_total + $somfy;
             case 4:
-                $acc = $reinforcement_total + $control_total + $voice_total + $tube;
-                break;
+                return $reinforcement_total + $control_total + $voice_total + $tube;
+            default:
+                return 0;
         }
-
-        $p = $pprice + $goals_total + $total_cover + $operation_costs;
-        $palilleria['price'] = ($acc + $p) / 0.6 * (1 - ($user->discount/100)) * $quantity * 1.16;
-        $request->session()->put('palilleria', $palilleria);
-        return redirect()->route('palilleria.review', $order_id);
     }
 
     /**
-     * This is the last step and you will be able to review all the details of your product
+     * Function to calculate the useful subrolls of the selected cover
      *
-     * @param Request $request
-     * @param $id
+     * @param float $roll_width
+     * @return int
+     */
+    public function usefulSubrolls(float $roll_width): int
+    {
+        if($roll_width == 1.16 || $roll_width == 1.2) {
+            $useful_subrolls = 2;
+        } elseif ($roll_width == 1.52 || $roll_width == 1.77) {
+            $useful_subrolls = 3;
+        } elseif ($roll_width == 2.67 || $roll_width == 3.04) {
+            $useful_subrolls = 5;
+        } elseif ($roll_width == 2.5) {
+            $useful_subrolls = 4;
+        } else {
+            $useful_subrolls = 6;
+        }
+        return $useful_subrolls;
+    }
+
+    /**
+     * Function to calculate the factor of the selected cover
+     *
+     * @param float $roll_width
+     * @return float
+     */
+    public function factor(float $roll_width): float
+    {
+        if($roll_width == 1.16 || $roll_width == 1.2 || $roll_width == 3.2 || $roll_width == 1.77) {
+            $factor = 0.45;
+        } else {
+            $factor = 0.4;
+        }
+        return $factor;
+    }
+
+    /**
+     * This is the last step, and you will be able to review all the details of your product
+     *
+     * @param $order_id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
 
-    public function review(Request $request, $id)
+    public function review($order_id)
     {
-        $order_id = $id;
-        $palilleria = $request->session()->get('palilleria');
+        $palilleria = Session::get('palilleria');
         return view('palillerias.review', compact('order_id', 'palilleria'));
     }
 
@@ -386,9 +494,15 @@ class PalilleriasController extends Controller
         return redirect()->route('orders.show', $id);
     }
 
+    /**
+     * Function to return data of the cover
+     *
+     * @param Request $request
+     * @return void
+     */
     public function fetchCover(Request $request){
         $value = $request->get('cover_id');
-        $palilleria = $request->session()->get('palilleria');
+        $palilleria = Session::get('palilleria');
         $cover = Cover::findOrFail($value);
         $height = $palilleria['height'];
         $useful_subrolls = $this->usefulSubrolls($cover);
@@ -399,32 +513,32 @@ class PalilleriasController extends Controller
         $full_rolls = ceil($sub_rolls/$useful_subrolls);
         $measure = $height + 0.07;
 
-            //Calculates number of fabric needed for pricing
-            $total_fabric = $measure * $full_rolls;
-            echo "<div class='col-12'>
-                <h4>Detalles de cubierta</h4>
-               </div>
-                <div class='row'>
-                <div class='col-md-6 col-sm-12'>
-                   <img src=".asset('storage')."/images/".$cover->photo." style='width: 100%;'>
-              </div>
-              <div class='col-md-6 col-sm-12'>
-                   <h7 style='color: grey;'><strong>$cover->name</strong></h7>
-                   <br>
-                   <h7 style='color: grey;'>Ancho de rollo: <strong>$cover->roll_width mts</strong></h7>
-                   <br>
-                   <h7 style='color: grey;'>Uniones: <strong>$cover->unions</strong></h7>
-                   <br>
-                   <h7 style='color: grey;'>Medida de lienzos: <strong>$measure mts</strong></h7>
-                   <br>
-                   <h7 style='color: grey;'>Número de sublienzos: <strong>$sub_rolls</strong></h7>
-                   <br>
-                   <h7 style='color: grey;'>Número de lienzos: <strong>$full_rolls</strong></h7>
-                   <br>
-                   <h7 style='color: grey;'>Total de textil: <strong>$total_fabric mts</strong></h7>
-              </div>
-                </div>
-              ";
+        //Calculates number of fabric needed for pricing
+        $total_fabric = $measure * $full_rolls;
+        echo "<div class='col-12'>
+            <h4>Detalles de cubierta</h4>
+           </div>
+            <div class='row'>
+            <div class='col-md-6 col-sm-12'>
+               <img src=".asset('storage')."/images/".$cover->photo." style='width: 100%;'>
+          </div>
+          <div class='col-md-6 col-sm-12'>
+               <h7 style='color: grey;'><strong>$cover->name</strong></h7>
+               <br>
+               <h7 style='color: grey;'>Ancho de rollo: <strong>$cover->roll_width mts</strong></h7>
+               <br>
+               <h7 style='color: grey;'>Uniones: <strong>$cover->unions</strong></h7>
+               <br>
+               <h7 style='color: grey;'>Medida de lienzos: <strong>$measure mts</strong></h7>
+               <br>
+               <h7 style='color: grey;'>Número de sublienzos: <strong>$sub_rolls</strong></h7>
+               <br>
+               <h7 style='color: grey;'>Número de lienzos: <strong>$full_rolls</strong></h7>
+               <br>
+               <h7 style='color: grey;'>Total de textil: <strong>$total_fabric mts</strong></h7>
+          </div>
+            </div>
+          ";
             //Calculates total pricing of fabric plus handiwork plus IVA
     }
 
@@ -432,36 +546,11 @@ class PalilleriasController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  $id
+     * @return mixed
      */
     public function destroy($id) {
         $palilleria = Palilleria::findOrFail($id);
         deleteSystem($palilleria);
         return redirect()->back()->withStatus('Sistema eliminado correctamente');
-    }
-
-    public function usefulSubrolls(Cover $cover): int
-    {
-        if($cover->roll_width == 1.16 || $cover->roll_width == 1.2) {
-            $useful_subrolls = 2;
-        } elseif ($cover->roll_width == 1.52 || $cover->roll_width == 1.77) {
-            $useful_subrolls = 3;
-        } elseif ($cover->roll_width == 2.67 || $cover->roll_width == 3.04) {
-            $useful_subrolls = 5;
-        } elseif ($cover->roll_width == 2.5) {
-            $useful_subrolls = 4;
-        } else {
-            $useful_subrolls = 6;
-        }
-        return $useful_subrolls;
-    }
-
-    public function factor(Cover $cover): float
-    {
-        if($cover->roll_width == 1.16 || $cover->roll_width == 1.2 || $cover->roll_width == 3.2 || $cover->roll_width == 1.77) {
-            $factor = 0.45;
-        } else {
-            $factor = 0.4;
-        }
-        return $factor;
     }
 }

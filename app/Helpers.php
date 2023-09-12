@@ -1,9 +1,6 @@
 <?php
 
 use App\Models\Order;
-use App\Models\Palilleria;
-use App\Models\Curtain;
-use App\Models\Toldo;
 use Illuminate\Support\Facades\Session;
 
 function removeKeys($object, array $keys) {
