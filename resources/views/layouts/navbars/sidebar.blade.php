@@ -62,7 +62,7 @@
           <ul class="nav">
               <li class="nav-item{{ $activePage == 'record' ? ' active' : '' }}">
                   <a class="nav-link" href="{{ route('orders.record') }}">
-                      <<span class="sidebar-mini"> H </span>
+                      <span class="sidebar-mini"> H </span>
                       <span class="sidebar-normal">{{ __('Historial de proyectos') }}</span>
                   </a>
               </li>
