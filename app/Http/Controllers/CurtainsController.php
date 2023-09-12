@@ -123,7 +123,7 @@ class CurtainsController extends Controller
     /**
      * Redirects to model selection page
      *
-     * @param $id
+     * @param $order_id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function addModel($order_id)
@@ -145,7 +145,7 @@ class CurtainsController extends Controller
      * If session isn't empty it will just update the data
      *
      * @param Request $request
-     * @param $id
+     * @param $order_id
      * @return \Illuminate\Http\RedirectResponse
      */
 
@@ -218,7 +218,7 @@ class CurtainsController extends Controller
      * Saving data in session
      *
      * @param Request $request
-     * @param $id
+     * @param $order_id
      * @return \Illuminate\Http\RedirectResponse
      */
 
@@ -277,7 +277,7 @@ class CurtainsController extends Controller
      * Storing the price in the session before sending you to the review page
      *
      * @param Request $request
-     * @param $id
+     * @param $order_id
      * @return \Illuminate\Http\RedirectResponse
      */
 
@@ -293,14 +293,14 @@ class CurtainsController extends Controller
             'voice_quantity' => 'required'
         ]);
         $curtain = Session::get('curtain');
-        if($curtain->model){
+        if($curtain->model) {
             $keys = ['model', 'cover', 'mechanism', 'handle', 'control', 'voice'];
             removeKeys($curtain, $keys);
             Session::forget('curtain');
         }
         $curtain->fill($validatedData);
         $curtain->price = $this->calculateCurtainPrice($curtain);
-        Session::put($curtain);
+        Session::put('curtain', $curtain);
         return redirect()->route('curtain.review', $order_id);
     }
 
