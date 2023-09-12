@@ -42,7 +42,6 @@
                                     </span>
                                 </label>
                             </div>
-                                    <br>
                                 @endforeach
                             @endif
                         </div>
