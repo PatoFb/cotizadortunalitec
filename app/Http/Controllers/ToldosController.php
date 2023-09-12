@@ -136,20 +136,12 @@ class ToldosController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
 
-    public function addModelPost(Request $request, $id)
+    public function addModelPost(Request $request, $order_id)
     {
-        $order_id = $id;
         $validatedData = $request->validate([
             'model_id' => 'required',
         ]);
-        if(empty($request->session()->get('toldo'))){
-            $toldo = new Toldo();
-            $toldo['order_id'] = $order_id;
-        }else{
-            $toldo = $request->session()->get('toldo');
-        }
-        $toldo->fill($validatedData);
-        $request->session()->put('toldo', $toldo);
+        createSession($validatedData['model_id'], $order_id, 'Toldo');
         return redirect()->route('toldo.data', $order_id);
     }
 

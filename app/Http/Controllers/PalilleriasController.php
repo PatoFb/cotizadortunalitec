@@ -65,20 +65,12 @@ class PalilleriasController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
 
-    public function addModelPost(Request $request, $id)
+    public function addModelPost(Request $request, $order_id)
     {
-        $order_id = $id;
         $validatedData = $request->validate([
             'model_id' => 'required',
         ]);
-        if(empty($request->session()->get('palilleria'))){
-            $palilleria = new Palilleria();
-            $palilleria['order_id'] = $order_id;
-        } else {
-            $palilleria = $request->session()->get('palilleria');
-        }
-        $palilleria->fill($validatedData);
-        $request->session()->put('palilleria', $palilleria);
+        createSession($validatedData['model_id'], $order_id, 'Palilleria');
         return redirect()->route('palilleria.data', $order_id);
     }
 

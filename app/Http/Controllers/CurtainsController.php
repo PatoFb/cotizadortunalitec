@@ -136,14 +136,6 @@ class CurtainsController extends Controller
     /**
      * Post route
      *
-     * Gets order id from URI and sends it again to the view
-     *
-     * Validation requirement for the model
-     *
-     * If session is empty it will create a new Curtain object, save the order id there and the validated data
-     *
-     * If session isn't empty it will just update the data
-     *
      * @param Request $request
      * @param $order_id
      * @return \Illuminate\Http\RedirectResponse
@@ -154,16 +146,7 @@ class CurtainsController extends Controller
         $validatedData = $request->validate([
             'model_id' => 'required',
         ]);
-        if(empty($request->session()->get('curtain'))){
-            $curtain = new Curtain();
-            $curtain['order_id'] = $order_id;
-            $curtain['model_id'] = $validatedData['model_id'];
-            $request->session()->put('curtain', $curtain);
-        }else{
-            $curtain = Session::get('curtain');
-            $curtain->model_id = $validatedData['model_id'];
-            Session::put('curtain', $curtain);
-        }
+        createSession($validatedData['model_id'], $order_id, 'Curtain');
         return redirect()->route('curtain.data', $order_id);
     }
 

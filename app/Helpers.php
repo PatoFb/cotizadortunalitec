@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Order;
+use Illuminate\Support\Facades\Session;
 
 function removeKeys($object, array $keys) {
     foreach ($keys as $key) {
@@ -23,6 +24,17 @@ function ceilMeasure(float $measure, float $min): float {
         $newMeasure = $min;
     }
     return $newMeasure;
+}
+
+function createSession(int $model_id, int $order_id, string $object) {
+    if(empty(Session::get('curtain'))){
+        $object = new $object();
+        $object['order_id'] = $order_id;
+    }else{
+        $object = Session::get('curtain');
+    }
+    $object->model_id = $model_id;
+    Session::put('curtain', $object);
 }
 
 function deleteSystem($system) {
