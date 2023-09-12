@@ -419,44 +419,6 @@ class PalilleriasController extends Controller
     }
 
     /**
-     * Function to calculate the useful subrolls of the selected cover
-     *
-     * @param float $roll_width
-     * @return int
-     */
-    public function usefulSubrolls(float $roll_width): int
-    {
-        if($roll_width == 1.16 || $roll_width == 1.2) {
-            $useful_subrolls = 2;
-        } elseif ($roll_width == 1.52 || $roll_width == 1.77) {
-            $useful_subrolls = 3;
-        } elseif ($roll_width == 2.67 || $roll_width == 3.04) {
-            $useful_subrolls = 5;
-        } elseif ($roll_width == 2.5) {
-            $useful_subrolls = 4;
-        } else {
-            $useful_subrolls = 6;
-        }
-        return $useful_subrolls;
-    }
-
-    /**
-     * Function to calculate the factor of the selected cover
-     *
-     * @param float $roll_width
-     * @return float
-     */
-    public function factor(float $roll_width): float
-    {
-        if($roll_width == 1.16 || $roll_width == 1.2 || $roll_width == 3.2 || $roll_width == 1.77) {
-            $factor = 0.45;
-        } else {
-            $factor = 0.4;
-        }
-        return $factor;
-    }
-
-    /**
      * This is the last step, and you will be able to review all the details of your product
      *
      * @param $order_id
@@ -505,6 +467,7 @@ class PalilleriasController extends Controller
         $palilleria = Session::get('palilleria');
         $cover = Cover::find($value);
         $height = $palilleria['height'];
+
         $useful_subrolls = $this->usefulSubrolls($cover->roll_width);
 
         $factor = $this->factor($cover->roll_width);
@@ -513,7 +476,6 @@ class PalilleriasController extends Controller
         $full_rolls = ceil($sub_rolls/$useful_subrolls);
         $measure = $height + 0.07;
 
-        //Calculates number of fabric needed for pricing
         $total_fabric = $measure * $full_rolls;
         echo "<div class='col-12'>
             <h4>Detalles de cubierta</h4>
@@ -540,6 +502,44 @@ class PalilleriasController extends Controller
             </div>
           ";
             //Calculates total pricing of fabric plus handiwork plus IVA
+    }
+
+    /**
+     * Function to calculate the useful subrolls of the selected cover
+     *
+     * @param float $roll_width
+     * @return int
+     */
+    public function usefulSubrolls(float $roll_width): int
+    {
+        if($roll_width == 1.16 || $roll_width == 1.2) {
+            $useful_subrolls = 2;
+        } elseif ($roll_width == 1.52 || $roll_width == 1.77) {
+            $useful_subrolls = 3;
+        } elseif ($roll_width == 2.67 || $roll_width == 3.04) {
+            $useful_subrolls = 5;
+        } elseif ($roll_width == 2.5) {
+            $useful_subrolls = 4;
+        } else {
+            $useful_subrolls = 6;
+        }
+        return $useful_subrolls;
+    }
+
+    /**
+     * Function to calculate the factor of the selected cover
+     *
+     * @param float $roll_width
+     * @return float
+     */
+    public function factor(float $roll_width): float
+    {
+        if($roll_width == 1.16 || $roll_width == 1.2 || $roll_width == 3.2 || $roll_width == 1.77) {
+            $factor = 0.45;
+        } else {
+            $factor = 0.4;
+        }
+        return $factor;
     }
 
     /**
