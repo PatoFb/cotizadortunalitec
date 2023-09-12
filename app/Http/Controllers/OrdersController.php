@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use App\Mail\OrdenAProduccion;
 use App\Models\Curtain;
 use App\Models\Order;
+use App\Models\Palilleria;
+use App\Models\Toldo;
 use App\Models\Type;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Queue\RedisQueue;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -88,38 +91,7 @@ class OrdersController extends Controller
      */
     public function newOrderPost(Request $request)
     {
-        $user = Auth::user();
-        if($request->get('addressCheck') == 1) {
-            $request->validate([
-                'activity' => 'required',
-                'project' => 'required',
-                'discount' => 'required'
-            ]);
-            $order = $request->all();
-            $order['city'] = $user->city;
-            $order['state'] = $user->state;
-            $order['zip_code'] = $user->zip_code;
-            $order['line1'] = $user->line1;
-            $order['line2'] = $user->line2;
-            $order['reference'] = $user->reference;
-        } else {
-            $request->validate([
-                'activity' => 'required',
-                'project' => 'required',
-                'discount' => 'required',
-                'city' => ['required'],
-                'state' => ['required'],
-                'zip_code' => ['required', 'size:5', 'number'],
-                'line1' => ['required'],
-                'line2' => ['required'],
-                'reference' => ['string']
-            ]);
-            $order = $request->all();
-        }
-        $order['user_id'] = $user->id;
-        Order::create($order);
-        $orderObj = Order::where('user_id', $user->id)->orderBy('id', 'DESC')->first();
-        $order_id = $orderObj->id;
+        $order_id = $this->saveOrder($request);
         return redirect()->route('orders.type', $order_id);
     }
 
@@ -171,19 +143,8 @@ class OrdersController extends Controller
     }
 
     public function upload(Request $request, $id){
-        $order = Order::findOrFail($id);
         //get file value from input
-        $file = $request->file('file');
-        $date = Carbon::now()->format('YmdHs');
-        //check if file isn't null. If it is, assign a default value, if it isn't, get and store the name and then save the file in the disk
-        if($file != '') {
-            $name = $date.$file->getClientOriginalName();
-            $order->file = $name;
-            $request->file->storeAs('comprobantes/', $name);
-        } else {
-            $order->file = '';
-        }
-        $order->save();
+        $this->fileValidation($id, $request);
         return redirect()->back()->withStatus(__('Comprobante subido correctamente'));
     }
 
@@ -203,11 +164,80 @@ class OrdersController extends Controller
     public function destroy($id)
     {
         $order = Order::findOrFail($id);
-        $curtains = Curtain::where('order_id', $id)->get();
-        foreach($curtains as $curtain){
-            $curtain->delete();
-        }
+        $this->deleteSystems($id);
         $order->delete();
         return redirect('orders/')->withStatus('Orden eliminada correctamente');
+    }
+
+    private function deleteSystems(int $id) {
+        $curtains = Curtain::where('order_id', $id)->get();
+        $palillerias = Palilleria::where('order_id', $id)->get();
+        $toldos = Toldo::where('order_id', $id)->get();
+        if(isset($curtains)) {
+            foreach ($curtains as $c) {
+                $c->delete();
+            }
+        }
+        if(isset($palillerias)) {
+            foreach ($palillerias as $p) {
+                $p->delete();
+            }
+        }
+        if(isset($toldos)) {
+            foreach ($toldos as $t) {
+                $t->delete();
+            }
+        }
+    }
+
+    private function saveOrder(Request $request): int {
+        $user = Auth::user();
+        $address = $request->get('addressCheck') == 1;
+        if($address == 1) {
+            $request->validate([
+                'activity' => 'required',
+                'project' => 'required',
+                'discount' => 'required'
+            ]);
+            $order = $request->all();
+            $order['city'] = $user->city;
+            $order['state'] = $user->state;
+            $order['zip_code'] = $user->zip_code;
+            $order['line1'] = $user->line1;
+            $order['line2'] = $user->line2;
+            $order['reference'] = $user->reference;
+        } else {
+            $request->validate([
+                'activity' => 'required',
+                'project' => 'required',
+                'discount' => 'required',
+                'city' => ['required'],
+                'state' => ['required'],
+                'zip_code' => ['required', 'size:5', 'number'],
+                'line1' => ['required'],
+                'line2' => ['required'],
+                'reference' => ['string']
+            ]);
+            $order = $request->all();
+        }
+        $order['user_id'] = $user->id;
+        Order::create($order);
+        $orderObj = Order::where('user_id', $user->id)->orderBy('id', 'DESC')->first();
+        return $orderObj->id;
+    }
+
+    private function fileValidation($id, Request $request) {
+        $file = $request->file('file');
+        $order = Order::findOrFail($id);
+        $date = Carbon::now()->format('YmdHs');
+        //check if file isn't null. If it is, assign a default value, if it isn't, get and store the name and then save the file in the disk
+        if($file != '') {
+            $name = $date.$file->getClientOriginalName();
+            $order->file = $name;
+            $request->file->storeAs('comprobantes/', $name);
+        } else {
+            $order->file = '';
+        }
+        $order->save();
     }
 }

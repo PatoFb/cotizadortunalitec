@@ -15,33 +15,31 @@
 
 
                 <div class="form-row">
-                    <div class="col-md-9 col-sm-9">
-                            @if($curtain->handle_id == 9999)
-                                {!! Form::number('handle_id', 9999, ['class'=>'form-control', "step"=>1, "id"=>"handle_id", 'hidden']) !!}
-                            @else
-                                {!! Form::label('handle_id', 'Manivela (Medida en metros) (Precio por unidad)' )  !!}
-                                <select class="form-control" name="handle_id" id="handle_id" >
-                                    <option value="999" {{{ (isset($curtain->handle_id) && $curtain->handle_id == 999) ? "selected=\"selected\"" : "" }}}>No aplica</option>
-                                    @foreach($handles as $handle)
-                                        <option value="{{$handle->id}}" {{{ (isset($curtain->handle_id) && $curtain->handle_id == $handle->id) ? "selected=\"selected\"" : "" }}}>{{$handle->measure}} mts - ${{number_format($handle->price*1.16, 2)}}</option>
-                                    @endforeach
-                                </select>
-                            @endif
-                    </div>
-                    <div class="col-md-3 col-sm-3">
-                        @if($curtain->handle_id == 9999)
-                            {!! Form::number('handle_quantity', 0, ['class'=>'form-control', "step"=>1, "id"=>"handle_quantity", 'hidden']) !!}
-                        @else
+                    @if($curtain->handle_id == 9999)
+                        {!! Form::number('handle_id', 9999, ['class'=>'form-control', "step"=>1, "id"=>"handle_id", 'hidden']) !!}
+                        {!! Form::number('handle_quantity', 0, ['class'=>'form-control', "step"=>1, "id"=>"handle_quantity", 'hidden']) !!}
+                    @else
+                        <div class="col-md-9 col-sm-9">
+                            {!! Form::label('handle_id', 'Manivela (Medida en metros) (Precio por unidad)' )  !!}
+                            <select class="form-control" name="handle_id" id="handle_id" >
+                                <option value="999" {{{ (isset($curtain->handle_id) && $curtain->handle_id == 999) ? "selected=\"selected\"" : "" }}}>No aplica</option>
+                                @foreach($handles as $handle)
+                                    <option value="{{$handle->id}}" {{{ (isset($curtain->handle_id) && $curtain->handle_id == $handle->id) ? "selected=\"selected\"" : "" }}}>{{$handle->measure}} mts - ${{number_format($handle->price*1.16, 2)}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-3 col-sm-3">
                             {!! Form::label('handle_quantity', 'Cantidad:') !!}
                             {!! Form::number('handle_quantity', $curtain->handle_quantity ?? 0, ['class'=>'form-control', "step"=>1, "id"=>"handle_quantity"]) !!}
-                        @endif
-                    </div>
+                        </div>
+                    @endif
                 </div>
                 <div class="form-row">
-                    <div class="col-md-9 col-sm-9">
-                        @if($curtain->control_id == 9999)
-                            {!! Form::number('control_id', 9999, ['class'=>'form-control', "step"=>1, "id"=>"control_id", 'hidden']) !!}
-                        @else
+                    @if($curtain->control_id == 9999)
+                        {!! Form::number('control_id', 9999, ['class'=>'form-control', "step"=>1, "id"=>"control_id", 'hidden']) !!}
+                        {!! Form::number('control_quantity', 0, ['class'=>'form-control', "step"=>1, "id"=>"control_quantity", 'hidden']) !!}
+                    @else
+                        <div class="col-md-9 col-sm-9">
                             {!! Form::label('control_id', 'Control (Precio por unidad)' )  !!}
                             <select class="form-control" name="control_id" id="control_id">
                                 <option value="999" {{{ (isset($curtain->control_id) && $curtain->control_id == 999) ? "selected=\"selected\"" : "" }}}>No aplica</option>
@@ -49,23 +47,20 @@
                                     <option value="{{$control->id}}" {{{ (isset($curtain->control_id) && $curtain->control_id == $control->id) ? "selected=\"selected\"" : "" }}}>{{$control->name}} - ${{number_format($control->price*1.16, 2)}}</option>
                                 @endforeach
                             </select>
-                        @endif
-                    </div>
-                    <div class="col-md-3 col-sm-3">
-                        @if($curtain->control_id == 9999)
-                            {!! Form::number('control_quantity', 0, ['class'=>'form-control', "step"=>1, "id"=>"control_quantity", 'hidden']) !!}
-                        @else
+                        </div>
+                        <div class="col-md-3 col-sm-3">
                             {!! Form::label('control_quantity', 'Cantidad:') !!}
                             {!! Form::number('control_quantity', $curtain->control_quantity ?? 0, ['class'=>'form-control', "step"=>1, "id"=>"control_quantity"]) !!}
-                        @endif
-                    </div>
+                        </div>
+                    @endif
                 </div>
 
                 <div class="form-row">
-                    <div class="col-md-9 col-sm-9">
-                        @if($curtain->voice_id == 9999)
-                            {!! Form::number('voice_id', 9999, ['class'=>'form-control', 'id'=>'voice_id', 'hidden']) !!}
-                        @else
+                    @if($curtain->voice_id == 9999)
+                        {!! Form::number('voice_id', 9999, ['class'=>'form-control', 'id'=>'voice_id', 'hidden']) !!}
+                        {!! Form::number('voice_quantity', 0, ['class'=>'form-control', 'id'=>'voice_quantity', 'hidden']) !!}
+                    @else
+                        <div class="col-md-9 col-sm-9">
                             {!! Form::label('voice_id', 'Voz (Precio por unidad)' )  !!}
                             <select class="form-control hidden" name="voice_id" id="voice_id" >
                                 <option value="999" {{{ (isset($curtain->voice_id) && $curtain->voice_id == 999) ? "selected=\"selected\"" : "" }}}>No aplica</option>
@@ -73,19 +68,12 @@
                                     <option value="{{$voice->id}}" {{{ (isset($curtain->voice_id) && $curtain->voice_id == $voice->id) ? "selected=\"selected\"" : "" }}}>{{$voice->name}} - ${{number_format($voice->price*1.16, 2)}}</option>
                                 @endforeach
                             </select>
-                        @endif
-
-                    </div>
-
-                    <div class="col-md-3 col-sm-3">
-                        @if($curtain->voice_id == 9999)
-                            {!! Form::number('voice_quantity', 0, ['class'=>'form-control', 'id'=>'voice_quantity', 'hidden']) !!}
-                        @else
+                        </div>
+                        <div class="col-md-3 col-sm-3">
                             {!! Form::label('voice_quantity', 'Cantidad:') !!}
                             {!! Form::number('voice_quantity', $curtain->voice_quantity ?? 0, ['class'=>'form-control', 'id'=>'voice_quantity']) !!}
-                        @endif
-                    </div>
-
+                        </div>
+                    @endif
                 </div>
                 <div class="form-row">
                     <div class="col-md-12 col-sm-12">

@@ -14,34 +14,32 @@
                 {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\PalilleriasController@addFeaturesPost', $order_id]]) !!}
 
                 <div class="form-row">
-                    <div class="col-md-9 col-sm-9">
                         @if($palilleria->control_id == 9999)
                             {!! Form::number('control_id', 9999, ['class'=>'form-control', "step"=>1, "id"=>"control_id", 'hidden']) !!}
-                        @else
-                            {!! Form::label('control_id', 'Control:' )  !!}
-                            <select class="form-control" name="control_id" id="control_id">
-                                <option value="999" {{{ (isset($palilleria->control_id) && $palilleria->control_id == 999) ? "selected=\"selected\"" : "" }}}>No aplica</option>
-                                @foreach($controls as $control)
-                                    <option value="{{$control->id}}" {{{ (isset($palilleria->control_id) && $palilleria->control_id == $control->id) ? "selected=\"selected\"" : "" }}}>{{$control->name}}</option>
-                                @endforeach
-                            </select>
-                        @endif
-                    </div>
-                    <div class="col-md-3 col-sm-3">
-                        @if($palilleria->control_id == 9999)
                             {!! Form::number('control_quantity', 0, ['class'=>'form-control', "step"=>1, "id"=>"control_quantity", 'hidden']) !!}
                         @else
-                            {!! Form::label('control_quantity', 'Cantidad:') !!}
-                            {!! Form::number('control_quantity', $palilleria->control_quantity ?? 0, ['class'=>'form-control', "step"=>1, "id"=>"control_quantity"]) !!}
+                            <div class="col-md-9 col-sm-9">
+                                {!! Form::label('control_id', 'Control:' )  !!}
+                                <select class="form-control" name="control_id" id="control_id">
+                                    <option value="999" {{{ (isset($palilleria->control_id) && $palilleria->control_id == 999) ? "selected=\"selected\"" : "" }}}>No aplica</option>
+                                    @foreach($controls as $control)
+                                        <option value="{{$control->id}}" {{{ (isset($palilleria->control_id) && $palilleria->control_id == $control->id) ? "selected=\"selected\"" : "" }}}>{{$control->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-3 col-sm-3">
+                                {!! Form::label('control_quantity', 'Cantidad:') !!}
+                                {!! Form::number('control_quantity', $palilleria->control_quantity ?? 0, ['class'=>'form-control', "step"=>1, "id"=>"control_quantity"]) !!}
+                            </div>
                         @endif
                     </div>
-                </div>
 
                 <div class="form-row">
-                    <div class="col-md-9 col-sm-9">
-                        @if($palilleria->sensor_id == 9999)
-                            {!! Form::number('sensor_id', 9999, ['class'=>'form-control', "step"=>1, "id"=>"sensor_id", 'hidden']) !!}
-                        @else
+                    @if($palilleria->sensor_id == 9999)
+                        {!! Form::number('sensor_id', 9999, ['class'=>'form-control', "step"=>1, "id"=>"sensor_id", 'hidden']) !!}
+                        {!! Form::number('sensor_quantity', 0, ['class'=>'form-control', "step"=>1, "id"=>"sensor_quantity", 'hidden']) !!}
+                    @else
+                        <div class="col-md-9 col-sm-9">
                             {!! Form::label('sensor_id', 'Sensor:' )  !!}
                             <select class="form-control" name="sensor_id" id="sensor_id">
                                 <option value="999" {{{ (isset($palilleria->sensor_id) && $palilleria->sensor_id == 999) ? "selected=\"selected\"" : "" }}}>No aplica</option>
@@ -49,24 +47,19 @@
                                     <option value="{{$sensor->id}}" {{{ (isset($palilleria->sensor_id) && $palilleria->sensor_id == $sensor->id) ? "selected=\"selected\"" : "" }}}>{{$sensor->name}}</option>
                                 @endforeach
                             </select>
-                        @endif
-
-                    </div>
-                    <div class="col-md-3 col-sm-3">
-                        @if($palilleria->sensor_id == 9999)
-                            {!! Form::number('sensor_quantity', 0, ['class'=>'form-control', "step"=>1, "id"=>"sensor_quantity", 'hidden']) !!}
-                        @else
+                        </div>
+                        <div class="col-md-3 col-sm-3">
                             {!! Form::label('sensor_quantity', 'Cantidad:') !!}
                             {!! Form::number('sensor_quantity', $palilleria->sensor_quantity ?? 0, ['class'=>'form-control', "step"=>1, "id"=>"sensor_quantity"]) !!}
-                        @endif
-                    </div>
-
+                        </div>
+                    @endif
                 </div>
                 <div class="form-row">
-                    <div class="col-md-9 col-sm-9">
-                        @if($palilleria->voice_id == 9999)
-                            {!! Form::number('voice_id', 9999, ['class'=>'form-control', "step"=>1, "id"=>"voice_id", 'hidden']) !!}
-                        @else
+                    @if($palilleria->voice_id == 9999)
+                        {!! Form::number('voice_id', 9999, ['class'=>'form-control', "step"=>1, "id"=>"voice_id", 'hidden']) !!}
+                        {!! Form::number('voice_quantity', 0, ['class'=>'form-control', "step"=>1, "id"=>"voice_quantity", 'hidden']) !!}
+                    @else
+                        <div class="col-md-9 col-sm-9">
                             {!! Form::label('voice_id', 'Voz:' )  !!}
                             <select class="form-control" name="voice_id" id="voice_id" >
                                 <option value="999" {{{ (isset($palilleria->voice_id) && $palilleria->voice_id == 999) ? "selected=\"selected\"" : "" }}}>No aplica</option>
@@ -74,18 +67,12 @@
                                     <option value="{{$voice->id}}" {{{ (isset($palilleria->voice_id) && $palilleria->voice_id == $voice->id) ? "selected=\"selected\"" : "" }}}>{{$voice->name}}</option>
                                 @endforeach
                             </select>
-                        @endif
-                    </div>
-
-                    <div class="col-md-3 col-sm-3">
-                        @if($palilleria->voice_id == 9999)
-                            {!! Form::number('voice_quantity', 0, ['class'=>'form-control', "step"=>1, "id"=>"voice_quantity", 'hidden']) !!}
-                        @else
+                        </div>
+                        <div class="col-md-3 col-sm-3">
                             {!! Form::label('voice_quantity', 'Cantidad:') !!}
                             {!! Form::number('voice_quantity', $palilleria->voice_quantity ?? 0, ['class'=>'form-control', 'id'=>'voice_quantity']) !!}
-                        @endif
-                    </div>
-
+                        </div>
+                    @endif
                 </div>
                 <br>
                 <h6>Refuerzos</h6>
@@ -98,8 +85,8 @@
                         </select>
                     </div>
                     <div class="col-md-3 col-sm-3">
-                        {!! Form::label('reinforcement_guide', 'Cantidad:') !!}
-                        {!! Form::number('reinforcement_guide', $palilleria->guide_quantity ?? 0, ['class'=>'form-control', "step"=>1, "id"=>"reinforcement_quantity"]) !!}
+                        {!! Form::label('guide_quantity', 'Cantidad:') !!}
+                        {!! Form::number('guide_quantity', $palilleria->guide_quantity ?? 0, ['class'=>'form-control', "step"=>1, "id"=>"reinforcement_quantity"]) !!}
                     </div>
                 </div>
 
