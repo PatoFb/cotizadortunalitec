@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PalilleriasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PalilleriasController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ToldosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ToldosController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/palillerias/model.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/palillerias/model.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/toldos/features.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/toldos/features.blade.php" afterDir="false" />
     </list>
@@ -363,7 +366,7 @@
       <workItem from="1694199662409" duration="4554000" />
       <workItem from="1694210119939" duration="1524000" />
       <workItem from="1694444414240" duration="9585000" />
-      <workItem from="1694537731276" duration="3645000" />
+      <workItem from="1694537731276" duration="4245000" />
     </task>
     <servers />
   </component>
