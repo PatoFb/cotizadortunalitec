@@ -37,6 +37,7 @@ class UsersRequest extends FormRequest
                 'required', 'min:6', 'same:password'
             ],
             'role_id'=>'required',
+            'partner_id'=>['required', 'numeric', 'exists:App\Models\Partner,number']
         ];
     }
 }

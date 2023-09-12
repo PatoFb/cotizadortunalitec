@@ -43,15 +43,21 @@
 <br>
 
                     <div class="form-row">
-                        <div class="col-md-6 col-sm-12">
+                        <div class="col-md-4 col-sm-12">
                             {!! Form::label('role_id', 'Rol:' )  !!}
                             {!! Form::select('role_id', [''=>'Seleccionar rol'] + $roles, null, ['class' => 'form-control']) !!}
                         </div>
 
-                        <div class="col-md-6 col-sm-12">
+                        <div class="col-md-4 col-sm-12">
                             {!! Form::label('discount', 'Descuento:') !!}
                             {!! Form::number('discount', null, ['class'=>'form-control']) !!}
                         </div>
+
+                        <div class="col-md-4 col-sm-12">
+                            {!! Form::label('partner_id', 'Número de socio:' )  !!}
+                            {!! Form::number('partner_id', null, ['class'=>'form-control']) !!}
+                        </div>
+
                     </div>
 
                 <div class="row">

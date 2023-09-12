@@ -61,17 +61,6 @@
                         </div>
                     </div>
                     <div class="row">
-                        <label class="col-sm-2 col-form-label">{{ __('Razón Social') }}</label>
-                        <div class="col-sm-7">
-                            <div class="form-group{{ $errors->has('razon_social') ? ' has-danger' : '' }}">
-                                <input class="form-control{{ $errors->has('razon_social') ? ' is-invalid' : '' }}" name="razon_social" id="input-razon_social" type="text" placeholder="{{ __('Razon Social') }}" value="{{ old('razon_social', auth()->user()->razon_social) }}" required="true" aria-required="true"/>
-                                @if ($errors->has('razon_social'))
-                                    <span id="razon_social-error" class="error text-danger" for="input-razon_social">{{ $errors->first('razon_social') }}</span>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
                         <label class="col-sm-2 col-form-label">{{ __('RFC') }}</label>
                         <div class="col-sm-7">
                             <div class="form-group{{ $errors->has('rfc') ? ' has-danger' : '' }}">
