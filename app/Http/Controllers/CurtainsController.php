@@ -321,8 +321,11 @@ class CurtainsController extends Controller
      * Function to reset accessory values if there's a mechanism change
      *
      * @param Curtain $curtain
+     * @param $oldMechanismId
+     * @param int $newMechanismId
      * @return Curtain
      */
+
     private function resetAccessories(Curtain $curtain, $oldMechanismId, int $newMechanismId): Curtain {
         if($oldMechanismId != $newMechanismId) {
             if ($curtain['mechanism_id'] == 1) {
@@ -351,6 +354,7 @@ class CurtainsController extends Controller
      * @param Curtain $curtain
      * @return float
      */
+
     private function calculateCurtainPrice(Curtain $curtain): float {
         $user = Auth::user();
         $cover = Cover::find($curtain['cover_id']);
@@ -387,6 +391,7 @@ class CurtainsController extends Controller
      * @param float $system_price
      * @return float
      */
+
     private function calculateAccessoriesPrice(Curtain $curtain, float $total_canopy, float $system_price): float {
         $control = Control::find($curtain['control_id']);
         $mechanism_id = $curtain['mechanism_id'];
@@ -428,6 +433,7 @@ class CurtainsController extends Controller
      * @param float $newWidth
      * @return float
      */
+
     private function calculateCanopyPrice(int $canopy, float $width, float $newWidth): float {
         if($canopy == 1) {
             return ((1023 * $width) + (145 * $width) + (142 * ($newWidth/2)) + 377) * 1.16;
@@ -444,6 +450,7 @@ class CurtainsController extends Controller
      * @param float $height
      * @return float
      */
+
     private function calculateCoverPrice(Cover $cover, float $width, float $height): float {
         $measure = $height + 0.35;
         $squared_meters = $measure * $width;
@@ -476,6 +483,7 @@ class CurtainsController extends Controller
      * @param float $newWidth
      * @return float
      */
+
     private function getSystemPrice(int $model_id, float $height, float $newWidth): float {
         if($model_id > 3 && $model_id < 7){
             $newHeight = ceilMeasure($height, 1.5);
@@ -516,6 +524,7 @@ class CurtainsController extends Controller
      * @param $id
      * @return mixed
      */
+
     public function destroy($id) {
         $curtain = Curtain::findOrFail($id);
         deleteSystem($curtain);
