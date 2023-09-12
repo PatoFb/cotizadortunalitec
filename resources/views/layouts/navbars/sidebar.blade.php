@@ -60,7 +60,7 @@
         </a>
         <div class="collapse {{ ($activePage == 'usuarios') || ($activePage == 'controles') || ($activePage == 'tipos')
                               || ($activePage == 'manivelas_cortina') || ($activePage == 'modelos_cortina') || ($activePage == 'cubiertas') ||
-                              ($activePage == 'mecanismos') || ($activePage == 'record') ? ' hide' : 'show' }}" id="admin">
+                              ($activePage == 'mecanismos') || ($activePage == 'record') ? ' show' : 'hide' }}" id="admin">
           <ul class="nav">
               <li class="nav-item{{ $activePage == 'record' ? ' active' : '' }}">
                   <a class="nav-link" href="{{ route('orders.record') }}">
