@@ -39,25 +39,19 @@
         <li class="nav-item{{ $activePage == 'myorders' ? ' active' : '' }}">
             <a class="nav-link" href="{{ route('orders.index') }}">
                 <i class="material-icons">list</i>
-                <p>{{ __('Mis ordenes') }}</p>
+                <p>{{ __('Mis proyectos') }}</p>
             </a>
         </li>
         @if (\Illuminate\Support\Facades\Auth::user()->role_id == 1)
         <li class="nav-item{{ $activePage == 'allorders' ? ' active' : '' }}">
             <a class="nav-link" href="{{ route('orders.all') }}">
                 <i class="material-icons">list</i>
-                <p>{{ __('Ordenes') }}</p>
+                <p>{{ __('Proyectos') }}</p>
             </a>
         </li>
-                <li class="nav-item{{ $activePage == 'record' ? ' active' : '' }}">
-                    <a class="nav-link" href="{{ route('orders.record') }}">
-                        <i class="material-icons">list</i>
-                        <p>{{ __('Historial Pedidos') }}</p>
-                    </a>
-                </li>
-      <li class="nav-item {{ ($activePage == 'usuarios') || ($activePage == 'controles_cortina') || ($activePage == 'tipos') || ($activePage == 'tejaillos_cortina')
-                              || ($activePage == 'manivelas_cortina') || ($activePage == 'modelos_cortina') || ($activePage == 'cubiertas_cortina') ||
-                              ($activePage == 'mecanismos_cortina') || ($activePage == 'paneles_cortina') || ($activePage == 'tubos_cortina') ? ' active' : '' }}">
+      <li class="nav-item {{ ($activePage == 'usuarios') || ($activePage == 'controles') || ($activePage == 'tipos')
+                              || ($activePage == 'manivelas_cortina') || ($activePage == 'modelos_cortina') || ($activePage == 'cubiertas') ||
+                              ($activePage == 'mecanismos') || ($activePage == 'record') ? ' active' : '' }}">
         <a class="nav-link" data-toggle="collapse" href="#admin" aria-expanded="true">
             <i class="material-icons">settings_application</i>
           <p>{{ __('Admin') }}
@@ -66,14 +60,21 @@
         </a>
         <div class="collapse show" id="admin">
           <ul class="nav">
-            <li class="nav-item{{ $activePage == 'usuarios' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('users.index') }}">
-                <span class="sidebar-mini"> U </span>
-                <span class="sidebar-normal"> {{ __('Usuarios') }} </span>
-              </a>
-            </li>
+              <li class="nav-item{{ $activePage == 'record' ? ' active' : '' }}">
+                  <a class="nav-link" href="{{ route('orders.record') }}">
+                      <i class="material-icons">list</i>
+                      <p>{{ __('Historial de proyectos') }}</p>
+                  </a>
+              </li>
+              <li class="nav-item{{ $activePage == 'usuarios' ? ' active' : '' }}">
+                  <a class="nav-link" href="{{ route('users.index') }}">
+                      <span class="sidebar-mini"> U </span>
+                      <span class="sidebar-normal"> {{ __('Usuarios') }} </span>
+                  </a>
+              </li>
           </ul>
         </div>
+
       </li>
             @endif
         @endif
