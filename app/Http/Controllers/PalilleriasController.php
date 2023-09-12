@@ -503,11 +503,11 @@ class PalilleriasController extends Controller
     public function fetchCover(Request $request){
         $value = $request->get('cover_id');
         $palilleria = Session::get('palilleria');
-        $cover = Cover::findOrFail($value);
+        $cover = Cover::find($value);
         $height = $palilleria['height'];
-        $useful_subrolls = $this->usefulSubrolls($cover);
+        $useful_subrolls = $this->usefulSubrolls($cover->roll_width);
 
-        $factor = $this->factor($cover);
+        $factor = $this->factor($cover->roll_width);
 
         $sub_rolls = ceil($height/$factor);
         $full_rolls = ceil($sub_rolls/$useful_subrolls);
