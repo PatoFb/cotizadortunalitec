@@ -58,11 +58,11 @@
             <b class="caret"></b>
           </p>
         </a>
-        <div class="collapse show" id="admin">
+        <div class="collapse hide" id="admin">
           <ul class="nav">
               <li class="nav-item{{ $activePage == 'record' ? ' active' : '' }}">
                   <a class="nav-link" href="{{ route('orders.record') }}">
-                      <i class="material-icons">list</i>
+                      <<span class="sidebar-mini"> H </span>
                       <span class="sidebar-normal">{{ __('Historial de proyectos') }}</span>
                   </a>
               </li>
