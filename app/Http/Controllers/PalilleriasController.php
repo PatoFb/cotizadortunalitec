@@ -146,7 +146,6 @@ class PalilleriasController extends Controller
         $oldMechanismId = $palilleria->mechanism_id;
         $newMechanismId = $validatedData['mechanism_id'];
         $this->resetAccessories($palilleria, $oldMechanismId, $newMechanismId);
-        Session::put('palilleria', $palilleria);
         return redirect()->route('palilleria.cover', $order_id);
     }
 
@@ -156,10 +155,9 @@ class PalilleriasController extends Controller
      * @param Palilleria $palilleria
      * @param $oldMechanismId
      * @param int $newMechanismId
-     * @return Palilleria
      */
 
-    private function resetAccessories(Palilleria $palilleria, $oldMechanismId, int $newMechanismId): Palilleria {
+    private function resetAccessories(Palilleria $palilleria, $oldMechanismId, int $newMechanismId) {
         if($oldMechanismId != $newMechanismId) {
             if($palilleria['mechanism_id'] == 1) {
                 $palilleria->control_id = 9999;
@@ -178,7 +176,7 @@ class PalilleriasController extends Controller
             $palilleria->control_quantity = 0;
             $palilleria->voice_quantity = 0;
         }
-        return $palilleria;
+        Session::put('palilleria', $palilleria);
     }
 
     /**
@@ -242,8 +240,7 @@ class PalilleriasController extends Controller
         $palilleria->fill($validatedData);
         if($palilleria->model){
             $keys = ['model', 'cover', 'mechanism', 'control', 'voice', 'sensor'];
-            removeKeys($palilleria, $keys);
-            Session::forget('palilleria');
+            removeKeys($palilleria, $keys, 'palilleria');
         }
         $palilleria->price = $this->calculatePalilleriaPrice($palilleria);
         Session::put('palilleria', $palilleria);
@@ -273,9 +270,9 @@ class PalilleriasController extends Controller
 
         $model_price = $this->calculateModelPrice($palilleria['model_id'], $width, $height);
 
-        $acc = $this->calculateAccessoriesPrice($palilleria, $reinforcement_total);
+        $accessories = $this->calculateAccessoriesPrice($palilleria) + $reinforcement_total;
 
-        return ($acc + $model_price + $total_cover) / 0.6 * (1 - ($user->discount/100)) * $quantity * 1.16;
+        return ($model_price + $total_cover) / 0.6 * (1 - ($user->discount/100)) * $quantity * 1.16 + $accessories;
     }
 
     /**
@@ -376,18 +373,17 @@ class PalilleriasController extends Controller
             $total_trave = 0;
         }
 
-        return $total_trave + $total_semigoals + $total_goals + $extra_guides;
+        return ($total_trave + $total_semigoals + $total_goals + $extra_guides)*1.16;
     }
 
     /**
      * Function to calculate prices of all accessories
      *
      * @param Palilleria $palilleria
-     * @param float $reinforcement_total
      * @return float
      */
 
-    private function calculateAccessoriesPrice(Palilleria $palilleria, float $reinforcement_total): float {
+    private function calculateAccessoriesPrice(Palilleria $palilleria): float {
         $voice = VoiceControl::find($palilleria['voice_id']);
         $control = Control::find($palilleria['control_id']);
         $mechanism_id = $palilleria['mechanism_id'];
@@ -407,12 +403,10 @@ class PalilleriasController extends Controller
 
         //Pricing of user selected option
         switch($mechanism_id) {
-            case 1:
-                return $reinforcement_total;
             case 2:
-                return $reinforcement_total + $control_total + $voice_total + $sensor_total + $somfy;
+                return ($control_total + $voice_total + $sensor_total + $somfy)*1.16;
             case 4:
-                return $reinforcement_total + $control_total + $voice_total + $tube;
+                return ($control_total + $voice_total + $tube)*1.16;
             default:
                 return 0;
         }

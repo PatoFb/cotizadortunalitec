@@ -219,7 +219,6 @@ class CurtainsController extends Controller
         $curtain->fill($validatedData);
         //reset accessory values
         $this->resetAccessories($curtain, $oldMechanismId, $newMechanismId);
-        Session::put('curtain', $curtain);
         return redirect()->route('curtain.cover', $order_id);
     }
 
@@ -278,8 +277,7 @@ class CurtainsController extends Controller
         $curtain = Session::get('curtain');
         if($curtain->model) {
             $keys = ['model', 'cover', 'mechanism', 'handle', 'control', 'voice'];
-            removeKeys($curtain, $keys);
-            Session::forget('curtain');
+            removeKeys($curtain, $keys, 'curtain');
         }
         $curtain->fill($validatedData);
         $curtain->price = $this->calculateCurtainPrice($curtain);
@@ -306,10 +304,9 @@ class CurtainsController extends Controller
      * @param Curtain $curtain
      * @param $oldMechanismId
      * @param int $newMechanismId
-     * @return Curtain
      */
 
-    private function resetAccessories(Curtain $curtain, $oldMechanismId, int $newMechanismId): Curtain {
+    private function resetAccessories(Curtain $curtain, $oldMechanismId, int $newMechanismId) {
         if($oldMechanismId != $newMechanismId) {
             if ($curtain['mechanism_id'] == 1) {
                 $curtain->control_id = 9999;
@@ -328,7 +325,7 @@ class CurtainsController extends Controller
             $curtain->control_quantity = 0;
             $curtain->voice_quantity = 0;
         }
-        return $curtain;
+        Session::put('curtain', $curtain);
     }
 
     /**
@@ -340,7 +337,6 @@ class CurtainsController extends Controller
 
     private function calculateCurtainPrice(Curtain $curtain): float {
         $user = Auth::user();
-        $cover = Cover::find($curtain['cover_id']);
         $model_id = $curtain['model_id'];
         $canopy = $curtain['canopy'];
 
@@ -349,7 +345,7 @@ class CurtainsController extends Controller
         $quantity = $curtain['quantity'];
 
         //Calculate cover plus handwork price
-        $total_cover = $this->calculateCoverPrice($cover, $width, $height);
+        $total_cover = $this->calculateCoverPrice($curtain['cover_id'], $width, $height);
 
         //Ceil the width to x.5 if width < x.5 or to x.0 if width > x.5
         $newWidth = ceilMeasure($width, 1);
@@ -361,7 +357,7 @@ class CurtainsController extends Controller
         $total_canopy = $this->calculateCanopyPrice($canopy, $width, $newWidth);
 
         //Calculate the sum of the accessories
-        $accessories = $this->calculateAccessoriesPrice($curtain, $total_canopy, $system_price);
+        $accessories = $this->calculateAccessoriesPrice($curtain, $system_price) + $total_canopy;
 
         return (((($total_cover*1.16) / (0.60)) * (1-($user->discount/100))) * $quantity) + $accessories;
     }
@@ -370,12 +366,11 @@ class CurtainsController extends Controller
      * Function to calculate the price of all the accessories
      *
      * @param Curtain $curtain
-     * @param float $total_canopy
      * @param float $system_price
      * @return float
      */
 
-    private function calculateAccessoriesPrice(Curtain $curtain, float $total_canopy, float $system_price): float {
+    private function calculateAccessoriesPrice(Curtain $curtain, float $system_price): float {
         $control = Control::find($curtain['control_id']);
         $mechanism_id = $curtain['mechanism_id'];
         $voice = VoiceControl::find($curtain['voice_id']);
@@ -393,16 +388,16 @@ class CurtainsController extends Controller
         switch($mechanism_id) {
             case 1:
                 //manual mechanism accessories
-                return $handle_total + $total_canopy + ($system_price * 1.16);
+                return $handle_total + ($system_price * 1.16);
             case 2:
                 //somfy mechanism accessories
-                return $control_total + $voice_total + $total_canopy + (($system_price + 6927.693627)*1.16);
+                return $control_total + $voice_total + (($system_price + 6927.693627)*1.16);
             case 3:
                 //cmo mechanism accessories
-                return $control_total + $handle_total + $voice_total + $total_canopy + (($system_price + 7971.151961)*1.16);
+                return $control_total + $handle_total + $voice_total + (($system_price + 7971.151961)*1.16);
             case 4:
                 //tube mechanism accessories
-                return $voice_total + $total_canopy + $control_total + (($system_price + 1959.235294)*1.16);
+                return $voice_total + $control_total + (($system_price + 1959.235294)*1.16);
             default:
                 return 0;
         }
@@ -434,7 +429,8 @@ class CurtainsController extends Controller
      * @return float
      */
 
-    private function calculateCoverPrice(Cover $cover, float $width, float $height): float {
+    private function calculateCoverPrice(int $cover_id, float $width, float $height): float {
+        $cover = Cover::find($cover_id);
         $measure = $height + 0.35;
         $squared_meters = $measure * $width;
 

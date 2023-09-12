@@ -21,11 +21,23 @@ use Illuminate\Support\Facades\Session;
 
 class ToldosController extends Controller
 {
+    /**
+     * Function to return a listing of the resource
+     *
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function show($id){
         $toldo = Toldo::findOrFail($id);
-        return view('toldos.show');
+        return view('toldos.show', compact('toldo'));
     }
 
+    /**
+     * Function to return the projection depending on the width and model selected
+     *
+     * @param Request $request
+     * @return void
+     */
     public function fetchProjection(Request $request)
     {
         $value = $request->get('value');
@@ -39,6 +51,12 @@ class ToldosController extends Controller
         echo $output;
     }
 
+    /**
+     * Function to return the info of the cover
+     *
+     * @param Request $request
+     * @return void
+     */
     public function fetchCover(Request $request){
         $value = $request->get('cover_id');
         $toldo = $request->session()->get('toldo');
@@ -108,15 +126,13 @@ class ToldosController extends Controller
      * Creates a session for the product in which information will be stored and sends it
      * to the view so the data the user enters is saved as well
      *
-     * @param Request $request
-     * @param $id
+     * @param $order_id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function addModel(Request $request, $id)
+    public function addModel($order_id)
     {
-        $order_id = $id;
         $models = ModeloToldo::all();
-        $toldo = $request->session()->get('toldo');
+        $toldo = Session::get('toldo');
         return view('toldos.model', compact('order_id', 'models', 'toldo'));
     }
 
@@ -148,16 +164,14 @@ class ToldosController extends Controller
     /**
      * Works exactly the same as the model function, but with covers
      *
-     * @param Request $request
-     * @param $id
+     * @param $order_id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
 
-    public function addCover(Request $request, $id)
+    public function addCover($order_id)
     {
-        $order_id = $id;
         $cov = Cover::all();
-        $toldo = $request->session()->get('toldo');
+        $toldo = Session::get('toldo');
         return view('toldos.cover', compact('order_id', 'cov', 'toldo'));
     }
 
@@ -166,19 +180,18 @@ class ToldosController extends Controller
      * thanks to the validation, the session won't be empty once you reach this point
      *
      * @param Request $request
-     * @param $id
+     * @param $order_id
      * @return \Illuminate\Http\RedirectResponse
      */
 
-    public function addCoverPost(Request $request, $id)
+    public function addCoverPost(Request $request, $order_id)
     {
-        $order_id = $id;
         $validatedData = $request->validate([
             'cover_id' => 'required',
         ]);
-        $toldo = $request->session()->get('toldo');
+        $toldo = Session::get('toldo');
         $toldo->cover_id = $validatedData['cover_id'];
-        $request->session()->put('toldo', $toldo);
+        Session::put('toldo', $toldo);
         return redirect()->route('toldo.features', $order_id);
     }
 
@@ -186,15 +199,13 @@ class ToldosController extends Controller
      * Works the same as the model and cover functions, but since we don't need any data for a radio list,
      * we won't send any objects but the curtain stored in session
      *
-     * @param Request $request
-     * @param $id
+     * @param $order_id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
 
-    public function addDat(Request $request, $id)
+    public function addDat($order_id)
     {
-        $order_id = $id;
-        $toldo = $request->session()->get('toldo');
+        $toldo = Session::get('toldo');
         $system = SistemaToldo::where('modelo_toldo_id', $toldo->model_id)->groupBy('mechanism_id')->get('mechanism_id');
         $mechs = Mechanism::whereIn('id', $system)->get();
         $model = ModeloToldo::find($toldo->model_id);
@@ -205,46 +216,63 @@ class ToldosController extends Controller
      * Validation for the two numeric fields, store in session and then go to next step
      *
      * @param Request $request
-     * @param $id
+     * @param $order_id
      * @return \Illuminate\Http\RedirectResponse
      */
 
-    public function addDataPost(Request $request, $id)
+    public function addDataPost(Request $request, $order_id)
     {
-        $order_id = $id;
         $validatedData = $request->validate([
             'width' => 'required',
             'projection' => 'required',
             'mechanism_id' => 'required',
             'quantity' => 'required',
         ]);
-        $toldo = $request->session()->get('toldo');
+        $toldo = Session::get('toldo');
+        $oldMechanismId = $toldo->mechanism_id;
+        $newMechanismId = $validatedData['mechanism_id'];
         $toldo->fill($validatedData);
-        if($toldo['mechanism_id'] == 1) {
-            $toldo->control_id = 9999;
-            $toldo->voice_id = 9999;
-            $toldo->sensor_id = 9999;
-            $toldo->handle_id = 999;
-        } elseif ($toldo['mechanism_id'] == 4) {
-            $toldo->sensor_id = 9999;
-            $toldo->handle_id = 9999;
-            $toldo->control_id = 999;
-            $toldo->voice_id = 999;
-        } elseif ($toldo['mechanism_id'] == 2) {
-            $toldo->handle_id = 9999;
-            $toldo->sensor_id = 999;
-            $toldo->control_id = 999;
-            $toldo->voice_id = 999;
-        } else {
-            $toldo->sensor_id = 999;
-            $toldo->handle_id = 999;
-            $toldo->control_id = 999;
-            $toldo->voice_id = 999;
-        }
-        $keys = ['sensor_quantity', 'handle_quantity', 'control_quantity', 'voice_quantity'];
-        removeKeys($toldo, $keys);
-        $request->session()->put('toldo', $toldo);
+        $this->resetAccessories($toldo, $oldMechanismId, $newMechanismId);
         return redirect()->route('toldo.cover', $order_id);
+    }
+
+    /**
+     * Function to reset accessory values if there's a mechanism change
+     *
+     * @param Toldo $toldo
+     * @param $oldMechanismId
+     * @param int $newMechanismId
+     */
+
+    private function resetAccessories(Toldo $toldo, $oldMechanismId, int $newMechanismId) {
+        if($oldMechanismId != $newMechanismId) {
+            if($toldo['mechanism_id'] == 1) {
+                $toldo->control_id = 9999;
+                $toldo->voice_id = 9999;
+                $toldo->sensor_id = 9999;
+                $toldo->handle_id = 999;
+            } elseif ($toldo['mechanism_id'] == 4) {
+                $toldo->sensor_id = 9999;
+                $toldo->handle_id = 9999;
+                $toldo->control_id = 999;
+                $toldo->voice_id = 999;
+            } elseif ($toldo['mechanism_id'] == 2) {
+                $toldo->handle_id = 9999;
+                $toldo->sensor_id = 999;
+                $toldo->control_id = 999;
+                $toldo->voice_id = 999;
+            } else {
+                $toldo->sensor_id = 999;
+                $toldo->handle_id = 999;
+                $toldo->control_id = 999;
+                $toldo->voice_id = 999;
+            }
+            $toldo->handle_quantity = 0;
+            $toldo->control_quantity = 0;
+            $toldo->voice_quantity = 0;
+            $toldo->sensor_quantity = 0;
+        }
+        Session::put('toldo', $toldo);
     }
 
     /**
@@ -253,15 +281,13 @@ class ToldosController extends Controller
      *
      * We keep sending the session
      *
-     * @param Request $request
-     * @param $id
+     * @param $order_id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
 
-    public function addFeatures(Request $request, $id)
+    public function addFeatures($order_id)
     {
-        $order_id = $id;
-        $toldo = $request->session()->get('toldo');
+        $toldo = Session::get('toldo');
         if($toldo->mechanism_id == 1){
             $controls = Control::where('id', 9999)->get();
             $voices = VoiceControl::where('id', 9999)->get();
@@ -293,14 +319,12 @@ class ToldosController extends Controller
      * For now, price calculating is just a simple sum multiplied by the quantity selected
      *
      * @param Request $request
-     * @param $id
+     * @param $order_id
      * @return \Illuminate\Http\RedirectResponse
      */
 
-    public function addFeaturesPost(Request $request, $id)
+    public function addFeaturesPost(Request $request, $order_id)
     {
-        $order_id = $id;
-        $user = Auth::user();
         $validatedData = $request->validate([
             'handle_id' => 'required',
             'bambalina' => 'required',
@@ -313,50 +337,132 @@ class ToldosController extends Controller
             'sensor_quantity' => 'required',
             'voice_quantity' => 'required'
         ]);
-        $toldo = $request->session()->get('toldo');
+        $toldo = Session::get('toldo');
         if($toldo->model){
             $keys = ['model', 'cover', 'mechanism', 'handle', 'control', 'voice', 'sensor'];
-            removeKeys($toldo, $keys);
-            Session::forget('toldo');
+            removeKeys($toldo, $keys, 'toldo');
         }
         $toldo->fill($validatedData);
+        $toldo->price = $this->calculateToldoPrice($toldo);
+        Session::put('toldo', $toldo);
+        return redirect()->route('toldo.review', $order_id);
+    }
 
-        $cover_id = $toldo['cover_id'];
-        $cover = Cover::find($cover_id);
-
-        $model_id = $toldo['model_id'];
-
-        $control_id = $toldo['control_id'];
-        $control = Control::find($control_id);
-
-        $mechanism_id = $toldo['mechanism_id'];
-
-        $sensor_id = $toldo['sensor_id'];
-        $sensor = Sensor::find($sensor_id);
-
-        $voice_id = $toldo['voice_id'];
-        $voice = VoiceControl::find($voice_id);
-
-        $handle_id = $toldo['handle_id'];
-        $handle = Handle::find($handle_id);
-
+    /**
+     * Calculates the price of the awning
+     *
+     * @param Toldo $toldo
+     * @return float
+     */
+    private function calculateToldoPrice(Toldo $toldo): float {
+        $user = Auth::user();
         $bambalina = $toldo['bambalina'];
         $canopy = $toldo['canopy'];
 
         $width = $toldo['width'];
         $projection = $toldo['projection'];
         $quantity = $toldo['quantity'];
+
+        $total_cover = $this->calculateCoverPrice($toldo['cover_id'], $toldo['model_id'], $width, $projection);
+
+        $newWidth = ceilMeasure($width, 1);
+
+        $sprice = SistemaToldo::where('modelo_toldo_id', $toldo['model_id'])->where('mechanism_id', $toldo['mechanism_id'])->where('projection', $projection)->where('width', $newWidth)->value('price');
+
+        $total_canopy = $this->calculateCanopyPrice($canopy, $width);
+
+        $total_bambalina = $this->calculateBambalinaPrice($bambalina, $width);
+
+        $accessories = $this->calculateAccessoriesPrice($toldo) + $total_bambalina + $total_canopy;
+
+        return ((((($sprice+$total_cover)*1.16) / (0.60)) * $quantity) * (1-($user->discount/100))) + $accessories;
+    }
+
+    /**
+     * Function to calculate price of accessories depending on mechanism selected
+     *
+     * @param Toldo $toldo
+     * @return float
+     */
+    private function calculateAccessoriesPrice(Toldo $toldo): float {
+        $control = Control::find($toldo['control_id']);
+        $mechanism_id = $toldo['mechanism_id'];
+        $voice = VoiceControl::find($toldo['voice_id']);
+        $handle = Handle::find($toldo['handle_id']);
+        $sensor = Sensor::find($toldo['sensor_id']);
+
         $cquant = $toldo['control_quantity'];
         $vquant = $toldo['voice_quantity'];
         $squant = $toldo['sensor_quantity'];
         $hquant = $toldo['handle_quantity'];
 
-        //Control plus IVA
+        //Accessories plus IVA
         $control_total = $control->price * $cquant * 1.16;
         $voice_total = $voice->price * $vquant * 1.16;
         $sensor_total = $sensor->price * $squant * 1.16;
         $handle_total = $handle->price * $hquant * 1.16;
 
+        switch($mechanism_id) {
+            case 1:
+                return $handle_total;
+            case 2:
+                return $control_total + $sensor_total + $voice_total;
+            case 3:
+                return $control_total + $handle_total + $sensor_total + $voice_total;
+            case 4:
+                return $handle_total + $voice_total + $control_total;
+            default:
+                return 0;
+        }
+    }
+
+    /**
+     * Function to calculate the price of the bambalina
+     *
+     * @param int $bambalina
+     * @param float $width
+     * @return float
+     */
+    private function calculateBambalinaPrice(int $bambalina, float $width): float {
+        if($bambalina == 1) {
+            return 4384.60 + ($width * 1.5 * 50 * 1.16) + (626.4 * $width);
+        } else {
+            return 0;
+        }
+    }
+
+    /**
+     * Calculate price of the canopy
+     *
+     * @param int $canopy
+     * @param float $width
+     * @return float
+     */
+    private function calculateCanopyPrice(int $canopy, float $width): float {
+        if($canopy == 1) {
+            if($width > 3.5) {
+                return ((4268.18 / 5 * $width + 100) + 498.79 + (271.07 * $width) + (629.69 * 2))* 1.16 / 0.8;
+            } else {
+                return ((4268.18/5*$width+100) + 498.79 + (271.07*$width) + (629.69))* 1.16 / 0.8;
+            }
+        } else {
+            return 0;
+        }
+    }
+
+    /**
+     * Function to calculate the price of the cover
+     *
+     *
+     * @param int $cover_id
+     * @param int $model_id
+     * @param float $width
+     * @param float $projection
+     * @return float
+     */
+    private function calculateCoverPrice(int $cover_id, int $model_id, float $width, float $projection): float
+    {
+        $cover = Cover::find($cover_id);
         $num_lienzos = ceil($width/$cover->roll_width);
         if($model_id == 1){
             $measure = $projection + 1.2;
@@ -370,65 +476,19 @@ class ToldosController extends Controller
         //Calculates total pricing of fabric plus handiwork plus IVA
         $cover_price = $cover->price * $total_fabric;
         $work_price = (40 * $measure * $width);
-        $total_cover = ($cover_price + $work_price) / (1-0.30);
-
-        $newWidth = ceilMeasure($width, 1);
-
-        $system = SistemaToldo::where('modelo_toldo_id', $model_id)->where('mechanism_id', $mechanism_id)->where('projection', $projection)->where('width', $newWidth)->first();
-        $sprice = $system->price;
-
-        //If user chooses canopy, it will calculate the price by width plus IVA
-        if($canopy == 1) {
-            if($width > 3.5) {
-                $total_canopy = ((4268.18 / 5 * $width + 100) + 498.79 + (271.07 * $width) + (629.69 * 2))* 1.16 / 0.8;
-            } else {
-                $total_canopy = ((4268.18/5*$width+100) + 498.79 + (271.07*$width) + (629.69))* 1.16 / 0.8;
-            }
-        } else {
-            $total_canopy = 0;
-        }
-
-        if($bambalina == 1) {
-            $total_bambalina = 4384.60 + ($width * 1.5 * 50 * 1.16) + (626.4 * $width);
-        } else {
-            $total_bambalina = 0;
-        }
-
-        $utility = 0.40;
-
-        $accessories = 0;
-
-        switch($mechanism_id) {
-            case 1:
-                $accessories = $handle_total + $total_canopy + $total_bambalina;
-                break;
-            case 2:
-                $accessories = $control_total + $sensor_total + $voice_total + $total_canopy + $total_bambalina;
-                break;
-            case 3:
-                $accessories = $control_total + $handle_total + $sensor_total + $voice_total + $total_canopy + $total_bambalina;
-                break;
-            case 4:
-                $accessories = $handle_total + $voice_total + $total_canopy + $total_bambalina + $control_total;
-                break;
-        }
-        $toldo['price'] = ((((($sprice+$total_cover)*1.16) / (1-$utility)) * $quantity) * (1-($user->discount/100))) + $accessories;
-        $request->session()->put('toldo', $toldo);
-        return redirect()->route('toldo.review', $order_id);
+        return ($cover_price + $work_price) / (1-0.30);
     }
 
     /**
-     * This is the last step and you will be able to review all the details of your product
+     * This is the last step, and you will be able to review all the details of your product
      *
-     * @param Request $request
-     * @param $id
+     * @param $order_id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
 
-    public function review(Request $request, $id)
+    public function review($order_id)
     {
-        $order_id = $id;
-        $toldo = $request->session()->get('toldo');
+        $toldo = Session::get('toldo');
         return view('toldos.review', compact('order_id', 'toldo'));
     }
 
@@ -444,19 +504,24 @@ class ToldosController extends Controller
      *
      * It will redirect you to a view with your order details (OrdersController)
      *
-     * @param Request $request
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
 
-    public function reviewPost(Request $request, $id)
+    public function reviewPost($id)
     {
-        $toldo = $request->session()->get('toldo');
+        $toldo = Session::get('toldo');
         saveSystem($toldo, $id);
-        $request->session()->forget('toldo');
+        Session::forget('toldo');
         return redirect()->route('orders.show', $id);
     }
 
+    /**
+     * Function to delete saved product
+     *
+     * @param $id
+     * @return mixed
+     */
     public function destroy($id)
     {
         $toldo = Toldo::findOrFail($id);

@@ -3,10 +3,11 @@
 use App\Models\Order;
 use Illuminate\Support\Facades\Session;
 
-function removeKeys($object, array $keys) {
+function removeKeys($object, array $keys, string $system) {
     foreach ($keys as $key) {
         unset($object[$key]);
     }
+    Session::forget($system);
 }
 
 function ceilMeasure(float $measure, float $min): float {
