@@ -22,7 +22,6 @@ class User extends Authenticatable
         'password',
         'rfc',
         'cfdi',
-        'razon_social',
         'phone',
         'discount',
         'state',

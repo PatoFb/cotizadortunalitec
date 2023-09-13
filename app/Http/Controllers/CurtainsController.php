@@ -45,7 +45,7 @@ class CurtainsController extends Controller
         $curtain = Curtain::findOrFail($validatedData['id']);
         $curtain->fill($validatedData);
         $curtain->save();
-        return redirect()->back()->withStatus(_('Datos guardados correctamente'));
+        return redirect()->back()->withStatus('Datos guardados correctamente');
     }
 
     /**
@@ -174,7 +174,7 @@ class CurtainsController extends Controller
     public function addCoverPost(Request $request, $order_id)
     {
         $validatedData = $request->validate([
-            'cover_id' => 'required',
+            'cover_id' => ['required', 'exists:App\Models\Cover,id']
         ]);
         $curtain = Session::get('curtain');
         $curtain->cover_id = $validatedData['cover_id'];
@@ -207,13 +207,13 @@ class CurtainsController extends Controller
 
     public function addDataPost(Request $request, $order_id)
     {
-        $validatedData = $request->validate([
-            'width' => 'required',
-            'height' => 'required',
-            'mechanism_id' => 'required',
-            'quantity' => 'required',
-        ]);
         $curtain = Session::get('curtain');
+        $validatedData = $request->validate([
+            'width' => ['required', 'min:0.5', 'max:10', 'number'],
+            'height' => ['required', 'min:0.5', 'max:10', 'number'],
+            'mechanism_id' => 'required',
+            'quantity' => ['required', 'min:1', 'number'],
+        ]);
         $oldMechanismId = $curtain->mechanism_id;
         $newMechanismId = $validatedData['mechanism_id'];
         $curtain->fill($validatedData);
@@ -270,9 +270,9 @@ class CurtainsController extends Controller
             'canopy' => 'required',
             'control_id' => 'required',
             'voice_id' => 'required',
-            'control_quantity' => 'required',
-            'handle_quantity' => 'required',
-            'voice_quantity' => 'required'
+            'control_quantity' => ['required', 'min:0', 'number'],
+            'handle_quantity' => ['required', 'min:0', 'number'],
+            'voice_quantity' => ['required', 'min:0', 'number'],
         ]);
         $curtain = Session::get('curtain');
         if($curtain->model) {
