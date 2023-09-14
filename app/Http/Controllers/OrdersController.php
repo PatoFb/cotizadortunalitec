@@ -108,7 +108,6 @@ class OrdersController extends Controller
     {
         $order = Order::findOrFail($id);
         $user = Auth::user();
-        Log::info($order);
         $this->authorize('checkUser', $order);
         $role = $user->role_id;
         return view('orders.show', compact('order', 'role'));
@@ -192,14 +191,30 @@ class OrdersController extends Controller
      */
     private function saveOrder(Request $request): int {
         $user = Auth::user();
-        $address = $request->get('addressCheck') == 1;
-        if($address == 1) {
+        $customMessages = [
+            'activity.required' => 'El campo actividad es obligatorio.',
+            'project.required' => 'El campo proyecto es obligatorio.',
+            'discount.required' => 'El campo descuento es obligatorio.',
+            'discount.min' => 'El descuento debe ser al menos :min.',
+            'discount.max' => 'El descuento debe ser como máximo :max.',
+            'discount.numeric' => 'El descuento debe ser un número.',
+            'comment.string' => 'El comentario debe ser una cadena de texto.',
+            'city.required' => 'El campo ciudad es obligatorio.',
+            'state.required' => 'El campo estado es obligatorio.',
+            'zip_code.required' => 'El campo código postal es obligatorio.',
+            'zip_code.digits' => 'El código postal debe tener :digits dígitos.',
+            'zip_code.integer' => 'El código postal debe ser un número entero.',
+            'line1.required' => 'El campo dirección (línea 1) es obligatorio.',
+            'line2.required' => 'El campo dirección (línea 2) es obligatorio.',
+            'reference.string' => 'La referencia debe ser una cadena de texto.',
+        ];
+        if($request->get('addressCheck') == 1) {
             $request->validate([
                 'activity' => 'required',
                 'project' => 'required',
                 'discount' => ['required', 'min:0', 'max:100', 'numeric'],
                 'comment' => ['sometimes|string']
-            ]);
+            ], $customMessages);
             $order = $request->all();
             $order['city'] = $user->city;
             $order['state'] = $user->state;
@@ -219,7 +234,7 @@ class OrdersController extends Controller
                 'line1' => ['required'],
                 'line2' => ['required'],
                 'reference' => ['sometimes|string']
-            ]);
+            ], $customMessages);
             $order = $request->all();
         }
         $order['user_id'] = $user->id;

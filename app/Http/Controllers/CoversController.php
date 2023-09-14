@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CurtainCoversEditRequest;
-use App\Http\Requests\CurtainCoversRequest;
+use App\Http\Requests\CoverEditRequest;
 use App\Models\Cover;
 use Illuminate\Http\Request;
 
@@ -36,7 +35,7 @@ class CoversController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CurtainCoversRequest $request)
+    public function store(CoverEditRequest $request)
     {
         $input = $request->all();
         //get file from the input
@@ -83,7 +82,7 @@ class CoversController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CurtainCoversEditRequest $request, $id)
+    public function update(CoverEditRequest $request, $id)
     {
         $cover = Cover::findOrFail($id);
         $input = $request->all();

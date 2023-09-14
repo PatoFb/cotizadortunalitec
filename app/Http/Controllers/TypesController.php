@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class TypesController extends Controller
 {
@@ -21,9 +22,8 @@ class TypesController extends Controller
         return view('admin.types.index', compact('types'));
     }
 
-    public function productType($id)
+    public function productType($order_id)
     {
-        $order_id = $id;
         $types = Type::pluck('name', 'id')->all();
         return view('products.type', compact('order_id', 'types'));
     }
@@ -35,25 +35,24 @@ class TypesController extends Controller
      * In case you select a non valid one, you will be redirected back, if not, you'll go to the model selection page (CurtainsController)
      *
      * @param Request $request
-     * @param $id
+     * @param $order_id
      * @return \Illuminate\Http\RedirectResponse
      */
 
-    public function productTypePost(Request $request, $id)
+    public function productTypePost(Request $request, $order_id)
     {
-        $order_id = $id;
         switch ($request['type_id']){
             case 1:
                 //return redirect()->route('curtain.add', $order_id);
-                $request->session()->forget('curtain');
+                Session::forget('curtain');
                 return redirect()->route('curtain.model', $order_id);
                 break;
             case 3:
-                $request->session()->forget('palilleria');
+                Session::forget('palilleria');
                 return redirect()->route('palilleria.model', $order_id);
                 break;
             case 4:
-                $request->session()->forget('toldo');
+                Session::forget('toldo');
                 return redirect()->route('toldo.model', $order_id);
                 break;
             default:

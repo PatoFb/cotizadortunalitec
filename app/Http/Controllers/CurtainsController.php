@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CoverRequest;
+use App\Http\Requests\CurtainDataRequest;
+use App\Http\Requests\CurtainFeaturesRequest;
+use App\Http\Requests\CurtainModelRequest;
+use App\Http\Requests\ModelRequest;
 use App\Models\Complement;
 use App\Models\Cover;
 use App\Models\Curtain;
@@ -138,17 +143,14 @@ class CurtainsController extends Controller
     /**
      * Post route
      *
-     * @param Request $request
+     * @param CurtainModelRequest $request
      * @param $order_id
      * @return \Illuminate\Http\RedirectResponse
      */
 
-    public function addModelPost(Request $request, $order_id)
+    public function addModelPost(CurtainModelRequest $request, $order_id)
     {
-        $validatedData = $request->validate([
-            'model_id' => ['required', 'exists:curtain_models,id', 'integer']
-        ]);
-        createSession($validatedData['model_id'], $order_id, Curtain::class, 'curtain');
+        createSession($request['model_id'], $order_id, Curtain::class, 'curtain');
         return redirect()->route('curtain.data', $order_id);
     }
 
@@ -169,17 +171,14 @@ class CurtainsController extends Controller
     /**
      *  Saving cover selection in session, redirecting to next step
      *
-     * @param Request $request
+     * @param CoverRequest $request
      * @param $order_id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function addCoverPost(Request $request, $order_id)
+    public function addCoverPost(CoverRequest $request, $order_id)
     {
-        $validatedData = $request->validate([
-            'cover_id' => ['exists:covers,id', 'required', 'integer']
-        ]);
         $curtain = Session::get('curtain');
-        $curtain->cover_id = $validatedData['cover_id'];
+        $curtain->cover_id = $request['cover_id'];
         Session::put('curtain', $curtain);
         return redirect()->route('curtain.features', $order_id);
     }
@@ -202,23 +201,17 @@ class CurtainsController extends Controller
     /**
      * Saving data in session
      *
-     * @param Request $request
+     * @param CurtainDataRequest $request
      * @param $order_id
      * @return \Illuminate\Http\RedirectResponse
      */
 
-    public function addDataPost(Request $request, $order_id)
+    public function addDataPost(CurtainDataRequest $request, $order_id)
     {
         $curtain = Session::get('curtain');
-        $validatedData = $request->validate([
-            'width' => ['required', 'min:0.5', 'max:10', 'numeric'],
-            'height' => ['required', 'min:0.5', 'max:10', 'numeric'],
-            'mechanism_id' => ['required', 'integer', 'exists:mechanisms,id'],
-            'quantity' => ['required', 'min:1', 'integer'],
-        ]);
         $oldMechanismId = $curtain->mechanism_id;
-        $newMechanismId = $validatedData['mechanism_id'];
-        $curtain->fill($validatedData);
+        $newMechanismId = $request['mechanism_id'];
+        $curtain->fill($request->all());
         //reset accessory values
         $this->resetAccessories($curtain, $oldMechanismId, $newMechanismId);
         return redirect()->route('curtain.cover', $order_id);
@@ -260,28 +253,19 @@ class CurtainsController extends Controller
      *
      * Storing the price in the session before sending you to the review page
      *
-     * @param Request $request
+     * @param CurtainFeaturesRequest $request
      * @param $order_id
      * @return \Illuminate\Http\RedirectResponse
      */
 
-    public function addFeaturesPost(Request $request, $order_id)
+    public function addFeaturesPost(CurtainFeaturesRequest $request, $order_id)
     {
-        $validatedData = $request->validate([
-            'handle_id' => ['required', 'exists:handles,id', 'integer'],
-            'canopy' => ['required', 'integer', 'min:0', 'max:1'],
-            'control_id' => ['required', 'exists:controls,id', 'integer'],
-            'voice_id' => ['required', 'exists:voice_controls,id', 'integer'],
-            'control_quantity' => ['required', 'min:0', 'integer'],
-            'handle_quantity' => ['required', 'min:0', 'integer'],
-            'voice_quantity' => ['required', 'min:0', 'integer'],
-        ]);
         $curtain = Session::get('curtain');
         if($curtain->model) {
             $keys = ['model', 'cover', 'mechanism', 'handle', 'control', 'voice'];
             removeKeys($curtain, $keys, 'curtain');
         }
-        $curtain->fill($validatedData);
+        $curtain->fill($request->all());
         $curtain->price = $this->calculateCurtainPrice($curtain);
         Session::put('curtain', $curtain);
         return redirect()->route('curtain.review', $order_id);

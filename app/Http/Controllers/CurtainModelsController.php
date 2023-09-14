@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CurtainModelsEditRequest;
-use App\Http\Requests\CurtainModelsRequest;
+use App\Http\Requests\CurtainModelEditRequest;
 use App\Models\CurtainModel;
-use App\Models\CurtainPanel;
-use App\Models\CurtainTube;
 use App\Models\Type;
 use Illuminate\Http\Request;
 
@@ -40,7 +37,7 @@ class CurtainModelsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CurtainModelsRequest $request)
+    public function store(CurtainModelEditRequest $request)
     {
         $input = $request->all();
         //get file value from input
@@ -88,7 +85,7 @@ class CurtainModelsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CurtainModelsEditRequest $request, $id)
+    public function update(CurtainModelEditRequest $request, $id)
     {
         $model = CurtainModel::findOrFail($id);
         $input = $request->all();

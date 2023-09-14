@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AddressRequest;
 use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\PasswordRequest;
 use Illuminate\Http\Request;
@@ -35,21 +36,12 @@ class ProfileController extends Controller
     /**
      * Update the address
      *
-     * @param  \App\Http\Requests\ProfileRequest  $request
+     * @param  AddressRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function address(Request $request)
+    public function address(AddressRequest $request)
     {
-        $validatedData = $request->validate([
-            'city' => ['required'],
-            'state' => ['required'],
-            'zip_code' => ['required', 'integer', 'digits:5'],
-            'line1' => ['required'],
-            'line2' => ['required'],
-            'reference' => ['nullable', 'string'],
-        ]);
-
-        auth()->user()->update($validatedData);
+        auth()->user()->update($request->all());
 
         return back()->withStatus(__('Dirección actualizada correctamente.'));
     }

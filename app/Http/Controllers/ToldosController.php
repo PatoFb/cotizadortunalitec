@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CoverRequest;
+use App\Http\Requests\ModelRequest;
+use App\Http\Requests\ToldoDataRequest;
+use App\Http\Requests\ToldoFeaturesRequest;
+use App\Http\Requests\ToldoModelRequest;
 use App\Models\Complement;
 use App\Models\Control;
 use App\Models\Cover;
@@ -149,17 +154,14 @@ class ToldosController extends Controller
      *
      * If session isn't empty it will just update the data
      *
-     * @param Request $request
+     * @param ToldoModelRequest $request
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
 
-    public function addModelPost(Request $request, $order_id)
+    public function addModelPost(ToldoModelRequest $request, $order_id)
     {
-        $validatedData = $request->validate([
-            'model_id' => ['required', 'exists:curtain_models,id', 'integer']
-        ]);
-        createSession($validatedData['model_id'], $order_id, Toldo::class, 'toldo');
+        createSession($request['model_id'], $order_id, Toldo::class, 'toldo');
         return redirect()->route('toldo.data', $order_id);
     }
 
@@ -181,18 +183,15 @@ class ToldosController extends Controller
      * It works exactly the same as the model post function, but without the if statement since
      * thanks to the validation, the session won't be empty once you reach this point
      *
-     * @param Request $request
+     * @param CoverRequest $request
      * @param $order_id
      * @return \Illuminate\Http\RedirectResponse
      */
 
-    public function addCoverPost(Request $request, $order_id)
+    public function addCoverPost(CoverRequest $request, $order_id)
     {
-        $validatedData = $request->validate([
-            'cover_id' => ['exists:covers,id', 'required', 'integer']
-        ]);
         $toldo = Session::get('toldo');
-        $toldo->cover_id = $validatedData['cover_id'];
+        $toldo->cover_id = $request['cover_id'];
         Session::put('toldo', $toldo);
         return redirect()->route('toldo.features', $order_id);
     }
@@ -217,24 +216,17 @@ class ToldosController extends Controller
     /**
      * Validation for the two numeric fields, store in session and then go to next step
      *
-     * @param Request $request
+     * @param ToldoDataRequest $request
      * @param $order_id
      * @return \Illuminate\Http\RedirectResponse
      */
 
-    public function addDataPost(Request $request, $order_id)
+    public function addDataPost(ToldoDataRequest $request, $order_id)
     {
         $toldo = Session::get('toldo');
-        $data = ['toldo' => $toldo];
-        $validatedData = $request->validate([
-            'width' => ['required', 'min:0.5', 'max:10', 'numeric'],
-            'projection' => ['required', 'numeric', new ValidateProjection($data)],
-            'mechanism_id' => ['required', 'integer', 'exists:mechanisms,id'],
-            'quantity' => ['required', 'min:1', 'integer'],
-        ]);
         $oldMechanismId = $toldo->mechanism_id;
-        $newMechanismId = $validatedData['mechanism_id'];
-        $toldo->fill($validatedData);
+        $newMechanismId = $request['mechanism_id'];
+        $toldo->fill($request->all());
         $this->resetAccessories($toldo, $oldMechanismId, $newMechanismId);
         return redirect()->route('toldo.cover', $order_id);
     }
@@ -321,31 +313,19 @@ class ToldosController extends Controller
      *
      * For now, price calculating is just a simple sum multiplied by the quantity selected
      *
-     * @param Request $request
+     * @param ToldoFeaturesRequest $request
      * @param $order_id
      * @return \Illuminate\Http\RedirectResponse
      */
 
-    public function addFeaturesPost(Request $request, $order_id)
+    public function addFeaturesPost(ToldoFeaturesRequest $request, $order_id)
     {
-        $validatedData = $request->validate([
-            'handle_id' => ['required', 'exists:handles,id', 'integer'],
-            'canopy' => ['required', 'integer', 'min:0', 'max:1'],
-            'control_id' => ['required', 'exists:controls,id', 'integer'],
-            'voice_id' => ['required', 'exists:voice_controls,id', 'integer'],
-            'control_quantity' => ['required', 'min:0', 'integer'],
-            'handle_quantity' => ['required', 'min:0', 'integer'],
-            'voice_quantity' => ['required', 'min:0', 'integer'],
-            'bambalina' => ['required', 'integer', 'min:0', 'max:1'],
-            'sensor_id' => ['required', 'exists:sensors,id', 'integer'],
-            'sensor_quantity' => ['required', 'min:0', 'integer'],
-        ]);
         $toldo = Session::get('toldo');
         if($toldo->model){
             $keys = ['model', 'cover', 'mechanism', 'handle', 'control', 'voice', 'sensor'];
             removeKeys($toldo, $keys, 'toldo');
         }
-        $toldo->fill($validatedData);
+        $toldo->fill($request->all());
         $toldo->price = $this->calculateToldoPrice($toldo);
         Session::put('toldo', $toldo);
         return redirect()->route('toldo.review', $order_id);

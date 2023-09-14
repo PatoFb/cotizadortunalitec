@@ -29,11 +29,7 @@ class ValidateProjection implements Rule
     public function passes($attribute, $value)
     {
         $toldo = $this->data['toldo'];
-        $newWidth = ceilMeasure($toldo['width'], 1.5);
-        return SistemaToldo::where('modelo_toldo_id', $toldo['model_id'])->
-                             where('mechanism_id', $toldo['mechanism_id'])->
-                             where('projection', $value)->
-                             where('width', $newWidth)->exists();
+        return SistemaToldo::where('modelo_toldo_id', $toldo['model_id'])->exists();
     }
 
     /**

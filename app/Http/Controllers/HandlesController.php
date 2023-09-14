@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CurtainHandlesRequest;
+use App\Http\Requests\HandleRequest;
 use App\Models\Handle;
 use Illuminate\Http\Request;
 
@@ -34,7 +34,7 @@ class HandlesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CurtainHandlesRequest $request)
+    public function store(HandleRequest $request)
     {
         $handle = $request->all();
         Handle::create($handle);
@@ -71,7 +71,7 @@ class HandlesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CurtainHandlesRequest $request, $id)
+    public function update(HandleRequest $request, $id)
     {
         $handle = Handle::findOrFail($id);
         $input = $request->all();

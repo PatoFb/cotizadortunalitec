@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CoverRequest;
+use App\Http\Requests\ModelRequest;
+use App\Http\Requests\PalilleriaDataRequest;
+use App\Http\Requests\PalilleriaFeaturesRequest;
+use App\Http\Requests\PalilleriaModelRequest;
 use App\Models\Cover;
 use App\Models\Control;
 use App\Models\Mechanism;
@@ -63,17 +68,14 @@ class PalilleriasController extends Controller
      *
      * If session isn't empty it will just update the data
      *
-     * @param Request $request
+     * @param PalilleriaModelRequest $request
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
 
-    public function addModelPost(Request $request, $order_id)
+    public function addModelPost(PalilleriaModelRequest $request, $order_id)
     {
-        $validatedData = $request->validate([
-            'model_id' => ['required', 'exists:curtain_models,id', 'integer']
-        ]);
-        createSession($validatedData['model_id'], $order_id, Palilleria::class, 'palilleria');
+        createSession($request['model_id'], $order_id, Palilleria::class, 'palilleria');
         return redirect()->route('palilleria.data', $order_id);
     }
 
@@ -95,19 +97,15 @@ class PalilleriasController extends Controller
      * It works exactly the same as the model post function, but without the if statement since
      * thanks to the validation, the session won't be empty once you reach this point
      *
-     * @param Request $request
+     * @param CoverRequest $request
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
 
-    public function addCoverPost(Request $request, $id)
+    public function addCoverPost(CoverRequest $request, $order_id)
     {
-        $order_id = $id;
-        $validatedData = $request->validate([
-            'cover_id' => ['exists:covers,id', 'required', 'integer']
-        ]);
         $palilleria = Session::get('palilleria');
-        $palilleria->cover_id = $validatedData['cover_id'];
+        $palilleria->cover_id = $request['cover_id'];
         Session::put('palilleria', $palilleria);
         return redirect()->route('palilleria.features', $order_id);
     }
@@ -130,22 +128,16 @@ class PalilleriasController extends Controller
     /**
      * Validation for the data fields, store in session and then go to next step
      *
-     * @param Request $request
+     * @param PalilleriaDataRequest $request
      * @param $order_id
      * @return \Illuminate\Http\RedirectResponse
      */
 
-    public function addDataPost(Request $request, $order_id) {
-        $validatedData = $request->validate([
-            'width' => ['required', 'min:0.5', 'max:10', 'numeric'],
-            'height' => ['required', 'min:0.5', 'max:10', 'numeric'],
-            'mechanism_id' => ['required', 'integer', 'exists:mechanisms,id'],
-            'quantity' => ['required', 'min:1', 'integer'],
-        ]);
+    public function addDataPost(PalilleriaDataRequest $request, $order_id) {
         $palilleria = Session::get('palilleria');
-        $palilleria->fill($validatedData);
         $oldMechanismId = $palilleria->mechanism_id;
-        $newMechanismId = $validatedData['mechanism_id'];
+        $newMechanismId = $request['mechanism_id'];
+        $palilleria->fill($request->all());
         $this->resetAccessories($palilleria, $oldMechanismId, $newMechanismId);
         return redirect()->route('palilleria.cover', $order_id);
     }
@@ -213,34 +205,17 @@ class PalilleriasController extends Controller
      *
      * We get the prices of the other objects from other tables using all the ids stored in the session
      *
-     * @param Request $request
+     * @param PalilleriaFeaturesRequest $request
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      * @throws AuthorizationException
      */
 
-    public function addFeaturesPost(Request $request, $id)
+    public function addFeaturesPost(PalilleriaFeaturesRequest $request, $order_id)
     {
-        $order_id = $id;
-        $validatedData = $request->validate([
-            'control_id' => ['required', 'exists:controls,id', 'integer'],
-            'voice_id' => ['required', 'exists:voice_controls,id', 'integer'],
-            'control_quantity' => ['required', 'min:0', 'integer'],
-            'voice_quantity' => ['required', 'min:0', 'integer'],
-            'sensor_id' => ['required', 'exists:sensors,id', 'integer'],
-            'guide' => ['required', 'integer', 'min:0', 'max:1'],
-            'trave' => ['required', 'integer', 'min:0', 'max:1'],
-            'goal' => ['required', 'integer', 'min:0', 'max:1'],
-            'semigoal' => ['required', 'integer', 'min:0', 'max:1'],
-            'sensor_quantity' => ['required', 'min:0', 'integer'],
-            'guide_quantity' => ['required', 'min:0', 'integer'],
-            'trave_quantity' => ['required', 'min:0', 'integer'],
-            'semigoal_quantity' => ['required', 'min:0', 'integer'],
-            'goal_quantity' => ['required', 'min:0', 'integer'],
-        ]);
         $palilleria = Session::get('palilleria');
         $this->authorize('checkUser', $palilleria);
-        $palilleria->fill($validatedData);
+        $palilleria->fill($request->all());
         if($palilleria->model){
             $keys = ['model', 'cover', 'mechanism', 'control', 'voice', 'sensor'];
             removeKeys($palilleria, $keys, 'palilleria');

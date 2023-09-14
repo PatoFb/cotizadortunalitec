@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CurtainControlsRequest;
+use App\Http\Requests\ControlRequest;
 use App\Models\Control;
 use Illuminate\Http\Request;
 
@@ -35,7 +35,7 @@ class ControlsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CurtainControlsRequest $request)
+    public function store(ControlRequest $request)
     {
         $control = $request->all();
         Control::create($control);
@@ -72,7 +72,7 @@ class ControlsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CurtainControlsRequest $request, $id)
+    public function update(ControlRequest $request, $id)
     {
         $control = Control::findOrFail($id);
         $input = $request->all();

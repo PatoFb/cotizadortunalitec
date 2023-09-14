@@ -6,6 +6,7 @@ use App\Http\Requests\UsersEditRequest;
 use App\Http\Requests\UsersRequest;
 use App\Models\User;
 use App\Models\Role;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
@@ -52,6 +53,7 @@ class UsersController extends Controller
     public function store(UsersRequest $request)
     {
         $input = $request->all();
+        $this->authorize('userCheck');
         $input['password'] = bcrypt($request->password);
         User::create($input);
         return redirect('/admin/users')->withStatus(__('Usuario añadido correctamente'));
@@ -91,6 +93,7 @@ class UsersController extends Controller
     public function update(UsersEditRequest $request, $id)
     {
         $user = User::findOrFail($id);
+        $this->authorize('userCheck');
         if(trim($request->password) == ''){
             $input = $request->except('password', 'confirm_password');
         } else {
@@ -104,12 +107,14 @@ class UsersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
+     * @throws AuthorizationException
      */
     public function destroy($id)
     {
         $user = User::findOrFail($id);
+        $this->authorize('userCheck');
         $user->delete();
         return redirect('/admin/users')->withStatus('Usuario eliminado correctamente');
     }
