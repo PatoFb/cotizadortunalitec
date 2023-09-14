@@ -10,6 +10,7 @@ use App\Models\Toldo;
 use App\Models\Type;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\Queue\RedisQueue;
 use Illuminate\Support\Facades\Auth;
@@ -88,6 +89,7 @@ class OrdersController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      *
+     * @throws AuthorizationException
      */
     public function newOrderPost(Request $request)
     {
@@ -98,45 +100,56 @@ class OrdersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return View
+     * @throws AuthorizationException
      */
     public function show($id)
     {
         $order = Order::findOrFail($id);
         $user = Auth::user();
+        Log::info($order);
+        $this->authorize('checkUser', $order);
         $role = $user->role_id;
         return view('orders.show', compact('order', 'role'));
     }
 
+    /**
+     * @throws AuthorizationException
+     */
     public function details($id)
     {
         $order = Order::findOrFail($id);
+        $this->authorize('checkUser', $order);
         return view('admin.orders.show', compact('order'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
+     * @throws AuthorizationException
      */
     public function edit($id)
     {
         $order = Order::findOrFail($id);
+        $this->authorize('checkUser', $order);
         return view('orders.edit', compact('order'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param  $id
      * @return \Illuminate\Http\Response
+     * @throws AuthorizationException
      */
     public function update(Request $request, $id)
     {
         $order = Order::findOrFail($id);
+        $this->authorize('checkUser', $order);
         $input = $request->all();
         $order->update($input);
         return redirect('orders/'.$id)->withStatus('Orden editada correctamente');
@@ -148,9 +161,13 @@ class OrdersController extends Controller
         return redirect()->back()->withStatus(__('Comprobante subido correctamente'));
     }
 
+    /**
+     * @throws AuthorizationException
+     */
     public function download($id)
     {
         $order = Order::findOrFail($id);
+        $this->authorize('checkUser', $order);
         $pathToFile = storage_path('app/comprobantes/' . $order->file);
         return response()->download($pathToFile);
     }
@@ -158,38 +175,21 @@ class OrdersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
+     * @throws AuthorizationException
      */
     public function destroy($id)
     {
         $order = Order::findOrFail($id);
-        $this->deleteSystems($id);
+        $this->authorize('checkUser', $order);
         $order->delete();
         return redirect('orders/')->withStatus('Orden eliminada correctamente');
     }
 
-    private function deleteSystems(int $id) {
-        $curtains = Curtain::where('order_id', $id)->get();
-        $palillerias = Palilleria::where('order_id', $id)->get();
-        $toldos = Toldo::where('order_id', $id)->get();
-        if(isset($curtains)) {
-            foreach ($curtains as $c) {
-                $c->delete();
-            }
-        }
-        if(isset($palillerias)) {
-            foreach ($palillerias as $p) {
-                $p->delete();
-            }
-        }
-        if(isset($toldos)) {
-            foreach ($toldos as $t) {
-                $t->delete();
-            }
-        }
-    }
-
+    /**
+     * @throws AuthorizationException
+     */
     private function saveOrder(Request $request): int {
         $user = Auth::user();
         $address = $request->get('addressCheck') == 1;
@@ -197,7 +197,8 @@ class OrdersController extends Controller
             $request->validate([
                 'activity' => 'required',
                 'project' => 'required',
-                'discount' => 'required'
+                'discount' => ['required', 'min:0', 'max:100', 'numeric'],
+                'comment' => ['sometimes|string']
             ]);
             $order = $request->all();
             $order['city'] = $user->city;
@@ -210,13 +211,14 @@ class OrdersController extends Controller
             $request->validate([
                 'activity' => 'required',
                 'project' => 'required',
-                'discount' => 'required',
+                'discount' => ['required', 'min:0', 'max:100'],
+                'comment' => ['sometimes|string'],
                 'city' => ['required'],
                 'state' => ['required'],
-                'zip_code' => ['required', 'size:5', 'number'],
+                'zip_code' => ['required', 'digits:5', 'integer'],
                 'line1' => ['required'],
                 'line2' => ['required'],
-                'reference' => ['string']
+                'reference' => ['sometimes|string']
             ]);
             $order = $request->all();
         }

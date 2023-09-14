@@ -14,6 +14,8 @@ use App\Models\Sensor;
 use App\Models\SistemaToldo;
 use App\Models\Toldo;
 use App\Models\VoiceControl;
+use App\Rules\ValidateProjection;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -155,7 +157,7 @@ class ToldosController extends Controller
     public function addModelPost(Request $request, $order_id)
     {
         $validatedData = $request->validate([
-            'model_id' => 'required',
+            'model_id' => ['required', 'exists:curtain_models,id', 'integer']
         ]);
         createSession($validatedData['model_id'], $order_id, Toldo::class, 'toldo');
         return redirect()->route('toldo.data', $order_id);
@@ -187,7 +189,7 @@ class ToldosController extends Controller
     public function addCoverPost(Request $request, $order_id)
     {
         $validatedData = $request->validate([
-            'cover_id' => 'required',
+            'cover_id' => ['exists:covers,id', 'required', 'integer']
         ]);
         $toldo = Session::get('toldo');
         $toldo->cover_id = $validatedData['cover_id'];
@@ -222,13 +224,14 @@ class ToldosController extends Controller
 
     public function addDataPost(Request $request, $order_id)
     {
-        $validatedData = $request->validate([
-            'width' => 'required',
-            'projection' => 'required',
-            'mechanism_id' => 'required',
-            'quantity' => 'required',
-        ]);
         $toldo = Session::get('toldo');
+        $data = ['toldo' => $toldo];
+        $validatedData = $request->validate([
+            'width' => ['required', 'min:0.5', 'max:10', 'numeric'],
+            'projection' => ['required', 'numeric', new ValidateProjection($data)],
+            'mechanism_id' => ['required', 'integer', 'exists:mechanisms,id'],
+            'quantity' => ['required', 'min:1', 'integer'],
+        ]);
         $oldMechanismId = $toldo->mechanism_id;
         $newMechanismId = $validatedData['mechanism_id'];
         $toldo->fill($validatedData);
@@ -326,16 +329,16 @@ class ToldosController extends Controller
     public function addFeaturesPost(Request $request, $order_id)
     {
         $validatedData = $request->validate([
-            'handle_id' => 'required',
-            'bambalina' => 'required',
-            'control_id' => 'required',
-            'canopy' => 'required',
-            'sensor_id' => 'required',
-            'voice_id' => 'required',
-            'control_quantity' => 'required',
-            'handle_quantity' => 'required',
-            'sensor_quantity' => 'required',
-            'voice_quantity' => 'required'
+            'handle_id' => ['required', 'exists:handles,id', 'integer'],
+            'canopy' => ['required', 'integer', 'min:0', 'max:1'],
+            'control_id' => ['required', 'exists:controls,id', 'integer'],
+            'voice_id' => ['required', 'exists:voice_controls,id', 'integer'],
+            'control_quantity' => ['required', 'min:0', 'integer'],
+            'handle_quantity' => ['required', 'min:0', 'integer'],
+            'voice_quantity' => ['required', 'min:0', 'integer'],
+            'bambalina' => ['required', 'integer', 'min:0', 'max:1'],
+            'sensor_id' => ['required', 'exists:sensors,id', 'integer'],
+            'sensor_quantity' => ['required', 'min:0', 'integer'],
         ]);
         $toldo = Session::get('toldo');
         if($toldo->model){
@@ -506,11 +509,13 @@ class ToldosController extends Controller
      *
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
+     * @throws AuthorizationException
      */
 
     public function reviewPost($id)
     {
         $toldo = Session::get('toldo');
+        $this->authorize('checkUser', $toldo);
         saveSystem($toldo, $id);
         Session::forget('toldo');
         return redirect()->route('orders.show', $id);
@@ -521,10 +526,12 @@ class ToldosController extends Controller
      *
      * @param $id
      * @return mixed
+     * @throws AuthorizationException
      */
     public function destroy($id)
     {
         $toldo = Toldo::findOrFail($id);
+        $this->authorize('checkUser', $toldo);
         deleteSystem($toldo);
         return redirect()->back()->withStatus('Sistema eliminado correctamente');
     }

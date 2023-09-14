@@ -17,6 +17,7 @@ class CreateCurtainsTable extends Migration
             $table->id();
             $table->integer('quantity');
             $table->bigInteger('order_id')->unsigned()->index()->nullable(true);
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->bigInteger('model_id')->unsigned()->index()->nullable(true);
             $table->float('price')->nullable()->default(0);
             $table->float('width');

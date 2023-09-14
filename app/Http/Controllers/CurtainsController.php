@@ -14,6 +14,7 @@ use App\Models\RollWidth;
 use App\Models\SystemCurtain;
 use App\Models\SystemScreenyCurtain;
 use App\Models\VoiceControl;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -43,6 +44,7 @@ class CurtainsController extends Controller
             'view_type' => 'required'
         ]);
         $curtain = Curtain::findOrFail($validatedData['id']);
+        $this->authorize('checkUser', $curtain);
         $curtain->fill($validatedData);
         $curtain->save();
         return redirect()->back()->withStatus('Datos guardados correctamente');
@@ -144,7 +146,7 @@ class CurtainsController extends Controller
     public function addModelPost(Request $request, $order_id)
     {
         $validatedData = $request->validate([
-            'model_id' => 'required',
+            'model_id' => ['required', 'exists:curtain_models,id', 'integer']
         ]);
         createSession($validatedData['model_id'], $order_id, Curtain::class, 'curtain');
         return redirect()->route('curtain.data', $order_id);
@@ -174,7 +176,7 @@ class CurtainsController extends Controller
     public function addCoverPost(Request $request, $order_id)
     {
         $validatedData = $request->validate([
-            'cover_id' => ['required', 'exists:App\Models\Cover,id']
+            'cover_id' => ['exists:covers,id', 'required', 'integer']
         ]);
         $curtain = Session::get('curtain');
         $curtain->cover_id = $validatedData['cover_id'];
@@ -209,10 +211,10 @@ class CurtainsController extends Controller
     {
         $curtain = Session::get('curtain');
         $validatedData = $request->validate([
-            'width' => ['required', 'min:0.5', 'max:10', 'number'],
-            'height' => ['required', 'min:0.5', 'max:10', 'number'],
-            'mechanism_id' => 'required',
-            'quantity' => ['required', 'min:1', 'number'],
+            'width' => ['required', 'min:0.5', 'max:10', 'numeric'],
+            'height' => ['required', 'min:0.5', 'max:10', 'numeric'],
+            'mechanism_id' => ['required', 'integer', 'exists:mechanisms,id'],
+            'quantity' => ['required', 'min:1', 'integer'],
         ]);
         $oldMechanismId = $curtain->mechanism_id;
         $newMechanismId = $validatedData['mechanism_id'];
@@ -266,13 +268,13 @@ class CurtainsController extends Controller
     public function addFeaturesPost(Request $request, $order_id)
     {
         $validatedData = $request->validate([
-            'handle_id' => 'required',
-            'canopy' => 'required',
-            'control_id' => 'required',
-            'voice_id' => 'required',
-            'control_quantity' => ['required', 'min:0', 'number'],
-            'handle_quantity' => ['required', 'min:0', 'number'],
-            'voice_quantity' => ['required', 'min:0', 'number'],
+            'handle_id' => ['required', 'exists:handles,id', 'integer'],
+            'canopy' => ['required', 'integer', 'min:0', 'max:1'],
+            'control_id' => ['required', 'exists:controls,id', 'integer'],
+            'voice_id' => ['required', 'exists:voice_controls,id', 'integer'],
+            'control_quantity' => ['required', 'min:0', 'integer'],
+            'handle_quantity' => ['required', 'min:0', 'integer'],
+            'voice_quantity' => ['required', 'min:0', 'integer'],
         ]);
         $curtain = Session::get('curtain');
         if($curtain->model) {
@@ -488,10 +490,12 @@ class CurtainsController extends Controller
      * @param Request $request
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
+     * @throws AuthorizationException
      */
 
     public function reviewPost(Request $request, $id) {
         $curtain = Session::get('curtain');
+        $this->authorize('checkUser', $curtain);
         saveSystem($curtain, $id);
         Session::forget('curtain');
         return redirect()->route('orders.show', $id);
@@ -506,6 +510,7 @@ class CurtainsController extends Controller
 
     public function destroy($id) {
         $curtain = Curtain::findOrFail($id);
+        $this->authorize('checkUser', $curtain);
         deleteSystem($curtain);
         return redirect()->back()->withStatus('Sistema eliminado correctamente');
     }

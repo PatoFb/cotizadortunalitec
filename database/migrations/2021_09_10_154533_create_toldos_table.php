@@ -19,6 +19,7 @@ class CreateToldosTable extends Migration
             $table->float('projection');
             $table->integer('quantity');
             $table->bigInteger('order_id')->unsigned()->index()->nullable(true);
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->bigInteger('control_id')->unsigned()->index()->nullable(true);
             $table->integer('control_quantity');
             $table->bigInteger('cover_id')->unsigned()->index()->nullable(true);

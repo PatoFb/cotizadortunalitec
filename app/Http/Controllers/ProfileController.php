@@ -40,7 +40,16 @@ class ProfileController extends Controller
      */
     public function address(Request $request)
     {
-        auth()->user()->update($request->all());
+        $validatedData = $request->validate([
+            'city' => ['required'],
+            'state' => ['required'],
+            'zip_code' => ['required', 'integer', 'digits:5'],
+            'line1' => ['required'],
+            'line2' => ['required'],
+            'reference' => ['nullable', 'string'],
+        ]);
+
+        auth()->user()->update($validatedData);
 
         return back()->withStatus(__('Dirección actualizada correctamente.'));
     }

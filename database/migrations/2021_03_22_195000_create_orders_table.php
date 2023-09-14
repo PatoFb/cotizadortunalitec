@@ -19,6 +19,7 @@ class CreateOrdersTable extends Migration
             $table->string('activity')->default("Oferta");
             $table->string('comments')->nullable(true)->default("Sin comentarios");
             $table->bigInteger('user_id')->unsigned()->index()->nullable(true);
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->float('price')->nullable(true)->default(0);
             $table->float('discount')->nullable(true)->default(0);
             $table->float('total')->nullable(true)->default(0);

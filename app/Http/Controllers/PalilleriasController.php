@@ -11,6 +11,7 @@ use App\Models\PalilleriaModel;
 use App\Models\PalilleriasPrice;
 use App\Models\Sensor;
 use App\Models\VoiceControl;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -70,7 +71,7 @@ class PalilleriasController extends Controller
     public function addModelPost(Request $request, $order_id)
     {
         $validatedData = $request->validate([
-            'model_id' => 'required',
+            'model_id' => ['required', 'exists:curtain_models,id', 'integer']
         ]);
         createSession($validatedData['model_id'], $order_id, Palilleria::class, 'palilleria');
         return redirect()->route('palilleria.data', $order_id);
@@ -103,7 +104,7 @@ class PalilleriasController extends Controller
     {
         $order_id = $id;
         $validatedData = $request->validate([
-            'cover_id' => 'required',
+            'cover_id' => ['exists:covers,id', 'required', 'integer']
         ]);
         $palilleria = Session::get('palilleria');
         $palilleria->cover_id = $validatedData['cover_id'];
@@ -136,10 +137,10 @@ class PalilleriasController extends Controller
 
     public function addDataPost(Request $request, $order_id) {
         $validatedData = $request->validate([
-            'width' => 'required',
-            'height' => 'required',
-            'mechanism_id' => 'required',
-            'quantity' => 'required',
+            'width' => ['required', 'min:0.5', 'max:10', 'numeric'],
+            'height' => ['required', 'min:0.5', 'max:10', 'numeric'],
+            'mechanism_id' => ['required', 'integer', 'exists:mechanisms,id'],
+            'quantity' => ['required', 'min:1', 'integer'],
         ]);
         $palilleria = Session::get('palilleria');
         $palilleria->fill($validatedData);
@@ -215,28 +216,30 @@ class PalilleriasController extends Controller
      * @param Request $request
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
+     * @throws AuthorizationException
      */
 
     public function addFeaturesPost(Request $request, $id)
     {
         $order_id = $id;
         $validatedData = $request->validate([
-            'control_id' => 'required',
-            'sensor_id' => 'required',
-            'voice_id' => 'required',
-            'guide' => 'required',
-            'trave' => 'required',
-            'goal' => 'required',
-            'semigoal' => 'required',
-            'control_quantity' => 'required',
-            'sensor_quantity' => 'required',
-            'voice_quantity' => 'required',
-            'guide_quantity' => 'required',
-            'trave_quantity' => 'required',
-            'semigoal_quantity' => 'required',
-            'goal_quantity' => 'required',
+            'control_id' => ['required', 'exists:controls,id', 'integer'],
+            'voice_id' => ['required', 'exists:voice_controls,id', 'integer'],
+            'control_quantity' => ['required', 'min:0', 'integer'],
+            'voice_quantity' => ['required', 'min:0', 'integer'],
+            'sensor_id' => ['required', 'exists:sensors,id', 'integer'],
+            'guide' => ['required', 'integer', 'min:0', 'max:1'],
+            'trave' => ['required', 'integer', 'min:0', 'max:1'],
+            'goal' => ['required', 'integer', 'min:0', 'max:1'],
+            'semigoal' => ['required', 'integer', 'min:0', 'max:1'],
+            'sensor_quantity' => ['required', 'min:0', 'integer'],
+            'guide_quantity' => ['required', 'min:0', 'integer'],
+            'trave_quantity' => ['required', 'min:0', 'integer'],
+            'semigoal_quantity' => ['required', 'min:0', 'integer'],
+            'goal_quantity' => ['required', 'min:0', 'integer'],
         ]);
         $palilleria = Session::get('palilleria');
+        $this->authorize('checkUser', $palilleria);
         $palilleria->fill($validatedData);
         if($palilleria->model){
             $keys = ['model', 'cover', 'mechanism', 'control', 'voice', 'sensor'];
@@ -544,6 +547,7 @@ class PalilleriasController extends Controller
      */
     public function destroy($id) {
         $palilleria = Palilleria::findOrFail($id);
+        $this->authorize('checkUser', $palilleria);
         deleteSystem($palilleria);
         return redirect()->back()->withStatus('Sistema eliminado correctamente');
     }

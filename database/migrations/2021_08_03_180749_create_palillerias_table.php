@@ -19,6 +19,7 @@ class CreatePalilleriasTable extends Migration
             $table->float('height');
             $table->integer('quantity');
             $table->bigInteger('order_id')->unsigned()->index()->nullable(true);
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->integer('model_id')->unsigned()->index()->nullable(true);
             $table->integer('guide')->nullable(true);
             $table->integer('guide_quantity');

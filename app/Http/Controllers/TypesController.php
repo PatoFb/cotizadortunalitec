@@ -23,7 +23,6 @@ class TypesController extends Controller
 
     public function productType($id)
     {
-        $user = Auth::user();
         $order_id = $id;
         $types = Type::pluck('name', 'id')->all();
         return view('products.type', compact('order_id', 'types'));
