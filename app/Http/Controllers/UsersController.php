@@ -7,6 +7,7 @@ use App\Http\Requests\PasswordRequest;
 use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\UsersCreateRequest;
 use App\Http\Requests\UsersEditRequest;
+use App\Http\Requests\UsersPasswordRequest;
 use App\Http\Requests\UsersRequest;
 use App\Models\User;
 use App\Models\Role;
@@ -122,10 +123,10 @@ class UsersController extends Controller
     /**
      * Change the password
      *
-     * @param  \App\Http\Requests\PasswordRequest  $request
+     * @param  \App\Http\Requests\UsersPasswordRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function password(PasswordRequest $request, $id)
+    public function password(UsersPasswordRequest $request, $id)
     {
         $user = User::findOrFail($id);
         $user->update(['password' => Hash::make($request->get('password'))]);
