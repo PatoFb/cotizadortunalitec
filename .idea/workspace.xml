@@ -5,30 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/PalilleriaModelRequest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/ToldoModelRequest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ControlsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ControlsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CoversController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CoversController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainModelsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CurtainModelsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HandlesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HandlesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MechanismsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MechanismsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrdersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OrdersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PalilleriasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PalilleriasController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProfileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProfileController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ToldosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ToldosController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TypesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TypesController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UsersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/CurtainCanopiesRequest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/CurtainControlsRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ControlRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/CurtainCoversEditRequest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/CurtainCoversRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/CoverEditRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/CurtainHandlesRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/HandleRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/CurtainModelsEditRequest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/CurtainModelsRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/CurtainModelEditRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Rules/ValidateProjection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Rules/ValidateProjection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ProfileRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ProfileRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/UsersEditRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/UsersEditRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/users/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/users/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/users/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/users/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,18 +167,18 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/xampp/htdocs/cotizadortunalitec/app/Http/Requests",
+    "last_opened_file_path": "C:/xampp/htdocs/cotizadortunalitec/resources/views/admin/users",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\admin\users" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\app\Http\Requests" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\admin\orders" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\toldos" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\palillerias" />
-      <recent name="C:\xampp\htdocs\cotizadortunalitec\public\storage" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\cotizadortunalitec\public\material\img" />
@@ -385,7 +368,7 @@
       <workItem from="1694444414240" duration="9585000" />
       <workItem from="1694537731276" duration="21432000" />
       <workItem from="1694617036377" duration="6049000" />
-      <workItem from="1694707674024" duration="18811000" />
+      <workItem from="1694707674024" duration="25639000" />
     </task>
     <servers />
   </component>

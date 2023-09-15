@@ -35,7 +35,12 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::group(['middleware' => 'admin'], function () {
-    Route::resource('admin/users', 'App\Http\Controllers\UsersController', ['except' => ['show']]);
+    Route::post('admin/users/create', ['as' => 'user.store', 'uses' => 'App\Http\Controllers\UsersController@store']);
+    Route::put('admin/user/{id}/password', ['as' => 'user.password', 'uses' => 'App\Http\Controllers\UsersController@password']);
+    Route::put('admin/user/{id}/address', ['as' => 'user.address', 'uses' => 'App\Http\Controllers\UsersController@address']);
+    Route::put('admin/user/{id}/edit', ['as' => 'user.update', 'uses' => 'App\Http\Controllers\UsersController@update']);
+
+    Route::resource('admin/users', 'App\Http\Controllers\UsersController', ['except' => ['show', 'update']]);
     Route::resource('admin/controls', 'App\Http\Controllers\ControlsController', ['except' => ['show']]);
     Route::resource('admin/types', 'App\Http\Controllers\TypesController', ['except' => ['show']]);
 
@@ -57,11 +62,13 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::get('orders/{id}/send', 'App\Http\Controllers\OrdersController@send')->name('orders.send');
 
-    Route::resource('admin/canopies', 'App\Http\Controllers\CurtainCanopiesController', ['except' => ['show']]);
     Route::resource('admin/handles', 'App\Http\Controllers\HandlesController', ['except' => ['show']]);
     Route::resource('admin/models', 'App\Http\Controllers\CurtainModelsController', ['except' => ['show']]);
     Route::resource('admin/covers', 'App\Http\Controllers\CoversController', ['except' => ['show']]);
     Route::resource('admin/mechanisms', 'App\Http\Controllers\MechanismsController', ['except' => ['show']]);
+
+    Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
+    Route::put('profile/address', ['as' => 'profile.address', 'uses' => 'App\Http\Controllers\ProfileController@address']);
 
 });
 

@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AddressRequest;
+use App\Http\Requests\PasswordRequest;
+use App\Http\Requests\ProfileRequest;
+use App\Http\Requests\UsersCreateRequest;
 use App\Http\Requests\UsersEditRequest;
 use App\Http\Requests\UsersRequest;
 use App\Models\User;
 use App\Models\Role;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -50,10 +55,9 @@ class UsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UsersRequest $request)
+    public function store(UsersCreateRequest $request)
     {
         $input = $request->all();
-        $this->authorize('userCheck');
         $input['password'] = bcrypt($request->password);
         User::create($input);
         return redirect('/admin/users')->withStatus(__('Usuario añadido correctamente'));
@@ -84,24 +88,49 @@ class UsersController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the profile
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  $id
-     * @return \Illuminate\Http\Response
+     * @param  \App\Http\Requests\ProfileRequest  $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UsersEditRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
-        $this->authorize('userCheck');
-        if(trim($request->password) == ''){
-            $input = $request->except('password', 'confirm_password');
-        } else {
-            $input = $request->all();
-            $input['password'] = bcrypt($request->password);
-        }
-        $user->update($input);
-        return redirect('/admin/users')->withStatus('Usuario editado correctamente');
+
+        $userUpdateRequest = new UsersEditRequest($user->id);
+
+        $validatedData = $request->validate($userUpdateRequest->rules(), $userUpdateRequest->messages());
+        $user->update($validatedData);
+
+        return back()->withStatus(__('Perfil actualizado correctamente.'));
+    }
+
+    /**
+     * Update the address
+     *
+     * @param  AddressRequest  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function address(AddressRequest $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->update($request->all());
+
+        return back()->withStatus(__('Dirección actualizada correctamente.'));
+    }
+
+    /**
+     * Change the password
+     *
+     * @param  \App\Http\Requests\PasswordRequest  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function password(PasswordRequest $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->update(['password' => Hash::make($request->get('password'))]);
+
+        return back()->withStatusPassword(__('Constraseña actualizada correctamente.'));
     }
 
     /**
