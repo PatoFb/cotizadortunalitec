@@ -141,6 +141,7 @@ Route::group(['middleware' => 'user'], function () {
     Route::put('palillerias/data/add', 'App\Http\Controllers\PalilleriasController@addData')->name('palilleria.data.add');
     Route::put('toldos/data/add', 'App\Http\Controllers\ToldosController@addData')->name('toldo.data.add');
 
+    Route::put('orders/{id}', 'App\Http\Controllers\OrdersController@updateAddress')->name('orders.update.address');
     Route::resource('orders', 'App\Http\Controllers\OrdersController');
     Route::resource('curtains', 'App\Http\Controllers\CurtainsController');;
     Route::resource('palillerias', 'App\Http\Controllers\PalilleriasController');

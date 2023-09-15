@@ -29,6 +29,9 @@
                           </button>
                           @endif
                               @if($order->activity == 'Oferta')
+                                  <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#editAddressModal" id="edit_address_modal">
+                                      Editar Dirección
+                                  </button>
                           <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#editModal" id="edit_order_modal">
                               Editar Orden
                           </button>
@@ -988,24 +991,23 @@
                 </div>
                 <div class="modal-body">
                     {!! Form::model($order, ['method'=>'PUT', 'action'=>['App\Http\Controllers\OrdersController@update', $order->id]]) !!}
-
-
-
+                    <div class="row">
                     <div class="col-12">
                         {!! Form::label('activity', 'Actividad:') !!}
                         <select class="form-control" name="activity" >
-                            <option value="">Selecciona la actividad</option>
                             <option @if($order->activity == "Oferta") selected @endif>Oferta</option>
                             <option @if($order->activity == "Pedido") selected @endif>Pedido</option>
                         </select>
                     </div>
+                    </div>
                     <br>
-                    <div class="col-12">
+                        <div class="row">
+                    <div class="col-md-6 col-sm-12">
                         {!! Form::label('project', 'Nombre del proyecto:') !!}
                         {!! Form::text('project', null, ['class'=>'form-control']) !!}
                     </div>
                     <br>
-                    <div class="col-12">
+                    <div class="col-md-6 col-sm-12">
                         {!! Form::label('discount', 'Descuento:') !!}
                         @if($role == 1)
                             {!! Form::number('discount', null, ['class'=>'form-control', 'step'=>0.1]) !!}
@@ -1013,10 +1015,9 @@
                             {!! Form::number('discount', null, ['class'=>'form-control', 'step'=>0.1, 'readonly']) !!}
                         @endif
                     </div>
-
-
+                        </div>
                     <br>
-                    <div class="form-group">
+                        <div class="row">
                         <div class="col-sm-12 col-md-12">
                             {!! Form::label('comments', 'Comentarios:') !!}
                             {!! Form::textarea('comments', null, ['class'=>'form-control']) !!}
@@ -1026,6 +1027,93 @@
                 <div class="modal-footer">
 
                     {!! Form::submit('Aceptar', ['class'=>'btn btn-primary pull-right', 'id'=>'edit_order']) !!}
+
+
+                    {!! Form::close() !!}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="editAddressModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Editar Dirección</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {!! Form::model($order, ['method'=>'PUT', 'action'=>['App\Http\Controllers\OrdersController@updateAddress', $order->id]]) !!}
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <label for="line1">{{ __('Colonia') }}</label>
+                            <div class="form-group{{ $errors->has('line1') ? ' has-danger' : '' }}">
+                                <input class="form-control{{ $errors->has('line1') ? ' is-invalid' : '' }}" name="line1" id="input-line1" type="text" placeholder="{{ __('Colonia') }}" value="{{ old('line1', $order->line1) }}" required="true" aria-required="true"/>
+                                @if ($errors->has('line1'))
+                                    <span id="line1-error" class="error text-danger" for="input-line1">{{ $errors->first('line1') }}</span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <label for="line2">{{ __('Calle y número exterior') }}</label>
+                            <div class="form-group{{ $errors->has('line2') ? ' has-danger' : '' }}">
+                                <input class="form-control{{ $errors->has('line2') ? ' is-invalid' : '' }}" name="line2" id="input-line2" type="text" placeholder="{{ __('Calle y número') }}" value="{{ old('line2', $order->line2) }}" required />
+                                @if ($errors->has('line2'))
+                                    <span id="line2-error" class="error text-danger" for="input-line2">{{ $errors->first('line2') }}</span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label for="zip_code">{{ __('Código Postal') }}</label>
+                            <div class="form-group{{ $errors->has('zip_code') ? ' has-danger' : '' }}">
+                                <input class="form-control{{ $errors->has('zip_code') ? ' is-invalid' : '' }}" name="zip_code" id="input-zip_code" type="text" placeholder="{{ __('Código Postal') }}" value="{{ old('zip_code', $order->zip_code) }}" required />
+                                @if ($errors->has('zip_code'))
+                                    <span id="zip_code-error" class="error text-danger" for="input-zip_code">{{ $errors->first('zip_code') }}</span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="city">{{ __('Ciudad') }}</label>
+                            <div class="form-group{{ $errors->has('city') ? ' has-danger' : '' }}">
+                                <input class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }}" name="city" id="input-city" type="text" placeholder="{{ __('Ciudad') }}" value="{{ old('city', $order->city) }}" required />
+                                @if ($errors->has('city'))
+                                    <span id="city-error" class="error text-danger" for="input-city">{{ $errors->first('city') }}</span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="state">{{ __('Estado') }}</label>
+                            <div class="form-group{{ $errors->has('state') ? ' has-danger' : '' }}">
+                                <input class="form-control{{ $errors->has('state') ? ' is-invalid' : '' }}" name="state" id="input-state" type="text" placeholder="{{ __('Estado') }}" value="{{ old('state', $order->state) }}" required />
+                                @if ($errors->has('state'))
+                                    <span id="state-error" class="error text-danger" for="input-state">{{ $errors->first('state') }}</span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <label for="reference">{{ __('Referencia') }}</label>
+                            <div class="form-group{{ $errors->has('reference') ? ' has-danger' : '' }}">
+                                <input class="form-control{{ $errors->has('reference') ? ' is-invalid' : '' }}" name="reference" id="input-reference" type="text" placeholder="{{ __('Calle y número') }}" value="{{ old('reference', $order->reference) }}" />
+                                @if ($errors->has('reference'))
+                                    <span id="reference-error" class="error text-danger" for="input-reference">{{ $errors->first('reference') }}</span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+
+                    {!! Form::submit('Aceptar', ['class'=>'btn btn-primary pull-right', 'id'=>'edit_address_order']) !!}
 
 
                     {!! Form::close() !!}

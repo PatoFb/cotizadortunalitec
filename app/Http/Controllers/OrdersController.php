@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AddressRequest;
+use App\Http\Requests\OrdersEditRequest;
 use App\Mail\OrdenAProduccion;
 use App\Models\Curtain;
 use App\Models\Order;
@@ -108,7 +110,9 @@ class OrdersController extends Controller
     {
         $order = Order::findOrFail($id);
         $user = Auth::user();
-        $this->authorize('checkUser', $order);
+        if(!auth()->user()->isAdmin()) {
+            $this->authorize('checkUser', $order);
+        }
         $role = $user->role_id;
         return view('orders.show', compact('order', 'role'));
     }
@@ -119,7 +123,9 @@ class OrdersController extends Controller
     public function details($id)
     {
         $order = Order::findOrFail($id);
-        $this->authorize('checkUser', $order);
+        if(!auth()->user()->isAdmin()) {
+            $this->authorize('checkUser', $order);
+        }
         return view('admin.orders.show', compact('order'));
     }
 
@@ -133,7 +139,6 @@ class OrdersController extends Controller
     public function edit($id)
     {
         $order = Order::findOrFail($id);
-        $this->authorize('checkUser', $order);
         return view('orders.edit', compact('order'));
     }
 
@@ -145,13 +150,26 @@ class OrdersController extends Controller
      * @return \Illuminate\Http\Response
      * @throws AuthorizationException
      */
-    public function update(Request $request, $id)
+    public function update(OrdersEditRequest $request, $id)
     {
         $order = Order::findOrFail($id);
-        $this->authorize('checkUser', $order);
+        if(!auth()->user()->isAdmin()) {
+            $this->authorize('checkUser', $order);
+        }
         $input = $request->all();
         $order->update($input);
         return redirect('orders/'.$id)->withStatus('Orden editada correctamente');
+    }
+
+    public function updateAddress(AddressRequest $request, $id)
+    {
+        $order = Order::findOrFail($id);
+        if(!auth()->user()->isAdmin()) {
+            $this->authorize('checkUser', $order);
+        }
+        $input = $request->all();
+        $order->update($input);
+        return redirect('orders/'.$id)->withStatus('Dirección editada correctamente');
     }
 
     public function upload(Request $request, $id){
@@ -166,7 +184,9 @@ class OrdersController extends Controller
     public function download($id)
     {
         $order = Order::findOrFail($id);
-        $this->authorize('checkUser', $order);
+        if(!auth()->user()->isAdmin()) {
+            $this->authorize('checkUser', $order);
+        }
         $pathToFile = storage_path('app/comprobantes/' . $order->file);
         return response()->download($pathToFile);
     }
@@ -181,7 +201,9 @@ class OrdersController extends Controller
     public function destroy($id)
     {
         $order = Order::findOrFail($id);
-        $this->authorize('checkUser', $order);
+        if(!auth()->user()->isAdmin()) {
+            $this->authorize('checkUser', $order);
+        }
         $order->delete();
         return redirect('orders/')->withStatus('Orden eliminada correctamente');
     }
@@ -194,6 +216,9 @@ class OrdersController extends Controller
         $customMessages = [
             'activity.required' => 'El campo actividad es obligatorio.',
             'project.required' => 'El campo proyecto es obligatorio.',
+            'project.max' => 'El campo proyecto debe tener máximo :max caracteres.',
+            'project.min' => 'El campo proyecto debe tener mínimo :min caracteres.',
+            'project.string' => 'El campo proyecto debe ser una cadena de texto.',
             'discount.required' => 'El campo descuento es obligatorio.',
             'discount.min' => 'El descuento debe ser al menos :min.',
             'discount.max' => 'El descuento debe ser como máximo :max.',
@@ -211,9 +236,9 @@ class OrdersController extends Controller
         if($request->get('addressCheck') == 1) {
             $request->validate([
                 'activity' => 'required',
-                'project' => 'required',
+                'project' => ['required', 'max:255', 'min:3', 'string'],
                 'discount' => ['required', 'min:0', 'max:100', 'numeric'],
-                'comment' => ['sometimes|string']
+                'comment' => ['nullable','string']
             ], $customMessages);
             $order = $request->all();
             $order['city'] = $user->city;
@@ -225,15 +250,15 @@ class OrdersController extends Controller
         } else {
             $request->validate([
                 'activity' => 'required',
-                'project' => 'required',
-                'discount' => ['required', 'min:0', 'max:100'],
-                'comment' => ['sometimes|string'],
+                'project' => ['required', 'max:255', 'min:3', 'string'],
+                'discount' => ['required', 'min:0', 'max:100', 'numeric'],
+                'comment' => ['nullable','string'],
                 'city' => ['required'],
                 'state' => ['required'],
                 'zip_code' => ['required', 'digits:5', 'integer'],
                 'line1' => ['required'],
                 'line2' => ['required'],
-                'reference' => ['sometimes|string']
+                'reference' => ['nullable','string'],
             ], $customMessages);
             $order = $request->all();
         }
