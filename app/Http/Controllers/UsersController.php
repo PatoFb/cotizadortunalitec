@@ -144,7 +144,6 @@ class UsersController extends Controller
     public function destroy($id)
     {
         $user = User::findOrFail($id);
-        $this->authorize('userCheck');
         $user->delete();
         return redirect('/admin/users')->withStatus('Usuario eliminado correctamente');
     }

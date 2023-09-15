@@ -20,8 +20,8 @@ class UserPolicy
         //
     }
 
-    public function checkUser(User $user) {
-        return ($user->isAdmin())
+    public function checkUser() {
+        return (auth()->user()->isAdmin())
             ? Response::allow()
             : Response::deny('Debes ser un administrador para poder realizar esta acción.');
     }

@@ -11,8 +11,15 @@
 
                         <div class="card ">
                             <div class="card-header card-header-primary">
+                                <div class="row">
+                                    <div class="col-md-6">
                                 <h4 class="card-title">{{ __('Editar Usuario') }}</h4>
                                 <p class="card-category">{{ __('Información de usuario') }}</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                <button type="button" class="btn btn-danger pull-right" data-toggle="modal" data-target="#deleteModal">Eliminar</button>
+                                    </div>
+                                </div>
                             </div>
                             <div class="card-body ">
                                 @if (session('status'))
@@ -121,6 +128,27 @@
                             </div>
                         </div>
                     </form>
+                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Eliminar</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Seguro que desea eliminar a este usuario? Esta acción será irreversible.
+                                </div>
+                                <div class="modal-footer">
+                                    {!! Form::open(['method'=>'DELETE', 'action'=>['App\Http\Controllers\UsersController@destroy', $user->id]]) !!}
+                                    {!! Form::submit('Aceptar', ['class'=>'btn btn-danger']) !!}
+                                    {!! Form::close() !!}
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="row">
