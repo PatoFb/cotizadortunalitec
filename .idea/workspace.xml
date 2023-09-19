@@ -7,8 +7,6 @@
     <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrdersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OrdersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/alerts/success.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/alerts/success.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/orders/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/orders/show.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -165,7 +163,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/cotizadortunalitec/resources/views/admin/users&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/vendedores&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -367,7 +365,9 @@
       <workItem from="1694537731276" duration="21432000" />
       <workItem from="1694617036377" duration="6049000" />
       <workItem from="1694707674024" duration="25864000" />
-      <workItem from="1694789396553" duration="3908000" />
+      <workItem from="1694789396553" duration="9970000" />
+      <workItem from="1695051417334" duration="1819000" />
+      <workItem from="1695135617850" duration="1645000" />
     </task>
     <servers />
   </component>
