@@ -54,7 +54,7 @@ class OrdersController extends Controller
         $user = User::findOrFail($order->user_id);
         $order->activity = 'Produccion';
         $order->save();
-        //Mail::to($user->email)->send(new OrdenAProduccion($user, $order));
+        Mail::to($user->email)->send(new OrdenAProduccion($user, $order));
         return redirect()->back()->withStatus(__('La orden fue autorizada'));
     }
 

@@ -2,14 +2,13 @@
 
 namespace App\Mail;
 
-use App\Models\Order;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class OrdenAProduccion extends Mailable
+class UsuarioRegistrado extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -19,12 +18,10 @@ class OrdenAProduccion extends Mailable
     /**
      * OrdenAProduccion constructor.
      * @param User $user
-     * @param Order $order
      */
-    public function __construct(User $user, Order $order)
+    public function __construct(User $user)
     {
         $this->user =  $user;
-        $this->order = $order;
     }
 
     /**
@@ -34,6 +31,6 @@ class OrdenAProduccion extends Mailable
      */
     public function build()
     {
-        return $this->subject('Pedido en producción')->view('mail.production');
+        return $this->subject('Usuario registrado')->view('mail.registered');
     }
 }

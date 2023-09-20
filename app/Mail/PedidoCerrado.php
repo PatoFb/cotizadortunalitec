@@ -9,7 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class OrdenAProduccion extends Mailable
+class PedidoCerrado extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -34,6 +34,6 @@ class OrdenAProduccion extends Mailable
      */
     public function build()
     {
-        return $this->subject('Pedido en producción')->view('mail.production');
+        return $this->subject('Pedido cerrado')->view('mail.closed');
     }
 }
