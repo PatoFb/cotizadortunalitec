@@ -2,23 +2,25 @@
 
 namespace App\Mail;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class OfertaCreada extends Mailable
+class NuevoUsuario extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $user;
+
     /**
-     * Create a new message instance.
-     *
-     * @return void
+     * OrdenAProduccion constructor.
+     * @param User $user
      */
-    public function __construct()
+    public function __construct(array $user)
     {
-        //
+        $this->user =  $user;
     }
 
     /**
@@ -28,6 +30,6 @@ class OfertaCreada extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->subject('Registro exitoso')->view('mail.new_user');
     }
 }

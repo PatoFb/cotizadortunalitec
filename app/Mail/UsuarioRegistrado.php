@@ -19,7 +19,7 @@ class UsuarioRegistrado extends Mailable
      * OrdenAProduccion constructor.
      * @param User $user
      */
-    public function __construct(User $user)
+    public function __construct(array $user)
     {
         $this->user =  $user;
     }
@@ -31,6 +31,6 @@ class UsuarioRegistrado extends Mailable
      */
     public function build()
     {
-        return $this->subject('Usuario registrado')->view('mail.registered');
+        return $this->subject('Nuevo socio registrado')->view('mail.registered');
     }
 }

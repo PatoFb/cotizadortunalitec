@@ -5,9 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/views/mail/closed.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/mail/new_user.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/mail/registered.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrdersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OrdersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Mail/OrdenAProduccion.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/OrdenAProduccion.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Mail/OfertaCreada.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/NuevoUsuario.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Mail/UsuarioRegistrado.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/UsuarioRegistrado.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/mail/production.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/mail/production.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,23 +164,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/vendedores&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/xampp/htdocs/cotizadortunalitec/resources/views/mail",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\mail" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\admin\users" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\app\Http\Requests" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\admin\orders" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\toldos" />
-      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\palillerias" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\cotizadortunalitec\public\material\img" />
@@ -368,7 +374,8 @@
       <workItem from="1694789396553" duration="9970000" />
       <workItem from="1695051417334" duration="1819000" />
       <workItem from="1695135617850" duration="3490000" />
-      <workItem from="1695224919292" duration="5514000" />
+      <workItem from="1695224919292" duration="6135000" />
+      <workItem from="1695664318874" duration="5569000" />
     </task>
     <servers />
   </component>

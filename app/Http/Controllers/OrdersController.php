@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AddressRequest;
 use App\Http\Requests\OrdersEditRequest;
 use App\Mail\OrdenAProduccion;
+use App\Mail\PedidoCerrado;
 use App\Models\Curtain;
 use App\Models\Order;
 use App\Models\Palilleria;
@@ -64,7 +65,7 @@ class OrdersController extends Controller
         $user = User::findOrFail($order->user_id);
         $order->activity = 'Cerrada';
         $order->save();
-        //Mail::to($user->email)->send(new OrdenAProduccion($user, $order));
+        Mail::to($user->email)->send(new PedidoCerrado($user, $order));
         return redirect()->back()->withStatus(__('La orden fue cerrada exitosamente'));
     }
 
