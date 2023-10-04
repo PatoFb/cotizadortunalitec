@@ -6,7 +6,7 @@
 <body>
 <h1>Order Details</h1>
 <p>Order ID: {{ $order->id }}</p>
-<p>Customer Name: {{ $order->customer->name }}</p>
+<p>Customer Name: {{ $order->user->name }}</p>
 <!-- Add more order details here -->
 </body>
 </html>
