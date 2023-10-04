@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Auth::routes();
 
 Route::get('/', function () {
@@ -29,10 +29,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('contact', function () {
         return view('contact');
     })->name('contact');
-});
-
-Route::group(['middleware' => 'auth'], function () {
-
+    Route::get('/', function () {
+        return view('welcome');
+    });
 });
 
 Route::group(['middleware' => 'admin'], function () {

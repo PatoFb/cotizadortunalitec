@@ -24,9 +24,9 @@
                                   Agregar comprobante
                               </button>
                               @if($order->file)
-                                  <button type="button" class="btn btn-sm btn-info" href="{{route('orders.download', $order->id)}}">
+                                  <a class="btn btn-sm btn-info" href="{{route('orders.download', $order->id)}}">
                                       Descargar comprobante
-                                  </button>
+                                  </a>
                               @endif
                           @endif
                           @if($order->activity == 'Pedido')
@@ -42,9 +42,9 @@
                               Agregar comprobante
                           </button>
                                   @if($order->file)
-                                      <button type="button" class="btn btn-sm btn-info" href="{{route('orders.download', $order->id)}}">
+                                      <a class="btn btn-sm btn-info" href="{{route('orders.download', $order->id)}}">
                                           Descargar comprobante
-                                      </button>
+                                      </a>
                                   @endif
                           @endif
                               @if($order->activity == 'Oferta')

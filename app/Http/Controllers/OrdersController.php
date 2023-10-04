@@ -214,7 +214,8 @@ class OrdersController extends Controller
         if(!auth()->user()->isAdmin()) {
             $this->authorize('checkUser', $order);
         }
-        $pathToFile = storage_path('comprobantes/' . $order->file);
+        $pathToFile = storage_path('app/comprobantes/' . $order->file);
+        Log::info($pathToFile);
         return response()->download($pathToFile);
     }
 
