@@ -47,14 +47,14 @@ class TypesController extends Controller
                 Session::forget('curtain');
                 return redirect()->route('curtain.model', $order_id);
                 break;
-            case 3:
+            /*case 3:
                 Session::forget('palilleria');
                 return redirect()->route('palilleria.model', $order_id);
                 break;
             case 4:
                 Session::forget('toldo');
                 return redirect()->route('toldo.model', $order_id);
-                break;
+                break;*/
             default:
                 return redirect()->route('orders.type', $order_id)->withStatus(__('Elija un producto válido'));
                 break;

@@ -64,7 +64,7 @@
                         <label class="col-sm-2 col-form-label">{{ __('RFC') }}</label>
                         <div class="col-sm-7">
                             <div class="form-group{{ $errors->has('rfc') ? ' has-danger' : '' }}">
-                                <input class="form-control{{ $errors->has('rfc') ? ' is-invalid' : '' }}" name="rfc" id="input-rfc" type="text" placeholder="{{ __('RFC') }}" value="{{ old('rfc', auth()->user()->rfc) }}" required="true" aria-required="true"/>
+                                <input class="form-control{{ $errors->has('rfc') ? ' is-invalid' : '' }}" name="rfc" id="input-rfc" type="text" placeholder="{{ __('RFC') }}" value="{{ old('rfc', auth()->user()->rfc) }}" required="true" aria-required="true" readonly/>
                                 @if ($errors->has('rfc'))
                                     <span id="rfc-error" class="error text-danger" for="input-rfc">{{ $errors->first('rfc') }}</span>
                                 @endif
