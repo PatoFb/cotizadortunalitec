@@ -24,7 +24,7 @@
                                   Agregar comprobante
                               </button>
                               @if($order->file)
-                                  <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#fileModal" id="file_order_modal">
+                                  <button type="button" class="btn btn-sm btn-info" data-toggle="modal" href="{{route('orders.download', $order->id)}}">
                                       Descargar comprobante
                                   </button>
                               @endif
@@ -42,7 +42,7 @@
                               Agregar comprobante
                           </button>
                                   @if($order->file)
-                                      <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#fileModal" id="file_order_modal">
+                                      <button type="button" class="btn btn-sm btn-info" data-toggle="modal" href="{{route('orders.download', $order->id)}}">
                                           Descargar comprobante
                                       </button>
                                   @endif
