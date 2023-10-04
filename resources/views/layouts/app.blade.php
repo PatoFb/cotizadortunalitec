@@ -292,6 +292,29 @@
         </script>
 
         <script>
+            $(document).ready(function() {
+                // Function to calculate the multiplication
+                function calculateMultiplication() {
+                    const width = parseFloat($('#width').val());
+                    const height = parseFloat($('#height').val());
+
+                    if (!isNaN(width) && !isNaN(height)) {
+                        const multiplication = width * height;
+                        $('#squared').val(multiplication); // Set the value of the input field
+                    } else {
+                        $('#squared').val(''); // Clear the input field if any input is not a number
+                    }
+                }
+
+                // Bind the calculation function to input changes
+                $('#width, #height').on('input', calculateMultiplication);
+
+                // Initial calculation
+                calculateMultiplication();
+            });
+        </script>
+
+        <script>
             $('#addressCheck').change(function () {
                 if (this.checked) {
                     document.getElementById('addressForm').classList.add('d-none');
