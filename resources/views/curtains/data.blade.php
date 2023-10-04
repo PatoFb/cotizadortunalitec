@@ -52,7 +52,7 @@
                         {!! Form::close() !!}
                     </div>
                 </div>
-                <input type="number" id="squared" name="squared" hidden>
+                <input type="number" id="squared" name="squared" readonly>
 
 
 
