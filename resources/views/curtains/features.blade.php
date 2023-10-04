@@ -75,16 +75,20 @@
                         </div>
                     @endif
                 </div>
-                <div class="form-row">
-                    <div class="col-md-12 col-sm-12">
-                        {!! Form::label('canopy', 'Tejadillo:' )  !!}
-                        <select class="form-control" name="canopy" id="canopy" >
-                            <option value="1" {{{ (isset($curtain->canopy) && $curtain->canopy == '1') ? "selected=\"selected\"" : "" }}}>Si</option>
-                            <option value="0" {{{ (isset($curtain->canopy) && $curtain->canopy == '0') ? "selected=\"selected\"" : "" }}}>No</option>
-                        </select>
-                    </div>
+                @if($curtain->model_id == 5 || $curtain->model_id == 6)
+                    {!! Form::number('canopy', 0, ['class'=>'form-control', 'id'=>'canopy', 'hidden']) !!}
+                @else
+                    <div class="form-row">
+                        <div class="col-md-12 col-sm-12">
+                            {!! Form::label('canopy', 'Tejadillo:' )  !!}
+                            <select class="form-control" name="canopy" id="canopy" >
+                                <option value="1" {{{ (isset($curtain->canopy) && $curtain->canopy == '1') ? "selected=\"selected\"" : "" }}}>Si</option>
+                                <option value="0" {{{ (isset($curtain->canopy) && $curtain->canopy == '0') ? "selected=\"selected\"" : "" }}}>No</option>
+                            </select>
+                        </div>
 
-                </div>
+                    </div>
+                    @endif
 
                 <br>
 

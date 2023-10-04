@@ -193,7 +193,11 @@ class CurtainsController extends Controller
     public function addDat($order_id)
     {
         $curtain = Session::get('curtain');
-        $mechs = Mechanism::all();
+        if($curtain->model_id == 5 || $curtain->model_id == 6) {
+            $mechs = Mechanism::all()->except(3);
+        } else {
+            $mechs = Mechanism::all();
+        }
         $model = ModeloToldo::find($curtain->model_id);
         return view('curtains.data', compact('order_id', 'curtain', 'mechs', 'model'));
     }
