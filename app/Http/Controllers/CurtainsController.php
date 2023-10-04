@@ -198,7 +198,7 @@ class CurtainsController extends Controller
         } else {
             $mechs = Mechanism::all();
         }
-        $model = ModeloToldo::find($curtain->model_id);
+        $model = CurtainModel::find($curtain->model_id);
         return view('curtains.data', compact('order_id', 'curtain', 'mechs', 'model'));
     }
 
@@ -215,7 +215,7 @@ class CurtainsController extends Controller
         $curtain = Session::get('curtain');
         $oldMechanismId = $curtain->mechanism_id;
         $newMechanismId = $request['mechanism_id'];
-        $curtain->fill($request->all());
+        $curtain->fill($request->except('squared'));
         //reset accessory values
         $this->resetAccessories($curtain, $oldMechanismId, $newMechanismId);
         return redirect()->route('curtain.cover', $order_id);

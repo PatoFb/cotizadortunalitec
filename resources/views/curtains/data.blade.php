@@ -12,7 +12,7 @@
               {{--<p class="card-category"> Here you can manage users</p>--}}
             </div>
             <div class="card-body">
-                {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\CurtainsController@addDataPost', $order_id]]) !!}
+                {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\CurtainsController@addDataPost', $order_id], 'id' => 'curtain-data-form']) !!}
                 <div class="form-row">
                     <div class="col-md-12 col-sm-12">
                         {!! Form::label('mechanism_id', 'Mecanismo') !!}
@@ -42,7 +42,7 @@
                         {!! Form::number('quantity', $curtain->quantity ?? null, ['class'=>'form-control', "step"=>1]) !!}
                     </div>
                 </div>
-                <input type="number" id="squared" name="squared" readonly>
+                <input type="number" id="squared" name="squared" hidden>
                 <br>
                 <div class="form-row">
                     <div class="col-md-6 text-left">

@@ -28,7 +28,7 @@ class CurtainDataRequest extends FormRequest
             'height' => ['required', 'min:0.5', 'max:10', 'numeric'],
             'mechanism_id' => ['required', 'integer', 'exists:mechanisms,id'],
             'quantity' => ['required', 'min:1', 'integer'],
-            'squared' => ['required', 'max:25', 'numeric'],
+            'squared' => 'max:25'
         ];
     }
 

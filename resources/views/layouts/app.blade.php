@@ -313,15 +313,15 @@
                 }
 
                 // Bind the calculation function to input changes
-                $('#width, #height').on('input', calculateMultiplicationAndValidate);
+                $('#curtain-data-form #width, #curtain-data-form #height').on('input', calculateMultiplicationAndValidate);
 
                 // Prevent form submission if multiplication squared exceeds 25
-                $('#calculation-form').on('submit', function(event) {
-                    const multiplication = parseFloat($('#squared').val());
+                $('#curtain-data-form').on('submit', function(event) {
+                    const multiplication = parseFloat($('#curtain-data-form #squared').val());
 
                     if (isNaN(multiplication) || multiplication > 25) {
                         event.preventDefault(); // Prevent form submission
-                        alert('Multiplication cannot exceed 25. Please adjust your values.');
+                        alert('La cantidad de metros cuadrados no puede exceder de 25.');
                     }
                 });
 
