@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
-use TCPDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class OrdersController extends Controller
 {
@@ -199,10 +199,10 @@ class OrdersController extends Controller
         }
 
         // Load the PDF template
-        $pdf = TCPDF::loadView('orders.pdf', compact('order'));
+        $pdf = Pdf::loadView('orders.pdf', compact('order'));
 
         // Generate the PDF
-        return $pdf->download('order_details.pdf');
+        return $pdf->stream('Detalles proyecto ' . $order->id . '.pdf');
     }
 
     /**
