@@ -28,6 +28,7 @@ class CurtainDataRequest extends FormRequest
             'height' => ['required', 'min:0.5', 'max:10', 'numeric'],
             'mechanism_id' => ['required', 'integer', 'exists:mechanisms,id'],
             'quantity' => ['required', 'min:1', 'integer'],
+            'squared' => ['max:25'],
         ];
     }
 
@@ -51,6 +52,8 @@ class CurtainDataRequest extends FormRequest
             'quantity.required' => 'El campo cantidad es obligatorio.',
             'quantity.min' => 'La cantidad debe ser al menos :min.',
             'quantity.integer' => 'La cantidad debe ser un número entero.',
+
+            'squared.max' => 'El total de metros cuadrados del sistema no pueden exceder de :max.',
         ];
     }
 }
