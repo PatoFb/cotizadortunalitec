@@ -42,6 +42,7 @@
                         {!! Form::number('quantity', $curtain->quantity ?? null, ['class'=>'form-control', "step"=>1]) !!}
                     </div>
                 </div>
+                <input type="number" id="squared" name="squared" readonly>
                 <br>
                 <div class="form-row">
                     <div class="col-md-6 text-left">
@@ -52,7 +53,6 @@
                         {!! Form::close() !!}
                     </div>
                 </div>
-                <input type="number" id="squared" name="squared" readonly>
 
 
 
@@ -61,6 +61,7 @@
     </div>
   </div>
 </div>
+    @endsection
     <script>
         $(document).ready(function() {
             // Function to calculate the multiplication
@@ -83,5 +84,4 @@
             calculateMultiplication();
         });
     </script>
-    @endsection
 
