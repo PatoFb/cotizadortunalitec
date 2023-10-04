@@ -30,7 +30,7 @@
                               @endif
                           @endif
                           @if($order->activity == 'Pedido')
-                                  <a class="btn btn-success btn-sm" href="{{route('orders.generate', $order->id)}}" data-original-title="" title="">
+                                  <a class="btn btn-success btn-sm" target="_blank" href="{{route('orders.generate', $order->id)}}" data-original-title="" title="">
                                       Generar PDF
                                   </a>
                               @if($role == 1)
@@ -48,7 +48,7 @@
                                   @endif
                           @endif
                               @if($order->activity == 'Oferta')
-                                  <a class="btn btn-success btn-sm" href="{{route('orders.generate', $order->id)}}" data-original-title="" title="">
+                                  <a class="btn btn-success btn-sm" target="_blank" href="{{route('orders.generate', $order->id)}}" data-original-title="" title="">
                                       Generar PDF
                                   </a>
                                   <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#editAddressModal" id="edit_address_modal">
