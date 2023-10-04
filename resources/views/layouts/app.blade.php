@@ -293,24 +293,40 @@
 
         <script>
             $(document).ready(function() {
-                // Function to calculate the multiplication
-                function calculateMultiplication() {
+                // Function to calculate the multiplication and validate before submission
+                function calculateMultiplicationAndValidate() {
                     const width = parseFloat($('#width').val());
                     const height = parseFloat($('#height').val());
 
                     if (!isNaN(width) && !isNaN(height)) {
                         const multiplication = width * height;
-                        $('#squared').val(multiplication); // Set the value of the input field
+                        $('#squared').val(multiplication);
+
+                        // Check if the multiplication squared exceeds 25
+                        if (multiplication > 25) {
+                            $('#squared').val(''); // Clear the input field
+                            alert('La cantidad de metros cuadrados no puede exceder de 25.');
+                        }
                     } else {
                         $('#squared').val(''); // Clear the input field if any input is not a number
                     }
                 }
 
                 // Bind the calculation function to input changes
-                $('#width, #height').on('input', calculateMultiplication);
+                $('#width, #height').on('input', calculateMultiplicationAndValidate);
+
+                // Prevent form submission if multiplication squared exceeds 25
+                $('#calculation-form').on('submit', function(event) {
+                    const multiplication = parseFloat($('#squared').val());
+
+                    if (isNaN(multiplication) || multiplication > 25) {
+                        event.preventDefault(); // Prevent form submission
+                        alert('Multiplication cannot exceed 25. Please adjust your values.');
+                    }
+                });
 
                 // Initial calculation
-                calculateMultiplication();
+                calculateMultiplicationAndValidate();
             });
         </script>
 
