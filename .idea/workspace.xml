@@ -5,15 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/mail/closed.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/mail/new_user.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/mail/registered.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/orders/pdf.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/cotizadortunalitec.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/cotizadortunalitec.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrdersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OrdersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Mail/OfertaCreada.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/NuevoUsuario.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Mail/UsuarioRegistrado.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/UsuarioRegistrado.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/mail/production.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/mail/production.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/orders/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/orders/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,6 +156,7 @@
       <path value="$PROJECT_DIR$/vendor/nette/schema" />
       <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
       <path value="$PROJECT_DIR$/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/vendor/tecnickcom/tcpdf" />
     </include_path>
   </component>
   <component name="ProjectId" id="1pHPbY30g1VNK72qrSfGMDazFBu" />
@@ -169,18 +170,18 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/xampp/htdocs/cotizadortunalitec/resources/views/mail",
+    "last_opened_file_path": "C:/xampp/htdocs/cotizadortunalitec/resources/views/orders",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\orders" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\mail" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\admin\users" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\app\Http\Requests" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\admin\orders" />
-      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\toldos" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\cotizadortunalitec\public\material\img" />
@@ -375,7 +376,13 @@
       <workItem from="1695051417334" duration="1819000" />
       <workItem from="1695135617850" duration="3490000" />
       <workItem from="1695224919292" duration="6135000" />
-      <workItem from="1695664318874" duration="5569000" />
+      <workItem from="1695664318874" duration="7786000" />
+      <workItem from="1695754503178" duration="2553000" />
+      <workItem from="1695833703869" duration="2513000" />
+      <workItem from="1695912962385" duration="596000" />
+      <workItem from="1696031095746" duration="1113000" />
+      <workItem from="1696266288794" duration="2461000" />
+      <workItem from="1696430835300" duration="3644000" />
     </task>
     <servers />
   </component>

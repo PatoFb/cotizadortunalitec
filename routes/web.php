@@ -52,6 +52,8 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::get('orders/{id}/details', 'App\Http\Controllers\OrdersController@details')->name('orders.details');
 
+    Route::get('orders/{id}/cancel', 'App\Http\Controllers\OrdersController@cancel')->name('orders.cancel');
+
     Route::get('orders/{id}/authorize', 'App\Http\Controllers\OrdersController@production')->name('orders.production');
 
     Route::get('orders/{id}/close', 'App\Http\Controllers\OrdersController@close')->name('orders.close');
@@ -142,6 +144,8 @@ Route::group(['middleware' => 'user'], function () {
     Route::put('toldos/data/add', 'App\Http\Controllers\ToldosController@addData')->name('toldo.data.add');
 
     Route::put('orders/{id}/address', 'App\Http\Controllers\OrdersController@updateAddress')->name('orders.update.address');
+
+    Route::put('orders/{id}/generate/order', 'App\Http\Controllers\OrdersController@orderPdf')->name('orders.generate.order');
 
     Route::resource('orders', 'App\Http\Controllers\OrdersController');
     Route::resource('curtains', 'App\Http\Controllers\CurtainsController');;

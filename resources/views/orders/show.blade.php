@@ -17,18 +17,40 @@
                               <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#closeModal" id="close_order_modal">
                                   Cerrar pedido
                               </button>
+                              <a class="btn btn-danger" href="{{route('orders.cancel', $order->id)}}" data-original-title="" title="">
+                                  Cancelar
+                              </a>
+                              <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#fileModal" id="file_order_modal">
+                                  Agregar comprobante
+                              </button>
+                              @if($order->file)
+                                  <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#fileModal" id="file_order_modal">
+                                      Descargar comprobante
+                                  </button>
+                              @endif
                           @endif
-                          @if($order->activity == 'Pedido' && $role == 1)
-
+                          @if($order->activity == 'Pedido')
+                                  <a class="btn btn-success" href="{{route('orders.generate.order', $order->id)}}" data-original-title="" title="">
+                                      Generar PDF
+                                  </a>
+                              @if($role == 1)
                                   <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#authorizeModal" id="authorize_order_modal">
                                       Autorizar y enviar a producción
                                   </button>
-
+                              @endif
                           <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#fileModal" id="file_order_modal">
                               Agregar comprobante
                           </button>
+                                  @if($order->file)
+                                      <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#fileModal" id="file_order_modal">
+                                          Descargar comprobante
+                                      </button>
+                                  @endif
                           @endif
                               @if($order->activity == 'Oferta')
+                                  <a class="btn btn-success" href="{{route('orders.generate.order', $order->id)}}" data-original-title="" title="">
+                                      Generar PDF
+                                  </a>
                                   <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#editAddressModal" id="edit_address_modal">
                                       Editar Dirección
                                   </button>

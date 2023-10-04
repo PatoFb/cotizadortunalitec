@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
+use TCPDF;
 
 class OrdersController extends Controller
 {
@@ -57,6 +58,15 @@ class OrdersController extends Controller
         $order->save();
         Mail::to($user->email)->send(new OrdenAProduccion($user, $order));
         return redirect()->back()->withStatus(__('La orden fue autorizada'));
+    }
+
+    public function cancel($id)
+    {
+        $order = Order::findOrFail($id);
+        $user = User::findOrFail($order->user_id);
+        $order->activity = 'Pedido';
+        $order->save();
+        return redirect()->back()->withStatus(__('La orden fue devuelta a pedido'));
     }
 
     public function close($id)
@@ -179,6 +189,22 @@ class OrdersController extends Controller
         return redirect()->back()->withStatus(__('Comprobante subido correctamente'));
     }
 
+    public function orderPdf($order_id)
+    {
+        // Fetch order details from the database
+        $order = Order::find($order_id);
+
+        if (!$order) {
+            abort(404); // Handle order not found
+        }
+
+        // Load the PDF template
+        $pdf = TCPDF::loadView('orders.pdf', compact('order'));
+
+        // Generate the PDF
+        return $pdf->download('order_details.pdf');
+    }
+
     /**
      * @throws AuthorizationException
      */
@@ -188,7 +214,7 @@ class OrdersController extends Controller
         if(!auth()->user()->isAdmin()) {
             $this->authorize('checkUser', $order);
         }
-        $pathToFile = storage_path('app/comprobantes/' . $order->file);
+        $pathToFile = storage_path('comprobantes/' . $order->file);
         return response()->download($pathToFile);
     }
 
