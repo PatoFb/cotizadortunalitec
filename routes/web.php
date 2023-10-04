@@ -146,7 +146,7 @@ Route::group(['middleware' => 'user'], function () {
 
     Route::put('orders/{id}/address', 'App\Http\Controllers\OrdersController@updateAddress')->name('orders.update.address');
 
-    Route::put('orders/{id}/generate', 'App\Http\Controllers\OrdersController@orderPdf')->name('orders.generate');
+    Route::get('orders/{id}/generate', 'App\Http\Controllers\OrdersController@orderPdf')->name('orders.generate');
 
     Route::resource('orders', 'App\Http\Controllers\OrdersController');
     Route::resource('curtains', 'App\Http\Controllers\CurtainsController');;
