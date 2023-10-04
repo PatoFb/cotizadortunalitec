@@ -17,7 +17,7 @@
                               <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#closeModal" id="close_order_modal">
                                   Cerrar pedido
                               </button>
-                              <a class="btn btn-danger" href="{{route('orders.cancel', $order->id)}}" data-original-title="" title="">
+                              <a class="btn btn-danger btn-sm" href="{{route('orders.cancel', $order->id)}}" data-original-title="" title="">
                                   Cancelar
                               </a>
                               <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#fileModal" id="file_order_modal">
@@ -30,7 +30,7 @@
                               @endif
                           @endif
                           @if($order->activity == 'Pedido')
-                                  <a class="btn btn-success" href="{{route('orders.generate.order', $order->id)}}" data-original-title="" title="">
+                                  <a class="btn btn-success btn-sm" href="{{route('orders.generate.order', $order->id)}}" data-original-title="" title="">
                                       Generar PDF
                                   </a>
                               @if($role == 1)
@@ -48,7 +48,7 @@
                                   @endif
                           @endif
                               @if($order->activity == 'Oferta')
-                                  <a class="btn btn-success" href="{{route('orders.generate.order', $order->id)}}" data-original-title="" title="">
+                                  <a class="btn btn-success btn-sm" href="{{route('orders.generate.order', $order->id)}}" data-original-title="" title="">
                                       Generar PDF
                                   </a>
                                   <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#editAddressModal" id="edit_address_modal">
