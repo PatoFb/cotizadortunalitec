@@ -224,13 +224,13 @@
                                               </div>
                                               <hr>
                                               <h5><strong>Accesorios</strong></h5>
-                                              @if($curtain->canopy_id == 1)
+                                              @if($curtain->canopy == 1)
                                                   <div class="row">
                                                       <div class="col-6 text-center">
                                                           Tejadillo:
                                                       </div>
                                                       <div class="col-6 text-center">
-                                                          <strong>X</strong>
+                                                          <strong>Si</strong>
                                                       </div>
                                                   </div>
                                                   <hr>
