@@ -82,6 +82,7 @@ class RegisterController extends Controller
             Mail::to($user->email)->send(new UsuarioRegistrado($data));
         }
         Mail::to($data['email'])->send(new NuevoUsuario($data));
+        Mail::to($data['email'])->send(new NuevoUsuario($data));
         return User::create([
                 'partner_id' => $data['number'],
                 'name' => $data['name'],
@@ -97,6 +98,7 @@ class RegisterController extends Controller
                 'reference' => $data['reference'],
                 'role_id' => 3
             ]);
+        Mail::to($data['email'])->send(new NuevoUsuario($data));
 
     }
 }
