@@ -42,7 +42,6 @@
                         {!! Form::number('quantity', $curtain->quantity ?? null, ['class'=>'form-control', "step"=>1]) !!}
                     </div>
                 </div>
-                <input type="number" id="squared" name="squared" hidden>
                 <br>
                 <div class="form-row">
                     <div class="col-md-6 text-left">

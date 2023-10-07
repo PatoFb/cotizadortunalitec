@@ -300,15 +300,11 @@
 
                     if (!isNaN(width) && !isNaN(height)) {
                         const multiplication = width * height;
-                        $('#squared').val(multiplication);
 
                         // Check if the multiplication squared exceeds 25
                         if (multiplication > 25) {
-                            $('#squared').val(''); // Clear the input field
                             alert('La cantidad de metros cuadrados no puede exceder de 25.');
                         }
-                    } else {
-                        $('#squared').val(''); // Clear the input field if any input is not a number
                     }
                 }
 
