@@ -313,8 +313,9 @@
 
                 // Prevent form submission if multiplication squared exceeds 25
                 $('#curtain-data-form').on('submit', function(event) {
-                    const multiplication = parseFloat($('#curtain-data-form #squared').val());
-
+                    const width = parseFloat($('#curtain-data-form #width').val());
+                    const height = parseFloat($('#curtain-data-form #height').val());
+                    const multiplication = width * height;
                     if (multiplication > 25) {
                         event.preventDefault(); // Prevent form submission
                         alert('La cantidad de metros cuadrados no puede exceder de 25.');
