@@ -315,7 +315,7 @@
                 $('#curtain-data-form').on('submit', function(event) {
                     const multiplication = parseFloat($('#curtain-data-form #squared').val());
 
-                    if (isNaN(multiplication) || multiplication > 25) {
+                    if (multiplication > 25) {
                         event.preventDefault(); // Prevent form submission
                         alert('La cantidad de metros cuadrados no puede exceder de 25.');
                     }
