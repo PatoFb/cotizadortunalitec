@@ -99,6 +99,18 @@
             @endforeach
         </tr>
         <tr>
+            <td></td>
+            @foreach($order->curtains as $curtain)
+                <td></td>
+            @endforeach
+        </tr>
+        <tr>
+            <td></td>
+            @foreach($order->curtains as $curtain)
+                <td></td>
+            @endforeach
+        </tr>
+        <tr>
             <td>Instalación</td>
             @foreach($order->curtains as $curtain)
                 <td>{{$curtain->installation_type}}</td>
