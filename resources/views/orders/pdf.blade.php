@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Detalles de orden</title>
+    <link href="{{ asset('material') }}/css/pdf.css" rel="stylesheet" />
 </head>
 <body>
 <h1>Orden {{ $order->id }}</h1>
