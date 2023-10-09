@@ -87,7 +87,9 @@
         <tr>
             <td>Manivela</td>
             @foreach($order->curtains as $curtain)
-                <td>{{$curtain->handle->measure}} m ({{$curtain->handle_quantity}})</td>
+                @if($curtain->handle_id != 9999)
+                    <td>{{$curtain->handle->measure}} m ({{$curtain->handle_quantity}})</td>
+                @endif
             @endforeach
         </tr>
         <tr>
