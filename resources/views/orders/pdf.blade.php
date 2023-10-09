@@ -67,6 +67,24 @@
             @endforeach
         </tr>
         <tr>
+            <td></td>
+            @foreach($order->curtains as $curtain)
+                <td></td>
+            @endforeach
+        </tr>
+        <tr>
+            <td></td>
+            @foreach($order->curtains as $curtain)
+                <td></td>
+            @endforeach
+        </tr>
+        <tr>
+            <td></td>
+            @foreach($order->curtains as $curtain)
+                <td></td>
+            @endforeach
+        </tr>
+        <tr>
             <td>Manivela</td>
             @foreach($order->curtains as $curtain)
                 <td>{{$curtain->handle->measure}} m ({{$curtain->handle_quantity}})</td>
@@ -90,6 +108,12 @@
                 @if($curtain->canopy == 1)
                     <td>Si</td>
                 @endif
+            @endforeach
+        </tr>
+        <tr>
+            <td></td>
+            @foreach($order->curtains as $curtain)
+                <td></td>
             @endforeach
         </tr>
         <tr>
