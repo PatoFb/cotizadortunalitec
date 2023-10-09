@@ -25,7 +25,7 @@
             @endforeach
         </tr>
         <tr>
-            <td> class="border-right"Modelo</td>
+            <td class="border-right">Modelo</td>
             @foreach($order->curtains as $curtain)
                 <td>{{$curtain->model->name}}</td>
             @endforeach
