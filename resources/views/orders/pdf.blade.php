@@ -95,13 +95,17 @@
         <tr>
             <td>Control</td>
             @foreach($order->curtains as $curtain)
-                <td>{{$curtain->control->name}} ({{$curtain->control_quantity}})</td>
+                @if($curtain->control_id != 9999)
+                    <td>{{$curtain->control->name}} ({{$curtain->control_quantity}})</td>
+                @endif
             @endforeach
         </tr>
         <tr>
             <td>Control voz</td>
             @foreach($order->curtains as $curtain)
-                <td>{{$curtain->voice->name}} ({{$curtain->voice_quantity}})</td>
+                @if($curtain->voice_id != 9999)
+                    <td>{{$curtain->voice->name}} ({{$curtain->voice_quantity}})</td>
+                @endif
             @endforeach
         </tr>
         <tr>
