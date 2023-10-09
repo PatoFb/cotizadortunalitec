@@ -1,9 +1,16 @@
 body {
     font-family: 'Helvetica', sans-serif;
+    font-size: x-small;
+}
+
+tr {
+    max-width: 120px;
+    padding-right: 3px;
 }
 
 td {
-    max-width: 175px;
+    max-width: 120px;
+    padding-right: 3px;
 }
 
 .border-right {
@@ -23,6 +30,6 @@ td {
 }
 
 .fixed-height-cell {
-    height: 50px; /* Adjust the height as needed */
+    height: 20px; /* Adjust the height as needed */
     /* You can also use other units like 'em', 'rem', 'vh', or 'vw' */
 }

@@ -119,7 +119,7 @@
         <tr>
             <td class="border-right">Precio</td>
             @foreach($order->curtains as $curtain)
-                <td bgcolor="#808080" class="text-center">{{number_format($curtain->price,2)}}</td>
+                <td bgcolor="#808080" class="text-center">${{number_format($curtain->price,2)}}</td>
             @endforeach
         </tr>
         </tbody>
