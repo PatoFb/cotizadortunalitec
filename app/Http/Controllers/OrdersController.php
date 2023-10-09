@@ -199,7 +199,7 @@ class OrdersController extends Controller
         }
 
         // Load the PDF template
-        $pdf = Pdf::loadView('orders.pdf', compact('order'));
+        $pdf = Pdf::loadView('orders.pdf', compact('order'))->setPaper('landscape');
 
         // Generate the PDF
         return $pdf->stream('Detalles proyecto ' . $order->id . '.pdf');
@@ -215,7 +215,6 @@ class OrdersController extends Controller
             $this->authorize('checkUser', $order);
         }
         $pathToFile = storage_path('app/comprobantes/' . $order->file);
-        Log::info($pathToFile);
         return response()->download($pathToFile);
     }
 
