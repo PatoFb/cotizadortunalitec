@@ -46,10 +46,8 @@ class CurtainsController extends Controller
             'id'=>'required',
             'mechanism_side' => 'required',
             'installation_type' => 'required',
-            'view_type' => 'required'
         ]);
         $curtain = Curtain::findOrFail($validatedData['id']);
-        $this->authorize('checkUser', $curtain);
         $curtain->fill($validatedData);
         $curtain->save();
         return redirect()->back()->withStatus('Datos guardados correctamente');

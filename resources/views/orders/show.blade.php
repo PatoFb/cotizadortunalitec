@@ -361,6 +361,8 @@
                                                       <option>Pared</option>
                                                       <option>Techo</option>
                                                       <option>Entre muros</option>
+                                                      <option>Entre muros a pared</option>
+                                                      <option>Entre muros a techo</option>
                                                   </select>
                                               </div>
                                               <br>
@@ -370,15 +372,6 @@
                                                       <option value="">Lado del mecanismo</option>
                                                       <option>Izquierdo</option>
                                                       <option>Derecho</option>
-                                                  </select>
-                                              </div>
-                                              <br>
-                                              <div class="col-12">
-                                                  {!! Form::label('view_type', 'Tipo de vista:') !!}
-                                                  <select class="form-control" name="view_type" >
-                                                      <option value="">Tipo de vista</option>
-                                                      <option>Exterior</option>
-                                                      <option>Interior</option>
                                                   </select>
                                               </div>
                                           </div>
