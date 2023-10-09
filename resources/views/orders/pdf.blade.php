@@ -21,7 +21,7 @@
         <tr>
             <td class="border-right">Cantidad</td>
             @foreach($order->curtains as $curtain)
-                <td>{{$curtain->quantity}}</td>
+                <td class="text-right">{{$curtain->quantity}}</td>
             @endforeach
         </tr>
         <tr>
