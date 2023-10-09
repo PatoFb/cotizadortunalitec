@@ -3,5 +3,13 @@ body {
 }
 
 td {
-    max-width: 100px;
+    max-width: 175px;
+}
+
+.border-right {
+    border-right: 1px solid #000; /* Adjust border properties as needed */
+}
+
+.border-bottom {
+    border-bottom: 1px solid #000; /* Adjust border properties as needed */
 }
