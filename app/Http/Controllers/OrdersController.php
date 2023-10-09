@@ -199,7 +199,7 @@ class OrdersController extends Controller
         }
 
         // Load the PDF template
-        $pdf = Pdf::loadView('orders.pdf', compact('order'))->setPaper('landscape');
+        $pdf = Pdf::loadView('orders.pdf', compact('order'))->setOption('page-width', '300mm')->setOption('page-height', '200mm')->setOption('is-html5-parser-enabled', true);
 
         // Generate the PDF
         return $pdf->stream('Detalles proyecto ' . $order->id . '.pdf');
