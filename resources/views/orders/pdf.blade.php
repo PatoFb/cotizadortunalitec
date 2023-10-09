@@ -27,59 +27,41 @@
         <tr>
             <td class="border-right">Modelo</td>
             @foreach($order->curtains as $curtain)
-                <td>{{$curtain->model->name}}</td>
+                <td class="text-right">{{$curtain->model->name}}</td>
             @endforeach
         </tr>
         <tr>
             <td class="border-right">Mecanismo</td>
             @foreach($order->curtains as $curtain)
-                <td>{{$curtain->mechanism->name}}</td>
+                <td class="text-right">{{$curtain->mechanism->name}}</td>
             @endforeach
         </tr>
         <tr>
             <td class="border-right">Ancho</td>
             @foreach($order->curtains as $curtain)
-                <td>{{$curtain->width}} m</td>
+                <td class="text-right">{{$curtain->width}} m</td>
             @endforeach
         </tr>
         <tr>
             <td class="border-right">Caída</td>
             @foreach($order->curtains as $curtain)
-                <td>{{$curtain->height}} m</td>
+                <td class="text-right">{{$curtain->height}} m</td>
             @endforeach
         </tr>
         <tr>
             <td class="border-right"></td>
             @foreach($order->curtains as $curtain)
-                <td>{{$curtain->cover->id}}</td>
+                <td class="text-right">{{$curtain->cover->id}}</td>
             @endforeach
         </tr>
         <tr>
             <td class="border-right">Cubierta</td>
             @foreach($order->curtains as $curtain)
-                <td>{{$curtain->cover->name}}</td>
+                <td class="text-right">{{$curtain->cover->name}}</td>
             @endforeach
         </tr>
         <tr>
-            <td class="border-right"></td>
-            @foreach($order->curtains as $curtain)
-                <td></td>
-            @endforeach
-        </tr>
-        <tr>
-            <td class="border-right"></td>
-            @foreach($order->curtains as $curtain)
-                <td></td>
-            @endforeach
-        </tr>
-        <tr>
-            <td class="border-right"></td>
-            @foreach($order->curtains as $curtain)
-                <td></td>
-            @endforeach
-        </tr>
-        <tr>
-            <td class="border-right"></td>
+            <td class="border-right fixed-height-cell"></td>
             @foreach($order->curtains as $curtain)
                 <td></td>
             @endforeach
@@ -88,7 +70,7 @@
             <td class="border-right">Manivela</td>
             @foreach($order->curtains as $curtain)
                 @if($curtain->handle_id != 9999)
-                    <td>{{$curtain->handle->measure}} m ({{$curtain->handle_quantity}})</td>
+                    <td class="text-right">{{$curtain->handle->measure}} m ({{$curtain->handle_quantity}})</td>
                 @endif
             @endforeach
         </tr>
@@ -96,7 +78,7 @@
             <td class="border-right">Control</td>
             @foreach($order->curtains as $curtain)
                 @if($curtain->control_id != 9999)
-                    <td>{{$curtain->control->name}} ({{$curtain->control_quantity}})</td>
+                    <td class="text-right">{{$curtain->control->name}} ({{$curtain->control_quantity}})</td>
                 @endif
             @endforeach
         </tr>
@@ -104,7 +86,7 @@
             <td class="border-right">Control voz</td>
             @foreach($order->curtains as $curtain)
                 @if($curtain->voice_id != 9999)
-                    <td>{{$curtain->voice->name}} ({{$curtain->voice_quantity}})</td>
+                    <td class="text-right">{{$curtain->voice->name}} ({{$curtain->voice_quantity}})</td>
                 @endif
             @endforeach
         </tr>
@@ -112,30 +94,12 @@
             <td class="border-right">Tejadillo</td>
             @foreach($order->curtains as $curtain)
                 @if($curtain->canopy == 1)
-                    <td>Si</td>
+                    <td class="text-right">Si</td>
                 @endif
             @endforeach
         </tr>
         <tr>
-            <td class="border-right"></td>
-            @foreach($order->curtains as $curtain)
-                <td></td>
-            @endforeach
-        </tr>
-        <tr>
-            <td class="border-right"></td>
-            @foreach($order->curtains as $curtain)
-                <td></td>
-            @endforeach
-        </tr>
-        <tr>
-            <td class="border-right"></td>
-            @foreach($order->curtains as $curtain)
-                <td></td>
-            @endforeach
-        </tr>
-        <tr>
-            <td class="border-right"></td>
+            <td class="border-right fixed-height-cell"></td>
             @foreach($order->curtains as $curtain)
                 <td></td>
             @endforeach
@@ -143,19 +107,19 @@
         <tr>
             <td class="border-right">Instalación</td>
             @foreach($order->curtains as $curtain)
-                <td>{{$curtain->installation_type}}</td>
+                <td class="text-right">{{$curtain->installation_type}}</td>
             @endforeach
         </tr>
         <tr>
             <td class="border-right">Lado del mecanismo</td>
             @foreach($order->curtains as $curtain)
-                <td>{{$curtain->mechanism_side}}</td>
+                <td class="text-right">{{$curtain->mechanism_side}}</td>
             @endforeach
         </tr>
         <tr>
             <td class="border-right">Precio</td>
             @foreach($order->curtains as $curtain)
-                <td bgcolor="#808080">{{number_format($curtain->price,2)}}</td>
+                <td bgcolor="#808080" class="text-center">{{number_format($curtain->price,2)}}</td>
             @endforeach
         </tr>
         </tbody>
