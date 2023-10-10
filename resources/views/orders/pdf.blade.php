@@ -26,7 +26,7 @@
     <div class="pdf-section order-number">
         <!-- Insert order number here -->
         @if($order->activity == 'Oferta')
-            <h3>Oferta {{ $order->id }}</h3><br>
+            <h3>Oferta {{ $order->id }}</h3>
         @else
             <h3>Pedido {{ $order->id }}</h3>
         @endif
