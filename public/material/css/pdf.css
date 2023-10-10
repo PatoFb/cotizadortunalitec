@@ -27,6 +27,11 @@ body {
     width: 35%; /* 20% width for order number and company logo */
 }
 
+.notes {
+    width: 60%; /* 30% width for client data and address */
+    font-style: italic;
+}
+
 h3, h1 {
     margin-top: 0; /* Remove top margin */
     padding-top: 0; /* Remove top padding */
@@ -51,6 +56,10 @@ h3, h1 {
 .summary, .summary th, .summary td {
     border: none;
     text-align: center;
+}
+
+.summary td {
+    padding: 10px;
 }
 
 .banks-table tr, .banks-table th, .banks-table td {
@@ -83,4 +92,8 @@ h3, h1 {
 .fixed-height-cell {
     height: 20px; /* Adjust the height as needed */
     /* You can also use other units like 'em', 'rem', 'vh', or 'vw' */
+}
+
+.red {
+    color: red;
 }
