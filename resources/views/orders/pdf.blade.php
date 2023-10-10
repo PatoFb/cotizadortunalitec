@@ -147,6 +147,7 @@
         </tr>
         </tbody>
     </table>
+    <p>{{$order->curtains}}</p>
     <div id="tables-container">
         <!-- Tables will be dynamically added here -->
     </div>
