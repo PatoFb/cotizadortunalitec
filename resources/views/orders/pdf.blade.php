@@ -81,7 +81,7 @@
         </tbody>
     </table>
     <br><br><br>
-    <div class="notes">
+    <div class="pdf-section notes">
         <p class="red">Notas Adicionales</p>
         a) Los precios mostrados en esta Oferta incluyen IVA<br>
         b) Vigencia valida por 10 dias habilies o hasta agotar existencias<br>
@@ -91,9 +91,10 @@
         f) Confirmar disponibilidad de materiales con personal de ventas Tunali Tec antes de enviar pedido en firma para producción<br>
 
     </div>
-    <div class="company-logo">
+    <div class="pdf-section company-logo">
         <img src="{{asset('storage')}}/images/{{$order->curtains[0]->model->photo}}" style="max-width: 250px" alt="Model">
     </div>
+    <div class="clear"></div>
     <div class="pdf-section company-logo">
         <!-- Insert company logo here -->
         <img src="{{ asset('material') }}/img/logosolair.png" alt="Company Logo" width="200">
