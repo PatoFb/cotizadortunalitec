@@ -65,13 +65,3 @@ h3, h1 {
     height: 20px; /* Adjust the height as needed */
     /* You can also use other units like 'em', 'rem', 'vh', or 'vw' */
 }
-
-.triangle {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 0;
-    height: 0;
-    border-left: 40px solid transparent; /* Adjust the size of the triangle */
-    border-top: 40px solid white; /* Change this to your desired triangle background color */
-}
