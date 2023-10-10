@@ -26,8 +26,8 @@
     <br>
     <br>
     <br>
-    <p>Números de cuenta disponibles para realizar su pago:</p>
-    <p>A nombre de Tunali Tec S de RL de CV:</p>
+    Números de cuenta disponibles para realizar su pago:<br>
+    A nombre de Tunali Tec S de RL de CV:<br>
     <table class="banks-table">
         <thead>
         <tr>
@@ -58,6 +58,7 @@
         </tr>
         </tbody>
     </table>
+    <br><br><br>
     <div class="pdf-section company-logo">
         <!-- Insert company logo here -->
         <img src="{{ asset('material') }}/img/logosolair.png" alt="Company Logo" width="200">
