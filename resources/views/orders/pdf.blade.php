@@ -279,7 +279,6 @@
     </table>
     <br>
     <hr>
-    <br>
     <table class="pdf-table">
         <thead>
         <tr>
