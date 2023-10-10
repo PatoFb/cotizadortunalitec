@@ -23,7 +23,6 @@
         Email: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $order->user->email }}<br>
         Teléfono: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $order->user->phone }}<br>
     </div>
-    <br><br><br><br>
     Números de cuenta disponibles para realizar su pago:<br>
     A nombre de Tunali Tec S de RL de CV:
     <table class="banks-table">
@@ -53,6 +52,29 @@
             <td>453268802</td>
             <td class="text-center">012540004532688020</td>
             <td class="text-center">0817</td>
+        </tr>
+        </tbody>
+    </table>
+    <h3 class="text-center">Resumen de proyecto</h3>
+    <table class="summary">
+        <thead>
+        <tr>
+            <th>Referencia</th>
+            <th>Precio público sugerido</th>
+            <th>Paquetería</th>
+            <th>Seguro</th>
+            <th>Costo socio</th>
+            <th>Total proyecto</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>{{$order->id}}</td>
+            <td>{{$order->discount}}</td>
+            <td>$1750.00</td>
+            <td>$1600.00</td>
+            <td>${{number_format($order->price,2)}}</td>
+            <td>${{number_format($order->price + 3350,2)}}</td>
         </tr>
         </tbody>
     </table>

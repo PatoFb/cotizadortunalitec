@@ -12,6 +12,7 @@ body {
     float: left; /* Allow sections to float side by side */
     box-sizing: border-box; /* Include padding and border in the width */
     padding: 10px; /* Add padding for spacing */
+    margin-bottom: 15px;
 }
 
 .client-data {
@@ -35,8 +36,21 @@ h3, h1 {
 
 .pdf-table, .banks-table {
     clear: both; /* Clear the floats to position the table below sections */
-    margin-top: 20px; /* Adjust margin as needed */
     border-collapse: collapse; /* Collapse table borders */
+}
+
+.pdf-table {
+    margin-top: 20px; /* Adjust margin as needed */
+}
+
+.summary {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.summary, .summary th, .summary td {
+    border: none;
+    text-align: center;
 }
 
 .banks-table tr, .banks-table th, .banks-table td {
