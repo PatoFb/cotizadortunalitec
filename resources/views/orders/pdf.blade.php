@@ -24,8 +24,6 @@
         Teléfono: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $order->user->phone }}<br>
     </div>
     @for($e = 1; $e <= ceil(sizeof($order->curtains)/6); $e++)
-        <br>
-        <hr>
         <table class="pdf-table">
             <thead>
             <tr>
