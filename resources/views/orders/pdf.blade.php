@@ -94,7 +94,7 @@
         <tr>
             <td class="border-right">Manivela</td>
             @foreach($order->curtains as $curtain)
-                @if($curtain->handle_id != 9999)
+                @if($curtain->handle_id != 9999 && $curtain->handle_id != 999)
                     <td class="text-right">{{$curtain->handle->measure}} m ({{$curtain->handle_quantity}})</td>
                 @else
                     <td></td>
@@ -104,7 +104,7 @@
         <tr>
             <td class="border-right">Control</td>
             @foreach($order->curtains as $curtain)
-                @if($curtain->control_id != 9999)
+                @if($curtain->control_id != 9999 && $curtain->control_id != 999)
                     <td class="text-right">{{$curtain->control->name}} ({{$curtain->control_quantity}})</td>
                 @else
                     <td></td>
@@ -114,7 +114,7 @@
         <tr>
             <td class="border-right">Control voz</td>
             @foreach($order->curtains as $curtain)
-                @if($curtain->voice_id != 9999)
+                @if($curtain->voice_id != 9999 && $curtain->voice_id != 999)
                     <td class="text-right">{{$curtain->voice->name}} ({{$curtain->voice_quantity}})</td>
                 @else
                     <td></td>
