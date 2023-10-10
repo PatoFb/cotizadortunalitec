@@ -12,6 +12,7 @@
         Socio: {{ $order->user->partner->description }}<br>
         Email: {{ $order->user->email }}<br>
         Teléfono: {{ $order->user->phone }}<br>
+        <div class="triangle"></div>
     </div>
 
     <!-- Address Section -->
@@ -21,6 +22,7 @@
         Colonia y CP: {{$order->line2}}, {{$order->zip_code}}<br>
         Ciudad y estado: {{$order->city}}, {{$order->state}} <br>
         Referencias: {{$order->reference}} <br>
+        <div class="triangle"></div>
     </div>
 
     <!-- Order Number Section -->
