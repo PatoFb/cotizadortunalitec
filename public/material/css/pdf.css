@@ -30,6 +30,7 @@ body {
 .notes {
     width: 60%; /* 30% width for client data and address */
     font-style: italic;
+    padding-top: 30px;
 }
 
 h3, h1 {
