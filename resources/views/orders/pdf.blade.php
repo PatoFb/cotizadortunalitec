@@ -30,6 +30,7 @@
         <!-- Insert company logo here -->
         <img src="company-logo.png" alt="Company Logo" width="100">
     </div>
+</div>
     <table>
         <thead>
             <tr>
@@ -146,7 +147,6 @@
         </tr>
         </tbody>
     </table>
-</div>
 </body>
 </html>
 
