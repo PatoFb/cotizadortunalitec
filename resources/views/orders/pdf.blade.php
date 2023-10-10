@@ -24,8 +24,10 @@
         Teléfono: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $order->user->phone }}<br>
     </div>
     <br>
-    <p>Números de cuenta disponibles para realizar su pago:</p><br>
-    <p>A nombre de Tunali Tec S de RL de CV:</p><br>
+    <br>
+    <br>
+    <p>Números de cuenta disponibles para realizar su pago:</p>
+    <p>A nombre de Tunali Tec S de RL de CV:</p>
     <table class="banks-table">
         <thead>
         <tr>
