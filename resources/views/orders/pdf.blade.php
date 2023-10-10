@@ -20,6 +20,7 @@
         Calle y numero: {{$order->line1}}<br>
         Colonia y CP: {{$order->line2}}, {{$order->zip_code}}<br>
         Ciudad y estado: {{$order->city}}, {{$order->state}} <br>
+        Referencias: {{$order->reference}} <br>
     </div>
 
     <!-- Order Number Section -->

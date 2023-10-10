@@ -16,19 +16,24 @@ body {
 
 .client-data, .address {
     width: 30%; /* 30% width for client data and address */
+    background-color: dimgrey;
 }
 
 .order-number, .company-logo {
     width: 20%; /* 20% width for order number and company logo */
 }
 
-/* Add additional styling for each section if needed */
-.client-data {
-    background-color: #f2f2f2; /* Gray background for client data */
+.order-number {
+    text-align: center; /* 20% width for order number and company logo */
 }
 
 .company-logo {
     text-align: left; /* Center-align company logo */
+}
+
+h3 {
+    margin-top: 0; /* Remove top margin */
+    padding-top: 0; /* Remove top padding */
 }
 
 .pdf-table {
