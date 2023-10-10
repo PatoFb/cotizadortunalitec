@@ -103,6 +103,8 @@
             @foreach($order->curtains as $curtain)
                 @if($curtain->control_id != 9999)
                     <td class="text-right">{{$curtain->control->name}} ({{$curtain->control_quantity}})</td>
+                @else
+                    <td></td>
                 @endif
             @endforeach
         </tr>
@@ -111,6 +113,8 @@
             @foreach($order->curtains as $curtain)
                 @if($curtain->voice_id != 9999)
                     <td class="text-right">{{$curtain->voice->name}} ({{$curtain->voice_quantity}})</td>
+                @else
+                    <td></td>
                 @endif
             @endforeach
         </tr>
@@ -119,6 +123,8 @@
             @foreach($order->curtains as $curtain)
                 @if($curtain->canopy == 1)
                     <td class="text-right">Si</td>
+                @else
+                    <td></td>
                 @endif
             @endforeach
         </tr>
