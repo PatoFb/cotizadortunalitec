@@ -22,7 +22,6 @@ body {
 }
 
 .company-logo {
-    height: 100%;
     text-align: center;
     width: 35%; /* 20% width for order number and company logo */
 }

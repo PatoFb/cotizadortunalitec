@@ -8,7 +8,7 @@
 <div class="pdf-layout">
     <div class="pdf-section company-logo">
         <!-- Insert company logo here -->
-        <img src="{{ asset('material') }}/img/logosolair.png" alt="Company Logo">
+        <img src="{{ asset('material') }}/img/logosolair.png" alt="Company Logo" width="200">
     </div>
     <div class="pdf-section client-data">
         @if($order->activity == 'Oferta')
