@@ -93,6 +93,8 @@
             @foreach($order->curtains as $curtain)
                 @if($curtain->handle_id != 9999)
                     <td class="text-right">{{$curtain->handle->measure}} m ({{$curtain->handle_quantity}})</td>
+                @else
+                    <td></td>
                 @endif
             @endforeach
         </tr>

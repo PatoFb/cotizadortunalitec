@@ -33,17 +33,11 @@ body {
 
 .pdf-table {
     clear: both; /* Clear the floats to position the table below sections */
-    width: 100%; /* Table takes the full width */
     margin-top: 20px; /* Adjust margin as needed */
     border-collapse: collapse; /* Collapse table borders */
 }
 
-tr {
-    max-width: 130px;
-    padding-right: 3px;
-}
-
-td {
+.pdf-table tr, .pdf-table td {
     max-width: 130px;
     padding-right: 3px;
 }
