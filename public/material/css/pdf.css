@@ -3,13 +3,41 @@ body {
     font-size: x-small;
 }
 
+.pdf-layout {
+    width: 100%; /* Set the width of the PDF page */
+    height: 100%; /* Set the height of the PDF page */
+}
+
+.pdf-section {
+    float: left; /* Allow sections to float side by side */
+    box-sizing: border-box; /* Include padding and border in the width */
+    padding: 10px; /* Add padding for spacing */
+}
+
+.client-data, .address {
+    width: 30%; /* 30% width for client data and address */
+}
+
+.order-number, .company-logo {
+    width: 20%; /* 20% width for order number and company logo */
+}
+
+/* Add additional styling for each section if needed */
+.client-data {
+    background-color: #f2f2f2; /* Gray background for client data */
+}
+
+.company-logo {
+    text-align: center; /* Center-align company logo */
+}
+
 tr {
-    max-width: 120px;
+    max-width: 130px;
     padding-right: 3px;
 }
 
 td {
-    max-width: 120px;
+    max-width: 130px;
     padding-right: 3px;
 }
 

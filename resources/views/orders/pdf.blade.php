@@ -5,9 +5,31 @@
     <link href="{{ asset('material') }}/css/pdf.css" rel="stylesheet" />
 </head>
 <body>
-<h1>Orden {{ $order->id }}</h1>
-<p>Customer Name: {{ $order->user->name }}</p>
-<div>
+<div class="pdf-layout">
+    <div class="pdf-section client-data">
+        <!-- Insert client data here -->
+        Client Name: {{ $order->user->name }}<br>
+        Email: john@example.com<br>
+    </div>
+
+    <!-- Address Section -->
+    <div class="pdf-section address">
+        <!-- Insert address here -->
+        Address: 123 Main St<br>
+        City: Anytown<br>
+    </div>
+
+    <!-- Order Number Section -->
+    <div class="pdf-section order-number">
+        <!-- Insert order number here -->
+        Order Number: {{ $order->id }}<br>
+    </div>
+
+    <!-- Company Logo Section -->
+    <div class="pdf-section company-logo">
+        <!-- Insert company logo here -->
+        <img src="company-logo.png" alt="Company Logo" width="100">
+    </div>
     <table>
         <thead>
             <tr>
