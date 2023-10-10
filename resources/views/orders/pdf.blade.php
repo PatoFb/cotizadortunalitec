@@ -24,6 +24,56 @@
         Teléfono: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $order->user->phone }}<br>
     </div>
     <br>
+    <p>Números de cuenta disponibles para realizar su pago:</p><br>
+    <p>A nombre de Tunali Tec S de RL de CV:</p><br>
+    <table class="banks-table">
+        <thead>
+        <tr>
+            <th>Banco</th>
+            <th>Cuenta</th>
+            <th class="text-center">Clabe</th>
+            <th class="text-center">Sucursal</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>BANAMEX</td>
+            <td>6358156</td>
+            <td class="text-center">002540700863581560</td>
+            <td class="text-center">7008</td>
+        </tr>
+        <tr>
+            <td>SANTANDER</td>
+            <td>92-00205823-4</td>
+            <td class="text-center">014540920020582341</td>
+            <td class="text-center">5244</td>
+        </tr>
+        <tr>
+            <td>BBVA</td>
+            <td>453268802</td>
+            <td class="text-center">012540004532688020</td>
+            <td class="text-center">0817</td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="pdf-section company-logo">
+        <!-- Insert company logo here -->
+        <img src="{{ asset('material') }}/img/logosolair.png" alt="Company Logo" width="200">
+    </div>
+    <div class="pdf-section client-data">
+        @if($order->activity == 'Oferta')
+            <h1 class="text-center">Oferta {{ $order->id }}</h1>
+        @else
+            <h1 class="text-center">Pedido{{ $order->id }}</h1>
+        @endif
+        <h3>{{ $order->project }}</h3>
+        <!-- Insert client data here -->
+        Contacto: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $order->user->name }}<br>
+        Socio: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $order->user->partner->description }}<br>
+        Email: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $order->user->email }}<br>
+        Teléfono: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $order->user->phone }}<br>
+    </div>
+    <br>
     @for($e = 1; $e <= ceil(sizeof($order->curtains)/6); $e++)
         <table class="pdf-table">
             <thead>

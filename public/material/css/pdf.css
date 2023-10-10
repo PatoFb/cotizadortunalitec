@@ -33,10 +33,14 @@ h3, h1 {
     padding-bottom: 0; /* Remove top padding */
 }
 
-.pdf-table {
+.pdf-table, .banks-table {
     clear: both; /* Clear the floats to position the table below sections */
     margin-top: 20px; /* Adjust margin as needed */
     border-collapse: collapse; /* Collapse table borders */
+}
+
+.banks-table {
+    border: 1px solid #000;
 }
 
 .pdf-table tr, .pdf-table td {
