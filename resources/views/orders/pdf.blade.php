@@ -120,6 +120,7 @@
     </div>
     <div class="clear"></div>
     <br><br>
+    <h3 class="text-center">Desglose de proyecto</h3>
     @for($e = 1; $e <= ceil(sizeof($order->curtains)/6); $e++)
         <table class="pdf-table">
             <thead>
