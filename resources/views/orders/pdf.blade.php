@@ -99,6 +99,7 @@
         <!-- Insert company logo here -->
         <img src="{{ asset('material') }}/img/logosolair.png" alt="Company Logo" width="200">
     </div>
+    <hr>
     <div class="pdf-section client-data">
         @if($order->activity == 'Oferta')
             <h1 class="text-center">Oferta {{ $order->id }}</h1>
