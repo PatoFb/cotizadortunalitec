@@ -147,7 +147,73 @@
         </tr>
         </tbody>
     </table>
+    <div id="tables-container">
+        <!-- Tables will be dynamically added here -->
+    </div>
 </div>
 </body>
+<script>
+    const systems = {!! json_encode($order->curtains) !!}; // Your systems data
+
+    const maxColumnsPerTable = 6; // Maximum number of columns per table
+    const tablesContainer = document.getElementById('tables-container');
+
+    // Function to create a new table and populate it with data
+    function createTable(data) {
+        const table = document.createElement('table');
+        const tbody = document.createElement('tbody');
+
+        // Create table header row
+        const thead = document.createElement('thead');
+        const headerRow = document.createElement('tr');
+        const headers = ['Header 1', 'Header 2', 'Header 3', 'Header 4', 'Header 5', 'Header 6'];
+
+        headers.forEach(headerText => {
+            const th = document.createElement('th');
+            th.textContent = headerText;
+            headerRow.appendChild(th);
+        });
+
+        thead.appendChild(headerRow);
+        table.appendChild(thead);
+
+        // Create table body rows
+        data.forEach(curtain => {
+            const row = document.createElement('tr');
+
+            // Sample data for each column
+            const columnsData = [
+                curtain.quantity,
+                curtain.model.name,
+                curtain.mechanism.name,
+                curtain.width + ' m',
+                curtain.height + ' m',
+                curtain.cover.id,
+            ];
+
+            columnsData.forEach(cellData => {
+                const td = document.createElement('td');
+                td.textContent = cellData;
+                row.appendChild(td);
+            });
+
+            tbody.appendChild(row);
+        });
+
+        table.appendChild(tbody);
+        tablesContainer.appendChild(table);
+    }
+
+    let currentTableData = [];
+    systems.forEach((curtain, index) => {
+        currentTableData.push(curtain);
+
+        // Create a new table every 6 systems or at the end of the data
+        if ((index + 1) % maxColumnsPerTable === 0 || index === systems.length - 1) {
+            createTable(currentTableData);
+            currentTableData = []; // Reset the data for the next table
+        }
+    });
+</script>
 </html>
 

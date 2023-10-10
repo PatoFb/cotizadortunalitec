@@ -15,11 +15,10 @@ body {
 }
 
 .client-data {
-    width: 65%; /* 30% width for client data and address */
-    background-color: #282828;
+    width: 59%; /* 30% width for client data and address */
+    background-color: #404040;
     color: white;
     overflow: hidden; /* Hide overflow from the triangle */
-    margin-right: 30px;
 }
 
 .company-logo {
@@ -41,7 +40,7 @@ h3, h1 {
 }
 
 .pdf-table tr, .pdf-table td {
-    max-width: 130px;
+    max-width: 120px;
     padding-right: 3px;
 }
 
