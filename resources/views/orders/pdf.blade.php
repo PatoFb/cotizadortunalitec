@@ -12,7 +12,7 @@
     </div>
     <div class="pdf-section client-data">
         @if($order->activity == 'Oferta')
-            <h2>Oferta {{ $order->id }}</h2>
+            <h3>Oferta {{ $order->id }}</h3>
         @else
             <h3>Pedido {{ $order->id }}</h3>
         @endif
