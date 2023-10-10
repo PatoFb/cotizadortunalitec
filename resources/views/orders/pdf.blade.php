@@ -25,7 +25,7 @@
     <!-- Order Number Section -->
     <div class="pdf-section order-number">
         <!-- Insert order number here -->
-        Order Number: {{ $order->id }}<br>
+        <h2>Order Number: {{ $order->id }}</h2><br>
     </div>
 
     <!-- Company Logo Section -->
