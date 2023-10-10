@@ -151,7 +151,7 @@
             <td class="border-right">Manivela</td>
             @if(sizeof($order->curtains) >= 6)
                 @for($i = 1; $i <= 6; $i++)
-                    @if($curtain->handle_id != 9999 && $curtain->handle_id != 999)
+                    @if($order->curtains[$i]->handle_id != 9999 && $order->curtains[$i]->handle_id != 999)
                         <td class="text-right">{{$order->curtains[$i]->handle->measure}} m ({{$order->curtains[$i]->handle_quantity}})</td>
                     @else
                         <td></td>
@@ -171,7 +171,7 @@
             <td class="border-right">Control</td>
             @if(sizeof($order->curtains) >= 6)
                 @for($i = 1; $i <= 6; $i++)
-                    @if($curtain->control_id != 9999 && $curtain->control_id != 999)
+                    @if($order->curtains[$i]->control_id != 9999 && $order->curtains[$i]->control_id != 999)
                         <td class="text-right">{{$order->curtains[$i]->control->name}} m ({{$order->curtains[$i]->control_quantity}})</td>
                     @else
                         <td></td>
@@ -191,7 +191,7 @@
             <td class="border-right">Control voz</td>
             @if(sizeof($order->curtains) >= 6)
                 @for($i = 1; $i <= 6; $i++)
-                    @if($curtain->voice_id != 9999 && $curtain->voice_id != 999)
+                    @if($order->curtains[$i]->voice_id != 9999 && $order->curtains[$i]->voice_id != 999)
                         <td class="text-right">{{$order->curtains[$i]->voice->name}} m ({{$order->curtains[$i]->voice_quantity}})</td>
                     @else
                         <td></td>
@@ -211,7 +211,7 @@
             <td class="border-right">Tejadillo</td>
             @if(sizeof($order->curtains) >= 6)
                 @for($i = 1; $i <= 6; $i++)
-                    @if($curtain->canopy == 1)
+                    @if($order->curtains[$i]->canopy == 1)
                         <td class="text-right">Si</td>
                     @else
                         <td></td>
