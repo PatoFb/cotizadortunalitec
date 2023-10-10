@@ -8,15 +8,18 @@
 <div class="pdf-layout">
     <div class="pdf-section client-data">
         <!-- Insert client data here -->
-        Client Name: {{ $order->user->name }}<br>
-        Email: john@example.com<br>
+        Contacto: {{ $order->user->name }}<br>
+        Socio: {{ $order->user->partner->description }}<br>
+        Email: {{ $order->user->email }}<br>
+        Teléfono: {{ $order->user->phone }}<br>
     </div>
 
     <!-- Address Section -->
     <div class="pdf-section address">
         <!-- Insert address here -->
-        Address: 123 Main St<br>
-        City: Anytown<br>
+        Calle y numero: {{$order->line1}}<br>
+        Colonia y CP: {{$order->line2}}, {{$order->zip_code}}<br>
+        Ciudad y estado: {{$order->city}}, {{$order->statie}} <br>
     </div>
 
     <!-- Order Number Section -->
