@@ -27,194 +27,257 @@
         <thead>
             <tr>
                 <th class="border-right">Datos de sistema:</th>
-                @for($i = 1; $i <= sizeof($order->curtains); $i++)
-                    <th class="border-bottom">Sistema {{$i}}:</th>
-                @endfor
+                @if(sizeof($order->curtains) >= 6)
+                    @for($i = 1; $i <= 6; $i++)
+                        <th class="border-bottom">Sistema {{$i}}:</th>
+                    @endfor
+                @else
+                    @for($i = 1; sizeof($order->curtains); $i++)
+                        <th class="border-bottom">Sistema {{$i}}:</th>
+                    @endfor
+                @endif
             </tr>
         </thead>
         <tbody>
         <tr>
             <td class="border-right">Cantidad</td>
-            @foreach($order->curtains as $curtain)
-                <td class="text-right">{{$curtain->quantity}}</td>
-            @endforeach
+            @if(sizeof($order->curtains) >= 6)
+                @for($i = 1; $i <= 6; $i++)
+                    <td class="text-right">{{$order->curtains[$i]->quantity}}</td>
+                @endfor
+            @else
+                @foreach($order->curtains as $curtain)
+                    <td class="text-right">{{$curtain->quantity}}</td>
+                @endforeach
+            @endif
         </tr>
         <tr>
             <td class="border-right">Modelo</td>
-            @foreach($order->curtains as $curtain)
-                <td class="text-right">{{$curtain->model->name}}</td>
-            @endforeach
+            @if(sizeof($order->curtains) >= 6)
+                @for($i = 1; $i <= 6; $i++)
+                    <td class="text-right">{{$order->curtains[$i]->model->name}}</td>
+                @endfor
+            @else
+                @foreach($order->curtains as $curtain)
+                    <td class="text-right">{{$curtain->model->name}}</td>
+                @endforeach
+            @endif
+        </tr>
+        <tr>
+            <td class="border-right">Modelo</td>
+            @if(sizeof($order->curtains) >= 6)
+                @for($i = 1; $i <= 6; $i++)
+                    <td class="text-right">{{$order->curtains[$i]->mechanism->name}}</td>
+                @endfor
+            @else
+                @foreach($order->curtains as $curtain)
+                    <td class="text-right">{{$curtain->mechanism->name}}</td>
+                @endforeach
+            @endif
         </tr>
         <tr>
             <td class="border-right">Mecanismo</td>
-            @foreach($order->curtains as $curtain)
-                <td class="text-right">{{$curtain->mechanism->name}}</td>
-            @endforeach
+            @if(sizeof($order->curtains) >= 6)
+                @for($i = 1; $i <= 6; $i++)
+                    <td class="text-right">{{$order->curtains[$i]->mechanism->name}}</td>
+                @endfor
+            @else
+                @foreach($order->curtains as $curtain)
+                    <td class="text-right">{{$curtain->mechanism->name}}</td>
+                @endforeach
+            @endif
         </tr>
         <tr>
             <td class="border-right">Ancho</td>
-            @foreach($order->curtains as $curtain)
-                <td class="text-right">{{$curtain->width}} m</td>
-            @endforeach
+            @if(sizeof($order->curtains) >= 6)
+                @for($i = 1; $i <= 6; $i++)
+                    <td class="text-right">{{$order->curtains[$i]->width}} m</td>
+                @endfor
+            @else
+                @foreach($order->curtains as $curtain)
+                    <td class="text-right">{{$curtain->mechanism->width}} m</td>
+                @endforeach
+            @endif
         </tr>
         <tr>
             <td class="border-right">Caída</td>
-            @foreach($order->curtains as $curtain)
-                <td class="text-right">{{$curtain->height}} m</td>
-            @endforeach
+            @if(sizeof($order->curtains) >= 6)
+                @for($i = 1; $i <= 6; $i++)
+                    <td class="text-right">{{$order->curtains[$i]->height}} m</td>
+                @endfor
+            @else
+                @foreach($order->curtains as $curtain)
+                    <td class="text-right">{{$curtain->mechanism->height}} m</td>
+                @endforeach
+            @endif
         </tr>
         <tr>
             <td class="border-right"></td>
-            @foreach($order->curtains as $curtain)
-                <td class="text-right">{{$curtain->cover->id}}</td>
-            @endforeach
+            @if(sizeof($order->curtains) >= 6)
+                @for($i = 1; $i <= 6; $i++)
+                    <td class="text-right">{{$order->curtains[$i]->cover->id}} m</td>
+                @endfor
+            @else
+                @foreach($order->curtains as $curtain)
+                    <td class="text-right">{{$curtain->mechanism->cover->id}} m</td>
+                @endforeach
+            @endif
         </tr>
         <tr>
             <td class="border-right">Cubierta</td>
-            @foreach($order->curtains as $curtain)
-                <td class="text-right">{{$curtain->cover->name}}</td>
-            @endforeach
+            @if(sizeof($order->curtains) >= 6)
+                @for($i = 1; $i <= 6; $i++)
+                    <td class="text-right">{{$order->curtains[$i]->cover->name}} m</td>
+                @endfor
+            @else
+                @foreach($order->curtains as $curtain)
+                    <td class="text-right">{{$curtain->mechanism->cover->name}} m</td>
+                @endforeach
+            @endif
         </tr>
         <tr>
             <td class="border-right fixed-height-cell"></td>
-            @foreach($order->curtains as $curtain)
-                <td></td>
-            @endforeach
+            @if(sizeof($order->curtains) >= 6)
+                @for($i = 1; $i <= 6; $i++)
+                    <td></td>
+                @endfor
+            @else
+                @foreach($order->curtains as $curtain)
+                    <td></td>
+                @endforeach
+            @endif
         </tr>
         <tr>
             <td class="border-right">Manivela</td>
-            @foreach($order->curtains as $curtain)
-                @if($curtain->handle_id != 9999 && $curtain->handle_id != 999)
-                    <td class="text-right">{{$curtain->handle->measure}} m ({{$curtain->handle_quantity}})</td>
-                @else
-                    <td></td>
-                @endif
-            @endforeach
+            @if(sizeof($order->curtains) >= 6)
+                @for($i = 1; $i <= 6; $i++)
+                    @if($curtain->handle_id != 9999 && $curtain->handle_id != 999)
+                        <td class="text-right">{{$order->curtain[$i]->handle->measure}} m ({{$order->curtain[$i]->handle_quantity}})</td>
+                    @else
+                        <td></td>
+                    @endif
+                @endfor
+            @else
+                @foreach($order->curtains as $curtain)
+                    @if($curtain->handle_id != 9999 && $curtain->handle_id != 999)
+                        <td class="text-right">{{$curtain->handle->measure}} m ({{$curtain->handle_quantity}})</td>
+                    @else
+                        <td></td>
+                    @endif
+                @endforeach
+            @endif
         </tr>
         <tr>
             <td class="border-right">Control</td>
-            @foreach($order->curtains as $curtain)
-                @if($curtain->control_id != 9999 && $curtain->control_id != 999)
-                    <td class="text-right">{{$curtain->control->name}} ({{$curtain->control_quantity}})</td>
-                @else
-                    <td></td>
-                @endif
-            @endforeach
+            @if(sizeof($order->curtains) >= 6)
+                @for($i = 1; $i <= 6; $i++)
+                    @if($curtain->control_id != 9999 && $curtain->control_id != 999)
+                        <td class="text-right">{{$order->curtain[$i]->control->name}} m ({{$order->curtain[$i]->control_quantity}})</td>
+                    @else
+                        <td></td>
+                    @endif
+                @endfor
+            @else
+                @foreach($order->curtains as $curtain)
+                    @if($curtain->control_id != 9999 && $curtain->control_id != 999)
+                        <td class="text-right">{{$curtain->control->name}} m ({{$curtain->control_quantity}})</td>
+                    @else
+                        <td></td>
+                    @endif
+                @endforeach
+            @endif
         </tr>
         <tr>
             <td class="border-right">Control voz</td>
-            @foreach($order->curtains as $curtain)
-                @if($curtain->voice_id != 9999 && $curtain->voice_id != 999)
-                    <td class="text-right">{{$curtain->voice->name}} ({{$curtain->voice_quantity}})</td>
-                @else
-                    <td></td>
-                @endif
-            @endforeach
+            @if(sizeof($order->curtains) >= 6)
+                @for($i = 1; $i <= 6; $i++)
+                    @if($curtain->voice_id != 9999 && $curtain->voice_id != 999)
+                        <td class="text-right">{{$order->curtain[$i]->voice->name}} m ({{$order->curtain[$i]->voice_quantity}})</td>
+                    @else
+                        <td></td>
+                    @endif
+                @endfor
+            @else
+                @foreach($order->curtains as $curtain)
+                    @if($curtain->voice_id != 9999 && $curtain->voice_id != 999)
+                        <td class="text-right">{{$curtain->voice->name}} ({{$curtain->voice_quantity}})</td>
+                    @else
+                        <td></td>
+                    @endif
+                @endforeach
+            @endif
         </tr>
         <tr>
             <td class="border-right">Tejadillo</td>
-            @foreach($order->curtains as $curtain)
-                @if($curtain->canopy == 1)
-                    <td class="text-right">Si</td>
-                @else
-                    <td></td>
-                @endif
-            @endforeach
+            @if(sizeof($order->curtains) >= 6)
+                @for($i = 1; $i <= 6; $i++)
+                    @if($curtain->canopy == 1)
+                        <td class="text-right">Si</td>
+                    @else
+                        <td></td>
+                    @endif
+                @endfor
+            @else
+                @foreach($order->curtains as $curtain)
+                    @if($curtain->canopy == 1)
+                        <td class="text-right">Si</td>
+                    @else
+                        <td></td>
+                    @endif
+                @endforeach
+            @endif
         </tr>
         <tr>
             <td class="border-right fixed-height-cell"></td>
-            @foreach($order->curtains as $curtain)
-                <td></td>
-            @endforeach
+            @if(sizeof($order->curtains) >= 6)
+                @for($i = 1; $i <= 6; $i++)
+                    <td></td>
+                @endfor
+            @else
+                @foreach($order->curtains as $curtain)
+                    <td></td>
+                @endforeach
+            @endif
         </tr>
         <tr>
-            <td class="border-right">Instalación</td>
-            @foreach($order->curtains as $curtain)
-                <td class="text-right">{{$curtain->installation_type}}</td>
-            @endforeach
+            <td class="border-right">Tipo de instalación</td>
+            @if(sizeof($order->curtains) >= 6)
+                @for($i = 1; $i <= 6; $i++)
+                    <td class="text-right">{{$order->curtain[$i]->installation_type}}</td>
+                @endfor
+            @else
+                @foreach($order->curtains as $curtain)
+                    <td class="text-right">{{$curtain->installation_type}}</td>
+                @endforeach
+            @endif
         </tr>
         <tr>
             <td class="border-right">Lado del mecanismo</td>
-            @foreach($order->curtains as $curtain)
-                <td class="text-right">{{$curtain->mechanism_side}}</td>
-            @endforeach
+            @if(sizeof($order->curtains) >= 6)
+                @for($i = 1; $i <= 6; $i++)
+                    <td class="text-right">{{$order->curtain[$i]->mechanism_side}}</td>
+                @endfor
+            @else
+                @foreach($order->curtains as $curtain)
+                    <td class="text-right">{{$curtain->mechanism_side}}</td>
+                @endforeach
+            @endif
         </tr>
         <tr>
             <td class="border-right">Precio</td>
-            @foreach($order->curtains as $curtain)
-                <td bgcolor="#d3d3d3" class="text-center">${{number_format($curtain->price,2)}}</td>
-            @endforeach
+            @if(sizeof($order->curtains) >= 6)
+                @for($i = 1; $i <= 6; $i++)
+                    <td bgcolor="#d3d3d3" class="text-center">${{number_format($order->curtain[$i]->price,2)}}</td>
+                @endfor
+            @else
+                @foreach($order->curtains as $curtain)
+                    <td bgcolor="#d3d3d3" class="text-center">${{number_format($curtain->price,2)}}</td>
+                @endforeach
+            @endif
         </tr>
         </tbody>
     </table>
-    <p>{{$order->curtains[6]}}}</p>
-    <div id="tables-container">
-        <!-- Tables will be dynamically added here -->
-    </div>
 </div>
-<script>
-    const systems = {!! json_encode($order->curtains) !!}; // Your systems data
-    const maxColumnsPerTable = 6; // Maximum number of columns per table
-    const tablesContainer = document.getElementById('tables-container');
-
-    // Function to create a new table and populate it with data
-    function createTable(data) {
-        const table = document.createElement('table');
-        const tbody = document.createElement('tbody');
-
-        // Create table header row
-        const thead = document.createElement('thead');
-        const headerRow = document.createElement('tr');
-        const headers = ['Header 1', 'Header 2', 'Header 3', 'Header 4', 'Header 5', 'Header 6', 'Header 7'];
-
-        headers.forEach(headerText => {
-            const th = document.createElement('th');
-            th.textContent = headerText;
-            headerRow.appendChild(th);
-        });
-
-        thead.appendChild(headerRow);
-        table.appendChild(thead);
-
-        // Create table body rows
-        data.forEach(curtain => {
-            const row = document.createElement('tr');
-
-            // Sample data for each column
-            const columnsData = [
-                curtain.quantity,
-                curtain.model.name,
-                curtain.mechanism.name,
-                curtain.width + ' m',
-                curtain.height + ' m',
-                curtain.cover.id,
-            ];
-
-            columnsData.forEach(cellData => {
-                const td = document.createElement('td');
-                td.textContent = cellData;
-                row.appendChild(td);
-            });
-
-            tbody.appendChild(row);
-        });
-
-        table.appendChild(tbody);
-        tablesContainer.appendChild(table);
-    }
-
-    let currentTableData = [];
-    systems.forEach((curtain, index) => {
-        currentTableData.push(curtain);
-        console.log(systems);
-
-        // Create a new table every 6 systems or at the end of the data
-        if ((index + 1) % maxColumnsPerTable === 0 || index === systems.length - 1) {
-            createTable(currentTableData);
-            currentTableData = []; // Reset the data for the next table
-        }
-    });
-</script>
 </body>
 </html>
 
