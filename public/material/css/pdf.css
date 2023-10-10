@@ -40,7 +40,7 @@ h3, h1 {
 }
 
 .pdf-table tr, .pdf-table td {
-    max-width: 95px;
+    max-width: 90px;
     padding-right: 3px;
 }
 

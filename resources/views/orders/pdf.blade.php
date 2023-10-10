@@ -277,6 +277,7 @@
         </tr>
         </tbody>
     </table>
+    @if(sizeof($order->curtains) >= 6)
     <br>
     <hr>
     <table class="pdf-table">
@@ -533,6 +534,7 @@
         </tr>
         </tbody>
     </table>
+        @endif
 </div>
 </body>
 </html>
