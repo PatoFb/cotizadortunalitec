@@ -101,27 +101,29 @@
     <br><br><br>
     <br><br><br>
     <br><br><br>
-    <div class="pdf-section company-logo">
-        <!-- Insert company logo here -->
-        <img src="{{ asset('material') }}/img/logosolair.png" alt="Company Logo" width="200">
-    </div>
-    <div class="pdf-section client-data">
-        @if($order->activity == 'Oferta')
-            <h1 class="text-center">Oferta {{ $order->id }}</h1>
-        @else
-            <h1 class="text-center">Pedido{{ $order->id }}</h1>
-        @endif
-        <h3>{{ $order->project }}</h3>
-        <!-- Insert client data here -->
-        Contacto: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $order->user->name }}<br>
-        Socio: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $order->user->partner->description }}<br>
-        Email: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $order->user->email }}<br>
-        Teléfono: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $order->user->phone }}<br>
-    </div>
-    <div class="clear"></div>
-    <br><br>
-    <h3 class="text-center">Desglose de proyecto</h3>
     @for($e = 1; $e <= ceil(sizeof($order->curtains)/6); $e++)
+        @if($e % 2 == 1)
+            <div class="pdf-section company-logo">
+                <!-- Insert company logo here -->
+                <img src="{{ asset('material') }}/img/logosolair.png" alt="Company Logo" width="200">
+            </div>
+            <div class="pdf-section client-data">
+                @if($order->activity == 'Oferta')
+                    <h1 class="text-center">Oferta {{ $order->id }}</h1>
+                @else
+                    <h1 class="text-center">Pedido{{ $order->id }}</h1>
+                @endif
+                <h3>{{ $order->project }}</h3>
+                <!-- Insert client data here -->
+                Contacto: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $order->user->name }}<br>
+                Socio: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $order->user->partner->description }}<br>
+                Email: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $order->user->email }}<br>
+                Teléfono: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $order->user->phone }}<br>
+            </div>
+            <div class="clear"></div>
+            <br><br>
+            <h3 class="text-center">Desglose de proyecto</h3>
+            @endif
         <table class="pdf-table">
             <thead>
             <tr>
