@@ -244,7 +244,7 @@
             <tr>
                 <td class="border-right">Tipo de instalación</td>
                 @if(sizeof($order->curtains) >= ($e*6)))
-                @for($i = ($e*6-6); $i < ($e*6-6); $i++)
+                @for($i = ($e*6-6); $i < ($e*6); $i++)
                     <td class="text-right">{{$order->curtains[$i]->installation_type}}</td>
                 @endfor
                 @else
