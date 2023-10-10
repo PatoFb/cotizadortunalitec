@@ -119,7 +119,7 @@
                 @endfor
             @else
                 @foreach($order->curtains as $curtain)
-                    <td class="text-right">{{$curtain->mechanism->cover->id}}</td>
+                    <td class="text-right">{{$curtain->cover->id}}</td>
                 @endforeach
             @endif
         </tr>
@@ -131,7 +131,7 @@
                 @endfor
             @else
                 @foreach($order->curtains as $curtain)
-                    <td class="text-right">{{$curtain->mechanism->cover->name}}</td>
+                    <td class="text-right">{{$curtain->cover->name}}</td>
                 @endforeach
             @endif
         </tr>
