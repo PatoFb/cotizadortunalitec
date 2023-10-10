@@ -26,11 +26,11 @@
     <div class="pdf-section order-number">
         <!-- Insert order number here -->
         @if($order->activity == 'Oferta')
-            <h2>Oferta {{ $order->id }}</h2><br>
+            <h3>Oferta {{ $order->id }}</h3><br>
         @else
-            <h2>Pedido {{ $order->id }}</h2>
+            <h3>Pedido {{ $order->id }}</h3>
         @endif
-        <h2>{{ $order->project }}</h2><br>
+        <h2>{{ $order->project }}</h2>
     </div>
 
     <!-- Company Logo Section -->
