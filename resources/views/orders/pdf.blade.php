@@ -31,7 +31,7 @@
     <!-- Company Logo Section -->
     <div class="pdf-section company-logo">
         <!-- Insert company logo here -->
-        <img type="image/png" href="{{ asset('material') }}/img/logosolair.png" alt="Company Logo" width="100">
+        <img href="{{ asset('material') }}/img/logosolair.png" alt="Company Logo" width="100">
     </div>
     <table class="pdf-table">
         <thead>
