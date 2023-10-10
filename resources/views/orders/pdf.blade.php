@@ -30,7 +30,7 @@
         @else
             <h3>Pedido {{ $order->id }}</h3>
         @endif
-        <h2>{{ $order->project }}</h2>
+        <h3>{{ $order->project }}</h3>
     </div>
 
     <!-- Company Logo Section -->
