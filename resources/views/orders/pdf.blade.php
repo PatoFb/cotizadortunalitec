@@ -152,7 +152,7 @@
             @if(sizeof($order->curtains) >= 6)
                 @for($i = 1; $i <= 6; $i++)
                     @if($curtain->handle_id != 9999 && $curtain->handle_id != 999)
-                        <td class="text-right">{{$order->curtain[$i]->handle->measure}} m ({{$order->curtain[$i]->handle_quantity}})</td>
+                        <td class="text-right">{{$order->curtains[$i]->handle->measure}} m ({{$order->curtains[$i]->handle_quantity}})</td>
                     @else
                         <td></td>
                     @endif
@@ -172,7 +172,7 @@
             @if(sizeof($order->curtains) >= 6)
                 @for($i = 1; $i <= 6; $i++)
                     @if($curtain->control_id != 9999 && $curtain->control_id != 999)
-                        <td class="text-right">{{$order->curtain[$i]->control->name}} m ({{$order->curtain[$i]->control_quantity}})</td>
+                        <td class="text-right">{{$order->curtains[$i]->control->name}} m ({{$order->curtains[$i]->control_quantity}})</td>
                     @else
                         <td></td>
                     @endif
@@ -192,7 +192,7 @@
             @if(sizeof($order->curtains) >= 6)
                 @for($i = 1; $i <= 6; $i++)
                     @if($curtain->voice_id != 9999 && $curtain->voice_id != 999)
-                        <td class="text-right">{{$order->curtain[$i]->voice->name}} m ({{$order->curtain[$i]->voice_quantity}})</td>
+                        <td class="text-right">{{$order->curtains[$i]->voice->name}} m ({{$order->curtains[$i]->voice_quantity}})</td>
                     @else
                         <td></td>
                     @endif
@@ -243,7 +243,7 @@
             <td class="border-right">Tipo de instalación</td>
             @if(sizeof($order->curtains) >= 6)
                 @for($i = 1; $i <= 6; $i++)
-                    <td class="text-right">{{$order->curtain[$i]->installation_type}}</td>
+                    <td class="text-right">{{$order->curtains[$i]->installation_type}}</td>
                 @endfor
             @else
                 @foreach($order->curtains as $curtain)
@@ -255,7 +255,7 @@
             <td class="border-right">Lado del mecanismo</td>
             @if(sizeof($order->curtains) >= 6)
                 @for($i = 1; $i <= 6; $i++)
-                    <td class="text-right">{{$order->curtain[$i]->mechanism_side}}</td>
+                    <td class="text-right">{{$order->curtains[$i]->mechanism_side}}</td>
                 @endfor
             @else
                 @foreach($order->curtains as $curtain)
@@ -267,7 +267,7 @@
             <td class="border-right">Precio</td>
             @if(sizeof($order->curtains) >= 6)
                 @for($i = 1; $i <= 6; $i++)
-                    <td bgcolor="#d3d3d3" class="text-center">${{number_format($order->curtain[$i]->price,2)}}</td>
+                    <td bgcolor="#d3d3d3" class="text-center">${{number_format($order->curtains[$i]->price,2)}}</td>
                 @endfor
             @else
                 @foreach($order->curtains as $curtain)
