@@ -19,7 +19,7 @@ body {
     background-color: #282828;
     color: white;
     overflow: hidden; /* Hide overflow from the triangle */
-    padding-left: 10px;
+    margin-right: 30px;
 }
 
 .company-logo {
