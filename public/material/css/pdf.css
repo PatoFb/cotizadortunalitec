@@ -19,16 +19,20 @@ body {
     background-color: #282828;
     color: white;
     overflow: hidden; /* Hide overflow from the triangle */
+    padding: 0;
 }
 
 .company-logo {
     text-align: center;
     width: 35%; /* 20% width for order number and company logo */
+    padding: 0;
 }
 
 h3, h1 {
     margin-top: 0; /* Remove top margin */
     padding-top: 0; /* Remove top padding */
+    margin-bottom: 0; /* Remove top margin */
+    padding-bottom: 0; /* Remove top padding */
 }
 
 .pdf-table {
