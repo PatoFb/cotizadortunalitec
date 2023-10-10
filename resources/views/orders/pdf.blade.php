@@ -33,7 +33,7 @@
     <table class="pdf-table">
         <thead>
             <tr>
-                <th class="border-right">Datos:</th>
+                <th class="border-right">Datos de sistema:</th>
                 @for($i = 1; $i <= sizeof($order->curtains); $i++)
                     <th class="border-bottom">Sistema {{$i}}:</th>
                 @endfor
