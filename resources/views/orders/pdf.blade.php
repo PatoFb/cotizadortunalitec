@@ -92,7 +92,7 @@
 
     </div>
     <div class="pdf-section company-logo">
-        <img src="{{asset('storage')}}/images/{{$order->model->photo}}" style="max-width: 250px" alt="Model">
+        <img src="{{asset('storage')}}/images/{{$order->curtains[0]->model->photo}}" style="max-width: 250px" alt="Model">
     </div>
 
     <div class="pdf-section company-logo">
