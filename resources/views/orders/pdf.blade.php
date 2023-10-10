@@ -92,9 +92,12 @@
 
     </div>
     <div class="pdf-section company-logo">
-        <img src="{{asset('storage')}}/images/{{$order->curtains[0]->model->photo}}" style="max-width: 250px" alt="Model">
+        <img src="{{asset('storage')}}/images/{{$order->curtains[0]->model->photo}}" style="max-width: 300px" alt="Model">
     </div>
     <div class="clear"></div>
+    <br><br><br>
+    <br><br><br>
+    <br><br><br>
     <div class="pdf-section company-logo">
         <!-- Insert company logo here -->
         <img src="{{ asset('material') }}/img/logosolair.png" alt="Company Logo" width="200">
