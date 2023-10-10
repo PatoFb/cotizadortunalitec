@@ -19,13 +19,12 @@ body {
     background-color: #282828;
     color: white;
     overflow: hidden; /* Hide overflow from the triangle */
-    padding: 0;
+    padding-left: 10px;
 }
 
 .company-logo {
     text-align: center;
     width: 35%; /* 20% width for order number and company logo */
-    padding: 0;
 }
 
 h3, h1 {
