@@ -94,12 +94,11 @@
     <div class="pdf-section company-logo">
         <img src="{{asset('storage')}}/images/{{$order->curtains[0]->model->photo}}" style="max-width: 250px" alt="Model">
     </div>
-
+    <hr>
     <div class="pdf-section company-logo">
         <!-- Insert company logo here -->
         <img src="{{ asset('material') }}/img/logosolair.png" alt="Company Logo" width="200">
     </div>
-    <hr>
     <div class="pdf-section client-data">
         @if($order->activity == 'Oferta')
             <h1 class="text-center">Oferta {{ $order->id }}</h1>
