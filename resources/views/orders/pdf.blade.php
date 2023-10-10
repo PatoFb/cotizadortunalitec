@@ -23,6 +23,7 @@
         Email: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $order->user->email }}<br>
         Teléfono: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $order->user->phone }}<br>
     </div>
+    <br>
     @for($e = 1; $e <= ceil(sizeof($order->curtains)/6); $e++)
         <table class="pdf-table">
             <thead>
