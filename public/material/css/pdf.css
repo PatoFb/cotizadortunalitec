@@ -26,6 +26,11 @@ body {
     width: 35%; /* 20% width for order number and company logo */
 }
 
+h1 {
+    margin-top: 0; /* Remove top margin */
+    padding-top: 0; /* Remove top padding */
+}
+
 h3 {
     margin-top: 0; /* Remove top margin */
     padding-top: 0; /* Remove top padding */
