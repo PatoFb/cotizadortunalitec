@@ -151,7 +151,6 @@
         <!-- Tables will be dynamically added here -->
     </div>
 </div>
-</body>
 <script>
     const systems = {!! json_encode($order->curtains) !!}; // Your systems data
 
@@ -215,5 +214,6 @@
         }
     });
 </script>
+</body>
 </html>
 
