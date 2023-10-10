@@ -55,6 +55,7 @@
         </tr>
         </tbody>
     </table>
+    <br><br><br>
     <h3 class="text-center">Resumen de proyecto</h3>
     <table class="summary">
         <thead>
