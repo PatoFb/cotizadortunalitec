@@ -55,8 +55,9 @@
         </tr>
         </tbody>
     </table>
-    <br><br><br>
+    <br><br><br><br>
     <h3 class="text-center">Resumen de proyecto</h3>
+    <br>
     <table class="summary">
         <thead>
         <tr>
@@ -71,7 +72,7 @@
         <tbody>
         <tr>
             <td>{{$order->id}}</td>
-            <td>{{$order->discount}}</td>
+            <td>${{number_format($order->price*(1+$order->discount/100),2)}}{{$order->discount}}</td>
             <td>$1750.00</td>
             <td>$1600.00</td>
             <td>${{number_format($order->price,2)}}</td>
