@@ -277,6 +277,8 @@
         </tr>
         </tbody>
     </table>
+    <br>
+    <br>
     <table class="pdf-table">
         <thead>
         <tr>
