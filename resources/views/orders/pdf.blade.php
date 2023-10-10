@@ -31,7 +31,7 @@
         <img src="company-logo.png" alt="Company Logo" width="100">
     </div>
 </div>
-    <table>
+    <table class="pdf-table">
         <thead>
             <tr>
                 <th class="border-right">Datos:</th>
