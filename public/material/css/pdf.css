@@ -14,24 +14,17 @@ body {
     padding: 10px; /* Add padding for spacing */
 }
 
-.client-data, .address {
-    width: 30%; /* 30% width for client data and address */
+.client-data {
+    width: 65%; /* 30% width for client data and address */
     background-color: #282828;
     color: white;
-}
-
-.order-number, .company-logo {
-    width: 20%; /* 20% width for order number and company logo */
-}
-
-.order-number {
-    text-align: center; /* 20% width for order number and company logo */
-    background-color: black;
-    color: white;
+    overflow: hidden; /* Hide overflow from the triangle */
 }
 
 .company-logo {
-    text-align: left; /* Center-align company logo */
+    height: 100%;
+    text-align: center;
+    width: 35%; /* 20% width for order number and company logo */
 }
 
 h3 {

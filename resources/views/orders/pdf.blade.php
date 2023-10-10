@@ -6,40 +6,24 @@
 </head>
 <body>
 <div class="pdf-layout">
+    <div class="pdf-section company-logo">
+        <!-- Insert company logo here -->
+        <img src="{{ asset('material') }}/img/logosolair.png" alt="Company Logo">
+    </div>
     <div class="pdf-section client-data">
-        <!-- Insert client data here -->
-        Contacto: {{ $order->user->name }}<br>
-        Socio: {{ $order->user->partner->description }}<br>
-        Email: {{ $order->user->email }}<br>
-        Teléfono: {{ $order->user->phone }}<br>
-        <div class="triangle"></div>
-    </div>
-
-    <!-- Address Section -->
-    <div class="pdf-section address">
-        <!-- Insert address here -->
-        Calle y numero: {{$order->line1}}<br>
-        Colonia y CP: {{$order->line2}}, {{$order->zip_code}}<br>
-        Ciudad y estado: {{$order->city}}, {{$order->state}} <br>
-        Referencias: {{$order->reference}} <br>
-        <div class="triangle"></div>
-    </div>
-
-    <!-- Order Number Section -->
-    <div class="pdf-section order-number">
-        <!-- Insert order number here -->
         @if($order->activity == 'Oferta')
             <h3>Oferta {{ $order->id }}</h3>
         @else
             <h3>Pedido {{ $order->id }}</h3>
         @endif
         <h3>{{ $order->project }}</h3>
-    </div>
-
-    <!-- Company Logo Section -->
-    <div class="pdf-section company-logo">
-        <!-- Insert company logo here -->
-        <img src="{{ asset('material') }}/img/logosolair.png" alt="Company Logo" width="100">
+        <!-- Insert client data here -->
+           Proyecto: {{ $order->project }}<br>
+        Contacto: {{ $order->user->name }}<br>
+        Socio: {{ $order->user->partner->description }}<br>
+        Email: {{ $order->user->email }}<br>
+        Teléfono: {{ $order->user->phone }}<br>
+        <div class="triangle"></div>
     </div>
     <table class="pdf-table">
         <thead>

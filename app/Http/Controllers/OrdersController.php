@@ -199,8 +199,7 @@ class OrdersController extends Controller
         }
 
         // Load the PDF template
-        $pdf = Pdf::setPaper('A4', 'landscape')
-            ->setOption('is-html5-parser-enabled', true)
+        $pdf = Pdf::setOption('is-html5-parser-enabled', true)
             ->loadView('orders.pdf', compact('order'));
 
         // Generate the PDF
