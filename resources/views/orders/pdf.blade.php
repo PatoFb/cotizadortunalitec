@@ -32,7 +32,7 @@
                         <th class="border-bottom">Sistema {{$i}}:</th>
                     @endfor
                 @else
-                    @for($i = 1; sizeof($order->curtains); $i++)
+                    @for($i = 1; $i <= sizeof($order->curtains); $i++)
                         <th class="border-bottom">Sistema {{$i}}:</th>
                     @endfor
                 @endif
