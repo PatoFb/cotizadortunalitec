@@ -80,15 +80,15 @@
                 <br>
                 <div class="form-row">
                     <div class="col-md-12 col-sm-12">
-                        {!! Form::label('line1', 'Línea de dirección 1:') !!}
-                        {!! Form::text('line1', null, ['class'=>'form-control', 'placeholder'=>'Colonia, calle, nombre de la empresa, # exterior']) !!}
+                        {!! Form::label('line1', 'Colonia:') !!}
+                        {!! Form::text('line1', null, ['class'=>'form-control', 'placeholder'=>'Colonia']) !!}
                     </div>
                 </div>
                 <br>
                 <div class="form-row">
                     <div class="col-md-12 col-sm-12">
-                        {!! Form::label('line2', 'Línea de dirección 2:') !!}
-                        {!! Form::text('line2', null, ['class'=>'form-control', 'placeholder'=>'# interior, edificio, departamento, etc.']) !!}
+                        {!! Form::label('line2', 'Calle y número:') !!}
+                        {!! Form::text('line2', null, ['class'=>'form-control', 'placeholder'=>'Calle, nombre de la empresa, # exterior']) !!}
                     </div>
                 </div>
                 <br>

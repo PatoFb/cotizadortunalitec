@@ -217,7 +217,7 @@
                       <i class="material-icons">description</i>
                   </span>
                       </div>
-                      <input type="text" name="line1" class="form-control" placeholder="{{ __('Colonia, calle, nombre de la empresa, # exterior') }}" value="{{ old('line1') }}">
+                      <input type="text" name="line1" class="form-control" placeholder="{{ __('Colonia') }}" value="{{ old('line1') }}">
                   </div>
                   @if ($errors->has('line1'))
                       <div id="name-error" class="error text-danger pl-3" for="line1" style="display: block;">
@@ -232,7 +232,7 @@
                       <i class="material-icons">description</i>
                   </span>
                       </div>
-                      <input type="text" name="line2" class="form-control" placeholder="{{ __('# interior, edificio, departamento, etc.') }}" value="{{ old('line2') }}">
+                      <input type="text" name="line2" class="form-control" placeholder="{{ __('Calle, nombre de la empresa, # exterior') }}" value="{{ old('line2') }}">
                   </div>
                   @if ($errors->has('line2'))
                       <div id="name-error" class="error text-danger pl-3" for="line2" style="display: block;">

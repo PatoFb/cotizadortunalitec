@@ -28,7 +28,7 @@ body {
 }
 
 .company-logo {
-    text-align: center; /* Center-align company logo */
+    text-align: left; /* Center-align company logo */
 }
 
 .pdf-table {
