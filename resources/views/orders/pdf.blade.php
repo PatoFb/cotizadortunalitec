@@ -18,10 +18,10 @@
         @endif
         <h3>{{ $order->project }}</h3>
         <!-- Insert client data here -->
-        Contacto: &nbsp;&nbsp;&nbsp;&nbsp;{{ $order->user->name }}<br>
-        Socio: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $order->user->partner->description }}<br>
-        Email: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $order->user->email }}<br>
-        Teléfono: &nbsp;&nbsp;&nbsp;&nbsp;{{ $order->user->phone }}<br>
+        Contacto: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $order->user->name }}<br>
+        Socio: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $order->user->partner->description }}<br>
+        Email: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $order->user->email }}<br>
+        Teléfono: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $order->user->phone }}<br>
         <div class="triangle"></div>
     </div>
     <table class="pdf-table">
