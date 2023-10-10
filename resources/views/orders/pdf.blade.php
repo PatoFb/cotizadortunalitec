@@ -23,11 +23,9 @@
         Email: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $order->user->email }}<br>
         Teléfono: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $order->user->phone }}<br>
     </div>
-    <br>
-    <br>
-    <br>
+    <br><br><br><br>
     Números de cuenta disponibles para realizar su pago:<br>
-    A nombre de Tunali Tec S de RL de CV:<br>
+    A nombre de Tunali Tec S de RL de CV:
     <table class="banks-table">
         <thead>
         <tr>
