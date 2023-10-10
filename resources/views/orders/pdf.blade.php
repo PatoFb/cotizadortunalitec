@@ -301,7 +301,7 @@
                 @endfor
             @else
                 @for($i = 6; $i < sizeof($order->curtains); $i++)
-                    <td class="text-right">{{$curtain->quantity}}</td>
+                    <td class="text-right">{{$order->curtains[$i]->quantity}}</td>
                 @endfor
             @endif
         </tr>
@@ -313,7 +313,7 @@
                 @endfor
             @else
                 @for($i = 6; $i < sizeof($order->curtains); $i++)
-                    <td class="text-right">{{$curtain->model->name}}</td>
+                    <td class="text-right">{{$order->curtains[$i]->model->name}}</td>
                 @endfor
             @endif
         </tr>
@@ -325,7 +325,7 @@
                 @endfor
             @else
                 @for($i = 6; $i < sizeof($order->curtains); $i++)
-                    <td class="text-right">{{$curtain->mechanism->name}}</td>
+                    <td class="text-right">{{$order->curtains[$i]->mechanism->name}}</td>
                 @endfor
             @endif
         </tr>
@@ -337,7 +337,7 @@
                 @endfor
             @else
                 @for($i = 6; $i < sizeof($order->curtains); $i++)
-                    <td class="text-right">{{$curtain->mechanism->name}}</td>
+                    <td class="text-right">{{$order->curtains[$i]->mechanism->name}}</td>
                 @endfor
             @endif
         </tr>
@@ -349,7 +349,7 @@
                 @endfor
             @else
                 @for($i = 6; $i < sizeof($order->curtains); $i++)
-                    <td class="text-right">{{$curtain->mechanism->width}} m</td>
+                    <td class="text-right">{{$order->curtains[$i]->mechanism->width}} m</td>
                 @endfor
             @endif
         </tr>
@@ -361,7 +361,7 @@
                 @endfor
             @else
                 @for($i = 6; $i < sizeof($order->curtains); $i++)
-                    <td class="text-right">{{$curtain->mechanism->height}} m</td>
+                    <td class="text-right">{{$order->curtains[$i]->mechanism->height}} m</td>
                 @endfor
             @endif
         </tr>
@@ -373,7 +373,7 @@
                 @endfor
             @else
                 @for($i = 6; $i < sizeof($order->curtains); $i++)
-                    <td class="text-right">{{$curtain->mechanism->cover->id}} m</td>
+                    <td class="text-right">{{$order->curtains[$i]->mechanism->cover->id}} m</td>
                 @endfor
             @endif
         </tr>
@@ -385,7 +385,7 @@
                 @endfor
             @else
                 @for($i = 6; $i < sizeof($order->curtains); $i++)
-                    <td class="text-right">{{$curtain->mechanism->cover->name}} m</td>
+                    <td class="text-right">{{$order->curtains[$i]->mechanism->cover->name}} m</td>
                 @endfor
             @endif
         </tr>
@@ -413,8 +413,8 @@
                 @endfor
             @else
                 @for($i = 6; $i < sizeof($order->curtains); $i++)
-                    @if($curtain->handle_id != 9999 && $curtain->handle_id != 999)
-                        <td class="text-right">{{$curtain->handle->measure}} m ({{$curtain->handle_quantity}})</td>
+                    @if($order->curtains[$i]->handle_id != 9999 && $order->curtains[$i]->handle_id != 999)
+                        <td class="text-right">{{$order->curtains[$i]->handle->measure}} m ({{$order->curtains[$i]->handle_quantity}})</td>
                     @else
                         <td></td>
                     @endif
@@ -433,8 +433,8 @@
                 @endfor
             @else
                 @for($i = 6; $i < sizeof($order->curtains); $i++)
-                    @if($curtain->control_id != 9999 && $curtain->control_id != 999)
-                        <td class="text-right">{{$curtain->control->name}} m ({{$curtain->control_quantity}})</td>
+                    @if($order->curtains[$i]->control_id != 9999 && $order->curtains[$i]->control_id != 999)
+                        <td class="text-right">{{$order->curtains[$i]->control->name}} m ({{$order->curtains[$i]->control_quantity}})</td>
                     @else
                         <td></td>
                     @endif
@@ -453,8 +453,8 @@
                 @endfor
             @else
                 @for($i = 6; $i < sizeof($order->curtains); $i++)
-                    @if($curtain->voice_id != 9999 && $curtain->voice_id != 999)
-                        <td class="text-right">{{$curtain->voice->name}} ({{$curtain->voice_quantity}})</td>
+                    @if($order->curtains[$i]->voice_id != 9999 && $order->curtains[$i]->voice_id != 999)
+                        <td class="text-right">{{$order->curtains[$i]->voice->name}} ({{$order->curtains[$i]->voice_quantity}})</td>
                     @else
                         <td></td>
                     @endif
@@ -473,7 +473,7 @@
                 @endfor
             @else
                 @for($i = 6; $i < sizeof($order->curtains); $i++)
-                    @if($curtain->canopy == 1)
+                    @if($order->curtains[$i]->canopy == 1)
                         <td class="text-right">Si</td>
                     @else
                         <td></td>
@@ -501,7 +501,7 @@
                 @endfor
             @else
                 @for($i = 6; $i < sizeof($order->curtains); $i++)
-                    <td class="text-right">{{$curtain->installation_type}}</td>
+                    <td class="text-right">{{$order->curtains[$i]->installation_type}}</td>
                 @endfor
             @endif
         </tr>
@@ -513,7 +513,7 @@
                 @endfor
             @else
                 @for($i = 6; $i < sizeof($order->curtains); $i++)
-                    <td class="text-right">{{$curtain->mechanism_side}}</td>
+                    <td class="text-right">{{$order->curtains[$i]->mechanism_side}}</td>
                 @endfor
             @endif
         </tr>
@@ -525,7 +525,7 @@
                 @endfor
             @else
                 @for($i = 6; $i < sizeof($order->curtains); $i++)
-                    <td bgcolor="#d3d3d3" class="text-center">${{number_format($curtain->price,2)}}</td>
+                    <td bgcolor="#d3d3d3" class="text-center">${{number_format($order->curtains[$i]->price,2)}}</td>
                 @endfor
             @endif
         </tr>
