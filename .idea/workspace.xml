@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/public/material/css/pdf.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/material/css/pdf.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/orders/pdf.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/orders/pdf.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -395,7 +396,7 @@
       <workItem from="1696031095746" duration="1113000" />
       <workItem from="1696266288794" duration="2461000" />
       <workItem from="1696430835300" duration="15160000" />
-      <workItem from="1696948917555" duration="6988000" />
+      <workItem from="1696948917555" duration="7311000" />
     </task>
     <servers />
   </component>
