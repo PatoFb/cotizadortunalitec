@@ -115,11 +115,11 @@
             <td class="border-right"></td>
             @if(sizeof($order->curtains) >= 6)
                 @for($i = 0; $i < 6; $i++)
-                    <td class="text-right">{{$order->curtains[$i]->cover->id}} m</td>
+                    <td class="text-right">{{$order->curtains[$i]->cover->id}}</td>
                 @endfor
             @else
                 @foreach($order->curtains as $curtain)
-                    <td class="text-right">{{$curtain->mechanism->cover->id}} m</td>
+                    <td class="text-right">{{$curtain->mechanism->cover->id}}</td>
                 @endforeach
             @endif
         </tr>
@@ -127,11 +127,11 @@
             <td class="border-right">Cubierta</td>
             @if(sizeof($order->curtains) >= 6)
                 @for($i = 0; $i < 6; $i++)
-                    <td class="text-right">{{$order->curtains[$i]->cover->name}} m</td>
+                    <td class="text-right">{{$order->curtains[$i]->cover->name}}</td>
                 @endfor
             @else
                 @foreach($order->curtains as $curtain)
-                    <td class="text-right">{{$curtain->mechanism->cover->name}} m</td>
+                    <td class="text-right">{{$curtain->mechanism->cover->name}}</td>
                 @endforeach
             @endif
         </tr>
@@ -369,11 +369,11 @@
             <td class="border-right"></td>
             @if(sizeof($order->curtains) >= 12)
                 @for($i = 6; $i < 12; $i++)
-                    <td class="text-right">{{$order->curtains[$i]->cover->id}} m</td>
+                    <td class="text-right">{{$order->curtains[$i]->cover->id}}</td>
                 @endfor
             @else
                 @for($i = 6; $i < sizeof($order->curtains); $i++)
-                    <td class="text-right">{{$order->curtains[$i]->mechanism->cover->id}} m</td>
+                    <td class="text-right">{{$order->curtains[$i]->cover->id}}</td>
                 @endfor
             @endif
         </tr>
@@ -381,11 +381,11 @@
             <td class="border-right">Cubierta</td>
             @if(sizeof($order->curtains) >= 12)
                 @for($i = 6; $i < 12; $i++)
-                    <td class="text-right">{{$order->curtains[$i]->cover->name}} m</td>
+                    <td class="text-right">{{$order->curtains[$i]->cover->name}}</td>
                 @endfor
             @else
                 @for($i = 6; $i < sizeof($order->curtains); $i++)
-                    <td class="text-right">{{$order->curtains[$i]->mechanism->cover->name}} m</td>
+                    <td class="text-right">{{$order->curtains[$i]->cover->name}}</td>
                 @endfor
             @endif
         </tr>
