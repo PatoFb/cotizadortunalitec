@@ -179,7 +179,7 @@
       </div>
           @foreach($order->curtains as $curtain)
               <div class="modal fade" id="curtainDetailsModal{{$curtain->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 1050;">
-                  <div class="modal-dialog modal-md modal-dialog-scrollable" role="document">
+                  <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
                               <h5 class="modal-title" id="exampleModalLabel">Detalles</h5>
