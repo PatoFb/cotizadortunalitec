@@ -6,7 +6,6 @@ use App\Http\Requests\CoverRequest;
 use App\Http\Requests\CurtainDataRequest;
 use App\Http\Requests\CurtainFeaturesRequest;
 use App\Http\Requests\CurtainModelRequest;
-use App\Http\Requests\ModelRequest;
 use App\Models\Complement;
 use App\Models\Cover;
 use App\Models\Curtain;

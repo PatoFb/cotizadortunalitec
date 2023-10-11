@@ -4,6 +4,7 @@
 <div class="content">
     @include('alerts.success')
     @include('alerts.error')
+    @include('alerts.errors')
   <div class="container-fluid">
     <div class="row">
           <div class="col-md-12">
