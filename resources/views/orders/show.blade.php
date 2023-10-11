@@ -51,13 +51,13 @@
                                   <a class="btn btn-success btn-sm" target="_blank" href="{{route('orders.generate', $order->id)}}" data-original-title="" title="">
                                       Generar PDF
                                   </a>
-                                  <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#editAddressModal" id="edit_address_modal">
-                                      Editar Dirección
-                                  </button>
                           <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#editModal" id="edit_order_modal">
                               Editar Orden
                           </button>
                           <a href="{{route('orders.type', $order->id)}}" class="btn btn-sm btn-primary" >Agregar producto</a>
+                                  <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#makeOrderModal" id="make_order_modal">
+                                      Hacer Pedido
+                                  </button>
                               @endif
                       </div>
                       <div class="table-responsive">
@@ -153,13 +153,15 @@
                                   <td>{{$curtain->quantity}}</td>
                                   <td class="text-right">${{number_format($curtain->price, 2)}}</td>
                                       <td class="td-actions text-right">
-                                          <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#curtainDetailsModal{{$curtain->id}}" id="curtain_details_modal">
-                                              Ver detalle
-                                          </button>
+                                          <button type="button" class="btn btn-link btn-info" data-toggle="modal" data-target="#curtainDetailsModal{{$curtain->id}}" id="curtain_details_modal">
+                                              <i class="material-icons">info</i>
+                                              <div class="ripple-container"></div></button>
+                                          @if($order->activity == "Pedido" || $order->activity == "Oferta")
                                           <button type="button" class="btn btn-danger btn-link" data-toggle="modal" data-target="#deleteModal{{$curtain->id}}" id="delete_product_modal">
                                               <i class="material-icons">delete</i>
                                               <div class="ripple-container"></div></button>
-                                          @if($order->activity == "Pedido")
+                                          @endif
+                                          @if($order->activity == "Pedido" || $order->activity == "Oferta")
                                               <button type="button" class="btn btn-info btn-link" data-toggle="modal" data-target="#addModal{{$curtain->id}}" id="add_data_modal">
                                                   Añadir datos
                                                   </button>
@@ -1009,16 +1011,6 @@
                 </div>
                 <div class="modal-body">
                     {!! Form::model($order, ['method'=>'PUT', 'action'=>['App\Http\Controllers\OrdersController@update', $order->id]]) !!}
-                    <div class="row">
-                    <div class="col-12">
-                        {!! Form::label('activity', 'Actividad:') !!}
-                        <select class="form-control" name="activity" >
-                            <option @if($order->activity == "Oferta") selected @endif>Oferta</option>
-                            <option @if($order->activity == "Pedido") selected @endif>Pedido</option>
-                        </select>
-                    </div>
-                    </div>
-                    <br>
                         <div class="row">
                     <div class="col-md-6 col-sm-12">
                         {!! Form::label('project', 'Nombre del proyecto:') !!}
@@ -1041,28 +1033,6 @@
                             {!! Form::textarea('comments', null, ['class'=>'form-control']) !!}
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-
-                    {!! Form::submit('Aceptar', ['class'=>'btn btn-primary pull-right', 'id'=>'edit_order']) !!}
-
-
-                    {!! Form::close() !!}
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="editAddressModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Editar Dirección</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    {!! Form::model($order, ['method'=>'PUT', 'action'=>['App\Http\Controllers\OrdersController@updateAddress', $order->id]]) !!}
                     <div class="row">
                         <div class="col-sm-12">
                             <label for="line1">{{ __('Colonia') }}</label>
@@ -1130,10 +1100,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-
-                    {!! Form::submit('Aceptar', ['class'=>'btn btn-primary pull-right', 'id'=>'edit_address_order']) !!}
-
-
+                    {!! Form::submit('Aceptar', ['class'=>'btn btn-primary pull-right', 'id'=>'edit_order']) !!}
                     {!! Form::close() !!}
                 </div>
             </div>
@@ -1168,6 +1135,27 @@
         </div>
         </div>
             </div>
+    <div class="modal fade" id="makeOrderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Convertir a pedido</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Seguro que desea realizar su pedido? Una vez finalizado, será pasado a revisión por nuestro equipo para ser enviado a producción.
+                </div>
+                <div class="modal-footer">
+                    {!! Form::open(['method'=>'GET', 'action'=>['App\Http\Controllers\OrdersController@makeOrder', $order->id]]) !!}
+                    {!! Form::submit('Aceptar', ['class'=>'btn btn-success', 'id'=>'make_order']) !!}
+                    {!! Form::close() !!}
+
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal fade" id="deleteOrderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

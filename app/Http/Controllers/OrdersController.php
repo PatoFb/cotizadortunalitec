@@ -60,6 +60,26 @@ class OrdersController extends Controller
         return redirect()->back()->withStatus(__('La orden fue autorizada'));
     }
 
+    public function makeOrder($id)
+    {
+        $order = Order::findOrFail($id);
+        foreach ($order->curtains as $curtain) {
+            if(!$curtain->installation_type || !$curtain->mechanism_side || $curtain->cover_id <= 10) {
+                if(!$curtain->installation_type || !$curtain->mechanism_side) {
+                    $status = 'Asegurese de ingresar los datos para producción de cada sistema antes de realizar el pedido.';
+                }
+                if($curtain->cover_id <= 10) {
+                    $status = 'Asegurese de no tener estilos pendientes antes de realizar el pedido.';
+                }
+            } else {
+                $status = 'Su pedido fue realizado exitosamente, pasará a revisión del equipo para confirmar su pago. Gracias!';
+                $order->activity = 'Pedido';
+                $order->save();
+            }
+        }
+        return redirect()->back()->withStatus(__($status));
+    }
+
     public function cancel($id)
     {
         $order = Order::findOrFail($id);
@@ -170,17 +190,6 @@ class OrdersController extends Controller
         $input = $request->all();
         $order->update($input);
         return redirect('orders/'.$id)->withStatus('Orden editada correctamente');
-    }
-
-    public function updateAddress(AddressRequest $request, $id)
-    {
-        $order = Order::findOrFail($id);
-        if(!auth()->user()->isAdmin()) {
-            $this->authorize('checkUser', $order);
-        }
-        $input = $request->all();
-        $order->update($input);
-        return redirect('orders/'.$id)->withStatus('Dirección editada correctamente');
     }
 
     public function upload(Request $request, $id){

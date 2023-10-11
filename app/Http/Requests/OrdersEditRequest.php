@@ -24,17 +24,21 @@ class OrdersEditRequest extends FormRequest
     public function rules()
     {
         return [
-            'activity' => 'required',
             'project' => ['required', 'max:255', 'min:3', 'string'],
             'discount' => ['required', 'min:0', 'max:100', 'numeric'],
-            'comment' => ['nullable','string']
+            'comment' => ['nullable','string'],
+            'city' => ['required'],
+            'state' => ['required'],
+            'zip_code' => ['required', 'integer', 'digits:5'],
+            'line1' => ['required'],
+            'line2' => ['required'],
+            'reference' => ['nullable', 'string'],
         ];
     }
 
     public function messages()
     {
         return [
-            'activity.required' => 'El campo actividad es obligatorio.',
             'project.required' => 'El campo proyecto es obligatorio.',
             'project.max' => 'El campo proyecto debe tener máximo :max caracteres.',
             'project.min' => 'El campo proyecto debe tener mínimo :min caracteres.',
@@ -44,6 +48,14 @@ class OrdersEditRequest extends FormRequest
             'discount.max' => 'El descuento debe ser como máximo :max.',
             'discount.numeric' => 'El descuento debe ser un número.',
             'comment.string' => 'El comentario debe ser una cadena de texto.',
+            'city.required' => 'El campo ciudad es obligatorio.',
+            'state.required' => 'El campo estado es obligatorio.',
+            'zip_code.required' => 'El campo código postal es obligatorio.',
+            'zip_code.integer' => 'El código postal debe ser un número entero.',
+            'zip_code.digits' => 'El código postal debe tener :digits dígitos.',
+            'line1.required' => 'El campo dirección (línea 1) es obligatorio.',
+            'line2.required' => 'El campo dirección (línea 2) es obligatorio.',
+            'reference.string' => 'La referencia debe ser una cadena de texto.',
         ];
     }
 }

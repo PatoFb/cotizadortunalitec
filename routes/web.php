@@ -142,9 +142,8 @@ Route::group(['middleware' => 'user'], function () {
     Route::put('toldos/data/add', 'App\Http\Controllers\ToldosController@addData')->name('toldo.data.add');
 
     Route::put('orders/{id}/address', 'App\Http\Controllers\OrdersController@updateAddress')->name('orders.update.address');
-
     Route::get('orders/{id}/generate', 'App\Http\Controllers\OrdersController@orderPdf')->name('orders.generate');
-
+    Route::get('orders/{id}/make', 'App\Http\Controllers\OrdersController@makeOrder')->name('orders.make');
     Route::post('orders/{id}/upload', 'App\Http\Controllers\OrdersController@upload')->name('orders.upload');
 
     Route::resource('orders', 'App\Http\Controllers\OrdersController');
