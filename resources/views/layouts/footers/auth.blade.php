@@ -25,13 +25,11 @@
       </ul>
     </nav>
     <div class="copyright">
-        <div class="col-lg col-sm float-right">
       Copyright &copy;
       <script>
         document.write(new Date().getFullYear())
       </script> by
       <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>
-    </div>
     </div>
   </div>
 </footer>
