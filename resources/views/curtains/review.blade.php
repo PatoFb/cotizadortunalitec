@@ -3,15 +3,15 @@
 @section('content')
 <div class="content">
     @include('alerts.errors')
+  <div class="container-fluid">
       <div class="row">
           <div class="col-md-8 offset-md-2">
               <div class="card">
                   <div class="card-header card-header-primary">
-                      {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\CurtainsController@reviewPost', $order_id]]) !!}
-                      <br>
                       <h4 class="card-title">Revisión de sistema (Paso 7 de 7)</h4>
                   </div>
                   <div class="card-body">
+                      {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\CurtainsController@reviewPost', $order_id]]) !!}
                       <h5 class="card-title">Configuración de sistema</h5>
                       <p class="card-text">
                           <strong>Modelo:</strong> {{$curtain->model->name}}
@@ -67,6 +67,7 @@
           </div>
       </div>
     </div>
+  </div>
 </div>
     @endsection
 
