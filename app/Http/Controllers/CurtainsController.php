@@ -307,7 +307,8 @@ class CurtainsController extends Controller
     public function review($order_id)
     {
         $curtain = Session::get('curtain');
-        return view('curtains.review', compact('order_id', 'curtain'));
+        $order = Order::findOrFail($order_id);
+        return view('curtains.review', compact('order_id', 'curtain', 'order'));
     }
 
     /**

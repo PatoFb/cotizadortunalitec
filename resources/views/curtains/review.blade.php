@@ -46,6 +46,18 @@
                       </ul>
                   </div>
               </div>
+              @if($order->activity == 'Pedido')
+                  <div class="card mt-3">
+                      <div class="card-body">
+                          <h5 class="card-title">Datos para producción</h5>
+                          <p class="card-text">
+                              <strong>Tipo de instalación:</strong> {{$curtain->installation_type}}
+                              <br>
+                              <strong>Lado del mecanismo:</strong> {{$curtain->mechanism_side}}
+                          </p>
+                      </div>
+                  </div>
+              @endif
 
               <div class="card mt-3">
                   <div class="card-body">
