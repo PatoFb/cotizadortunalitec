@@ -156,11 +156,11 @@
                                           <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#curtainDetailsModal{{$curtain->id}}" id="curtain_details_modal">
                                               Ver detalle
                                           </button>
-                                          <button type="button" class="btn btn-danger btn-link" data-toggle="modal" data-target="#deleteModal" id="delete_product_modal">
+                                          <button type="button" class="btn btn-danger btn-link" data-toggle="modal" data-target="#deleteModal{{$curtain->id}}" id="delete_product_modal">
                                               <i class="material-icons">delete</i>
                                               <div class="ripple-container"></div></button>
                                           @if($order->activity == "Pedido")
-                                              <button type="button" class="btn btn-info btn-link" data-toggle="modal" data-target="#addModal" id="add_data_modal">
+                                              <button type="button" class="btn btn-info btn-link" data-toggle="modal" data-target="#addModal{{$curtain->id}}" id="add_data_modal">
                                                   Añadir datos
                                                   </button>
                                               @endif
@@ -342,7 +342,7 @@
                                       </div>
                                   </div>
                               </div>
-                              <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal fade" id="addModal{{$curtain->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                   <div class="modal-dialog modal-lg" role="document">
                                       <div class="modal-content">
                                           <div class="modal-header">
@@ -382,7 +382,7 @@
                                       </div>
                                   </div>
                               </div>
-                              <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal fade" id="deleteModal{{$curtain->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                   <div class="modal-dialog" role="document">
                                       <div class="modal-content">
                                           <div class="modal-header">
