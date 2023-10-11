@@ -100,7 +100,7 @@
 
                 <br>
                 @if($order->activity == 'Pedido')
-                <h4>Datos para producción</h4>
+                <h3>Datos para producción</h3>
                     <div class="form-row">
                         <div class="col-12">
                             {!! Form::label('installation_type', 'Tipo de instalación:') !!}
@@ -125,6 +125,7 @@
                             </select>
                         </div>
                     </div>
+                    <br>
                 @endif
                 <div class="form-row text-center">
                     <div class="col-6 text-left">
