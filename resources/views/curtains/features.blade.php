@@ -100,7 +100,7 @@
 
                 <br>
                 @if($order->activity == 'Pedido')
-                <h3>Datos para producción</h3>
+                <h5>Datos para producción</h5>
                     <div class="form-row">
                         <div class="col-12">
                             {!! Form::label('installation_type', 'Tipo de instalación:') !!}
