@@ -301,7 +301,6 @@ class CurtainsController extends Controller
             $customMessages = [];
         }
         $input = $request->validate($customRules, $customMessages);
-        Log::info($input);
         $curtain->fill($input);
         $curtain->price = $this->calculateCurtainPrice($curtain);
         Session::put('curtain', $curtain);
