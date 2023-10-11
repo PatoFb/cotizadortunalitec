@@ -371,11 +371,11 @@
                                   {!! Form::label('installation_type', 'Tipo de instalación:') !!}
                                   <select class="form-control" name="installation_type">
                                       <option value="">Selecciona tipo de instalacion</option>
-                                      <option>Pared</option>
-                                      <option>Techo</option>
-                                      <option>Entre muros</option>
-                                      <option>Entre muros a pared</option>
-                                      <option>Entre muros a techo</option>
+                                      <option {{{ (isset($curtain->installation_type) && $curtain->installation_type == 'Pared') ? "selected=\"selected\"" : "" }}}>Pared</option>
+                                      <option {{{ (isset($curtain->installation_type) && $curtain->installation_type == 'Techo') ? "selected=\"selected\"" : "" }}}>Techo</option>
+                                      <option {{{ (isset($curtain->installation_type) && $curtain->installation_type == 'Entre muros') ? "selected=\"selected\"" : "" }}}>Entre muros</option>
+                                      <option {{{ (isset($curtain->installation_type) && $curtain->installation_type == 'Entre muros a pared') ? "selected=\"selected\"" : "" }}}>Entre muros a pared</option>
+                                      <option {{{ (isset($curtain->installation_type) && $curtain->installation_type == 'Entre muros a techo') ? "selected=\"selected\"" : "" }}}>Entre muros a techo</option>
                                   </select>
                               </div>
                               <br>
@@ -383,9 +383,19 @@
                                   {!! Form::label('mechanism_side', 'Lado de mecanismo:') !!}
                                   <select class="form-control" name="mechanism_side" >
                                       <option value="">Lado del mecanismo</option>
-                                      <option>Izquierdo</option>
-                                      <option>Derecho</option>
+                                      <option {{{ (isset($curtain->mechanism_side) && $curtain->mechanism_side == 'Izquierdo') ? "selected=\"selected\"" : "" }}}>Izquierdo</option>
+                                      <option {{{ (isset($curtain->mechanism_side) && $curtain->mechanism_side == 'Derecho') ? "selected=\"selected\"" : "" }}}>Derecho</option>
                                   </select>
+                              </div>
+                              <br>
+                              <br>
+                              <div class="col-12" id="coverForm">
+                                  {!! Form::label('cover_id', 'Clave (del 1 al 10 son estilos pendientes)') !!}
+                                  {!! Form::number('cover_id', $curtain->cover_id ?? null, ['class'=>'form-control', "id"=>"cover_id"]) !!}
+                              </div>
+                              <br>
+                              <div class="col-12" id="coverDynamic">
+
                               </div>
                           </div>
                           <div class="modal-footer">

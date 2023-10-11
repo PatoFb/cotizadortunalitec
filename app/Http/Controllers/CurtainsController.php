@@ -46,6 +46,7 @@ class CurtainsController extends Controller
             'id'=>'required',
             'mechanism_side' => 'required',
             'installation_type' => 'required',
+            'cover_id'=>'required'
         ]);
         $curtain = Curtain::findOrFail($validatedData['id']);
         $curtain->fill($validatedData);
