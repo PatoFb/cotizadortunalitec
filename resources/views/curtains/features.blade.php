@@ -34,6 +34,7 @@
                         </div>
                     @endif
                 </div>
+                <br>
                 <div class="form-row">
                     @if($curtain->control_id == 9999)
                         {!! Form::number('control_id', 9999, ['class'=>'form-control', "step"=>1, "id"=>"control_id", 'hidden']) !!}
@@ -54,7 +55,7 @@
                         </div>
                     @endif
                 </div>
-
+                <br>
                 <div class="form-row">
                     @if($curtain->voice_id == 9999)
                         {!! Form::number('voice_id', 9999, ['class'=>'form-control', 'id'=>'voice_id', 'hidden']) !!}
@@ -75,6 +76,7 @@
                         </div>
                     @endif
                 </div>
+                <br>
                 @if($curtain->model_id == 5 || $curtain->model_id == 6)
                     {!! Form::number('canopy', 0, ['class'=>'form-control', 'id'=>'canopy', 'hidden']) !!}
                 @else
