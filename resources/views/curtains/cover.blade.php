@@ -16,10 +16,11 @@
 
                 <div class="form-row">
                     <div class="col-md-6 col-sm-12" id="coverForm">
-                        {!! Form::label('cover_id', 'Clave (del 1 al 10 son estilos pendientes)') !!}
                         @if($order->activity == 'Oferta')
+                            {!! Form::label('cover_id', 'Clave (del 1 al 10 son estilos pendientes)') !!}
                             {!! Form::number('cover_id', $curtain->cover_id ?? null, ['class'=>'form-control', "id"=>"cover_id"]) !!}
                         @else
+                            {!! Form::label('cover_id', 'Clave (no se aceptan estilos pendientes para pedidos)') !!}
                             {!! Form::number('cover_id', $curtain->cover_id ?? null, ['class'=>'form-control', "id"=>"cover_id"]) !!}
                         @endif
                     </div>
