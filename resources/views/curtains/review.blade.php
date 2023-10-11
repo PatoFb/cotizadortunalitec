@@ -6,7 +6,7 @@
   <div class="container-fluid">
       <div class="row">
           <div class="col-md-8 offset-md-2">
-              <div class="card">
+              <div class="card mt-3">
                   <div class="card-header card-header-primary">
                       <h4 class="card-title">Revisión de sistema (Paso 7 de 7)</h4>
                   </div>
@@ -58,11 +58,11 @@
                           <strong>Total:</strong> ${{number_format($curtain->price, 2)}}
                       </p>
                   </div>
-              </div>
-              <div class="mt-4 d-flex justify-content-between">
-                  <a href="{{ route('curtain.features', $order_id) }}" class="btn btn-danger">Anterior</a>
-                  {!! Form::submit('Guardar', ['class'=>'btn btn-primary', $order_id]) !!}
-                  {!! Form::close() !!}
+                  <div class="mt-4 d-flex justify-content-between">
+                      <a href="{{ route('curtain.features', $order_id) }}" class="btn btn-danger">Anterior</a>
+                      {!! Form::submit('Guardar', ['class'=>'btn btn-primary', $order_id]) !!}
+                      {!! Form::close() !!}
+                  </div>
               </div>
           </div>
       </div>

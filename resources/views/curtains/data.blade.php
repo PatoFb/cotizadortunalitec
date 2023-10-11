@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <br>
-                <div class="form-row">
+                <div class="form-row text-center">
                     <div class="col-md-6 text-left">
                         <a href="{{ route('curtain.model', $order_id) }}" class="btn btn-danger">Anterior</a>
                     </div>
