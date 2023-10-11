@@ -327,6 +327,35 @@
                                   </div>
                                   <hr>
                               @endif
+                              @if($order->activity == 'Pedido')
+                                  <h5><strong>Datos para producción</strong></h5>
+                                  <div class="row">
+                                      <div class="col-6 text-center">
+                                          Tipo de instalación:
+                                      </div>
+                                      <div class="col-6 text-center">
+                                          @if($curtain->installation_type)
+                                            <strong>{{$curtain->installation_type}}</strong>
+                                          @else
+                                              <strong class="text-danger">Faltante</strong>
+                                          @endif
+                                      </div>
+                                  </div>
+                                  <hr>
+                                  <div class="row">
+                                      <div class="col-6 text-center">
+                                          Lado del mecanismo:
+                                      </div>
+                                      <div class="col-6 text-center">
+                                          @if($curtain->mechanism_side)
+                                              <strong>{{$curtain->mechanism_side}}</strong>
+                                          @else
+                                              <strong class="text-danger">Faltante</strong>
+                                          @endif
+                                      </div>
+                                  </div>
+                                  <hr>
+                              @endif
                               <h5><strong>Precios</strong></h5>
                               <div class="row">
                                   <div class="col-6 text-center">
