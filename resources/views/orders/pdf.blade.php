@@ -165,18 +165,6 @@
                 @endif
             </tr>
             <tr>
-                <td class="border-right">Modelo</td>
-                @if(sizeof($order->curtains) >= ($e*6))
-                    @for($i = ($e*6-6); $i < ($e*6); $i++)
-                        <td class="text-right">{{$order->curtains[$i]->mechanism->name}}</td>
-                    @endfor
-                @else
-                    @for($i = ($e*6-6); $i < sizeof($order->curtains); $i++)
-                        <td class="text-right">{{$order->curtains[$i]->mechanism->name}}</td>
-                    @endfor
-                @endif
-            </tr>
-            <tr>
                 <td class="border-right">Mecanismo</td>
                 @if(sizeof($order->curtains) >= ($e*6))
                     @for($i = ($e*6-6); $i < ($e*6); $i++)
