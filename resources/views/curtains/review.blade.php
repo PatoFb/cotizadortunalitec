@@ -58,11 +58,12 @@
                           <strong>Total:</strong> ${{number_format($curtain->price, 2)}}
                       </p>
                   </div>
-                  <div class="mt-4 d-flex justify-content-between">
-                      <a href="{{ route('curtain.features', $order_id) }}" class="btn btn-danger">Anterior</a>
-                      {!! Form::submit('Guardar', ['class'=>'btn btn-primary', $order_id]) !!}
-                      {!! Form::close() !!}
-                  </div>
+
+              </div>
+              <div class="mt-4 d-flex justify-content-between">
+                  <a href="{{ route('curtain.features', $order_id) }}" class="btn btn-danger">Anterior</a>
+                  {!! Form::submit('Guardar', ['class'=>'btn btn-primary', $order_id]) !!}
+                  {!! Form::close() !!}
               </div>
           </div>
       </div>
