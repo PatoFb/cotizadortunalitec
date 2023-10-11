@@ -166,8 +166,8 @@
                                           @endif
                                           @if($order->activity == "Pedido" || $order->activity == "Oferta")
                                               <button type="button" class="btn btn-info btn-link" data-toggle="modal" data-target="#addModal{{$curtain->id}}" id="add_data_modal">
-                                                  Añadir datos
-                                                  </button>
+                                                  <i class="material-icons">edit_square</i>
+                                                  <div class="ripple-container"></div></button>
                                               @endif
                                       </td>
 
