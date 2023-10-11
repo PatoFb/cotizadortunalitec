@@ -167,241 +167,7 @@
                                       </td>
 
                               </tr>
-                              <div class="modal fade" id="curtainDetailsModal{{$curtain->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 1050;">
-                                  <div class="modal-dialog modal-md modal-dialog-scrollable" role="document">
-                                      <div class="modal-content">
-                                          <div class="modal-header">
-                                              <h5 class="modal-title" id="exampleModalLabel">Detalles</h5>
-                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                  <span aria-hidden="true">&times;</span>
-                                              </button>
-                                          </div>
-                                          <div class="modal-body">
-                                              <h5><strong>Estructura</strong></h5>
-                                              <div class="row">
-                                                  <div class="col-6 text-center">
-                                                      Modelo:
-                                                  </div>
-                                                  <div class="col-6 text-center">
-                                                      <strong>{{$curtain->model->name}}</strong>
-                                                  </div>
-                                              </div>
-                                              <hr>
-                                              <div class="row">
-                                                  <div class="col-6 text-center">
-                                                      Cubierta:
-                                                  </div>
-                                                  <div class="col-6 text-center">
-                                                      <strong>{{$curtain->cover->name}}</strong>
-                                                  </div>
-                                              </div>
-                                              <hr>
-                                              <div class="row">
-                                                  <div class="col-6 text-center">
-                                                      Mecanismo:
-                                                  </div>
-                                                  <div class="col-6 text-center">
-                                                      <strong>{{$curtain->mechanism->name}}</strong>
-                                                  </div>
-                                              </div>
-                                              <hr>
-                                              <div class="row">
-                                                  <div class="col-6 text-center">
-                                                      Ancho:
-                                                  </div>
-                                                  <div class="col-6 text-center">
-                                                      <strong>{{$curtain->width}} m</strong>
-                                                  </div>
-                                              </div>
-                                              <hr>
-                                              <div class="row">
-                                                  <div class="col-6 text-center">
-                                                      Caída:
-                                                  </div>
-                                                  <div class="col-6 text-center">
-                                                      <strong>{{$curtain->height}} m</strong>
-                                                  </div>
-                                              </div>
-                                              <hr>
-                                              <h5><strong>Accesorios</strong></h5>
-                                              @if($curtain->canopy == 1)
-                                                  <div class="row">
-                                                      <div class="col-6 text-center">
-                                                          Tejadillo:
-                                                      </div>
-                                                      <div class="col-6 text-center">
-                                                          <strong>Si</strong>
-                                                      </div>
-                                                  </div>
-                                                  <hr>
-                                              @endif
-                                              @if($curtain->handle && $curtain->handle_quantity > 0)
-                                                  <div class="row">
-                                                      <div class="col-6 text-center">
-                                                          Manivela:
-                                                      </div>
-                                                      <div class="col-6 text-center">
-                                                          <strong>{{$curtain->handle->measure}}</strong>
-                                                      </div>
-                                                  </div>
-                                                  <div class="row">
-                                                      <div class="col-6 text-center">
-                                                          Cantidad:
-                                                      </div>
-                                                      <div class="col-6 text-center">
-                                                          <strong>{{$curtain->handle_quantity}}</strong>
-                                                      </div>
-                                                  </div>
-                                                  <hr>
-                                              @endif
-                                              @if($curtain->control && $curtain->control_quantity > 0)
-                                                  <div class="row">
-                                                      <div class="col-6 text-center">
-                                                          Control:
-                                                      </div>
-                                                      <div class="col-6 text-center">
-                                                          <strong>{{$curtain->control->name}}</strong>
-                                                      </div>
-                                                  </div>
-                                                  <div class="row">
-                                                      <div class="col-6 text-center">
-                                                          Cantidad:
-                                                      </div>
-                                                      <div class="col-6 text-center">
-                                                          <strong>{{$curtain->control_quantity}}</strong>
-                                                      </div>
-                                                  </div>
-                                                  <hr>
-                                              @endif
-                                              @if($curtain->voice && $curtain->voice_quantity > 0)
-                                                  <div class="row">
-                                                      <div class="col-6 text-center">
-                                                          Control de voz:
-                                                      </div>
-                                                      <div class="col-6 text-center">
-                                                          <strong>{{$curtain->voice->name}}</strong>
-                                                      </div>
-                                                  </div>
-                                                  <div class="row">
-                                                      <div class="col-6 text-center">
-                                                          Cantidad:
-                                                      </div>
-                                                      <div class="col-6 text-center">
-                                                          <strong>{{$curtain->voice_quantity}}</strong>
-                                                      </div>
-                                                  </div>
-                                                  <hr>
-                                              @endif
-                                              @if($curtain->sensor && $curtain->sensor_quantity > 0)
-                                                  <div class="row">
-                                                      <div class="col-6 text-center">
-                                                          Sensor:
-                                                      </div>
-                                                      <div class="col-6 text-center">
-                                                          <strong>{{$curtain->sensor->name}}</strong>
-                                                      </div>
-                                                  </div>
-                                                  <div class="row">
-                                                      <div class="col-6 text-center">
-                                                          Cantidad:
-                                                      </div>
-                                                      <div class="col-6 text-center">
-                                                          <strong>{{$curtain->sensor_quantity}}</strong>
-                                                      </div>
-                                                  </div>
-                                                  <hr>
-                                              @endif
-                                              <h5><strong>Precios</strong></h5>
-                                              <div class="row">
-                                                  <div class="col-6 text-center">
-                                                      Precio unitario:
-                                                  </div>
-                                                  <div class="col-6 text-center">
-                                                      <strong>${{number_format($curtain->price/$curtain->quantity, 2)}}</strong>
-                                                  </div>
-                                              </div>
-                                              <hr>
-                                              <div class="row">
-                                                  <div class="col-6 text-center">
-                                                      Cantidad:
-                                                  </div>
-                                                  <div class="col-6 text-center">
-                                                      <strong>{{$curtain->quantity}}</strong>
-                                                  </div>
-                                              </div>
-                                              <hr>
-                                              <div class="row">
-                                                  <div class="col-6 text-center">
-                                                      Total:
-                                                  </div>
-                                                  <div class="col-6 text-center">
-                                                      <strong>${{number_format($curtain->price, 2)}}</strong>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="modal fade" id="addModal{{$curtain->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog modal-lg" role="document">
-                                      <div class="modal-content">
-                                          <div class="modal-header">
-                                              <h5 class="modal-title" id="exampleModalLabel">Agregar datos para pedido</h5>
-                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                  <span aria-hidden="true">&times;</span>
-                                              </button>
-                                          </div>
-                                          <div class="modal-body">
-                                              {!! Form::model($curtain, ['method'=>'PUT', 'action'=>['App\Http\Controllers\CurtainsController@addData', $curtain->id]]) !!}
-                                              <input name="id" type="hidden" value="{{$curtain->id}}">
-                                              <div class="col-12">
-                                                  {!! Form::label('installation_type', 'Tipo de instalación:') !!}
-                                                  <select class="form-control" name="installation_type">
-                                                      <option value="">Selecciona tipo de instalacion</option>
-                                                      <option>Pared</option>
-                                                      <option>Techo</option>
-                                                      <option>Entre muros</option>
-                                                      <option>Entre muros a pared</option>
-                                                      <option>Entre muros a techo</option>
-                                                  </select>
-                                              </div>
-                                              <br>
-                                              <div class="col-12">
-                                                  {!! Form::label('mechanism_side', 'Lado de mecanismo:') !!}
-                                                  <select class="form-control" name="mechanism_side" >
-                                                      <option value="">Lado del mecanismo</option>
-                                                      <option>Izquierdo</option>
-                                                      <option>Derecho</option>
-                                                  </select>
-                                              </div>
-                                          </div>
-                                          <div class="modal-footer">
-                                              {!! Form::submit('Aceptar', ['class'=>'btn btn-primary', 'id'=>'add_data']) !!}
-                                              {!! Form::close() !!}
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="modal fade" id="deleteModal{{$curtain->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog" role="document">
-                                      <div class="modal-content">
-                                          <div class="modal-header">
-                                              <h5 class="modal-title" id="exampleModalLabel">Eliminar producto</h5>
-                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                  <span aria-hidden="true">&times;</span>
-                                              </button>
-                                          </div>
-                                          <div class="modal-body">
-                                              Seguro que desea eliminar el producto de su order? Esta acción es irreversible.
-                                          </div>
-                                          <div class="modal-footer">
-                                              {!! Form::open(['method'=>'DELETE', 'action'=>['App\Http\Controllers\CurtainsController@destroy', $curtain->id]]) !!}
-                                              {!! Form::submit('Eliminar', ['class'=>'btn btn-danger', "id"=>'delete_curtain']) !!}
-                                              {!! Form::close() !!}
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
+
                                   @endforeach
 
                               </tbody>
@@ -411,6 +177,243 @@
               </div>
           </div>
       </div>
+          @foreach($order->curtains as $curtain)
+              <div class="modal fade" id="curtainDetailsModal{{$curtain->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 1050;">
+                  <div class="modal-dialog modal-md modal-dialog-scrollable" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Detalles</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                              </button>
+                          </div>
+                          <div class="modal-body">
+                              <h5><strong>Estructura</strong></h5>
+                              <div class="row">
+                                  <div class="col-6 text-center">
+                                      Modelo:
+                                  </div>
+                                  <div class="col-6 text-center">
+                                      <strong>{{$curtain->model->name}}</strong>
+                                  </div>
+                              </div>
+                              <hr>
+                              <div class="row">
+                                  <div class="col-6 text-center">
+                                      Cubierta:
+                                  </div>
+                                  <div class="col-6 text-center">
+                                      <strong>{{$curtain->cover->name}}</strong>
+                                  </div>
+                              </div>
+                              <hr>
+                              <div class="row">
+                                  <div class="col-6 text-center">
+                                      Mecanismo:
+                                  </div>
+                                  <div class="col-6 text-center">
+                                      <strong>{{$curtain->mechanism->name}}</strong>
+                                  </div>
+                              </div>
+                              <hr>
+                              <div class="row">
+                                  <div class="col-6 text-center">
+                                      Ancho:
+                                  </div>
+                                  <div class="col-6 text-center">
+                                      <strong>{{$curtain->width}} m</strong>
+                                  </div>
+                              </div>
+                              <hr>
+                              <div class="row">
+                                  <div class="col-6 text-center">
+                                      Caída:
+                                  </div>
+                                  <div class="col-6 text-center">
+                                      <strong>{{$curtain->height}} m</strong>
+                                  </div>
+                              </div>
+                              <hr>
+                              <h5><strong>Accesorios</strong></h5>
+                              @if($curtain->canopy == 1)
+                                  <div class="row">
+                                      <div class="col-6 text-center">
+                                          Tejadillo:
+                                      </div>
+                                      <div class="col-6 text-center">
+                                          <strong>Si</strong>
+                                      </div>
+                                  </div>
+                                  <hr>
+                              @endif
+                              @if($curtain->handle && $curtain->handle_quantity > 0)
+                                  <div class="row">
+                                      <div class="col-6 text-center">
+                                          Manivela:
+                                      </div>
+                                      <div class="col-6 text-center">
+                                          <strong>{{$curtain->handle->measure}}</strong>
+                                      </div>
+                                  </div>
+                                  <div class="row">
+                                      <div class="col-6 text-center">
+                                          Cantidad:
+                                      </div>
+                                      <div class="col-6 text-center">
+                                          <strong>{{$curtain->handle_quantity}}</strong>
+                                      </div>
+                                  </div>
+                                  <hr>
+                              @endif
+                              @if($curtain->control && $curtain->control_quantity > 0)
+                                  <div class="row">
+                                      <div class="col-6 text-center">
+                                          Control:
+                                      </div>
+                                      <div class="col-6 text-center">
+                                          <strong>{{$curtain->control->name}}</strong>
+                                      </div>
+                                  </div>
+                                  <div class="row">
+                                      <div class="col-6 text-center">
+                                          Cantidad:
+                                      </div>
+                                      <div class="col-6 text-center">
+                                          <strong>{{$curtain->control_quantity}}</strong>
+                                      </div>
+                                  </div>
+                                  <hr>
+                              @endif
+                              @if($curtain->voice && $curtain->voice_quantity > 0)
+                                  <div class="row">
+                                      <div class="col-6 text-center">
+                                          Control de voz:
+                                      </div>
+                                      <div class="col-6 text-center">
+                                          <strong>{{$curtain->voice->name}}</strong>
+                                      </div>
+                                  </div>
+                                  <div class="row">
+                                      <div class="col-6 text-center">
+                                          Cantidad:
+                                      </div>
+                                      <div class="col-6 text-center">
+                                          <strong>{{$curtain->voice_quantity}}</strong>
+                                      </div>
+                                  </div>
+                                  <hr>
+                              @endif
+                              @if($curtain->sensor && $curtain->sensor_quantity > 0)
+                                  <div class="row">
+                                      <div class="col-6 text-center">
+                                          Sensor:
+                                      </div>
+                                      <div class="col-6 text-center">
+                                          <strong>{{$curtain->sensor->name}}</strong>
+                                      </div>
+                                  </div>
+                                  <div class="row">
+                                      <div class="col-6 text-center">
+                                          Cantidad:
+                                      </div>
+                                      <div class="col-6 text-center">
+                                          <strong>{{$curtain->sensor_quantity}}</strong>
+                                      </div>
+                                  </div>
+                                  <hr>
+                              @endif
+                              <h5><strong>Precios</strong></h5>
+                              <div class="row">
+                                  <div class="col-6 text-center">
+                                      Precio unitario:
+                                  </div>
+                                  <div class="col-6 text-center">
+                                      <strong>${{number_format($curtain->price/$curtain->quantity, 2)}}</strong>
+                                  </div>
+                              </div>
+                              <hr>
+                              <div class="row">
+                                  <div class="col-6 text-center">
+                                      Cantidad:
+                                  </div>
+                                  <div class="col-6 text-center">
+                                      <strong>{{$curtain->quantity}}</strong>
+                                  </div>
+                              </div>
+                              <hr>
+                              <div class="row">
+                                  <div class="col-6 text-center">
+                                      Total:
+                                  </div>
+                                  <div class="col-6 text-center">
+                                      <strong>${{number_format($curtain->price, 2)}}</strong>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="modal fade" id="addModal{{$curtain->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-lg" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Agregar datos para pedido</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                              </button>
+                          </div>
+                          <div class="modal-body">
+                              {!! Form::model($curtain, ['method'=>'PUT', 'action'=>['App\Http\Controllers\CurtainsController@addData', $curtain->id]]) !!}
+                              <input name="id" type="hidden" value="{{$curtain->id}}">
+                              <div class="col-12">
+                                  {!! Form::label('installation_type', 'Tipo de instalación:') !!}
+                                  <select class="form-control" name="installation_type">
+                                      <option value="">Selecciona tipo de instalacion</option>
+                                      <option>Pared</option>
+                                      <option>Techo</option>
+                                      <option>Entre muros</option>
+                                      <option>Entre muros a pared</option>
+                                      <option>Entre muros a techo</option>
+                                  </select>
+                              </div>
+                              <br>
+                              <div class="col-12">
+                                  {!! Form::label('mechanism_side', 'Lado de mecanismo:') !!}
+                                  <select class="form-control" name="mechanism_side" >
+                                      <option value="">Lado del mecanismo</option>
+                                      <option>Izquierdo</option>
+                                      <option>Derecho</option>
+                                  </select>
+                              </div>
+                          </div>
+                          <div class="modal-footer">
+                              {!! Form::submit('Aceptar', ['class'=>'btn btn-primary', 'id'=>'add_data']) !!}
+                              {!! Form::close() !!}
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="modal fade" id="deleteModal{{$curtain->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Eliminar producto</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                              </button>
+                          </div>
+                          <div class="modal-body">
+                              Seguro que desea eliminar el producto de su order? Esta acción es irreversible.
+                          </div>
+                          <div class="modal-footer">
+                              {!! Form::open(['method'=>'DELETE', 'action'=>['App\Http\Controllers\CurtainsController@destroy', $curtain->id]]) !!}
+                              {!! Form::submit('Eliminar', ['class'=>'btn btn-danger', "id"=>'delete_curtain']) !!}
+                              {!! Form::close() !!}
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              @endforeach
       @endif
       @if($order->palillerias)
           <div class="row">
