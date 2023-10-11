@@ -3,6 +3,7 @@
 @section('content')
 <div class="content">
     @include('alerts.success')
+    @include('alerts.error')
   <div class="container-fluid">
     <div class="row">
           <div class="col-md-12">
