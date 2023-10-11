@@ -101,6 +101,7 @@ Route::group(['middleware' => 'user'], function () {
     Route::post('curtains/review/{id}', 'App\Http\Controllers\CurtainsController@reviewPost')->name('curtain.review.post');
 
     Route::post('curtains/fetch/cover', 'App\Http\Controllers\CurtainsController@fetchCover')->name('curtain.fetch.cover');
+    Route::post('curtains/fetch/cover2', 'App\Http\Controllers\CurtainsController@fetchCover2')->name('curtain.fetch.cover2');
 
     Route::get('palillerias/model/{id}', 'App\Http\Controllers\PalilleriasController@addModel')->name('palilleria.model');
     Route::post('palillerias/model/{id}', 'App\Http\Controllers\PalilleriasController@addModelPost')->name('palilleria.model.post');

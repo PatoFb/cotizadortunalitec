@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\addDataOrderRequest;
+use App\Http\Requests\addDataRequest;
 use App\Http\Requests\CoverOrderRequest;
 use App\Http\Requests\CoverRequest;
 use App\Http\Requests\CurtainDataRequest;
@@ -45,13 +47,15 @@ class CurtainsController extends Controller
 
     public function addData(Request $request)
     {
-        $validatedData = $request->validate([
-            'id'=>'required',
-            'mechanism_side' => 'required',
-            'installation_type' => 'required',
-            'cover_id'=>'required'
-        ]);
-        $curtain = Curtain::findOrFail($validatedData['id']);
+        $curtain = Curtain::findOrFail($request->get('curtain_id'));
+        $order = Order::findOrFail($curtain->order->id);
+        if ($order->activity == "Pedido") {
+            $rp = new addDataOrderRequest();
+            $validatedData = $request->validate($rp->rules(), $rp->messages());
+        } else {
+            $ro = new addDataRequest();
+            $validatedData = $request->validate($ro->rules(), $ro->messages());
+        }
         $curtain->fill($validatedData);
         $curtain->save();
         return redirect()->back()->withStatus('Datos guardados correctamente');
@@ -64,7 +68,19 @@ class CurtainsController extends Controller
      */
     public function fetchCover(Request $request){
         $value = $request->get('cover_id');
-        $curtain = $request->session()->get('curtain');
+        $curtain = Session::get('curtain');
+        $this->echoCurtain($curtain, $value);
+    }
+
+    public function fetchCover2(Request $request){
+        Log::info($request);
+        $value = $request->get('cover_id');
+        $id = $request->get('curtain_id');
+        $curtain = Curtain::findOrFail($id);
+        $this->echoCurtain($curtain, $value);
+    }
+
+    private function echoCurtain(Curtain $curtain, int $value) {
         $cover = Cover::findOrFail($value);
         $width = $curtain['width'];
         $height = $curtain['height'];

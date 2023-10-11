@@ -401,7 +401,6 @@
                           </div>
                           <div class="modal-body">
                               {!! Form::model($curtain, ['method'=>'PUT', 'action'=>['App\Http\Controllers\CurtainsController@addData', $curtain->id]]) !!}
-                              <input name="id" type="hidden" value="{{$curtain->id}}">
                               <div class="col-12">
                                   {!! Form::label('installation_type', 'Tipo de instalación:') !!}
                                   <select class="form-control" name="installation_type">
@@ -423,12 +422,13 @@
                                   </select>
                               </div>
                               <br>
-                              <div class="col-12" id="coverForm">
-                                  {!! Form::label('cover_id', 'Clave (del 1 al 10 son estilos pendientes)') !!}
+                              <div class="col-12" id="coverForm2{{$curtain->id}}">
+                                  <input name="curtain_id" type="hidden" value="{{$curtain->id}}" id="curtain_id">
+                                  {!! Form::label('cover_id', 'Clave (del 1 al 10 son estilos pendientes, no se aceptan pendientes para Pedidos)') !!}
                                   {!! Form::number('cover_id', $curtain->cover_id ?? null, ['class'=>'form-control', "id"=>"cover_id"]) !!}
                               </div>
                               <br>
-                              <div class="col-12" id="coverDynamic">
+                              <div class="col-12" id="coverDynamic2{{$curtain->id}}">
 
                               </div>
                           </div>

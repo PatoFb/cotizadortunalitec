@@ -12,7 +12,7 @@ class Curtain extends Model
     }
 
     public function order() {
-        return $this->belongsTo('App\Models\Orden');
+        return $this->belongsTo('App\Models\Order');
     }
 
     public function cover() {
