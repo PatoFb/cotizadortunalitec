@@ -1030,9 +1030,10 @@
                         <div class="row">
                         <div class="col-sm-12 col-md-12">
                             {!! Form::label('comments', 'Comentarios:') !!}
-                            {!! Form::textarea('comments', null, ['class'=>'form-control']) !!}
+                            {!! Form::textarea('comments', null, ['class'=>'form-control', 'rows'=>3]) !!}
                         </div>
                     </div>
+                    <br>
                     <div class="row">
                         <div class="col-sm-12">
                             <label for="line1">{{ __('Colonia') }}</label>
