@@ -73,7 +73,6 @@ class CurtainsController extends Controller
     }
 
     public function fetchCover2(Request $request){
-        Log::info($request);
         $value = $request->get('cover_id');
         $id = $request->get('curtain_id');
         $curtain = Curtain::findOrFail($id);
