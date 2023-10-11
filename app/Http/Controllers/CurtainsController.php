@@ -6,6 +6,7 @@ use App\Http\Requests\CoverRequest;
 use App\Http\Requests\CurtainDataRequest;
 use App\Http\Requests\CurtainFeaturesRequest;
 use App\Http\Requests\CurtainModelRequest;
+use App\Http\Requests\OrdersEditRequest;
 use App\Models\Complement;
 use App\Models\Cover;
 use App\Models\Curtain;
@@ -14,6 +15,7 @@ use App\Models\Handle;
 use App\Models\Mechanism;
 use App\Models\CurtainModel;
 use App\Models\ModeloToldo;
+use App\Models\Order;
 use App\Models\RollWidth;
 use App\Models\SystemCurtain;
 use App\Models\SystemScreenyCurtain;
@@ -162,8 +164,9 @@ class CurtainsController extends Controller
     public function addCover($order_id)
     {
         $cov = Cover::all();
+        $order = Order::findOrFail($order_id);
         $curtain = Session::get('curtain');
-        return view('curtains.cover', compact('order_id', 'cov', 'curtain'));
+        return view('curtains.cover', compact('order_id', 'cov', 'curtain', 'order'));
     }
 
     /**
@@ -176,6 +179,15 @@ class CurtainsController extends Controller
     public function addCoverPost(CoverRequest $request, $order_id)
     {
         $curtain = Session::get('curtain');
+        $order = Order::findOrFail($order_id);
+        $customMessages = [
+            'cover_id.min' => 'Por favor selecciona una cubierta válida',
+        ];
+        if($order->activity == "Pedido") {
+            $request->validate([
+                'cover_id' => ['min:20']
+            ], $customMessages);
+        }
         $curtain->cover_id = $request['cover_id'];
         Session::put('curtain', $curtain);
         return redirect()->route('curtain.features', $order_id);
