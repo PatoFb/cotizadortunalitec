@@ -5,7 +5,7 @@
     @include('alerts.errors')
   <div class="container-fluid">
       <div class="row">
-          <div class="col-8 offset-2">
+          <div class="col-md-8 offset-md-2">
               <div class="card mt-3">
                   <div class="card-header card-header-primary">
                       <h4 class="card-title">Revisión de sistema (Paso 7 de 7)</h4>
