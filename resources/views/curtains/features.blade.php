@@ -32,9 +32,9 @@
                             {!! Form::label('handle_quantity', 'Cantidad:') !!}
                             {!! Form::number('handle_quantity', $curtain->handle_quantity ?? 0, ['class'=>'form-control', "step"=>1, "id"=>"handle_quantity"]) !!}
                         </div>
+                        <br>
                     @endif
                 </div>
-                <br>
                 <div class="form-row">
                     @if($curtain->control_id == 9999)
                         {!! Form::number('control_id', 9999, ['class'=>'form-control', "step"=>1, "id"=>"control_id", 'hidden']) !!}
@@ -53,9 +53,9 @@
                             {!! Form::label('control_quantity', 'Cantidad:') !!}
                             {!! Form::number('control_quantity', $curtain->control_quantity ?? 0, ['class'=>'form-control', "step"=>1, "id"=>"control_quantity"]) !!}
                         </div>
+                        <br>
                     @endif
                 </div>
-                <br>
                 <div class="form-row">
                     @if($curtain->voice_id == 9999)
                         {!! Form::number('voice_id', 9999, ['class'=>'form-control', 'id'=>'voice_id', 'hidden']) !!}
@@ -74,9 +74,10 @@
                             {!! Form::label('voice_quantity', 'Cantidad:') !!}
                             {!! Form::number('voice_quantity', $curtain->voice_quantity ?? 0, ['class'=>'form-control', 'id'=>'voice_quantity']) !!}
                         </div>
+                        <br>
                     @endif
                 </div>
-                <br>
+
                 @if($curtain->model_id == 5 || $curtain->model_id == 6)
                     {!! Form::number('canopy', 0, ['class'=>'form-control', 'id'=>'canopy', 'hidden']) !!}
                 @else
