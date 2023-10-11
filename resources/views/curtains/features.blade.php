@@ -77,10 +77,10 @@
                         <br>
                     @endif
                 </div>
-
                 @if($curtain->model_id == 5 || $curtain->model_id == 6)
                     {!! Form::number('canopy', 0, ['class'=>'form-control', 'id'=>'canopy', 'hidden']) !!}
                 @else
+                    <br>
                     <div class="form-row">
                         <div class="col-12">
                             {!! Form::label('canopy', 'Tejadillo:' )  !!}
