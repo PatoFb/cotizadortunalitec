@@ -18,13 +18,13 @@
               </a>
           </li>
         <li>
-          <a href="https://www.creative-tim.com/license">
+          <a href="https://www.creative-tim.com/license" target="_blank">
               {{ __('Licencias') }}
           </a>
         </li>
       </ul>
     </nav>
-    <div class="copyright float-right">
+    <div class="copyright">
       Copyright &copy;
       <script>
         document.write(new Date().getFullYear())
