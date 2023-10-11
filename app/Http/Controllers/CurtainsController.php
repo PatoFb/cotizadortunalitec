@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CoverOrderRequest;
 use App\Http\Requests\CoverRequest;
 use App\Http\Requests\CurtainDataRequest;
+use App\Http\Requests\CurtainFeaturesOrderRequest;
 use App\Http\Requests\CurtainFeaturesRequest;
 use App\Http\Requests\CurtainModelRequest;
 use App\Http\Requests\OrdersEditRequest;
@@ -172,28 +174,22 @@ class CurtainsController extends Controller
     /**
      *  Saving cover selection in session, redirecting to next step
      *
-     * @param CoverRequest $request
+     * @param Request $request
      * @param $order_id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function addCoverPost(CoverRequest $request, $order_id)
+    public function addCoverPost(Request $request, $order_id)
     {
         $curtain = Session::get('curtain');
         $order = Order::findOrFail($order_id);
         if ($order->activity == "Pedido") {
-            $customMessages = [
-                'cover_id.min' => 'Por favor selecciona una cubierta válida',
-            ];
-            $customRules = [
-                'cover_id' => ['min:20', 'required', 'exists:covers,id', 'integer'],
-            ];
+            $rp = new CoverOrderRequest();
+            $validatedData = $request->validate($rp->rules(), $rp->messages());
         } else {
-            // If the order activity is not "Pedido", you can use the default rules.
-            $customRules = [];
-            $customMessages = [];
+            $ro = new CoverRequest();
+            $validatedData = $request->validate($ro->rules(), $ro->messages());
         }
-        $input = $request->validate($customRules, $customMessages);
-        $curtain->cover_id = $input['cover_id'];
+        $curtain->fill($validatedData);
         Session::put('curtain', $curtain);
         return redirect()->route('curtain.features', $order_id);
     }
@@ -278,30 +274,22 @@ class CurtainsController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
 
-    public function addFeaturesPost(CurtainFeaturesRequest $request, $order_id)
+    public function addFeaturesPost(Request $request, $order_id)
     {
         $curtain = Session::get('curtain');
         $order = Order::findOrFail($order_id);
+        if ($order->activity == "Pedido") {
+            $rp = new CurtainFeaturesOrderRequest();
+            $validatedData = $request->validate($rp->rules(), $rp->messages());
+        } else {
+            $ro = new CurtainFeaturesRequest();
+            $validatedData = $request->validate($ro->rules(), $ro->messages());
+        }
         if($curtain->model) {
             $keys = ['model', 'cover', 'mechanism', 'handle', 'control', 'voice'];
             removeKeys($curtain, $keys, 'curtain');
         }
-        if ($order->activity == "Pedido") {
-            $customMessages = [
-                'mechanism_side.required' => 'Por favor selecciona el lado del mecanismo',
-                'installation_type.required' => 'Por favor selecciona el tipo de instalación',
-            ];
-            $customRules = [
-                    'mechanism_side' => 'required',
-                    'installation_type' => 'required',
-                ];
-        } else {
-            // If the order activity is not "Pedido", you can use the default rules.
-            $customRules = [];
-            $customMessages = [];
-        }
-        $input = $request->validate($customRules, $customMessages);
-        $curtain->fill($input);
+        $curtain->fill($validatedData);
         $curtain->price = $this->calculateCurtainPrice($curtain);
         Session::put('curtain', $curtain);
         return redirect()->route('curtain.review', $order_id);

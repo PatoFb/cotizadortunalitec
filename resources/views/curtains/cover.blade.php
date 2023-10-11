@@ -18,9 +18,9 @@
                     <div class="col-md-6 col-sm-12" id="coverForm">
                         {!! Form::label('cover_id', 'Clave (del 1 al 10 son estilos pendientes)') !!}
                         @if($order->activity == 'Oferta')
-                            {!! Form::number('cover_id', $curtain->cover_id ?? null, ['class'=>'form-control', "id"=>"cover_id", 'min'=>0]) !!}
+                            {!! Form::number('cover_id', $curtain->cover_id ?? null, ['class'=>'form-control', "id"=>"cover_id"]) !!}
                         @else
-                            {!! Form::number('cover_id', $curtain->cover_id ?? null, ['class'=>'form-control', "id"=>"cover_id", 'min'=>20]) !!}
+                            {!! Form::number('cover_id', $curtain->cover_id ?? null, ['class'=>'form-control', "id"=>"cover_id"]) !!}
                         @endif
                     </div>
                     <div class="col-md-6 col-sm-12" id="coverDynamic">
