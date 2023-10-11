@@ -300,8 +300,8 @@ class CurtainsController extends Controller
             $customRules = [];
             $customMessages = [];
         }
-        $request->validate($customRules, $customMessages);
-        $curtain->fill($request->all());
+        $input = $request->validate($customRules, $customMessages);
+        $curtain->fill($input);
         $curtain->price = $this->calculateCurtainPrice($curtain);
         Session::put('curtain', $curtain);
         return redirect()->route('curtain.review', $order_id);
