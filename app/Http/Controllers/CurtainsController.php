@@ -56,9 +56,10 @@ class CurtainsController extends Controller
             $ro = new addDataRequest();
             $validatedData = $request->validate($ro->rules(), $ro->messages());
         }
-        $curtain->price = $this->calculateCurtainPrice($curtain);
         $curtain->fill($validatedData);
+        $curtain->price = $this->calculateCurtainPrice($curtain);
         $curtain->save();
+
         return redirect()->back()->withStatus('Datos guardados correctamente');
     }
 
