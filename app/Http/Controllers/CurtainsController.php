@@ -192,8 +192,8 @@ class CurtainsController extends Controller
             $customRules = [];
             $customMessages = [];
         }
-        $request->validate($customRules, $customMessages);
-        $curtain->cover_id = $request['cover_id'];
+        $input = $request->validate($customRules, $customMessages);
+        $curtain->cover_id = $input['cover_id'];
         Session::put('curtain', $curtain);
         return redirect()->route('curtain.features', $order_id);
     }
