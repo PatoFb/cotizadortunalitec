@@ -239,6 +239,7 @@
                                   </div>
                               </div>
                               <hr>
+                              <br>
                               <h5><strong>Accesorios</strong></h5>
                               @if($curtain->canopy == 1)
                                   <div class="row">
@@ -327,6 +328,7 @@
                                   </div>
                                   <hr>
                               @endif
+                              <br>
                               @if($order->activity == 'Pedido')
                                   <h5><strong>Datos para producción</strong></h5>
                                   <div class="row">
@@ -355,6 +357,7 @@
                                       </div>
                                   </div>
                                   <hr>
+                                  <br>
                               @endif
                               <h5><strong>Precios</strong></h5>
                               <div class="row">
