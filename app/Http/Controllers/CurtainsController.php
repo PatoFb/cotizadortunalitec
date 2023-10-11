@@ -180,14 +180,19 @@ class CurtainsController extends Controller
     {
         $curtain = Session::get('curtain');
         $order = Order::findOrFail($order_id);
-        if($order->activity == "Pedido") {
+        if ($order->activity == "Pedido") {
             $customMessages = [
                 'cover_id.min' => 'Por favor selecciona una cubierta válida',
             ];
-            $request->validate([
-                'cover_id' => ['min:20']
-            ], $customMessages);
+            $customRules = [
+                'cover_id' => ['min:20', 'required', 'exists:covers,id', 'integer'],
+            ];
+        } else {
+            // If the order activity is not "Pedido", you can use the default rules.
+            $customRules = [];
+            $customMessages = [];
         }
+        $request->validate($customRules, $customMessages);
         $curtain->cover_id = $request['cover_id'];
         Session::put('curtain', $curtain);
         return redirect()->route('curtain.features', $order_id);
@@ -281,16 +286,21 @@ class CurtainsController extends Controller
             $keys = ['model', 'cover', 'mechanism', 'handle', 'control', 'voice'];
             removeKeys($curtain, $keys, 'curtain');
         }
-        if($order->activity == "Pedido") {
+        if ($order->activity == "Pedido") {
             $customMessages = [
                 'mechanism_side.required' => 'Por favor selecciona el lado del mecanismo',
                 'installation_type.required' => 'Por favor selecciona el tipo de instalación',
             ];
-            $request->validate([
-                'mechanism_side' => 'required',
-                'installation_type' => 'required',
-            ], $customMessages);
+            $customRules = [
+                    'mechanism_side' => 'required',
+                    'installation_type' => 'required',
+                ];
+        } else {
+            // If the order activity is not "Pedido", you can use the default rules.
+            $customRules = [];
+            $customMessages = [];
         }
+        $request->validate($customRules, $customMessages);
         $curtain->fill($request->all());
         $curtain->price = $this->calculateCurtainPrice($curtain);
         Session::put('curtain', $curtain);
