@@ -25,7 +25,8 @@ class TypesController extends Controller
     public function productType($order_id)
     {
         $types = Type::pluck('name', 'id')->all();
-        return view('products.type', compact('order_id', 'types'));
+        $order = Order::findOrFail($order_id);
+        return view('products.type', compact('order_id', 'types', 'order'));
     }
 
     /**

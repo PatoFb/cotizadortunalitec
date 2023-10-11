@@ -8,7 +8,7 @@
       <div class="col-md-12">
           <div class="card">
             <div class="card-header card-header-primary">
-              <h4 class="card-title">Características de cortina (Paso 6 de 7)</h4>
+              <h4 class="card-title">Características de cortina (Paso 5 de 6)</h4>
             </div>
             <div class="card-body">
                 {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\CurtainsController@addFeaturesPost', $order_id]]) !!}
@@ -99,7 +99,33 @@
                     @endif
 
                 <br>
-
+                @if($order->activity == 'Pedido')
+                <h4>Datos para producción</h4>
+                    <div class="form-row">
+                        <div class="col-12">
+                            {!! Form::label('installation_type', 'Tipo de instalación:') !!}
+                            <select class="form-control" name="installation_type">
+                                <option value="">Selecciona tipo de instalacion</option>
+                                <option {{{ (isset($curtain->installation_type) && $curtain->installation_type == 'Pared') ? "selected=\"selected\"" : "" }}}>Pared</option>
+                                <option {{{ (isset($curtain->installation_type) && $curtain->installation_type == 'Techo') ? "selected=\"selected\"" : "" }}}>Techo</option>
+                                <option {{{ (isset($curtain->installation_type) && $curtain->installation_type == 'Entre muros') ? "selected=\"selected\"" : "" }}}>Entre muros</option>
+                                <option {{{ (isset($curtain->installation_type) && $curtain->installation_type == 'Entre muros a pared') ? "selected=\"selected\"" : "" }}}>Entre muros a pared</option>
+                                <option {{{ (isset($curtain->installation_type) && $curtain->installation_type == 'Entre muros a techo') ? "selected=\"selected\"" : "" }}}>Entre muros a techo</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col-12">
+                            {!! Form::label('mechanism_side', 'Lado de mecanismo:') !!}
+                            <select class="form-control" name="mechanism_side" >
+                                <option value="">Lado del mecanismo</option>
+                                <option {{{ (isset($curtain->mechanism_side) && $curtain->mechanism_side == 'Izquierdo') ? "selected=\"selected\"" : "" }}}>Izquierdo</option>
+                                <option {{{ (isset($curtain->mechanism_side) && $curtain->mechanism_side == 'Derecho') ? "selected=\"selected\"" : "" }}}>Derecho</option>
+                            </select>
+                        </div>
+                    </div>
+                @endif
                 <div class="form-row text-center">
                     <div class="col-6 text-left">
                         <a href="{{ route('curtain.cover', $order_id) }}" class="btn btn-danger">Anterior</a>

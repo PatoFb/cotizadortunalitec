@@ -8,7 +8,7 @@
           <div class="col-md-8 offset-md-2">
               <div class="card mt-3">
                   <div class="card-header card-header-primary">
-                      <h4 class="card-title">Revisión de sistema (Paso 7 de 7)</h4>
+                      <h4 class="card-title">Revisión de sistema (Paso 6 de 6)</h4>
                   </div>
                   <div class="card-body">
                       {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\CurtainsController@reviewPost', $order_id]]) !!}
@@ -58,7 +58,6 @@
                           <strong>Total:</strong> ${{number_format($curtain->price, 2)}}
                       </p>
                   </div>
-
               </div>
               <div class="mt-4 d-flex justify-content-between">
                   <a href="{{ route('curtain.features', $order_id) }}" class="btn btn-danger">Anterior</a>

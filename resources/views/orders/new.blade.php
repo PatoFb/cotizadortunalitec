@@ -8,7 +8,7 @@
       <div class="col-md-12">
           <div class="card">
             <div class="card-header card-header-primary">
-              <h4 class="card-title">Datos de oferta (Paso 1 de 7)</h4>
+              <h4 class="card-title">Generar proyecto</h4>
               {{--<p class="card-category"> Here you can manage users</p>--}}
             </div>
             <div class="card-body">

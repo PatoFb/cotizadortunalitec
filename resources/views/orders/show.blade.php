@@ -391,7 +391,6 @@
                                   </select>
                               </div>
                               <br>
-                              <br>
                               <div class="col-12" id="coverForm">
                                   {!! Form::label('cover_id', 'Clave (del 1 al 10 son estilos pendientes)') !!}
                                   {!! Form::number('cover_id', $curtain->cover_id ?? null, ['class'=>'form-control', "id"=>"cover_id"]) !!}

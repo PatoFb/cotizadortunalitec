@@ -180,10 +180,10 @@ class CurtainsController extends Controller
     {
         $curtain = Session::get('curtain');
         $order = Order::findOrFail($order_id);
-        $customMessages = [
-            'cover_id.min' => 'Por favor selecciona una cubierta válida',
-        ];
         if($order->activity == "Pedido") {
+            $customMessages = [
+                'cover_id.min' => 'Por favor selecciona una cubierta válida',
+            ];
             $request->validate([
                 'cover_id' => ['min:20']
             ], $customMessages);
@@ -259,7 +259,8 @@ class CurtainsController extends Controller
             $controls = Control::where('mechanism_id', 2)->get();
             $voices = VoiceControl::where('mechanism_id', 2)->get();
         }
-        return view('curtains.features', compact('order_id', 'curtain', 'handles', 'controls', 'voices'));
+        $order = Order::findOrFail($order_id);
+        return view('curtains.features', compact('order_id', 'curtain', 'handles', 'controls', 'voices', 'order'));
     }
 
     /**
@@ -275,9 +276,20 @@ class CurtainsController extends Controller
     public function addFeaturesPost(CurtainFeaturesRequest $request, $order_id)
     {
         $curtain = Session::get('curtain');
+        $order = Order::findOrFail($order_id);
         if($curtain->model) {
             $keys = ['model', 'cover', 'mechanism', 'handle', 'control', 'voice'];
             removeKeys($curtain, $keys, 'curtain');
+        }
+        if($order->activity == "Pedido") {
+            $customMessages = [
+                'mechanism_side.required' => 'Por favor selecciona el lado del mecanismo',
+                'installation_type.required' => 'Por favor selecciona el tipo de instalación',
+            ];
+            $request->validate([
+                'mechanism_side' => 'required',
+                'installation_type' => 'required',
+            ], $customMessages);
         }
         $curtain->fill($request->all());
         $curtain->price = $this->calculateCurtainPrice($curtain);
