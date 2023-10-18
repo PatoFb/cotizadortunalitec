@@ -40,7 +40,6 @@
                                       Enviar a producción
                                   </button>
                               @endif
-                                  <a href="{{route('orders.type', $order->id)}}" class="btn btn-sm btn-primary" >Agregar producto</a>
                           <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#fileModal" id="file_order_modal">
                               Agregar comprobante
                           </button>
