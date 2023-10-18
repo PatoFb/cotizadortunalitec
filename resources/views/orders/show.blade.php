@@ -81,9 +81,11 @@
                                   <th class="text-right">
                                       Total
                                   </th>
+                                  @if($order->activity == 'Oferta')
                                   <th class="text-right">
                                       Eliminar
                                   </th>
+                                      @endif
                               </tr></thead>
                               <tbody>
                               <tr>
@@ -92,11 +94,13 @@
                                   <td>{{$order->activity}}</td>
                                   <td>{{$order->discount}}%</td>
                                   <td class="text-right">${{number_format($order->total, 2)}}</td>
+                                  @if($order->activity == 'Oferta')
                                   <td class="td-actions text-right">
                                       <button type="button" class="btn btn-danger btn-link" data-toggle="modal" data-target="#deleteOrderModal" id="delete_order_modal">
                                           <i class="material-icons">delete</i>
                                           <div class="ripple-container"></div></button>
                                   </td>
+                                  @endif
                               </tr>
                               </tbody>
                           </table>
@@ -158,12 +162,10 @@
                                           <button type="button" class="btn btn-link btn-info" data-toggle="modal" data-target="#curtainDetailsModal{{$curtain->id}}" id="curtain_details_modal">
                                               <i class="material-icons">info</i>
                                               <div class="ripple-container"></div></button>
-                                          @if($order->activity == "Pedido" || $order->activity == "Oferta")
+                                          @if($order->activity == "Oferta")
                                           <button type="button" class="btn btn-danger btn-link" data-toggle="modal" data-target="#deleteModal{{$curtain->id}}" id="delete_product_modal">
                                               <i class="material-icons">delete</i>
                                               <div class="ripple-container"></div></button>
-                                          @endif
-                                          @if($order->activity == "Pedido" || $order->activity == "Oferta")
                                               <button type="button" class="btn btn-info btn-link" data-toggle="modal" data-target="#addModal{{$curtain->id}}" id="add_data_modal">
                                                   <i class="material-icons">edit_square</i>
                                                   <div class="ripple-container"></div></button>
