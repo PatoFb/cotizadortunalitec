@@ -16,21 +16,12 @@
 
                     <div class="form-row">
 
-                        <div class="col-md-4 col-sm-4">
-                            {!! Form::label('activity', 'Actividad:') !!}
-                            <select class="form-control" name="activity" >
-                                <option value="">Selecciona la actividad</option>
-                                <option>Oferta</option>
-                                <option>Pedido</option>
-                            </select>
-                        </div>
-
-                        <div class="col-md-4 col-sm-4">
+                        <div class="col-md-6 col-sm-6">
                             {!! Form::label('project', 'Nombre del proyecto:') !!}
                             {!! Form::text('project', null, ['class'=>'form-control']) !!}
                         </div>
 
-                        <div class="col-sm-12 col-md-4">
+                        <div class="col-sm-6 col-md-6">
                             @if(\Illuminate\Support\Facades\Auth::user()->role_id == 1)
                                 {!! Form::label('discount', 'Descuento:') !!}
                                 {!! Form::number('discount', \Illuminate\Support\Facades\Auth::user()->discount, ['class'=>'form-control', 'min'=>0, 'max'=>99, 'step'=>1]) !!}

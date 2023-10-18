@@ -253,7 +253,6 @@ class OrdersController extends Controller
     private function saveOrder(Request $request): int {
         $user = Auth::user();
         $customMessages = [
-            'activity.required' => 'El campo actividad es obligatorio.',
             'project.required' => 'El campo proyecto es obligatorio.',
             'project.max' => 'El campo proyecto debe tener máximo :max caracteres.',
             'project.min' => 'El campo proyecto debe tener mínimo :min caracteres.',
@@ -274,7 +273,6 @@ class OrdersController extends Controller
         ];
         if($request->get('addressCheck') == 1) {
             $request->validate([
-                'activity' => 'required',
                 'project' => ['required', 'max:255', 'min:3', 'string'],
                 'discount' => ['required', 'min:0', 'max:100', 'numeric'],
                 'comment' => ['nullable','string']
@@ -288,7 +286,6 @@ class OrdersController extends Controller
             $order['reference'] = $user->reference;
         } else {
             $request->validate([
-                'activity' => 'required',
                 'project' => ['required', 'max:255', 'min:3', 'string'],
                 'discount' => ['required', 'min:0', 'max:100', 'numeric'],
                 'comment' => ['nullable','string'],
@@ -302,6 +299,7 @@ class OrdersController extends Controller
             $order = $request->all();
         }
         $order['user_id'] = $user->id;
+        $order['activity'] = 'Oferta';
         Order::create($order);
         $orderObj = Order::where('user_id', $user->id)->orderBy('id', 'DESC')->first();
         return $orderObj->id;
