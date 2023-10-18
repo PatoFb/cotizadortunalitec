@@ -59,7 +59,7 @@ class CurtainsController extends Controller
         $order->price = $order->price - $curtain->price;
         $order->total = $order->total - $curtain->price;
         $curtain->fill($validatedData);
-        $curtain->price = $this->calculateCurtainPrice($curtain);
+        $curtain->price = $this->calculateCurtainPrice($curtain, $order->discount);
         $order->price = $order->price + $curtain->price;
         $order->total = $order->total + $curtain->price;
         $curtain->save();
@@ -311,7 +311,7 @@ class CurtainsController extends Controller
             removeKeys($curtain, $keys, 'curtain');
         }
         $curtain->fill($validatedData);
-        $curtain->price = $this->calculateCurtainPrice($curtain, $order['discount']);
+        $curtain->price = $this->calculateCurtainPrice($curtain, $order->discount);
         //$this->addPackages($curtain['mechanism_id'], $curtain['quantity'], $order);
         Session::put('curtain', $curtain);
         return redirect()->route('curtain.review', $order_id);
