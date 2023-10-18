@@ -14,7 +14,7 @@
         @if($order->activity == 'Oferta')
             <h1 class="text-center">Oferta {{ $order->id }}</h1>
         @else
-            <h1 class="text-center">Pedido{{ $order->id }}</h1>
+            <h1 class="text-center">Pedido {{ $order->id }}</h1>
         @endif
         <h3>{{ $order->project }}</h3>
         <!-- Insert client data here -->
