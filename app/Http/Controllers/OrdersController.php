@@ -65,7 +65,7 @@ class OrdersController extends Controller
         $order = Order::findOrFail($id);
         foreach ($order->curtains as $curtain) {
             if(!$curtain->installation_type || !$curtain->mechanism_side || $curtain->cover_id <= 10) {
-                if(!$curtain->installation_type || !$curtain->mechanism_side) {
+                if($curtain->installation_type == '' || $curtain->mechanism_side == '') {
                     $status = 'Asegurese de ingresar los datos para producción de cada sistema antes de realizar el pedido.';
                     return redirect()->back()->withError(__($status));
                 }

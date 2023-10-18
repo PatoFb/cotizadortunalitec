@@ -407,7 +407,6 @@
                                       <option value="">Selecciona tipo de instalacion</option>
                                       <option {{{ (isset($curtain->installation_type) && $curtain->installation_type == 'Pared') ? "selected=\"selected\"" : "" }}}>Pared</option>
                                       <option {{{ (isset($curtain->installation_type) && $curtain->installation_type == 'Techo') ? "selected=\"selected\"" : "" }}}>Techo</option>
-                                      <option {{{ (isset($curtain->installation_type) && $curtain->installation_type == 'Entre muros') ? "selected=\"selected\"" : "" }}}>Entre muros</option>
                                       <option {{{ (isset($curtain->installation_type) && $curtain->installation_type == 'Entre muros a pared') ? "selected=\"selected\"" : "" }}}>Entre muros a pared</option>
                                       <option {{{ (isset($curtain->installation_type) && $curtain->installation_type == 'Entre muros a techo') ? "selected=\"selected\"" : "" }}}>Entre muros a techo</option>
                                   </select>
