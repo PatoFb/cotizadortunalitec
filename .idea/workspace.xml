@@ -6,15 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrdersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OrdersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/OrdersEditRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/OrdersEditRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Package.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2023_10_18_175509_create_packages_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2023_10_18_175659_add_package_columns_to_orders_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2023_10_18_175659_add_package_columns_to_orders_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/orders/new.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/orders/new.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/orders/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/orders/show.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -408,7 +399,7 @@
       <workItem from="1697035609108" duration="13767000" />
       <workItem from="1697057717376" duration="5742000" />
       <workItem from="1697066093018" duration="1008000" />
-      <workItem from="1697640500909" duration="22353000" />
+      <workItem from="1697640500909" duration="23481000" />
     </task>
     <servers />
   </component>

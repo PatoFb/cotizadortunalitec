@@ -368,7 +368,7 @@
                                       Precio unitario:
                                   </div>
                                   <div class="col-6 text-center">
-                                      <strong>${{number_format($curtain->price/$curtain->quantity, 2)}}</strong>
+                                      <strong>${{number_format($curtain->systems_total/$curtain->quantity, 2)}}</strong>
                                   </div>
                               </div>
                               <hr>
@@ -378,6 +378,15 @@
                                   </div>
                                   <div class="col-6 text-center">
                                       <strong>{{$curtain->quantity}}</strong>
+                                  </div>
+                              </div>
+                              <hr>
+                              <div class="row">
+                                  <div class="col-6 text-center">
+                                      Accesorios:
+                                  </div>
+                                  <div class="col-6 text-center">
+                                      <strong>${{number_format($curtain->accessories_total, 2)}}</strong>
                                   </div>
                               </div>
                               <hr>
