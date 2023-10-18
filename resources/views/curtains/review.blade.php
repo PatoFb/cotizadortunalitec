@@ -38,10 +38,10 @@
                               <li class="list-group-item"><strong>Manivela: </strong>{{$curtain->handle->measure}} mts ({{$curtain->handle_quantity}})</li>
                           @endif
                           @if($curtain->control_id != 9999 && $curtain->control_id != 999 && $curtain->control_quantity > 0)
-                              <li class="list-group-item"><strong>Control: </strong>{{$curtain->control->name}} mts ({{$curtain->control_quantity}})</li>
+                              <li class="list-group-item"><strong>Control: </strong>{{$curtain->control->name}} ({{$curtain->control_quantity}})</li>
                           @endif
                           @if($curtain->voice_id != 9999 && $curtain->voice_id != 999 && $curtain->voice_quantity > 0)
-                              <li class="list-group-item"><strong>Control de voz: </strong>{{$curtain->voice->name}} mts ({{$curtain->voice_quantity}})</li>
+                              <li class="list-group-item"><strong>Control de voz: </strong>{{$curtain->voice->name}} ({{$curtain->voice_quantity}})</li>
                           @endif
                       </ul>
                   </div>
@@ -63,9 +63,11 @@
                   <div class="card-body">
                       <h5 class="card-title">Precio</h5>
                       <p class="card-text">
-                          <strong>Precio unitario:</strong> ${{number_format($curtain->price/$curtain->quantity, 2)}}
+                          <strong>Precio unitario:</strong> ${{number_format($curtain->systems_total/$curtain->quantity, 2)}}
                           <br>
                           <strong>Cantidad:</strong> {{$curtain->quantity}}
+                          <br>
+                          <strong>Accesorios:</strong> ${{number_format($curtain->accessories_total, 2)}}
                           <br>
                           <strong>Total:</strong> ${{number_format($curtain->price, 2)}}
                       </p>

@@ -311,7 +311,9 @@ class CurtainsController extends Controller
             removeKeys($curtain, $keys, 'curtain');
         }
         $curtain->fill($validatedData);
-        $curtain->price = $this->calculateCurtainPrice($curtain, $order->discount);
+        $curtain->systems_total = $this->calculateCurtainPrice($curtain, $order->discount);
+        $curtain->accessories_total = $this->calculateAccessoriesPrice($curtain);
+        $curtain->price = $curtain->systems_total + $curtain->accessories_total;
         //$this->addPackages($curtain['mechanism_id'], $curtain['quantity'], $order);
         Session::put('curtain', $curtain);
         return redirect()->route('curtain.review', $order_id);
@@ -385,12 +387,12 @@ class CurtainsController extends Controller
         //Get the system price depending on model selected, height and width
         $system_price = $this->getSystemPrice($model_id, $height, $newWidth);
 
+        $system = $this->calculateSystemPrice($curtain['mechanism_id'], $system_price);
+
         //Calculate the price of the canopy
         $total_canopy = $this->calculateCanopyPrice($canopy, $width, $newWidth);
 
-        //Calculate the sum of the accessories
-        $accessories = $this->calculateAccessoriesPrice($curtain, $system_price, $discount) + $total_canopy;
-        return (((($total_cover*1.16) / (0.60)) * (1-($discount/100))) * $quantity) + $accessories;
+        return (($total_cover+$system) * 1.16 / 0.60 * (1-($discount/100)) * $quantity) + $total_canopy;
     }
 
     private function addPackages(int $mechanism_id, int $quantity, Order $order) {
@@ -412,7 +414,7 @@ class CurtainsController extends Controller
      * @return float
      */
 
-    private function calculateAccessoriesPrice(Curtain $curtain, float $system_price, float $discount): float {
+    private function calculateAccessoriesPrice(Curtain $curtain): float {
         $control = Control::find($curtain['control_id']);
         $mechanism_id = $curtain['mechanism_id'];
         $voice = VoiceControl::find($curtain['voice_id']);
@@ -423,23 +425,42 @@ class CurtainsController extends Controller
         $hquant = $curtain['handle_quantity'];
 
         //Accessories plus IVA
-        $control_total = $control->price * $cquant * 1.16;
-        $voice_total = $voice->price * $vquant * 1.16;
-        $handle_total = $handle->price * $hquant * 1.16;
+        $control_total = $control->price * $cquant;
+        $voice_total = $voice->price * $vquant;
+        $handle_total = $handle->price * $hquant;
 
         switch($mechanism_id) {
             case 1:
                 //manual mechanism accessories
-                return $handle_total + (($system_price * 1.16 / 0.6) * (1-($discount/100)) * $curtain['quantity']);
+                return $handle_total;
             case 2:
                 //somfy mechanism accessories
-                return $control_total + $voice_total + ((($system_price + 6927.693627) * 1.16 / 0.6) * (1-($discount/100)) * $curtain['quantity']);
+                return $control_total + $voice_total;
             case 3:
                 //cmo mechanism accessories
-                return $control_total + $handle_total + $voice_total + ((($system_price + 7971.151961) * 1.16 / 0.6) * (1-($discount/100)) * $curtain['quantity']);
+                return $control_total + $handle_total + $voice_total;
             case 4:
                 //tube mechanism accessories
-                return $voice_total + $control_total + ((($system_price + 1959.235294) * 1.16 / 0.6) * (1-($discount/100)) * $curtain['quantity']);
+                return $voice_total + $control_total;
+            default:
+                return 0;
+        }
+    }
+
+    private function calculateSystemPrice(int $mechanism_id, float $system_price): float {
+        switch($mechanism_id) {
+            case 1:
+                //manual mechanism accessories
+                return ($system_price) ;
+            case 2:
+                //somfy mechanism accessories
+                return ($system_price + 6927.693627);
+            case 3:
+                //cmo mechanism accessories
+                return ($system_price + 7971.151961);
+            case 4:
+                //tube mechanism accessories
+                return ($system_price + 1959.235294);
             default:
                 return 0;
         }
