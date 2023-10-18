@@ -311,7 +311,8 @@ class CurtainsController extends Controller
             removeKeys($curtain, $keys, 'curtain');
         }
         $curtain->fill($validatedData);
-        $curtain->price = $this->calculateCurtainPrice($curtain);
+        $curtain->price = $this->calculateCurtainPrice($curtain, $order['discount']);
+        //$this->addPackages($curtain['mechanism_id'], $curtain['quantity'], $order);
         Session::put('curtain', $curtain);
         return redirect()->route('curtain.review', $order_id);
     }
@@ -367,8 +368,7 @@ class CurtainsController extends Controller
      * @return float
      */
 
-    private function calculateCurtainPrice(Curtain $curtain): float {
-        $user = Auth::user();
+    private function calculateCurtainPrice(Curtain $curtain, float $discount): float {
         $model_id = $curtain['model_id'];
         $canopy = $curtain['canopy'];
 
@@ -391,7 +391,18 @@ class CurtainsController extends Controller
         //Calculate the sum of the accessories
         $accessories = $this->calculateAccessoriesPrice($curtain, $system_price) + $total_canopy;
 
-        return (((($total_cover*1.16) / (0.60)) * (1-($user->discount/100))) * $quantity) + $accessories;
+        return (((($total_cover*1.16) / (0.60)) * (1-($discount/100))) * $quantity) + $accessories;
+    }
+
+    private function addPackages(int $mechanism_id, int $quantity, Order $order) {
+        $qty = 0;
+        foreach($order->curtains as $curtain){
+            $qty = $curtain->quantity + $qty;
+        }
+        if($mechanism_id == 2){
+            if(ceil($quantity))
+            $order->small_packages = $quantity;
+        }
     }
 
     /**

@@ -31,6 +31,18 @@
                             @endif
                         </div>
                     </div>
+                <br>
+                <div class="form-check">
+                    <div class="col-12">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" value="1" id="delivery" name="delivery" checked>
+                            Paquetería
+                            <span class="form-check-sign">
+                                    <span class="check"></span>
+                                </span>
+                        </label>
+                    </div>
+                </div>
 
                 <br>
                 <div class="form-row">

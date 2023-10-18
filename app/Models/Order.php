@@ -36,6 +36,7 @@ class Order extends Model
         'zip_code',
         'line1',
         'line2',
-        'reference'
+        'reference',
+        'delivery'
     ];
 }
