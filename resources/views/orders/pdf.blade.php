@@ -75,7 +75,7 @@
         <tbody>
         <tr>
             <td>{{$order->id}}</td>
-            <td>${{number_format($order->price*(1+$order->discount/100),2)}}{{$order->discount}}</td>
+            <td>${{number_format($order->price*(1+$order->discount/100),2)}}</td>
             <td>$1750.00</td>
             <td>$1600.00</td>
             <td>${{number_format($order->price,2)}}</td>
