@@ -259,7 +259,7 @@
                                           Manivela:
                                       </div>
                                       <div class="col-6 text-center">
-                                          <strong>{{$curtain->handle->measure}}</strong>
+                                          <strong>{{$curtain->handle->measure}} m</strong>
                                       </div>
                                   </div>
                                   <div class="row">
@@ -330,7 +330,6 @@
                                   <hr>
                               @endif
                               <br>
-                              @if($order->activity == 'Pedido')
                                   <h5><strong>Datos para producción</strong></h5>
                                   <div class="row">
                                       <div class="col-6 text-center">
@@ -359,7 +358,6 @@
                                   </div>
                                   <hr>
                                   <br>
-                              @endif
                               <h5><strong>Precios</strong></h5>
                               <div class="row">
                                   <div class="col-6 text-center">
