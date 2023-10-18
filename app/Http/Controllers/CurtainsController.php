@@ -430,16 +430,16 @@ class CurtainsController extends Controller
         switch($mechanism_id) {
             case 1:
                 //manual mechanism accessories
-                return $handle_total + ($system_price * 1.16 / 0.6) * (1-($discount/100));
+                return $handle_total + (($system_price * 1.16 / 0.6) * (1-($discount/100)) * $curtain['quantity']);
             case 2:
                 //somfy mechanism accessories
-                return $control_total + $voice_total + (($system_price + 6927.693627) * 1.16 / 0.6) * (1-($discount/100));
+                return $control_total + $voice_total + ((($system_price + 6927.693627) * 1.16 / 0.6) * (1-($discount/100)) * $curtain['quantity']);
             case 3:
                 //cmo mechanism accessories
-                return $control_total + $handle_total + $voice_total + (($system_price + 7971.151961) * 1.16 / 0.6) * (1-($discount/100));
+                return $control_total + $handle_total + $voice_total + ((($system_price + 7971.151961) * 1.16 / 0.6) * (1-($discount/100)) * $curtain['quantity']);
             case 4:
                 //tube mechanism accessories
-                return $voice_total + $control_total + (($system_price + 1959.235294) * 1.16 / 0.6) * (1-($discount/100));
+                return $voice_total + $control_total + ((($system_price + 1959.235294) * 1.16 / 0.6) * (1-($discount/100)) * $curtain['quantity']);
             default:
                 return 0;
         }
