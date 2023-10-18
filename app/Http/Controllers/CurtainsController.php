@@ -432,16 +432,16 @@ class CurtainsController extends Controller
         switch($mechanism_id) {
             case 1:
                 //manual mechanism accessories
-                return $handle_total;
+                return $handle_total * 1.16;
             case 2:
                 //somfy mechanism accessories
-                return $control_total + $voice_total;
+                return ($control_total + $voice_total) * 1.16;
             case 3:
                 //cmo mechanism accessories
-                return $control_total + $handle_total + $voice_total;
+                return ($control_total + $handle_total + $voice_total) * 1.16;
             case 4:
                 //tube mechanism accessories
-                return $voice_total + $control_total;
+                return ($voice_total + $control_total) * 1.16;
             default:
                 return 0;
         }
