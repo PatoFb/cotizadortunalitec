@@ -11,15 +11,13 @@ function removeKeys($object, array $keys, string $system) {
 }
 
 function ceilMeasure(float $measure, float $min): float {
-    if($measure >= $min) {
+    if($measure > $min) {
         $ceiledMeasure = ceil($measure);
         $diff = $ceiledMeasure - $measure;
-        if ($diff < 0.5 && $diff != 0) {
+        if ($diff > 0.5) {
             $newMeasure = $ceiledMeasure - 0.5;
-        } else if ($diff > 0.5 && $diff != 0) {
-            $newMeasure = $ceiledMeasure;
         } else {
-            $newMeasure = $measure;
+            $newMeasure = $ceiledMeasure;
         }
     } else {
         $newMeasure = $min;

@@ -389,8 +389,7 @@ class CurtainsController extends Controller
         $total_canopy = $this->calculateCanopyPrice($canopy, $width, $newWidth);
 
         //Calculate the sum of the accessories
-        $accessories = $this->calculateAccessoriesPrice($curtain, $system_price) + $total_canopy;
-
+        $accessories = $this->calculateAccessoriesPrice($curtain, $system_price, $discount) + $total_canopy;
         return (((($total_cover*1.16) / (0.60)) * (1-($discount/100))) * $quantity) + $accessories;
     }
 
@@ -413,7 +412,7 @@ class CurtainsController extends Controller
      * @return float
      */
 
-    private function calculateAccessoriesPrice(Curtain $curtain, float $system_price): float {
+    private function calculateAccessoriesPrice(Curtain $curtain, float $system_price, float $discount): float {
         $control = Control::find($curtain['control_id']);
         $mechanism_id = $curtain['mechanism_id'];
         $voice = VoiceControl::find($curtain['voice_id']);
@@ -431,16 +430,16 @@ class CurtainsController extends Controller
         switch($mechanism_id) {
             case 1:
                 //manual mechanism accessories
-                return $handle_total + ($system_price * 1.16);
+                return $handle_total + ($system_price * 1.16 / 0.6) * (1-($discount/100));
             case 2:
                 //somfy mechanism accessories
-                return $control_total + $voice_total + (($system_price + 6927.693627)*1.16);
+                return $control_total + $voice_total + (($system_price + 6927.693627) * 1.16 / 0.6) * (1-($discount/100));
             case 3:
                 //cmo mechanism accessories
-                return $control_total + $handle_total + $voice_total + (($system_price + 7971.151961)*1.16);
+                return $control_total + $handle_total + $voice_total + (($system_price + 7971.151961) * 1.16 / 0.6) * (1-($discount/100));
             case 4:
                 //tube mechanism accessories
-                return $voice_total + $control_total + (($system_price + 1959.235294)*1.16);
+                return $voice_total + $control_total + (($system_price + 1959.235294) * 1.16 / 0.6) * (1-($discount/100));
             default:
                 return 0;
         }
@@ -508,7 +507,7 @@ class CurtainsController extends Controller
 
     private function getSystemPrice(int $model_id, float $height, float $newWidth): float {
         if($model_id > 3 && $model_id < 7){
-            $newHeight = ceilMeasure($height, 1.5);
+            $newHeight = ceilMeasure($height, 1);
             $system = SystemScreenyCurtain::where('model_id', $model_id)->where('width', $newWidth)->where('height', $newHeight)->value('price');
         } else {
             $system = SystemCurtain::where('model_id', $model_id)->where('width', $newWidth)->value('price');
