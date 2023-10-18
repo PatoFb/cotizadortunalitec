@@ -79,6 +79,9 @@
                                       Descuento
                                   </th>
                                   <th class="text-right">
+                                      Paquetería
+                                  </th>
+                                  <th class="text-right">
                                       Total
                                   </th>
                                   @if($order->activity == 'Oferta')
@@ -93,6 +96,7 @@
                                   <td>{{$order->user->name}}</td>
                                   <td>{{$order->activity}}</td>
                                   <td>{{$order->discount}}%</td>
+                                  <td class="text-right">${{number_format($order->total_packages + $order->insurance, 2)}}</td>
                                   <td class="text-right">${{number_format($order->total, 2)}}</td>
                                   @if($order->activity == 'Oferta')
                                   <td class="td-actions text-right">
@@ -1068,6 +1072,16 @@
                         @endif
                     </div>
                         </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col-12">
+                            {!! Form::label('delivery', 'Paquetería:') !!}
+                            <select class="form-control" name="delivery" >
+                                <option value="1" {{{ ($order->delivery == 1) ? "selected=\"selected\"" : "" }}}>Si</option>
+                                <option value="0" {{{ ($order->delivery == 0) ? "selected=\"selected\"" : "" }}}>No</option>
+                            </select>
+                        </div>
+                    </div>
                     <br>
                         <div class="row">
                         <div class="col-sm-12 col-md-12">

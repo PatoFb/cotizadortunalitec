@@ -15,8 +15,6 @@ class AddPackageColumnsToOrdersTable extends Migration
     {
         Schema::table('orders', function (Blueprint $table) {
             $table->integer('delivery');
-            $table->integer('small_packages');
-            $table->integer('large_packages');
             $table->float('total_packages');
             $table->float('insurance');
         });
@@ -31,8 +29,6 @@ class AddPackageColumnsToOrdersTable extends Migration
     {
         Schema::table('orders', function (Blueprint $table) {
             $table->dropColumn('delivery');
-            $table->dropColumn('small_packages');
-            $table->dropColumn('large_packages');
             $table->dropColumn('total_packages');
             $table->dropColumn('insurance');
         });

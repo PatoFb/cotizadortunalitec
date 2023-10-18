@@ -314,7 +314,9 @@ class CurtainsController extends Controller
         $curtain->systems_total = $this->calculateCurtainPrice($curtain, $order->discount);
         $curtain->accessories_total = $this->calculateAccessoriesPrice($curtain);
         $curtain->price = $curtain->systems_total + $curtain->accessories_total;
-        //$this->addPackages($curtain['mechanism_id'], $curtain['quantity'], $order);
+        if($order->delivery == 1) {
+            addPackages($order, $curtain->mechanism_id, $curtain->quantity);
+        }
         Session::put('curtain', $curtain);
         return redirect()->route('curtain.review', $order_id);
     }
@@ -393,17 +395,6 @@ class CurtainsController extends Controller
         $total_canopy = $this->calculateCanopyPrice($canopy, $width, $newWidth);
 
         return (($total_cover+$system) * 1.16 / 0.60 * (1-($discount/100)) * $quantity) + $total_canopy;
-    }
-
-    private function addPackages(int $mechanism_id, int $quantity, Order $order) {
-        $qty = 0;
-        foreach($order->curtains as $curtain){
-            $qty = $curtain->quantity + $qty;
-        }
-        if($mechanism_id == 2){
-            if(ceil($quantity))
-            $order->small_packages = $quantity;
-        }
     }
 
     /**

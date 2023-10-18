@@ -75,11 +75,11 @@
         <tbody>
         <tr>
             <td>{{$order->id}}</td>
-            <td>${{number_format($order->price*(1+$order->discount/100),2)}}</td>
-            <td>$1750.00</td>
-            <td>$1600.00</td>
+            <td>${{number_format(($order->price - ($order->total_packages + $order->insurance))*(1+$order->discount/100),2)}}</td>
+            <td>${{number_format($order->total_packages,2)}}</td>
+            <td>${{number_format($order->insurance,2)}}</td>
+            <td>${{number_format($order->price - ($order->total_packages + $order->insurance),2)}}</td>
             <td>${{number_format($order->price,2)}}</td>
-            <td>${{number_format($order->price + 3350,2)}}</td>
         </tr>
         </tbody>
     </table>
@@ -121,7 +121,6 @@
                 Teléfono: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $order->user->phone }}<br>
             </div>
             <div class="clear"></div>
-            <br><br>
             <h3 class="text-center">Desglose de proyecto</h3>
             @endif
         <table class="pdf-table">

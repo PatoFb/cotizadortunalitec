@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Curtain;
 use App\Models\Order;
 use Illuminate\Support\Facades\Session;
 
@@ -50,4 +51,41 @@ function saveSystem($system, $id) {
     $order->price = $order->price + $system['price'];
     $order->total = $order->total + $system['price'];
     $order->save();
+}
+
+function addPackages(Order $order, int $mechanism_id, int $quantity) {
+    $somfy_quantity = 0;
+    $qty = 0;
+    if($mechanism_id == 2) {
+        $somfy_quantity = $quantity;
+    } else {
+        $qty = $quantity;
+    }
+    $somfy_packages = ['small' => 0, 'large' => 0];
+    $other_packages = ['small' => 0, 'large' => 0];
+    foreach($order->curtains as $c){
+        if($c->mechanism_id == 2) {
+            $somfy_quantity = $c->quantity + $somfy_quantity;
+            $somfy_packages = addPackagesPerSystem(1, $somfy_quantity);
+            \Illuminate\Support\Facades\Log::info($somfy_packages);
+        } else {
+            $qty = $c->quantity + $qty;
+            $other_packages = addPackagesPerSystem(2, $qty);
+            \Illuminate\Support\Facades\Log::info($other_packages);
+        }
+    }
+    $small_packages = $somfy_packages['small'] + $other_packages['small'];
+    $large_packages = $somfy_packages['large'] + $other_packages['large'];
+    $order->total_packages = ($small_packages * 250) + ($large_packages * 330);
+    $order->insurance = $order->total/1.16*0.012;
+    $order->price = $order->price + $order->total_packages + $order->insurance;
+    $order->total = $order->total + $order->total_packages + $order->insurance;
+    $order->save();
+}
+
+function addPackagesPerSystem(int $value, int $quantity): array {
+    $qty = (ceil($quantity/5));
+    $small_packages = $qty * $value;
+    $large_packages = $quantity;
+    return ['small'=>$small_packages, 'large'=>$large_packages];
 }

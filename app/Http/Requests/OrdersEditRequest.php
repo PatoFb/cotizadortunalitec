@@ -24,6 +24,7 @@ class OrdersEditRequest extends FormRequest
     public function rules()
     {
         return [
+            'delivery' => ['nullable', 'integer'],
             'project' => ['required', 'max:255', 'min:3', 'string'],
             'discount' => ['required', 'min:0', 'max:100', 'numeric'],
             'comment' => ['nullable','string'],

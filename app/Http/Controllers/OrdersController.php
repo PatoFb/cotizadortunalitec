@@ -191,6 +191,15 @@ class OrdersController extends Controller
         }
         $input = $request->all();
         $order->update($input);
+        if($order->delivery == 1 && $order->total_packages == 0) {
+            addPackages($order, 0, 0);
+        } else {
+            $order->price = $order->price - ($order->total_packages + $order->insurance);
+            $order->total = $order->total - ($order->total_packages + $order->insurance);
+            $order->total_packages = 0;
+            $order->insurance = 0;
+            $order->save();
+        }
         return redirect('orders/'.$id)->withStatus('Orden editada correctamente');
     }
 

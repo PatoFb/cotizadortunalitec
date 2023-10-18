@@ -32,15 +32,13 @@
                         </div>
                     </div>
                 <br>
-                <div class="form-check">
-                    <div class="col-12">
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox" value="1" id="delivery" name="delivery" checked>
-                            Paquetería
-                            <span class="form-check-sign">
-                                    <span class="check"></span>
-                                </span>
-                        </label>
+                <div class="form-row">
+                    <div class="col-6">
+                        {!! Form::label('delivery', 'Paquetería:') !!}
+                        <select class="form-control" name="delivery" >
+                            <option value="1" {{{ ($order->delivery == 1) ? "selected=\"selected\"" : "" }}}>Si</option>
+                            <option value="0" {{{ ($order->delivery == 0) ? "selected=\"selected\"" : "" }}}>No</option>
+                        </select>
                     </div>
                 </div>
 
