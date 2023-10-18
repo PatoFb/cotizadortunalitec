@@ -48,7 +48,7 @@ class CurtainsController extends Controller
     public function addData(Request $request)
     {
         $curtain = Curtain::findOrFail($request->get('curtain_id'));
-        $order = Order::findOrFail($curtain->order->id);
+        $order = Order::findOrFail($curtain->order_id);
         if ($order->activity == "Pedido") {
             $rp = new addDataOrderRequest();
             $validatedData = $request->validate($rp->rules(), $rp->messages());
@@ -56,10 +56,14 @@ class CurtainsController extends Controller
             $ro = new addDataRequest();
             $validatedData = $request->validate($ro->rules(), $ro->messages());
         }
+        $order->price = $order->price - $curtain->price;
+        $order->total = $order->total - $curtain->price;
         $curtain->fill($validatedData);
         $curtain->price = $this->calculateCurtainPrice($curtain);
+        $order->price = $order->price + $curtain->price;
+        $order->total = $order->total + $curtain->price;
         $curtain->save();
-
+        $order->save();
         return redirect()->back()->withStatus('Datos guardados correctamente');
     }
 
