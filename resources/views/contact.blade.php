@@ -28,7 +28,7 @@
                         </div>
                         <div class="row">
                         <div class="col-md-6"><br>
-                            <h4>TunaliTec México</h4><br>
+                            <h4>Tunalitec México</h4><br>
                             <div itemscope itemtype="http://schema.org/LocalBussiness">
                                 <a href="tel:7771761415" itemprop="telephone" title="Teléfono Cuernavaca"><p><span class="material-icons">phone</span>&nbsp;&nbsp;&nbsp;Cuernavaca: (777) 176 1415 </p></a>
 
