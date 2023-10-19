@@ -78,8 +78,8 @@ function addPackages(Order $order)
     }
     $small_packages = $somfy_packages['small'] + $other_packages['small'];
     $large_packages = $somfy_packages['large'] + $other_packages['large'];
-    $order->total_packages = ($small_packages * 250) + ($large_packages * 330);
-    $order->insurance = $order->total/1.16*0.012;
+    $order->total_packages = (($small_packages * 250) + ($large_packages * 330)*1.16);
+    $order->insurance = ($order->total/1.16*0.012*1.16);
     $order->price = $order->price + $order->total_packages + $order->insurance;
     $order->total = $order->total + $order->total_packages + $order->insurance;
 }

@@ -6,16 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrdersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OrdersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/CurtainFeaturesOrderRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/CurtainFeaturesOrderRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/addDataOrderRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/addDataOrderRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/addDataRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/addDataRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/curtains/data.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/curtains/data.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/orders/new.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/orders/new.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/orders/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/orders/show.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -411,7 +401,7 @@
       <workItem from="1697066093018" duration="1008000" />
       <workItem from="1697640500909" duration="24893000" />
       <workItem from="1697726910969" duration="3230000" />
-      <workItem from="1697731581642" duration="4650000" />
+      <workItem from="1697731581642" duration="5312000" />
     </task>
     <servers />
   </component>
