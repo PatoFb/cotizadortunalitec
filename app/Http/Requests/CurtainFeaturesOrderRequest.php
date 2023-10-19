@@ -70,6 +70,8 @@ class CurtainFeaturesOrderRequest extends FormRequest
 
             'mechanism_side.required' => 'Por favor selecciona el lado del mecanismo',
             'installation_type.required' => 'Por favor selecciona el tipo de instalación',
+
+
         ];
     }
 }

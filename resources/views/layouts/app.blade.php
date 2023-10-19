@@ -391,6 +391,42 @@
         </script>
 
         <script>
+            $(document).ready(function() {
+                // Function to calculate the multiplication and validate before submission
+                function calculateMultiplicationAndValidate() {
+                    const width = parseFloat($('#width').val());
+                    const height = parseFloat($('#height').val());
+
+                    if (!isNaN(width) && !isNaN(height)) {
+                        const multiplication = width * height;
+
+                        // Check if the multiplication squared exceeds 25
+                        if (multiplication > 25) {
+                            alert('La cantidad de metros cuadrados no puede exceder de 25.');
+                        }
+                    }
+                }
+
+                // Bind the calculation function to input changes
+                $('#curtain-data-form2 #width, #curtain-data-form2 #height').on('input', calculateMultiplicationAndValidate);
+
+                // Prevent form submission if multiplication squared exceeds 25
+                $('#curtain-data-form2').on('submit', function(event) {
+                    const width = parseFloat($('#curtain-data-form2 #width').val());
+                    const height = parseFloat($('#curtain-data-form2 #height').val());
+                    const multiplication = width * height;
+                    if (multiplication > 25) {
+                        event.preventDefault(); // Prevent form submission
+                        alert('La cantidad de metros cuadrados no puede exceder de 25.');
+                    }
+                });
+
+                // Initial calculation
+                calculateMultiplicationAndValidate();
+            });
+        </script>
+
+        <script>
             $('#addressCheck').change(function () {
                 if (this.checked) {
                     document.getElementById('addressForm').classList.add('d-none');

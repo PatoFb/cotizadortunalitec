@@ -45,23 +45,21 @@ class CurtainsController extends Controller
      * @return mixed
      */
 
-    public function addData(Request $request)
+    public function addData(addDataRequest $request)
     {
         $curtain = Curtain::findOrFail($request->get('curtain_id'));
         $order = Order::findOrFail($curtain->order_id);
-        if ($order->activity == "Pedido") {
-            $rp = new addDataOrderRequest();
-            $validatedData = $request->validate($rp->rules(), $rp->messages());
-        } else {
-            $ro = new addDataRequest();
-            $validatedData = $request->validate($ro->rules(), $ro->messages());
-        }
         $order->price = $order->price - $curtain->price;
         $order->total = $order->total - $curtain->price;
-        $curtain->fill($validatedData);
-        $curtain->price = $this->calculateCurtainPrice($curtain, $order->discount);
+        $curtain->fill($request->all());
+        $curtain->systems_total = $this->calculateCurtainPrice($curtain, $order->discount);
+        $curtain->accessories_total = $this->calculateAccessoriesPrice($curtain);
+        $curtain->price = $curtain->systems_total + $curtain->accessories_total;
         $order->price = $order->price + $curtain->price;
         $order->total = $order->total + $curtain->price;
+        if($order->delivery == 1) {
+            addPackages($order);
+        }
         $curtain->save();
         $order->save();
         return redirect()->back()->withStatus('Datos guardados correctamente');
@@ -314,9 +312,6 @@ class CurtainsController extends Controller
         $curtain->systems_total = $this->calculateCurtainPrice($curtain, $order->discount);
         $curtain->accessories_total = $this->calculateAccessoriesPrice($curtain);
         $curtain->price = $curtain->systems_total + $curtain->accessories_total;
-        if($order->delivery == 1) {
-            addPackages($order, $curtain->mechanism_id, $curtain->quantity);
-        }
         Session::put('curtain', $curtain);
         return redirect()->route('curtain.review', $order_id);
     }

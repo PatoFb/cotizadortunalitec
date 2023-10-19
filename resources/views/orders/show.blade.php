@@ -413,6 +413,7 @@
                           </div>
                           <div class="modal-body">
                               {!! Form::model($curtain, ['method'=>'PUT', 'action'=>['App\Http\Controllers\CurtainsController@addData', $curtain->id]]) !!}
+                              <div class="row">
                               <div class="col-12">
                                   {!! Form::label('installation_type', 'Tipo de instalación:') !!}
                                   <select class="form-control" name="installation_type">
@@ -423,7 +424,9 @@
                                       <option {{{ (isset($curtain->installation_type) && $curtain->installation_type == 'Entre muros a techo') ? "selected=\"selected\"" : "" }}}>Entre muros a techo</option>
                                   </select>
                               </div>
+                              </div>
                               <br>
+                              <div class="row">
                               <div class="col-12">
                                   {!! Form::label('mechanism_side', 'Lado de mecanismo:') !!}
                                   <select class="form-control" name="mechanism_side" >
@@ -432,16 +435,34 @@
                                       <option {{{ (isset($curtain->mechanism_side) && $curtain->mechanism_side == 'Derecho') ? "selected=\"selected\"" : "" }}}>Derecho</option>
                                   </select>
                               </div>
+                              </div>
                               <br>
+                              <div class="row" id="curtain-data-form2{{$curtain->id}}">
+                                  <div class="col-md-6 col-sm-6">
+                                      {!! Form::label('width', 'Ancho') !!}
+                                      {!! Form::number('width', $curtain->width ?? null , ['class'=>'form-control', "step"=>0.01, "min"=>1.01, "max"=>$curtain->model->max_width,'id'=>'width']) !!}
+                                  </div>
+
+                                  <div class="col-md-6 col-sm-6">
+                                      {!! Form::label('height', 'Caida') !!}
+                                      {!! Form::number('height', $curtain->height ?? null, ['class'=>'form-control', "step"=>0.01, "min"=>1.01, "max"=>$curtain->model->max_height, 'id'=>'height']) !!}
+                                  </div>
+                              </div>
+                              <br>
+                              <div class="row">
                               <div class="col-12" id="coverForm2{{$curtain->id}}">
                                   <input name="curtain_id" type="hidden" value="{{$curtain->id}}" id="curtain_id">
                                   {!! Form::label('cover_id', 'Clave (del 1 al 10 son estilos pendientes, no se aceptan pendientes para Pedidos)') !!}
                                   {!! Form::number('cover_id', $curtain->cover_id ?? null, ['class'=>'form-control', "id"=>"cover_id"]) !!}
                               </div>
+                              </div>
                               <br>
+                              <div class="row">
                               <div class="col-12" id="coverDynamic2{{$curtain->id}}">
 
                               </div>
+                              </div>
+
                           </div>
                           <div class="modal-footer">
                               {!! Form::submit('Aceptar', ['class'=>'btn btn-primary', 'id'=>'add_data']) !!}

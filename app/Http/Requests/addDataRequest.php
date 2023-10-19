@@ -27,6 +27,8 @@ class addDataRequest extends FormRequest
             'cover_id' => ['required', 'exists:covers,id', 'integer'],
             'mechanism_side' => 'nullable',
             'installation_type' => 'nullable',
+            'width' => ['required', 'min:0.5', 'max:10', 'numeric'],
+            'height' => ['required', 'min:0.5', 'max:10', 'numeric'],
         ];
     }
 
@@ -41,6 +43,16 @@ class addDataRequest extends FormRequest
             'cover_id.required' => 'Por favor selecciona una cubierta',
             'cover_id.exists' => 'Por favor selecciona una cubierta válida',
             'cover_id.integer' => 'Por favor selecciona una cubierta válida',
+
+            'width.required' => 'El campo ancho es obligatorio.',
+            'width.min' => 'El ancho debe ser mínimo :min.',
+            'width.max' => 'El ancho debe ser máximo :max.',
+            'width.numeric' => 'El ancho debe ser un número.',
+
+            'height.required' => 'El campo caída es obligatorio.',
+            'height.min' => 'La caída debe ser mínima :min.',
+            'height.max' => 'La caída debe ser máxima :max.',
+            'height.numeric' => 'La caída debe ser un número.',
         ];
     }
 }

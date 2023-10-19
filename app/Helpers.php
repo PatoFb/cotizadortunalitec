@@ -41,8 +41,11 @@ function deleteSystem($system) {
     $order = Order::where('id', $system->order_id)->first();
     $order->price = $order->price - $system->price;
     $order->total = $order->total - $system->price;
-    $order->save();
     $system->delete();
+    if($order->delivery == 1) {
+        addPackages($order);
+    }
+    $order->save();
 }
 
 function saveSystem($system, $id) {
@@ -50,28 +53,27 @@ function saveSystem($system, $id) {
     $order = Order::findOrFail($id);
     $order->price = $order->price + $system['price'];
     $order->total = $order->total + $system['price'];
+    if($order->delivery == 1) {
+        addPackages($order);
+    }
     $order->save();
 }
 
-function addPackages(Order $order, int $mechanism_id, int $quantity) {
+function addPackages(Order $order)
+{
+    $order->price = $order->price - ($order->total_packages + $order->insurance);
+    $order->total = $order->total - ($order->total_packages + $order->insurance);
     $somfy_quantity = 0;
     $qty = 0;
-    if($mechanism_id == 2) {
-        $somfy_quantity = $quantity;
-    } else {
-        $qty = $quantity;
-    }
     $somfy_packages = ['small' => 0, 'large' => 0];
     $other_packages = ['small' => 0, 'large' => 0];
     foreach($order->curtains as $c){
         if($c->mechanism_id == 2) {
             $somfy_quantity = $c->quantity + $somfy_quantity;
             $somfy_packages = addPackagesPerSystem(1, $somfy_quantity);
-            \Illuminate\Support\Facades\Log::info($somfy_packages);
         } else {
             $qty = $c->quantity + $qty;
             $other_packages = addPackagesPerSystem(2, $qty);
-            \Illuminate\Support\Facades\Log::info($other_packages);
         }
     }
     $small_packages = $somfy_packages['small'] + $other_packages['small'];
@@ -80,7 +82,6 @@ function addPackages(Order $order, int $mechanism_id, int $quantity) {
     $order->insurance = $order->total/1.16*0.012;
     $order->price = $order->price + $order->total_packages + $order->insurance;
     $order->total = $order->total + $order->total_packages + $order->insurance;
-    $order->save();
 }
 
 function addPackagesPerSystem(int $value, int $quantity): array {

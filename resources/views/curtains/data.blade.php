@@ -24,15 +24,15 @@
                     </div>
                 </div>
                 <br>
-                <div class="form-row">
+                <div class="form-row" id="curtain-data-form{{$curtain->id}}">
                     <div class="col-md-6 col-sm-6">
                         {!! Form::label('width', 'Ancho') !!}
-                        {!! Form::number('width', $curtain->width ?? null , ['class'=>'form-control', "step"=>0.01, "min"=>0.1, "max"=>$model->max_width]) !!}
+                        {!! Form::number('width', $curtain->width ?? null , ['class'=>'form-control', "step"=>0.01, "min"=>1.01, "max"=>$model->max_width, 'id'=>'width']) !!}
                     </div>
 
                     <div class="col-md-6 col-sm-6">
                         {!! Form::label('height', 'Caida') !!}
-                        {!! Form::number('height', $curtain->height ?? null, ['class'=>'form-control', "step"=>0.01, "min"=>0.1, "max"=>$model->max_height]) !!}
+                        {!! Form::number('height', $curtain->height ?? null, ['class'=>'form-control', "step"=>0.01, "min"=>1.01, "max"=>$model->max_height, 'id'=>'height']) !!}
                     </div>
                 </div>
                 <br>
