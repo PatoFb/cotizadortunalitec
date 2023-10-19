@@ -367,7 +367,7 @@ class CurtainsController extends Controller
      * @return float
      */
 
-    private function calculateCurtainPrice(Curtain $curtain, float $discount): float {
+    public function calculateCurtainPrice(Curtain $curtain, float $discount): float {
         $model_id = $curtain['model_id'];
         $canopy = $curtain['canopy'];
 
@@ -400,7 +400,7 @@ class CurtainsController extends Controller
      * @return float
      */
 
-    private function calculateAccessoriesPrice(Curtain $curtain): float {
+    public function calculateAccessoriesPrice(Curtain $curtain): float {
         $control = Control::find($curtain['control_id']);
         $mechanism_id = $curtain['mechanism_id'];
         $voice = VoiceControl::find($curtain['voice_id']);

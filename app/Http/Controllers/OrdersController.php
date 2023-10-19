@@ -191,13 +191,21 @@ class OrdersController extends Controller
         }
         $input = $request->all();
         $order->update($input);
-        if($order->delivery == 1 && $order->total_packages == 0) {
+        $order->price = 0;
+        $order->total = 0;
+        $order->total_packages = 0;
+        $order->insurance = 0;
+        $order->save();
+        foreach ($order->curtains as $curtain) {
+            $curtain->systems_total = (new CurtainsController)->calculateCurtainPrice($curtain, $order->discount);
+            $curtain->accessories_total = (new CurtainsController)->calculateAccessoriesPrice($curtain);
+            $curtain->price = $curtain->systems_total + $curtain->accessories_total;
+            $order->price = $order->price + $curtain->price;
+            $order->total = $order->total + $curtain->price;
+            $curtain->save();
+        }
+        if ($input['delivery'] == 1) {
             addPackages($order);
-        } else {
-            $order->price = $order->price - ($order->total_packages + $order->insurance);
-            $order->total = $order->total - ($order->total_packages + $order->insurance);
-            $order->total_packages = 0;
-            $order->insurance = 0;
         }
         $order->save();
         return redirect('orders/'.$id)->withStatus('Orden editada correctamente');
