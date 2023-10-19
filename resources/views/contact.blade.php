@@ -27,7 +27,7 @@
                             </div>
                         </div>
                         <div class="row">
-                        <div class="col-md-6"><br>
+                            <div class="col-md-6 col-sm-6"><br>
                             <h4>Tunalitec México</h4><br>
                             <div itemscope itemtype="http://schema.org/LocalBussiness">
                                 <a href="tel:7771761415" itemprop="telephone" title="Teléfono Cuernavaca"><p><span class="material-icons">phone</span>&nbsp;&nbsp;&nbsp;Cuernavaca: (777) 176 1415 </p></a>
@@ -46,7 +46,7 @@
 
                         </div>
 
-                        <div class="col-md-6"><br>
+                        <div class="col-md-6 col-sm-6"><br>
                             <h4>Redes sociales</h4><br>
                             <div itemscope itemtype="http://schema.org/LocalBussiness">
                                 <a href="https://www.facebook.com/tunali.tec" title="facebook" aria-label="facebook" target="_blank"><p><span class="fa fa-facebook"></span>&nbsp;&nbsp;&nbsp;facebook</p></a>
