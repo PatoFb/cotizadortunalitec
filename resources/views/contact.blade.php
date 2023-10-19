@@ -16,20 +16,25 @@
                             <div class="fancy-title">
                                 <h3>Solair</h3>
                             </div>
-                            <p>Av 50 Metros manzana 6, Civac, 62578 Jiutepec, Mor.</p>
                         </div><br>
                             <div class="col-md-4">
                         <div class="fancy-title">
                             <h3>TunaliTec Cuernavaca</h3>
                         </div>
-                            <p>Av 50 Metros manzana 6, Civac, 62500 Jiutepec, Mor.</p>
                         </div>
                             <br>
                             <div class="col-md-4">
                                 <div class="fancy-title">
                                     <h3>TunaliTec Guadalajara</h3>
                                 </div>
-                                <p>Parque Industrial Cañas, Avenida Cañas 3250 Bodega 14, Entre Lazaro Cardenas y Av. Cañas, La Nogalera, 44470 Guadalajara, Jal.</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3774.25297806483!2d-99.17428632479847!3d18.920193382252556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce7574fe25a61f%3A0x94cad193501586fa!2sToldos%20Solair%20M%C3%A9xico!5e0!3m2!1ses-419!2smx!4v1697744158453!5m2!1ses-419!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3733.820600785!2d-103.33754502316013!3d20.636168001143794!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428b24486035b71%3A0xde42c7226e5a6992!2sTunali%20Tec!5e0!3m2!1ses-419!2smx!4v1697744198013!5m2!1ses-419!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                             </div>
                         </div>
                         <div class="row">
@@ -66,14 +71,6 @@
                             </div>
 
                         </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 col-sm-12">
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3774.25297806483!2d-99.17428632479847!3d18.920193382252556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce7574fe25a61f%3A0x94cad193501586fa!2sToldos%20Solair%20M%C3%A9xico!5e0!3m2!1ses-419!2smx!4v1697744158453!5m2!1ses-419!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                            </div>
-                            <div class="col-md-6 col-sm-12">
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3733.820600785!2d-103.33754502316013!3d20.636168001143794!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428b24486035b71%3A0xde42c7226e5a6992!2sTunali%20Tec!5e0!3m2!1ses-419!2smx!4v1697744198013!5m2!1ses-419!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                            </div>
                         </div>
                     </div>
                 </div>
