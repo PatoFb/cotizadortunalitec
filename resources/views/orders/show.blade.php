@@ -167,12 +167,12 @@
                                               <i class="material-icons">info</i>
                                               <div class="ripple-container"></div></button>
                                           @if($order->activity == "Oferta")
-                                          <button type="button" class="btn btn-danger btn-link" data-toggle="modal" data-target="#deleteModal{{$curtain->id}}" id="delete_product_modal">
-                                              <i class="material-icons">delete</i>
-                                              <div class="ripple-container"></div></button>
                                               <button type="button" class="btn btn-info btn-link" data-toggle="modal" data-target="#addModal{{$curtain->id}}" id="add_data_modal">
                                                   <i class="material-icons">edit_square</i>
                                                   <div class="ripple-container"></div></button>
+                                          <button type="button" class="btn btn-danger btn-link" data-toggle="modal" data-target="#deleteModal{{$curtain->id}}" id="delete_product_modal">
+                                              <i class="material-icons">delete</i>
+                                              <div class="ripple-container"></div></button>
                                               @endif
                                       </td>
 
@@ -481,7 +481,7 @@
                               </button>
                           </div>
                           <div class="modal-body">
-                              Seguro que desea eliminar el producto de su order? Esta acción es irreversible.
+                              Seguro que desea eliminar el producto de su orden? Esta acción es irreversible.
                           </div>
                           <div class="modal-footer">
                               {!! Form::open(['method'=>'DELETE', 'action'=>['App\Http\Controllers\CurtainsController@destroy', $curtain->id]]) !!}
