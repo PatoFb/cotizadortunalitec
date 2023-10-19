@@ -39,8 +39,8 @@
                                     </p></a>
 
                                 <a href="mailto:informes@tunalitec.com" itemprop="email" title="Email"><p><span class="material-icons">email</span>&nbsp;&nbsp;&nbsp;Correo: informes@tunalitec.com</p></a>
-                                <a href="http://www.tunalitec.com"><p><span class="material-icons">public</span>&nbsp;&nbsp;&nbsp;Sitio Web: www.tunalitec.com</p></a>
-                                <a href="http://www.solairmexico.com"><p><span class="material-icons">public</span>&nbsp;&nbsp;&nbsp;Sitio Web: www.solairmexico.com</p></a>
+                                <a href="http://www.tunalitec.com" target="_blank"><p><span class="material-icons">public</span>&nbsp;&nbsp;&nbsp;Sitio Web: www.tunalitec.com</p></a>
+                                <a href="http://www.solairmexico.com" target="_blank"><p><span class="material-icons">public</span>&nbsp;&nbsp;&nbsp;Sitio Web: www.solairmexico.com</p></a>
 
                             </div>
 
