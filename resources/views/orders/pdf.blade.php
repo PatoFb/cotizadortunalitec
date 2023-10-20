@@ -365,10 +365,10 @@
             </tr>
             </tbody>
         </table>
-            @if($e % 2 == 1)
             <br>
+        @if($e % 2 == 1)
             <hr>
-            @endif
+        @endif
     @endfor
 </div>
 </body>
