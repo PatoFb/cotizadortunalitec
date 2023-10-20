@@ -365,7 +365,7 @@
             </tr>
             </tbody>
         </table>
-            @if($e % 2 == 0)
+            @if($e % 2 == 1)
             <br>
             <hr>
             @endif
