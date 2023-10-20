@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/resources/views/orders/pdf.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/orders/pdf.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -403,7 +403,7 @@
       <workItem from="1697726910969" duration="3230000" />
       <workItem from="1697731581642" duration="7907000" />
       <workItem from="1697739675365" duration="4561000" />
-      <workItem from="1697813283693" duration="3326000" />
+      <workItem from="1697813283693" duration="5853000" />
     </task>
     <servers />
   </component>

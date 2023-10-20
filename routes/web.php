@@ -58,8 +58,6 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::get('orders/{id}/close', 'App\Http\Controllers\OrdersController@close')->name('orders.close');
 
-    Route::get('orders/{id}/download', 'App\Http\Controllers\OrdersController@download')->name('orders.download');
-
     Route::get('orders/{id}/send', 'App\Http\Controllers\OrdersController@send')->name('orders.send');
 
     Route::resource('admin/handles', 'App\Http\Controllers\HandlesController', ['except' => ['show']]);
@@ -146,6 +144,7 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('orders/{id}/generate', 'App\Http\Controllers\OrdersController@orderPdf')->name('orders.generate');
     Route::get('orders/{id}/make', 'App\Http\Controllers\OrdersController@makeOrder')->name('orders.make');
     Route::post('orders/{id}/upload', 'App\Http\Controllers\OrdersController@upload')->name('orders.upload');
+    Route::get('orders/{id}/download', 'App\Http\Controllers\OrdersController@download')->name('orders.download');
 
     Route::resource('orders', 'App\Http\Controllers\OrdersController');
     Route::resource('curtains', 'App\Http\Controllers\CurtainsController');;
