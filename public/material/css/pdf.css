@@ -55,11 +55,8 @@ h3, h1 {
 }
 
 .summary, .summary th, .summary td {
-    border: none;
+    border: 1px solid #000;
     text-align: center;
-}
-
-.summary td {
     padding: 10px;
 }
 
@@ -76,6 +73,10 @@ h3, h1 {
 
 .border-right {
     border-right: 1px solid #000; /* Adjust border properties as needed */
+}
+
+.border-right-clear {
+    border-right: 1px solid lightgrey; /* Adjust border properties as needed */
 }
 
 .border-bottom {
