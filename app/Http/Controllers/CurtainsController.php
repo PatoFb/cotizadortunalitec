@@ -68,11 +68,16 @@ class CurtainsController extends Controller
     public function copy($id)
     {
         $curtain = Curtain::findOrFail($id);
+        Log::info($curtain);
         $order = Order::findOrFail($curtain->order_id);
+        if(!auth()->user()->isAdmin()) {
+            $this->authorize('checkUser', $order);
+        }
         $order->price = $order->price + $curtain->price;
         $order->total = $order->total + $curtain->price;
         $copy = new Curtain;
         $copy->fill($curtain->toArray());
+        Log::info($copy);
         $copy->save();
         if($order->delivery == 1) {
             addPackages($order);

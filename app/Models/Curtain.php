@@ -53,10 +53,11 @@ class Curtain extends Model
         'mechanism_id',
         'installation_type',
         'mechanism_side',
-        'view_type',
         'voice_id',
         'voice_quantity',
         'handle_quantity',
-        'control_quantity'
+        'control_quantity',
+        'accessories_total',
+        'systems_total'
     ];
 }
