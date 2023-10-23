@@ -65,6 +65,22 @@ class CurtainsController extends Controller
         return redirect()->back()->withStatus('Datos guardados correctamente');
     }
 
+    public function copy($id)
+    {
+        $curtain = Curtain::findOrFail($id);
+        $order = Order::findOrFail($curtain->order_id);
+        $order->price = $order->price + $curtain->price;
+        $order->total = $order->total + $curtain->price;
+        $copy = new Curtain;
+        $copy->fill($curtain->toArray());
+        $copy->save();
+        if($order->delivery == 1) {
+            addPackages($order);
+        }
+        $order->save();
+        return redirect()->back()->withStatus('Copia generada correctamente');
+    }
+
     /**
      * Function to return values of the cover through a JavaScript function using Ajax, data changes a bit with each union
      *

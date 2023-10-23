@@ -170,6 +170,10 @@
                                               <button type="button" class="btn btn-info btn-link" data-toggle="modal" data-target="#addModal{{$curtain->id}}" id="add_data_modal">
                                                   <i class="material-icons">edit_square</i>
                                                   <div class="ripple-container"></div></button>
+                                              <a class="btn btn-success btn-link" href="{{route('curtain.copy', $curtain->id)}}">
+                                                  <i class="material-icons">content_copy</i>
+                                                  <div class="ripple-container"></div>
+                                              </a>
                                           <button type="button" class="btn btn-danger btn-link" data-toggle="modal" data-target="#deleteModal{{$curtain->id}}" id="delete_product_modal">
                                               <i class="material-icons">delete</i>
                                               <div class="ripple-container"></div></button>
