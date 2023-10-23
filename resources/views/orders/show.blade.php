@@ -113,7 +113,7 @@
               </div>
           </div>
       </div>
-      @if($order->curtains)
+      @if(count($order->curtains) > 0)
       <div class="row">
           <div class="col-md-12">
               <div class="card">
@@ -597,7 +597,7 @@
               </div>
               @endforeach
       @endif
-      @if($order->palillerias)
+      @if(count($order->palillerias) > 0)
           <div class="row">
               <div class="col-md-12">
                   <div class="card">
@@ -880,7 +880,7 @@
               </div>
           </div>
       @endif
-      @if($order->toldos)
+      @if(count($order->toldos) > 0)
           <div class="row">
               <div class="col-md-12">
                   <div class="card">
