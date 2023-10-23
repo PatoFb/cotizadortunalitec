@@ -406,37 +406,14 @@
                   <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Agregar datos para pedido</h5>
+                              <h5 class="modal-title" id="exampleModalLabel">Editar sistema</h5>
                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
                               </button>
                           </div>
                           <div class="modal-body">
                               {!! Form::model($curtain, ['method'=>'PUT', 'action'=>['App\Http\Controllers\CurtainsController@addData', $curtain->id]]) !!}
-                              <div class="row">
-                              <div class="col-12">
-                                  {!! Form::label('installation_type', 'Tipo de instalación:') !!}
-                                  <select class="form-control" name="installation_type">
-                                      <option value="">Selecciona tipo de instalacion</option>
-                                      <option {{{ (isset($curtain->installation_type) && $curtain->installation_type == 'Pared') ? "selected=\"selected\"" : "" }}}>Pared</option>
-                                      <option {{{ (isset($curtain->installation_type) && $curtain->installation_type == 'Techo') ? "selected=\"selected\"" : "" }}}>Techo</option>
-                                      <option {{{ (isset($curtain->installation_type) && $curtain->installation_type == 'Entre muros a pared') ? "selected=\"selected\"" : "" }}}>Entre muros a pared</option>
-                                      <option {{{ (isset($curtain->installation_type) && $curtain->installation_type == 'Entre muros a techo') ? "selected=\"selected\"" : "" }}}>Entre muros a techo</option>
-                                  </select>
-                              </div>
-                              </div>
-                              <br>
-                              <div class="row">
-                              <div class="col-12">
-                                  {!! Form::label('mechanism_side', 'Lado de mecanismo:') !!}
-                                  <select class="form-control" name="mechanism_side" >
-                                      <option value="">Lado del mecanismo</option>
-                                      <option {{{ (isset($curtain->mechanism_side) && $curtain->mechanism_side == 'Izquierdo') ? "selected=\"selected\"" : "" }}}>Izquierdo</option>
-                                      <option {{{ (isset($curtain->mechanism_side) && $curtain->mechanism_side == 'Derecho') ? "selected=\"selected\"" : "" }}}>Derecho</option>
-                                  </select>
-                              </div>
-                              </div>
-                              <br>
+                              <h6>Datos</h6>
                               <div class="row">
                                   <div class="col-12">
                                       {!! Form::label('quantity', 'Cantidad de sistemas') !!}
@@ -456,6 +433,7 @@
                                   </div>
                               </div>
                               <br>
+                              <h6>Cubierta</h6>
                               <div class="row">
                               <div class="col-12" id="coverForm2{{$curtain->id}}">
                                   <input name="curtain_id" type="hidden" value="{{$curtain->id}}" id="curtain_id">
@@ -470,6 +448,7 @@
                               </div>
                               </div>
                               <br>
+                              <h6>Accesorios</h6>
                               <div class="row">
                                   @if($curtain->handle_id == 9999)
                                       {!! Form::number('handle_id', 9999, ['class'=>'form-control', "step"=>1, "id"=>"handle_id", 'hidden']) !!}
@@ -565,7 +544,31 @@
 
                                   </div>
                               @endif
-
+                              <br>
+                              <h6>Datos para pedido</h6>
+                              <div class="row">
+                                  <div class="col-12">
+                                      {!! Form::label('installation_type', 'Tipo de instalación:') !!}
+                                      <select class="form-control" name="installation_type">
+                                          <option value="">Selecciona tipo de instalacion</option>
+                                          <option {{{ (isset($curtain->installation_type) && $curtain->installation_type == 'Pared') ? "selected=\"selected\"" : "" }}}>Pared</option>
+                                          <option {{{ (isset($curtain->installation_type) && $curtain->installation_type == 'Techo') ? "selected=\"selected\"" : "" }}}>Techo</option>
+                                          <option {{{ (isset($curtain->installation_type) && $curtain->installation_type == 'Entre muros a pared') ? "selected=\"selected\"" : "" }}}>Entre muros a pared</option>
+                                          <option {{{ (isset($curtain->installation_type) && $curtain->installation_type == 'Entre muros a techo') ? "selected=\"selected\"" : "" }}}>Entre muros a techo</option>
+                                      </select>
+                                  </div>
+                              </div>
+                              <br>
+                              <div class="row">
+                                  <div class="col-12">
+                                      {!! Form::label('mechanism_side', 'Lado de mecanismo:') !!}
+                                      <select class="form-control" name="mechanism_side" >
+                                          <option value="">Lado del mecanismo</option>
+                                          <option {{{ (isset($curtain->mechanism_side) && $curtain->mechanism_side == 'Izquierdo') ? "selected=\"selected\"" : "" }}}>Izquierdo</option>
+                                          <option {{{ (isset($curtain->mechanism_side) && $curtain->mechanism_side == 'Derecho') ? "selected=\"selected\"" : "" }}}>Derecho</option>
+                                      </select>
+                                  </div>
+                              </div>
 
                           </div>
                           <div class="modal-footer">
