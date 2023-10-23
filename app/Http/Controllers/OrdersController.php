@@ -6,12 +6,15 @@ use App\Http\Requests\AddressRequest;
 use App\Http\Requests\OrdersEditRequest;
 use App\Mail\OrdenAProduccion;
 use App\Mail\PedidoCerrado;
+use App\Models\Control;
 use App\Models\Curtain;
+use App\Models\Handle;
 use App\Models\Order;
 use App\Models\Palilleria;
 use App\Models\Toldo;
 use App\Models\Type;
 use App\Models\User;
+use App\Models\VoiceControl;
 use Carbon\Carbon;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
@@ -147,7 +150,10 @@ class OrdersController extends Controller
             $this->authorize('checkUser', $order);
         }
         $role = $user->role_id;
-        return view('orders.show', compact('order', 'role'));
+        $handles = Handle::where('price', '>', 0)->get();
+        $controls = Control::where('price', '>', 0)->get();
+        $voices = VoiceControl::where('price', '>', 0)->get();
+        return view('orders.show', compact('order', 'role', 'handles', 'controls', 'voices'));
     }
 
     /**

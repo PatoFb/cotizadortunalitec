@@ -147,7 +147,7 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('orders/{id}/download', 'App\Http\Controllers\OrdersController@download')->name('orders.download');
 
     Route::resource('orders', 'App\Http\Controllers\OrdersController');
-    Route::resource('curtains', 'App\Http\Controllers\CurtainsController');;
+    Route::resource('curtains', 'App\Http\Controllers\CurtainsController');
     Route::resource('palillerias', 'App\Http\Controllers\PalilleriasController');
     Route::resource('toldos', 'App\Http\Controllers\ToldosController');
 });

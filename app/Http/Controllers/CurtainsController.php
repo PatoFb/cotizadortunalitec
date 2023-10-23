@@ -57,10 +57,10 @@ class CurtainsController extends Controller
         $curtain->price = $curtain->systems_total + $curtain->accessories_total;
         $order->price = $order->price + $curtain->price;
         $order->total = $order->total + $curtain->price;
+        $curtain->save();
         if($order->delivery == 1) {
             addPackages($order);
         }
-        $curtain->save();
         $order->save();
         return redirect()->back()->withStatus('Datos guardados correctamente');
     }

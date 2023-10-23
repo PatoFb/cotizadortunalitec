@@ -29,7 +29,7 @@
                             </select>
                         </div>
                         <div class="col-6">
-                            {!! Form::label('handle_quantity', 'Cantidad:') !!}
+                            {!! Form::label('handle_quantity', 'Cantidad (manivelas):') !!}
                             {!! Form::number('handle_quantity', $curtain->handle_quantity ?? 0, ['class'=>'form-control', "step"=>1, "id"=>"handle_quantity"]) !!}
                         </div>
                     @endif
@@ -52,7 +52,7 @@
                             </select>
                         </div>
                         <div class="col-6">
-                            {!! Form::label('control_quantity', 'Cantidad:') !!}
+                            {!! Form::label('control_quantity', 'Cantidad (controles):') !!}
                             {!! Form::number('control_quantity', $curtain->control_quantity ?? 0, ['class'=>'form-control', "step"=>1, "id"=>"control_quantity"]) !!}
                         </div>
                     @endif
@@ -75,7 +75,7 @@
                             </select>
                         </div>
                         <div class="col-6">
-                            {!! Form::label('voice_quantity', 'Cantidad:') !!}
+                            {!! Form::label('voice_quantity', 'Cantidad (controles de voz):') !!}
                             {!! Form::number('voice_quantity', $curtain->voice_quantity ?? 0, ['class'=>'form-control', 'id'=>'voice_quantity']) !!}
                         </div>
                     @endif
