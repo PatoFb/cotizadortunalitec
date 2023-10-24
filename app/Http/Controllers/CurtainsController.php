@@ -68,7 +68,6 @@ class CurtainsController extends Controller
     public function copy($id)
     {
         $curtain = Curtain::findOrFail($id);
-        Log::info($curtain);
         $order = Order::findOrFail($curtain->order_id);
         if(!auth()->user()->isAdmin()) {
             $this->authorize('checkUser', $order);
@@ -77,7 +76,6 @@ class CurtainsController extends Controller
         $order->total = $order->total + $curtain->price;
         $copy = new Curtain;
         $copy->fill($curtain->toArray());
-        Log::info($copy);
         $copy->save();
         if($order->delivery == 1) {
             addPackages($order);
@@ -119,7 +117,7 @@ class CurtainsController extends Controller
                </div>
                 <div class='row'>
                 <div class='col-md-6 col-sm-12'>
-                   <img src=".asset('storage')."/images/".$cover->photo." style='width: 100%;'>
+                   <img src=".asset('storage')."/images/covers/".$cover->photo." style='width: 100%;'>
               </div>
               <div class='col-md-6 col-sm-12'>
                    <h7 style='color: grey;'><strong>$cover->name</strong></h7>
@@ -147,7 +145,7 @@ class CurtainsController extends Controller
                </div>
                 <div class='row'>
                 <div class='col-md-6 col-sm-12'>
-                   <img src=".asset('storage')."/images/".$cover->photo." style='width: 100%;'>
+                   <img src=".asset('storage')."/images/covers/".$cover->photo." style='width: 100%;'>
               </div>
               <div class='col-md-6 col-sm-12'>
                    <h7 style='color: grey;'><strong>$cover->name</strong></h7>
