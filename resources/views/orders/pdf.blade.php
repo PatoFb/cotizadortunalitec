@@ -86,12 +86,14 @@
     <br><br><br>
     <div class="pdf-section notes">
         <p class="red">Notas Adicionales</p>
-        a) Los precios mostrados en esta Oferta incluyen IVA<br>
-        b) Vigencia valida por 10 dias habilies o hasta agotar existencias<br>
-        c) Precios sujetos a cambio sin previo aviso<br>
-        d) Oferta de carácter informtivo, no es valida como pedido de producción<br>
-        e) Revisar "TERMINOS DE VENTA"<br>
-        f) Confirmar disponibilidad de materiales con personal de ventas Tunali Tec antes de enviar pedido en firma para producción<br>
+        a) Vigencia valida por 10 dias habilies o hasta agotar existencias<br>
+        b) Precios sujetos a cambio sin previo aviso<br>
+        c) Oferta de carácter informtivo, no es valida como pedido de producción<br>
+        d) Revisar "TERMINOS DE VENTA"<br>
+        e) Confirmar disponibilidad de materiales con personal de ventas Tunali Tec antes de enviar pedido en firma para producción<br>
+        @if($order->user->restricted == 0)
+            f) Los precios mostrados en esta Oferta incluyen IVA<br>
+        @endif
 
     </div>
     <div class="pdf-section company-logo">

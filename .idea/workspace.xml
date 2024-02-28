@@ -4,20 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PalilleriasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PalilleriasController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ToldosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ToldosController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UsersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Palilleria.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Palilleria.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Toldo.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Toldo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/orders/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/orders/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-    </list>
+    <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -433,7 +420,7 @@
       <workItem from="1701188145021" duration="11000" />
       <workItem from="1705332051652" duration="25000" />
       <workItem from="1709062575059" duration="2799000" />
-      <workItem from="1709131598660" duration="12229000" />
+      <workItem from="1709131598660" duration="12923000" />
     </task>
     <servers />
   </component>
