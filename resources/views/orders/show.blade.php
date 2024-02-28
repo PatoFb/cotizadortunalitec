@@ -654,19 +654,22 @@
                                           <td>{{$p->quantity}}</td>
                                           <td class="text-right">${{number_format($p->price, 2)}}</td>
                                           <td class="td-actions text-right">
-                                              <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#pDetailsModal{{$p->id}}" id="p_details_modal">
-                                                  Ver detalle
-                                              </button>
-                                              <button type="button" class="btn btn-danger btn-link" data-toggle="modal" data-target="#deletePModal" id="delete_product_modal">
-                                                  <i class="material-icons">delete</i>
+                                              <button type="button" class="btn btn-link btn-info" data-toggle="modal" data-target="#pDetailsModal{{$p->id}}" id="curtain_details_modal">
+                                                  <i class="material-icons">info</i>
                                                   <div class="ripple-container"></div></button>
-                                              @if($order->activity == "Pedido")
-                                                  {{--<button type="button" class="btn btn-info btn-link" data-toggle="modal" data-target="#addModal" id="add_data_modal">
-                                                      Añadir datos
-                                                  </button>--}}
+                                              @if($order->activity == "Oferta")
+                                                  <button type="button" class="btn btn-info btn-link" data-toggle="modal" data-target="#pAddModal{{$p->id}}" id="add_data_modal">
+                                                      <i class="material-icons">edit_square</i>
+                                                      <div class="ripple-container"></div></button>
+                                                  <a class="btn btn-success btn-link" href="{{route('palilleria.copy', $p->id)}}">
+                                                      <i class="material-icons">content_copy</i>
+                                                      <div class="ripple-container"></div>
+                                                  </a>
+                                                  <button type="button" class="btn btn-danger btn-link" data-toggle="modal" data-target="#pDeleteModal{{$p->id}}" id="delete_product_modal">
+                                                      <i class="material-icons">delete</i>
+                                                      <div class="ripple-container"></div></button>
                                               @endif
                                           </td>
-
                                       </tr>
                                       <div class="modal fade" id="pDetailsModal{{$p->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                           <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
@@ -858,7 +861,7 @@
                                               </div>
                                           </div>
                                       </div>
-                                      <div class="modal fade" id="deletePModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal fade" id="pDeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                           <div class="modal-dialog" role="document">
                                               <div class="modal-content">
                                                   <div class="modal-header">
@@ -937,21 +940,25 @@
                                           <td>{{$toldo->quantity}}</td>
                                           <td class="text-right">${{number_format($toldo->price, 2)}}</td>
                                           <td class="td-actions text-right">
-                                              <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#toldoDetailsModal{{$toldo->id}}" id="toldo_details_modal">
-                                                  Ver detalle
-                                              </button>
-                                              <button type="button" class="btn btn-danger btn-link" data-toggle="modal" data-target="#deleteToldoModal" id="delete_product_modal">
-                                                  <i class="material-icons">delete</i>
+                                              <button type="button" class="btn btn-link btn-info" data-toggle="modal" data-target="#tDetailsModal{{$toldo->id}}" id="curtain_details_modal">
+                                                  <i class="material-icons">info</i>
                                                   <div class="ripple-container"></div></button>
-                                              @if($order->activity == "Pedido")
-                                                  {{--<button type="button" class="btn btn-info btn-link" data-toggle="modal" data-target="#addModal" id="add_data_modal">
-                                                      Añadir datos
-                                                  </button>--}}
+                                              @if($order->activity == "Oferta")
+                                                  <button type="button" class="btn btn-info btn-link" data-toggle="modal" data-target="#tAddModal{{$toldo->id}}" id="add_data_modal">
+                                                      <i class="material-icons">edit_square</i>
+                                                      <div class="ripple-container"></div></button>
+                                                  <a class="btn btn-success btn-link" href="{{route('toldo.copy', $toldo->id)}}">
+                                                      <i class="material-icons">content_copy</i>
+                                                      <div class="ripple-container"></div>
+                                                  </a>
+                                                  <button type="button" class="btn btn-danger btn-link" data-toggle="modal" data-target="#tDeleteModal{{$toldo->id}}" id="delete_product_modal">
+                                                      <i class="material-icons">delete</i>
+                                                      <div class="ripple-container"></div></button>
                                               @endif
                                           </td>
 
                                       </tr>
-                                      <div class="modal fade" id="toldoDetailsModal{{$toldo->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal fade" id="tDetailsModal{{$toldo->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                           <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
                                               <div class="modal-content">
                                                   <div class="modal-header">
@@ -1137,7 +1144,7 @@
                                               </div>
                                           </div>
                                       </div>
-                                      <div class="modal fade" id="deleteToldoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal fade" id="tDeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                           <div class="modal-dialog" role="document">
                                               <div class="modal-content">
                                                   <div class="modal-header">

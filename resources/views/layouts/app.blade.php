@@ -312,6 +312,60 @@
         </script>
 
         <script>
+            $('[id^="coverFormT2"]').on('input', function (event) {
+                event.preventDefault();
+                let $wrapper = $(this),
+                    toldo_id = $wrapper.find('#toldo_id').val(),
+                    cover_id = $wrapper.find('#cover_id').val(),
+                    _token = $('input[name="_token"]').val();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('[name="_token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url: "{{ route('toldo.fetch.cover2') }}",
+                    method: "POST",
+                    data: {
+                        toldo_id: toldo_id,
+                        cover_id: cover_id,
+                        _token: _token },
+                    success: function (result) {
+                        let $coverDynamic = $('[id^="coverDynamicT2"]');
+                        $coverDynamic.html(result);
+                        // Check if there is an error message
+                        if (result.indexOf('Uncaught Error') !== -1) {
+                            $coverDynamic.css('color', 'red');
+                        } else {
+                            $coverDynamic.css('color', ''); // Reset to default color
+                        }
+                    },
+                    error: function (jqXHR, exception) {
+                        let msg = '';
+                        if (jqXHR.status === 0) {
+                            msg = 'Not connect.\n Verify Network.';
+                        } else if (jqXHR.status == 404) {
+                            msg = 'Por favor elija una cubierta válida.';
+                        } else if (jqXHR.status == 500) {
+                            msg = 'Por favor elija una cubierta válida.';
+                        } else if (exception === 'parsererror') {
+                            msg = 'Requested JSON parse failed.';
+                        } else if (exception === 'timeout') {
+                            msg = 'Time out error.';
+                        } else if (exception === 'abort') {
+                            msg = 'Ajax request aborted.';
+                        } else {
+                            msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                        }
+                        let $coverDynamic = $('[id^="coverDynamicT2"]');
+                        $coverDynamic.html(msg);
+                        $coverDynamic.css('color', 'red');
+                    }
+                });
+            });
+        </script>
+
+        <script>
             $('#coverFormP').on('input', function (event) {
                 event.preventDefault();
                 let $wrapper = $('#coverFormP'),
@@ -349,6 +403,60 @@
                             msg = 'Uncaught Error.\n' + jqXHR.responseText;
                         }
                         $('#coverDynamicP').html(msg);
+                    }
+                });
+            });
+        </script>
+
+        <script>
+            $('[id^="coverFormP2"]').on('input', function (event) {
+                event.preventDefault();
+                let $wrapper = $(this),
+                    palilleria_id = $wrapper.find('#palilleria_id').val(),
+                    cover_id = $wrapper.find('#cover_id').val(),
+                    _token = $('input[name="_token"]').val();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('[name="_token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url: "{{ route('palilleria.fetch.cover2') }}",
+                    method: "POST",
+                    data: {
+                        palilleria_id: palilleria_id,
+                        cover_id: cover_id,
+                        _token: _token },
+                    success: function (result) {
+                        let $coverDynamic = $('[id^="coverDynamicP2"]');
+                        $coverDynamic.html(result);
+                        // Check if there is an error message
+                        if (result.indexOf('Uncaught Error') !== -1) {
+                            $coverDynamic.css('color', 'red');
+                        } else {
+                            $coverDynamic.css('color', ''); // Reset to default color
+                        }
+                    },
+                    error: function (jqXHR, exception) {
+                        let msg = '';
+                        if (jqXHR.status === 0) {
+                            msg = 'Not connect.\n Verify Network.';
+                        } else if (jqXHR.status == 404) {
+                            msg = 'Por favor elija una cubierta válida.';
+                        } else if (jqXHR.status == 500) {
+                            msg = 'Por favor elija una cubierta válida.';
+                        } else if (exception === 'parsererror') {
+                            msg = 'Requested JSON parse failed.';
+                        } else if (exception === 'timeout') {
+                            msg = 'Time out error.';
+                        } else if (exception === 'abort') {
+                            msg = 'Ajax request aborted.';
+                        } else {
+                            msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                        }
+                        let $coverDynamic = $('[id^="coverDynamicP2"]');
+                        $coverDynamic.html(msg);
+                        $coverDynamic.css('color', 'red');
                     }
                 });
             });

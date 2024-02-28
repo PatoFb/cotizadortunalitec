@@ -119,6 +119,9 @@ Route::group(['middleware' => 'user'], function () {
     Route::post('palillerias/review/{id}', 'App\Http\Controllers\PalilleriasController@reviewPost')->name('palilleria.review.post');
 
     Route::post('palillerias/fetch/cover', 'App\Http\Controllers\PalilleriasController@fetchCover')->name('palilleria.fetch.cover');
+    Route::post('palillerias/fetch/cover2', 'App\Http\Controllers\PalilleriasController@fetchCover2')->name('palilleria.fetch.cover2');
+
+    Route::get('palillerias/copy/{id}', 'App\Http\Controllers\PalilleriasController@copy')->name('palilleria.copy');
 
     Route::get('toldos/model/{id}', 'App\Http\Controllers\ToldosController@addModel')->name('toldo.model');
     Route::post('toldos/model/{id}', 'App\Http\Controllers\ToldosController@addModelPost')->name('toldo.model.post');
@@ -137,6 +140,9 @@ Route::group(['middleware' => 'user'], function () {
 
     Route::post('toldos/fetch/cover', 'App\Http\Controllers\ToldosController@fetchCover')->name('toldo.fetch.cover');
     Route::post('toldos/fetch/projection', 'App\Http\Controllers\ToldosController@fetchProjection')->name('toldo.fetch.projection');
+        Route::post('toldos/fetch/cover2', 'App\Http\Controllers\ToldosController@fetchCover2')->name('toldo.fetch.cover2');
+
+    Route::get('toldos/copy/{id}', 'App\Http\Controllers\ToldosController@copy')->name('toldo.copy');
 
     Route::put('curtains/data/add', 'App\Http\Controllers\CurtainsController@addData')->name('curtain.data.add');
     Route::put('palillerias/data/add', 'App\Http\Controllers\PalilleriasController@addData')->name('palilleria.data.add');

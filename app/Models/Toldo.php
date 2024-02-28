@@ -63,5 +63,7 @@ class Toldo extends Model
         'handle_quantity',
         'voice_quantity',
         'sensor_quantity',
+        'accessories_total',
+        'systems_total'
     ];
 }

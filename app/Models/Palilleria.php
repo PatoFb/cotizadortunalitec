@@ -57,6 +57,8 @@ class Palilleria extends Model
         'semigoal_quantity',
         'goal_quantity',
         'voice_id',
-        'voice_quantity'
+        'voice_quantity',
+        'accessories_total',
+        'systems_total'
     ];
 }

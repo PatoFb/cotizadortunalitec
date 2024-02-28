@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\addDataRequest;
 use App\Http\Requests\CoverRequest;
 use App\Http\Requests\ModelRequest;
 use App\Http\Requests\PalilleriaDataRequest;
@@ -37,6 +38,37 @@ class PalilleriasController extends Controller
     {
         $palilleria = Palilleria::findOrFail($id);
         return view('palillerias.show', compact('palilleria'));
+    }
+
+    public function copy($id)
+    {
+        $palilleria = Palilleria::findOrFail($id);
+        $order = Order::findOrFail($palilleria->order_id);
+        if(!auth()->user()->isAdmin()) {
+            $this->authorize('checkUser', $order);
+        }
+        copySystem($palilleria, $order);
+        return redirect()->back()->withStatus('Copia generada correctamente');
+    }
+
+    public function addData(addDataRequest $request)
+    {
+        $palilleria = Palilleria::findOrFail($request->get('palilleria_id'));
+        $order = Order::findOrFail($palilleria->order_id);
+        $order->price = $order->price - $palilleria->price;
+        $order->total = $order->total - $palilleria->price;
+        $palilleria->fill($request->all());
+        $palilleria->systems_total = $this->calculatePalilleriaPrice($palilleria, $order->discount);
+        $palilleria->accessories_total = $this->calculateAccessoriesPrice($palilleria);
+        $palilleria->price = $palilleria->systems_total + $palilleria->accessories_total;
+        $order->price = $order->price + $palilleria->price;
+        $order->total = $order->total + $palilleria->price;
+        $palilleria->save();
+        if($order->delivery == 1) {
+            addPackages($order);
+        }
+        $order->save();
+        return redirect()->back()->withStatus('Datos guardados correctamente');
     }
 
     /**
@@ -220,7 +252,9 @@ class PalilleriasController extends Controller
             $keys = ['model', 'cover', 'mechanism', 'control', 'voice', 'sensor'];
             removeKeys($palilleria, $keys, 'palilleria');
         }
-        $palilleria->price = $this->calculatePalilleriaPrice($palilleria);
+        $palilleria->systems_total = $this->calculatePalilleriaPrice($palilleria, Auth::user()->discount);
+        $palilleria->accessories_total = $this->calculateAccessoriesPrice($palilleria);
+        $palilleria->price = $palilleria->systems_total + $palilleria->accessories_total;
         Session::put('palilleria', $palilleria);
         return redirect()->route('palilleria.review', $order_id);
     }
@@ -232,8 +266,7 @@ class PalilleriasController extends Controller
      * @return float
      */
 
-    private function calculatePalilleriaPrice(Palilleria $palilleria): float {
-        $user = Auth::user();
+    private function calculatePalilleriaPrice(Palilleria $palilleria, float $discount): float {
         $cover = Cover::find($palilleria['cover_id']);
 
         $width = $palilleria['width'];
@@ -244,13 +277,9 @@ class PalilleriasController extends Controller
 
         $total_cover = $this->calculateCoverPrice($cover, $width, $height, $factor);
 
-        $reinforcement_total = $this->calculateReinforcementsPrice($palilleria, $height, $factor);
-
         $model_price = $this->calculateModelPrice($palilleria['model_id'], $width, $height);
 
-        $accessories = $this->calculateAccessoriesPrice($palilleria) + $reinforcement_total;
-
-        return ($model_price + $total_cover) / 0.6 * (1 - ($user->discount/100)) * $quantity * 1.16 + $accessories;
+        return ($model_price + $total_cover) / 0.6 * 1.16 * (1 - ($discount/100)) * $quantity;
     }
 
     /**
@@ -351,7 +380,7 @@ class PalilleriasController extends Controller
             $total_trave = 0;
         }
 
-        return ($total_trave + $total_semigoals + $total_goals + $extra_guides)*1.16;
+        return $total_trave + $total_semigoals + $total_goals + $extra_guides;
     }
 
     /**
@@ -371,10 +400,18 @@ class PalilleriasController extends Controller
         $squant = $palilleria['sensor_quantity'];
         $vquant = $palilleria['voice_quantity'];
 
+        $cover = Cover::find($palilleria['cover_id']);
+
+        $height = $palilleria['height'];
+
         //Accessories plus IVA
         $control_total = $control->price * $cquant;
         $sensor_total = $sensor->price * $squant;
         $voice_total = $voice->price * $vquant;
+
+        $factor = $this->factor($cover->roll_width);
+
+        $reinforcement_total = $this->calculateReinforcementsPrice($palilleria, $height, $factor);
 
         $somfy =  15021;
         $tube = 10416;
@@ -382,9 +419,9 @@ class PalilleriasController extends Controller
         //Pricing of user selected option
         switch($mechanism_id) {
             case 2:
-                return ($control_total + $voice_total + $sensor_total + $somfy)*1.16;
+                return ($control_total + $voice_total + $sensor_total + $somfy + $reinforcement_total)*1.16;
             case 4:
-                return ($control_total + $voice_total + $tube)*1.16;
+                return ($control_total + $voice_total + $tube + $reinforcement_total)*1.16;
             default:
                 return 0;
         }
@@ -437,6 +474,17 @@ class PalilleriasController extends Controller
     public function fetchCover(Request $request){
         $value = $request->get('cover_id');
         $palilleria = Session::get('palilleria');
+        $this->echoPalilleria($palilleria, $value);
+    }
+
+    public function fetchCover2(Request $request){
+        $value = $request->get('cover_id');
+        $id = $request->get('palilleria_id');
+        $palilleria = Palilleria::findOrFail($id);
+        $this->echoPalilleria($palilleria, $value);
+    }
+
+    private function echoPalilleria(Palilleria $palilleria, int $value) {
         $cover = Cover::find($value);
         $height = $palilleria['height'];
 
@@ -473,7 +521,6 @@ class PalilleriasController extends Controller
           </div>
             </div>
           ";
-            //Calculates total pricing of fabric plus handiwork plus IVA
     }
 
     /**

@@ -15,7 +15,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class UsersController extends Controller
+class  UsersController extends Controller
 {
     /**
      * Show the form for creating a new resource.

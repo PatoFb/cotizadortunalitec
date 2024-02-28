@@ -72,15 +72,7 @@ class CurtainsController extends Controller
         if(!auth()->user()->isAdmin()) {
             $this->authorize('checkUser', $order);
         }
-        $order->price = $order->price + $curtain->price;
-        $order->total = $order->total + $curtain->price;
-        $copy = new Curtain;
-        $copy->fill($curtain->toArray());
-        $copy->save();
-        if($order->delivery == 1) {
-            addPackages($order);
-        }
-        $order->save();
+        copySystem($curtain, $order);
         return redirect()->back()->withStatus('Copia generada correctamente');
     }
 

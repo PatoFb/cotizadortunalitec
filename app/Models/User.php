@@ -31,7 +31,8 @@ class User extends Authenticatable
         'line2',
         'reference',
         'role_id',
-        'partner_id'
+        'partner_id',
+        'restricted'
     ];
 
     /**

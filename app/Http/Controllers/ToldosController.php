@@ -39,6 +39,17 @@ class ToldosController extends Controller
         return view('toldos.show', compact('toldo'));
     }
 
+    public function copy($id)
+    {
+        $toldo = Toldo::findOrFail($id);
+        $order = Order::findOrFail($toldo->order_id);
+        if(!auth()->user()->isAdmin()) {
+            $this->authorize('checkUser', $order);
+        }
+        copySystem($toldo, $order);
+        return redirect()->back()->withStatus('Copia generada correctamente');
+    }
+
     /**
      * Function to return the projection depending on the width and model selected
      *
@@ -67,6 +78,17 @@ class ToldosController extends Controller
     public function fetchCover(Request $request){
         $value = $request->get('cover_id');
         $toldo = $request->session()->get('toldo');
+        $this->echoToldo($toldo, $value);
+    }
+
+    public function fetchCover2(Request $request){
+        $value = $request->get('cover_id');
+        $id = $request->get('toldo_id');
+        $toldo = Toldo::findOrFail($id);
+        $this->echoToldo($toldo, $value);
+    }
+
+    private function echoToldo(Toldo $toldo, int $value) {
         $cover = Cover::findOrFail($value);
         $width = $toldo['width'];
         $projection = $toldo['height'];

@@ -37,6 +37,18 @@ function createSession(int $model_id, int $order_id, string $object, string $sys
     Session::put($system, $object);
 }
 
+function copySystem($object, $order) {
+    $order->price = $order->price + $object->price;
+    $order->total = $order->total + $object->price;
+    $copy = new $object();
+    $copy->fill($object->toArray());
+    $copy->save();
+    if($order->delivery == 1) {
+        addPackages($order);
+    }
+    $order->save();
+}
+
 function deleteSystem($system) {
     $order = Order::where('id', $system->order_id)->first();
     $order->price = $order->price - $system->price;
