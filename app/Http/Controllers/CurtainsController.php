@@ -500,7 +500,10 @@ class CurtainsController extends Controller
             $total_fabric = $measure * $num_lienzos;
             $cover_price = $cover->price * $total_fabric;
         } else {
-            $range = RollWidth::where('width', $cover->roll_width)->where('meters', $height)->value('range');
+            $height *= 10;
+            $roundedHeight = ceil($height);
+            $roundedHeight /= 10;
+            $range = RollWidth::where('width', $cover->roll_width)->where('meters', $roundedHeight)->value('range');
             $num_lienzos = Complement::where('range', $range)->value('complete');
             $complement = Complement::where('range', $range)->value('complements');
             $total_fabric = $num_lienzos * $width;
