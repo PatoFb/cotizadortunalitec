@@ -24,7 +24,6 @@ class pAddDataRequest extends FormRequest
     public function rules()
     {
         return [
-            'palilleria_id' => 'required',
             'cover_id' => ['required', 'exists:covers,id', 'integer'],
             'inclination' => 'nullable',
             'goal_height' => 'nullable',

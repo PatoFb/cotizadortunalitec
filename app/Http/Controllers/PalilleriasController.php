@@ -450,7 +450,8 @@ class PalilleriasController extends Controller
     public function review($order_id)
     {
         $palilleria = Session::get('palilleria');
-        return view('palillerias.review', compact('order_id', 'palilleria'));
+        $order = Order::findOrFail($order_id);
+        return view('palillerias.review', compact('order_id', 'palilleria', 'order'));
     }
 
     /**
