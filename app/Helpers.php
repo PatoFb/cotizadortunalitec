@@ -77,8 +77,12 @@ function addPackages(Order $order)
     $order->total = $order->total - ($order->total_packages + $order->insurance);
     $somfy_quantity = 0;
     $qty = 0;
+    $qty_p = 0;
+    $manual_p_quantity = 0;
     $somfy_packages = ['small' => 0, 'large' => 0];
     $other_packages = ['small' => 0, 'large' => 0];
+    $manual_p_packages = ['small' => 0, 'large' => 0];
+    $other_p_packages = ['small' => 0, 'large' => 0];
     foreach($order->curtains as $c){
         if($c->mechanism_id == 2) {
             $somfy_quantity = $c->quantity + $somfy_quantity;
@@ -88,8 +92,17 @@ function addPackages(Order $order)
             $other_packages = addPackagesPerSystem(2, $qty);
         }
     }
-    $small_packages = $somfy_packages['small'] + $other_packages['small'];
-    $large_packages = $somfy_packages['large'] + $other_packages['large'];
+    foreach($order->palillerias as $p){
+        if($p->mechanism_id == 1) {
+            $manual_p_quantity = $p->quantity + $manual_p_quantity;
+            $manual_p_packages = addPackagesPerSystemP(1, $manual_p_quantity);
+        } else {
+            $qty_p = $p->quantity + $qty_p;
+            $other_p_packages = addOtherPackagesPerSystemP(2.5, $qty_p);
+        }
+    }
+    $small_packages = $somfy_packages['small'] + $other_packages['small'] + $manual_p_packages['small'] + $other_p_packages['small'];
+    $large_packages = $somfy_packages['large'] + $other_packages['large'] + $manual_p_packages['large'] + $other_p_packages['large'];;
     $order->total_packages = (($small_packages * 240.48) + ($large_packages * 298.73))*1.16;
     $order->insurance = ($order->total/1.16*0.01391)*1.16;
     $order->price = $order->price + $order->total_packages + $order->insurance;
@@ -100,5 +113,19 @@ function addPackagesPerSystem(int $value, int $quantity): array {
     $qty = (ceil($quantity/5));
     $small_packages = $qty * $value;
     $large_packages = $quantity;
+    return ['small'=>$small_packages, 'large'=>$large_packages];
+}
+
+function addPackagesPerSystemP(int $value, int $quantity): array {
+    $qty = (ceil($quantity/5));
+    $small_packages = $qty * $value;
+    $large_packages = $quantity + 1;
+    return ['small'=>$small_packages, 'large'=>$large_packages];
+}
+
+function addOtherPackagesPerSystemP(float $value, int $quantity): array {
+    $qty = (ceil($quantity/4));
+    $small_packages = ceil($qty * $value);
+    $large_packages = $quantity + 1;
     return ['small'=>$small_packages, 'large'=>$large_packages];
 }

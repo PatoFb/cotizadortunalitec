@@ -4,164 +4,100 @@
 <div class="content">
     @include('alerts.errors')
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-12">
-          <div class="card">
-            <div class="card-header card-header-primary">
-              <h4 class="card-title">Revisión de sistema (Paso 7 de 7)</h4>
-              {{--<p class="card-category"> Here you can manage users</p>--}}
-            </div>
-            <div class="card-body">
-                {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\PalilleriasController@reviewPost', $order_id]]) !!}
-                <tr class="table-responsive">
-                    <table class="table">
-                        <tr>
-                            <td class="text-center">Modelo:</td>
-                            <td><strong>{{$palilleria->model->name}}</strong></td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">Cubierta:</td>
-                            <td><strong>{{$palilleria->cover->name}}</strong></td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">Mecanismo:</td>
-                            <td><strong>{{$palilleria->mechanism->name}}</strong></td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">Ancho:</td>
-                            <td><strong>{{$palilleria->width}} mts</strong></td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">Salida:</td>
-                            <td><strong>{{$palilleria->height}} mts</strong></td>
-                        </tr>
-                        @if($palilleria->control_id != 9999 && $palilleria->control_id != 999 && $palilleria->control_quantity > 0)
-                            <tr>
-                                <td class="text-center">
-                                    Control:
-                                    <br>
-                                    Cantidad:
-                                </td>
-                                <td>
-                                    <strong>{{$palilleria->control->name}}</strong>
-                                    <br>
-                                    <strong>{{$palilleria->control_quantity}}</strong>
-                                </td>
-                            </tr>
-                        @endif
-                        @if($palilleria->sensor_id != 9999 && $palilleria->sensor_id != 999 && $palilleria->sensor_quantity > 0)
-                            <tr>
-                                <td class="text-center">
-                                    Sensor:
-                                    <br>
-                                    Cantidad:
-                                </td>
-                                <td>
-                                    <strong>{{$palilleria->sensor->name}}</strong>
-                                    <br>
-                                    <strong>{{$palilleria->sensor_quantity}}</strong>
-                                </td>
-                            </tr>
-                        @endif
-                        @if($palilleria->voice_id != 9999 && $palilleria->voice_id != 999 && $palilleria->voice_quantity > 0)
-                            <tr>
-                                <td class="text-center">
-                                    Control de voz:
-                                    <br>
-                                    Cantidad:
-                                </td>
-                                <td>
-                                    <strong>{{$palilleria->voice->name}}</strong>
-                                    <br>
-                                    <strong>{{$palilleria->voice_quantity}}</strong>
-                                </td>
-                            </tr>
-                        @endif
-                        @if($palilleria->guide == 1 && $palilleria->guide_quantity > 0)
-                            <tr>
-                                <td class="text-center">
-                                    Guia+:
-                                    <br>
-                                    Cantidad:
-                                </td>
-                                <td>
-                                    <strong>Si</strong>
-                                    <br>
-                                    <strong>{{$palilleria->guide_quantity}}</strong>
-                                </td>
-                            </tr>
-                        @endif
-                        @if($palilleria->trave == 1 && $palilleria->trave_quantity > 0)
-                            <tr>
-                                <td class="text-center">
-                                    Trave+:
-                                    <br>
-                                    Cantidad:
-                                </td>
-                                <td>
-                                    <strong>Si</strong>
-                                    <br>
-                                    <strong>{{$palilleria->trave_quantity}}</strong>
-                                </td>
-                            </tr>
-                        @endif
-                        @if($palilleria->semigoal_id == 1 && $palilleria->semigoal_quantity > 0)
-                            <tr>
-                                <td class="text-center">
-                                    Semiportería+:
-                                    <br>
-                                    Cantidad:
-                                </td>
-                                <td>
-                                    <strong>Si</strong>
-                                    <br>
-                                    <strong>{{$palilleria->semigoal_quantity}}</strong>
-                                </td>
-                            </tr>
-                        @endif
-                        @if($palilleria->goal_id == 1 && $palilleria->goal_quantity > 0)
-                            <tr>
-                                <td class="text-center">
-                                    Portería+:
-                                    <br>
-                                    Cantidad:
-                                </td>
-                                <td>
-                                    <strong>SI</strong>
-                                    <br>
-                                    <strong>{{$palilleria->goal_quantity}}</strong>
-                                </td>
-                            </tr>
-                        @endif
-                        <tr>
-                            <td class="text-center">Precio unitario:</td>
-                            <td><strong>${{number_format($palilleria->price/$palilleria->quantity, 2)}}</strong></td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">Cantidad:</td>
-                            <td><strong>{{$palilleria->quantity}}</strong></td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">Total:</td>
-                            <td><strong>${{number_format($palilleria->price, 2)}}</strong></td>
-                        </tr>
-                    </table>
-                <div class="form-row text-center">
-                    <div class="col-6 text-left">
-                        <a href="{{ route('palilleria.features', $order_id) }}" class="btn btn-danger">Anterior</a>
-                    </div>
-                    <div class="col-6 text-right">
-                        {!! Form::submit('Guardar', ['class'=>'btn btn-primary', $order_id]) !!}
-                        {!! Form::close() !!}
-                    </div>
-                </div>
+      <div class="row">
+          <div class="col-md-8 offset-md-2">
+              <div class="card mt-3">
+                  <div class="card-header card-header-primary">
+                      <h4 class="card-title">Revisión de sistema (Paso 6 de 6)</h4>
+                  </div>
+                  <div class="card-body">
+                      {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\PalilleriasController@reviewPost', $order_id]]) !!}
+                      <h5 class="card-title">Configuración de sistema</h5>
+                      <p class="card-text">
+                          <strong>Modelo:</strong> {{$palilleria->model->name}}
+                          <br>
+                          <strong>Cubierta:</strong> {{$palilleria->cover->name}}
+                          <br>
+                          <strong>Mecanismo:</strong> {{$palilleria->mechanism->name}}
+                          <br>
+                          <strong>Ancho:</strong> {{$palilleria->width}} mts
+                          <br>
+                          <strong>Caída:</strong> {{$palilleria->height}} mts
+                      </p>
+                  </div>
+              </div>
 
+              <div class="card mt-3">
+                  <div class="card-body">
+                      <h5 class="card-title">Accesorios</h5>
+                      <ul class="list-group">
+                          @if($palilleria->sensor_id != 9999 && $palilleria->sensor_id != 999 && $palilleria->sensor_quantity > 0)
+                              <li class="list-group-item"><strong>Manivela: </strong>{{$palilleria->sensor->measure}} mts ({{$palilleria->sensor_quantity}})</li>
+                          @endif
+                          @if($palilleria->control_id != 9999 && $palilleria->control_id != 999 && $palilleria->control_quantity > 0)
+                              <li class="list-group-item"><strong>Control: </strong>{{$palilleria->control->name}} ({{$palilleria->control_quantity}})</li>
+                          @endif
+                          @if($palilleria->voice_id != 9999 && $palilleria->voice_id != 999 && $palilleria->voice_quantity > 0)
+                              <li class="list-group-item"><strong>Control de voz: </strong>{{$palilleria->voice->name}} ({{$palilleria->voice_quantity}})</li>
+                          @endif
+                      </ul>
+                  </div>
+              </div>
+
+              <div class="card mt-3">
+                  <div class="card-body">
+                      <h5 class="card-title">Refuerzos</h5>
+                      <ul class="list-group">
+                          @if($palilleria->guide == 1)
+                              <li class="list-group-item"><strong>Guías: </strong>{{$guide_quantity}}</li>
+                          @endif
+                          @if($palilleria->goal == 1)
+                              <li class="list-group-item"><strong>Porterías: </strong>{{$goal_quantity}}</li>
+                          @endif
+                          @if($palilleria->semigoal == 1)
+                              <li class="list-group-item"><strong>Semiporterías: </strong>{{$semigoal_quantity}}</li>
+                          @endif
+                          @if($palilleria->trave == 1)
+                              <li class="list-group-item"><strong>Traves: </strong>{{$trave_quantity}}</li>
+                          @endif
+                      </ul>
+                  </div>
+              </div>
+
+              @if($order->activity == 'Pedido')
+                  <div class="card mt-3">
+                      <div class="card-body">
+                          <h5 class="card-title">Datos para producción</h5>
+                          <p class="card-text">
+                              <strong>Inclinación:</strong> {{$palilleria->inclination}}
+                              <br>
+                              <strong>Altura de porterías:</strong> {{$palilleria->goal_height}}
+                          </p>
+                      </div>
+                  </div>
+              @endif
+
+              <div class="card mt-3">
+                  <div class="card-body">
+                      <h5 class="card-title">Precio</h5>
+                      <p class="card-text">
+                          <strong>Precio unitario:</strong> ${{number_format($palilleria->systems_total/$palilleria->quantity, 2)}}
+                          <br>
+                          <strong>Cantidad:</strong> {{$palilleria->quantity}}
+                          <br>
+                          <strong>Accesorios:</strong> ${{number_format($palilleria->accessories_total, 2)}}
+                          <br>
+                          <strong>Total:</strong> ${{number_format($palilleria->price, 2)}}
+                      </p>
+                  </div>
+              </div>
+              <div class="mt-4 d-flex justify-content-between">
+                  <a href="{{ route('palilleria.features', $order_id) }}" class="btn btn-danger">Anterior</a>
+                  {!! Form::submit('Guardar', ['class'=>'btn btn-primary', $order_id]) !!}
+                  {!! Form::close() !!}
+              </div>
           </div>
-
-</div>
-            </div>
       </div>
-    </div>
   </div>
 </div>
     @endsection

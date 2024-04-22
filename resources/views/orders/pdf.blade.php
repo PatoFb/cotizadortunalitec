@@ -136,11 +136,11 @@
                 <th class="border-right">Datos de sistema:</th>
                 @if(sizeof($order->curtains) >= ($e*6))
                     @for($i = ($e*6-5); $i <= ($e*6); $i++)
-                        <th class="border-bottom border-right-clear">Sistema {{$i}}:</th>
+                        <th class="border-bottom border-right-clear">Curtain {{$i}}:</th>
                     @endfor
                 @else
                     @for($i = ($e*6-5); $i <= sizeof($order->curtains); $i++)
-                        <th class="border-bottom border-right-clear">Sistema {{$i}}:</th>
+                        <th class="border-bottom border-right-clear">Curtain {{$i}}:</th>
                     @endfor
                 @endif
             </tr>
@@ -409,11 +409,11 @@
                     <th class="border-right">Datos de sistema:</th>
                     @if(sizeof($order->palillerias) >= ($e*6))
                         @for($i = ($e*6-5); $i <= ($e*6); $i++)
-                            <th class="border-bottom border-right-clear">Sistema {{$i}}:</th>
+                            <th class="border-bottom border-right-clear">Palilleria {{$i}}:</th>
                         @endfor
                     @else
                         @for($i = ($e*6-5); $i <= sizeof($order->palillerias); $i++)
-                            <th class="border-bottom border-right-clear">Sistema {{$i}}:</th>
+                            <th class="border-bottom border-right-clear">Palilleria {{$i}}:</th>
                         @endfor
                     @endif
                 </tr>
