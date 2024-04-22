@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/pAddDataRequest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/orders/pdf.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/orders/pdf.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/orders/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/orders/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrdersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OrdersController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -193,11 +191,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\cotizadortunalitec\app\Http\Requests" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\public\storage\images\covers" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\public\storage\images" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\alerts" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\public\material\img" />
-      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\orders" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\cotizadortunalitec\public\storage\images\covers" />
@@ -436,7 +434,7 @@
       <workItem from="1711550860410" duration="1859000" />
       <workItem from="1711555138200" duration="80000" />
       <workItem from="1712945346314" duration="2366000" />
-      <workItem from="1713798412829" duration="5265000" />
+      <workItem from="1713798412829" duration="5606000" />
     </task>
     <servers />
   </component>

@@ -11,6 +11,7 @@ use App\Models\Curtain;
 use App\Models\Handle;
 use App\Models\Order;
 use App\Models\Palilleria;
+use App\Models\Sensor;
 use App\Models\Toldo;
 use App\Models\Type;
 use App\Models\User;
@@ -153,7 +154,9 @@ class OrdersController extends Controller
         $handles = Handle::where('price', '>', 0)->get();
         $controls = Control::where('price', '>', 0)->get();
         $voices = VoiceControl::where('price', '>', 0)->get();
-        return view('orders.show', compact('order', 'role', 'handles', 'controls', 'voices'));
+        $sensors = Sensor::where('price', '>', 0)->where('type', 'P')->get();
+        $sensorst = Sensor::where('price', '>', 0)->where('type', 'T')->get();
+        return view('orders.show', compact('order', 'role', 'handles', 'controls', 'voices', 'sensors', 'sensorst'));
     }
 
     /**
