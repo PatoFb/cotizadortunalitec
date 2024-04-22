@@ -97,7 +97,7 @@
 
     </div>
     <div class="pdf-section company-logo">
-        @if($order->curtains)
+        @if(sizeof($order->curtains) > 0)
         <img src="{{asset('storage')}}/images/{{$order->curtains[0]->model->photo}}" style="max-width: 300px" alt="Model">
         @else
             <img src="{{asset('storage')}}/images/{{$order->palillerias[0]->model->photo}}" style="max-width: 300px" alt="Model">
@@ -107,7 +107,7 @@
     <br><br><br>
     <br><br><br>
     <br><br><br>
-    @if($order->curtains)
+    @if(sizeof($order->curtains) > 0)
     @for($e = 1; $e <= ceil(sizeof($order->curtains)/6); $e++)
         @if($e % 2 == 1)
             <div class="pdf-section company-logo">
@@ -378,7 +378,7 @@
         @endif
     @endfor
         @endif
-    @if($order->palillerias)
+    @if(sizeof($order->palillerias) > 0)
         @for($e = 1; $e <= ceil(sizeof($order->palillerias)/6); $e++)
             @if($e % 2 == 1)
                 <div class="pdf-section company-logo">
