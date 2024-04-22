@@ -719,13 +719,13 @@
                                                       <br>
                                                       <h6>Accesorios</h6>
                                                       <div class="row">
-                                                          @if($curtain->sensor_id == 9999)
+                                                          @if($p->sensor_id == 9999)
                                                               {!! Form::number('sensor_id', 9999, ['class'=>'form-control', "step"=>1, "id"=>"sensor_id", 'hidden']) !!}
                                                               {!! Form::number('sensor_quantity', 0, ['class'=>'form-control', "step"=>1, "id"=>"sensor_quantity", 'hidden']) !!}
                                                           @else
                                                               <div class="col-6">
                                                                   {!! Form::label('sensor_id', 'Sensor (Precio por unidad)' )  !!}
-                                                                  <select class="form-control" name="handle_id" id="handle_id" >
+                                                                  <select class="form-control" name="sensor_id" id="sensor_id" >
                                                                       <option value="999" {{{ (isset($p->sensor_id) && $p->sensor_id == 999) ? "selected=\"selected\"" : "" }}}>No aplica</option>
                                                                       @foreach($sensors as $sensor)
                                                                           <option value="{{$sensor->id}}" {{{ (isset($p->sensor_id) && $p->sensor_id == $sensor->id) ? "selected=\"selected\"" : "" }}}>{{$sensor->name}} mts - ${{number_format($sensor->price*1.16, 2)}}</option>
