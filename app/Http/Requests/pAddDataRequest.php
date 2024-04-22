@@ -31,7 +31,6 @@ class pAddDataRequest extends FormRequest
             'width' => ['required', 'min:0.5', 'max:10', 'numeric'],
             'height' => ['required', 'min:0.5', 'max:10', 'numeric'],
             'sensor_id' => ['required', 'exists:sensors,id', 'integer'],
-            'canopy' => ['required', 'integer', 'min:0', 'max:1'],
             'control_id' => ['required', 'exists:controls,id', 'integer'],
             'voice_id' => ['required', 'exists:voice_controls,id', 'integer'],
             'control_quantity' => ['required', 'min:0', 'integer'],
@@ -66,11 +65,6 @@ class pAddDataRequest extends FormRequest
             'sensor_id.required' => 'El campo sensor es obligatorio.',
             'sensor_id.exists' => 'El sensor seleccionado no existe en la base de datos.',
             'sensor_id.integer' => 'El sensor debe ser un número entero.',
-
-            'canopy.required' => 'El campo tejadillo es obligatorio.',
-            'canopy.integer' => 'El campo tejadillo debe ser un número entero.',
-            'canopy.min' => 'El campo tejadillo debe ser al menos 0.',
-            'canopy.max' => 'El campo tejadillo debe ser máximo 1.',
 
             'control_id.required' => 'El campo control es obligatorio.',
             'control_id.exists' => 'El control seleccionado no existe en la base de datos.',

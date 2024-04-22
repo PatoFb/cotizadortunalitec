@@ -53,12 +53,11 @@ class PalilleriasController extends Controller
         return redirect()->back()->withStatus('Copia generada correctamente');
     }
 
-    public function addData(pAddDataRequest $request)
+    public function addData(Request $request)
     {
         $palilleria = Palilleria::findOrFail($request->get('palilleria_id'));
         Log::info($request->all());
         $order = Order::findOrFail($palilleria->order_id);
-        Log::info($order);
         $order->price = $order->price - $palilleria->price;
         $order->total = $order->total - $palilleria->price;
         $palilleria->fill($request->all());

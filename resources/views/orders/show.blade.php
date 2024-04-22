@@ -733,8 +733,8 @@
                                                                   </select>
                                                               </div>
                                                               <div class="col-6">
-                                                                  {!! Form::label('sensor_quantity', 'Cantidad (manivelas):') !!}
-                                                                  {!! Form::number('sensor_quantity', $p->sensor_quantity ?? 0, ['class'=>'form-control', "step"=>1, "id"=>"handle_quantity"]) !!}
+                                                                  {!! Form::label('sensor_quantity', 'Cantidad (sensores):') !!}
+                                                                  {!! Form::number('sensor_quantity', $p->sensor_quantity ?? 0, ['class'=>'form-control', "step"=>1, "id"=>"sensor_quantity"]) !!}
                                                               </div>
                                                           @endif
                                                       </div>
