@@ -97,12 +97,17 @@
 
     </div>
     <div class="pdf-section company-logo">
+        @if($order->curtains)
         <img src="{{asset('storage')}}/images/{{$order->curtains[0]->model->photo}}" style="max-width: 300px" alt="Model">
+        @else
+            <img src="{{asset('storage')}}/images/{{$order->palillerias[0]->model->photo}}" style="max-width: 300px" alt="Model">
+            @endif
     </div>
     <div class="clear"></div>
     <br><br><br>
     <br><br><br>
     <br><br><br>
+    @if($order->curtains)
     @for($e = 1; $e <= ceil(sizeof($order->curtains)/6); $e++)
         @if($e % 2 == 1)
             <div class="pdf-section company-logo">
@@ -372,6 +377,338 @@
             <hr>
         @endif
     @endfor
+        @endif
+    @if($order->palillerias)
+        @for($e = 1; $e <= ceil(sizeof($order->palillerias)/6); $e++)
+            @if($e % 2 == 1)
+                <div class="pdf-section company-logo">
+                    <!-- Insert company logo here -->
+                    <img src="{{ asset('material') }}/img/logosolair.png" alt="Company Logo" width="200">
+                </div>
+                <div class="pdf-section client-data">
+                    @if($order->activity == 'Oferta')
+                        <h1 class="text-center">Oferta {{ $order->id }}</h1>
+                    @else
+                        <h1 class="text-center">Pedido{{ $order->id }}</h1>
+                    @endif
+                    <h3>{{ $order->project }}</h3>
+                    <!-- Insert client data here -->
+                    Contacto: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $order->user->name }}<br>
+                    Socio: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $order->user->partner->description }}<br>
+                    Email: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $order->user->email }}<br>
+                    Teléfono: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $order->user->phone }}<br>
+                </div>
+                <div class="clear"></div>
+                <h3 class="text-center">Desglose de proyecto</h3>
+            @endif
+            <table class="pdf-table">
+                <thead>
+                <tr>
+                    <th class="border-right">Datos de sistema:</th>
+                    @if(sizeof($order->palillerias) >= ($e*6))
+                        @for($i = ($e*6-5); $i <= ($e*6); $i++)
+                            <th class="border-bottom border-right-clear">Sistema {{$i}}:</th>
+                        @endfor
+                    @else
+                        @for($i = ($e*6-5); $i <= sizeof($order->palillerias); $i++)
+                            <th class="border-bottom border-right-clear">Sistema {{$i}}:</th>
+                        @endfor
+                    @endif
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="border-right">Cantidad</td>
+                    @if(sizeof($order->palillerias) >= ($e*6))
+                        @for($i = ($e*6-6); $i < ($e*6); $i++)
+                            <td class="text-right border-right-clear">{{$order->palillerias[$i]->quantity}}</td>
+                        @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->palillerias); $i++)
+                            <td class="text-right border-right-clear">{{$order->palillerias[$i]->quantity}}</td>
+                        @endfor
+                    @endif
+                </tr>
+                <tr>
+                    <td class="border-right">Modelo</td>
+                    @if(sizeof($order->palillerias) >= ($e*6))
+                        @for($i = ($e*6-6); $i < ($e*6); $i++)
+                            <td class="text-right border-right-clear">{{$order->palillerias[$i]->model->name}}</td>
+                        @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->palillerias); $i++)
+                            <td class="text-right border-right-clear">{{$order->palillerias[$i]->model->name}}</td>
+                        @endfor
+                    @endif
+                </tr>
+                <tr>
+                    <td class="border-right">Mecanismo</td>
+                    @if(sizeof($order->palillerias) >= ($e*6))
+                        @for($i = ($e*6-6); $i < ($e*6); $i++)
+                            <td class="text-right border-right-clear">{{$order->palillerias[$i]->mechanism->name}}</td>
+                        @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->palillerias); $i++)
+                            <td class="text-right border-right-clear">{{$order->palillerias[$i]->mechanism->name}}</td>
+                        @endfor
+                    @endif
+                </tr>
+                <tr>
+                    <td class="border-right">Ancho</td>
+                    @if(sizeof($order->palillerias) >= ($e*6))
+                        @for($i = ($e*6-6); $i < ($e*6); $i++)
+                            <td class="text-right border-right-clear">{{$order->palillerias[$i]->width}} m</td>
+                        @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->palillerias); $i++)
+                            <td class="text-right border-right-clear">{{$order->palillerias[$i]->width}} m</td>
+                        @endfor
+                    @endif
+                </tr>
+                <tr>
+                    <td class="border-right">Salida</td>
+                    @if(sizeof($order->palillerias) >= ($e*6))
+                        @for($i = ($e*6-6); $i < ($e*6); $i++)
+                            <td class="text-right border-right-clear">{{$order->palillerias[$i]->height}} m</td>
+                        @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->palillerias); $i++)
+                            <td class="text-right border-right-clear">{{$order->palillerias[$i]->height}} m</td>
+                        @endfor
+                    @endif
+                </tr>
+                <tr>
+                    <td class="border-right"></td>
+                    @if(sizeof($order->palillerias) >= ($e*6))
+                        @for($i = ($e*6-6); $i < ($e*6); $i++)
+                            <td class="text-right border-right-clear">{{$order->palillerias[$i]->cover->id}}</td>
+                        @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->palillerias); $i++)
+                            <td class="text-right border-right-clear">{{$order->palillerias[$i]->cover->id}}</td>
+                        @endfor
+                    @endif
+                </tr>
+                <tr>
+                    <td class="border-right">Cubierta</td>
+                    @if(sizeof($order->palillerias) >= ($e*6))
+                        @for($i = ($e*6-6); $i < ($e*6); $i++)
+                            <td class="text-right border-right-clear">{{$order->palillerias[$i]->cover->name}}</td>
+                        @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->palillerias); $i++)
+                            <td class="text-right border-right-clear">{{$order->palillerias[$i]->cover->name}}</td>
+                        @endfor
+                    @endif
+                </tr>
+                <tr>
+                    <td class="border-right fixed-height-cell"></td>
+                    @if(sizeof($order->palillerias) >= ($e*6))
+                        @for($i = ($e*6-6); $i < ($e*6); $i++)
+                            <td class="border-right-clear"></td>
+                        @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->palillerias); $i++)
+                            <td class="border-right-clear"></td>
+                        @endfor
+                    @endif
+                </tr>
+                <tr>
+                    <td class="border-right">Guías</td>
+                    @if(sizeof($order->palillerias) >= ($e*6))
+                        @for($i = ($e*6-6); $i < ($e*6); $i++)
+                            @if($order->palillerias[$i]->guide != 9999 && $order->palillerias[$i]->guide != 0)
+                                <td class="text-right border-right-clear">{{$order->palillerias[$i]->guide_quantity}}</td>
+                            @else
+                                <td class="border-right-clear"></td>
+                            @endif
+                        @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->palillerias); $i++)
+                            @if($order->palillerias[$i]->guide != 9999 && $order->palillerias[$i]->guide != 0)
+                                <td class="text-right border-right-clear">{{$order->palillerias[$i]->guide_quantity}}</td>
+                            @else
+                                <td class="border-right-clear"></td>
+                            @endif
+                        @endfor
+                    @endif
+                </tr>
+                <tr>
+                    <td class="border-right">Porterías</td>
+                    @if(sizeof($order->palillerias) >= ($e*6))
+                        @for($i = ($e*6-6); $i < ($e*6); $i++)
+                            @if($order->palillerias[$i]->goal != 9999 && $order->palillerias[$i]->goal != 0)
+                                <td class="text-right border-right-clear">{{$order->palillerias[$i]->goal_quantity}}</td>
+                            @else
+                                <td class="border-right-clear"></td>
+                            @endif
+                        @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->palillerias); $i++)
+                            @if($order->palillerias[$i]->goal != 9999 && $order->palillerias[$i]->goal != 0)
+                                <td class="text-right border-right-clear">{{$order->palillerias[$i]->goal_quantity}}</td>
+                            @else
+                                <td class="border-right-clear"></td>
+                            @endif
+                        @endfor
+                    @endif
+                </tr>
+                <tr>
+                    <td class="border-right">Semiporterías</td>
+                    @if(sizeof($order->palillerias) >= ($e*6))
+                        @for($i = ($e*6-6); $i < ($e*6); $i++)
+                            @if($order->palillerias[$i]->semigoal != 9999 && $order->palillerias[$i]->semigoal != 0)
+                                <td class="text-right border-right-clear">{{$order->palillerias[$i]->semigoal_quantity}}</td>
+                            @else
+                                <td class="border-right-clear"></td>
+                            @endif
+                        @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->palillerias); $i++)
+                            @if($order->palillerias[$i]->semigoal != 9999 && $order->palillerias[$i]->semigoal != 0)
+                                <td class="text-right border-right-clear">{{$order->palillerias[$i]->semigoal_quantity}}</td>
+                            @else
+                                <td class="border-right-clear"></td>
+                            @endif
+                        @endfor
+                    @endif
+                </tr>
+                <tr>
+                    <td class="border-right">Traves</td>
+                    @if(sizeof($order->palillerias) >= ($e*6))
+                        @for($i = ($e*6-6); $i < ($e*6); $i++)
+                            @if($order->palillerias[$i]->trave != 9999 && $order->palillerias[$i]->trave != 0)
+                                <td class="text-right border-right-clear">{{$order->palillerias[$i]->trave_quantity}}</td>
+                            @else
+                                <td class="border-right-clear"></td>
+                            @endif
+                        @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->palillerias); $i++)
+                            @if($order->palillerias[$i]->trave != 9999 && $order->palillerias[$i]->trave != 999)
+                                <td class="text-right border-right-clear">{{$order->palillerias[$i]->trave_quantity}}</td>
+                            @else
+                                <td class="border-right-clear"></td>
+                            @endif
+                        @endfor
+                    @endif
+                </tr>
+                <tr>
+                    <td class="border-right">Control</td>
+                    @if(sizeof($order->palillerias) >= ($e*6))
+                        @for($i = ($e*6-6); $i < ($e*6); $i++)
+                            @if($order->palillerias[$i]->control_id != 9999 && $order->palillerias[$i]->control_id != 999)
+                                <td class="text-right border-right-clear">{{$order->palillerias[$i]->control->name}} ({{$order->palillerias[$i]->control_quantity}})</td>
+                            @else
+                                <td class="border-right-clear"></td>
+                            @endif
+                        @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->palillerias); $i++)
+                            @if($order->palillerias[$i]->control_id != 9999 && $order->palillerias[$i]->control_id != 999)
+                                <td class="text-right border-right-clear">{{$order->palillerias[$i]->control->name}} ({{$order->palillerias[$i]->control_quantity}})</td>
+                            @else
+                                <td class="border-right-clear"></td>
+                            @endif
+                        @endfor
+                    @endif
+                </tr>
+                <tr>
+                    <td class="border-right">Control voz</td>
+                    @if(sizeof($order->palillerias) >= ($e*6))
+                        @for($i = ($e*6-6); $i < ($e*6); $i++)
+                            @if($order->palillerias[$i]->voice_id != 9999 && $order->palillerias[$i]->voice_id != 999)
+                                <td class="text-right border-right-clear">{{$order->palillerias[$i]->voice->name}} ({{$order->palillerias[$i]->voice_quantity}})</td>
+                            @else
+                                <td class="border-right-clear"></td>
+                            @endif
+                        @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->palillerias); $i++)
+                            @if($order->palillerias[$i]->voice_id != 9999 && $order->palillerias[$i]->voice_id != 999)
+                                <td class="text-right border-right-clear">{{$order->palillerias[$i]->voice->name}} ({{$order->palillerias[$i]->voice_quantity}})</td>
+                            @else
+                                <td class="border-right-clear"></td>
+                            @endif
+                        @endfor
+                    @endif
+                </tr>
+                <tr>
+                    <td class="border-right">Sensores</td>
+                    @if(sizeof($order->palillerias) >= ($e*6))
+                        @for($i = ($e*6-6); $i < ($e*6); $i++)
+                            @if($order->palillerias[$i]->sensor_id != 9999 && $order->palillerias[$i]->sensor_id != 999)
+                                <td class="text-right border-right-clear">{{$order->palillerias[$i]->sensor->name}} ({{$order->palillerias[$i]->sensor_quantity}})</td>
+                            @else
+                                <td class="border-right-clear"></td>
+                            @endif
+                        @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->palillerias); $i++)
+                            @if($order->palillerias[$i]->sensor_id != 9999 && $order->palillerias[$i]->sensor_id != 999)
+                                <td class="text-right border-right-clear">{{$order->palillerias[$i]->sensor->name}} ({{$order->palillerias[$i]->sensor_quantity}})</td>
+                            @else
+                                <td class="border-right-clear"></td>
+                            @endif
+                        @endfor
+                    @endif
+                </tr>
+                <tr>
+                    <td class="border-right fixed-height-cell"></td>
+                    @if(sizeof($order->palillerias) >= ($e*6))
+                        @for($i = ($e*6-6); $i < ($e*6); $i++)
+                            <td class="border-right-clear"></td>
+                        @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->palillerias); $i++)
+                            <td class="border-right-clear"></td>
+                        @endfor
+                    @endif
+                </tr>
+                <tr>
+                    <td class="border-right">Tipo de instalación</td>
+                    @if(sizeof($order->palillerias) >= ($e*6)))
+                    @for($i = ($e*6-6); $i < ($e*6); $i++)
+                        <td class="text-right border-right-clear">{{$order->palillerias[$i]->installation_type}}</td>
+                    @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->palillerias); $i++)
+                            <td class="text-right border-right-clear">{{$order->palillerias[$i]->installation_type}}</td>
+                        @endfor
+                    @endif
+                </tr>
+                <tr>
+                    <td class="border-right">Lado del mecanismo</td>
+                    @if(sizeof($order->palillerias) >= ($e*6))
+                        @for($i = ($e*6-6); $i < ($e*6); $i++)
+                            <td class="text-right border-right-clear">{{$order->palillerias[$i]->mechanism_side}}</td>
+                        @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->palillerias); $i++)
+                            <td class="text-right border-right-clear">{{$order->palillerias[$i]->mechanism_side}}</td>
+                        @endfor
+                    @endif
+                </tr>
+                <tr>
+                    <td class="border-right">Precio</td>
+                    @if(sizeof($order->palillerias) >= ($e*6))
+                        @for($i = ($e*6-6); $i < ($e*6); $i++)
+                            <td bgcolor="#d3d3d3" class="text-center border-right-clear">${{number_format($order->palillerias[$i]->price,2)}}</td>
+                        @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->palillerias); $i++)
+                            <td bgcolor="#d3d3d3" class="text-center border-right-clear">${{number_format($order->palillerias[$i]->price,2)}}</td>
+                        @endfor
+                    @endif
+                </tr>
+                </tbody>
+            </table>
+            <br>
+            @if($e % 2 == 1)
+                <hr>
+            @endif
+        @endfor
+    @endif
 </div>
 </body>
 </html>
