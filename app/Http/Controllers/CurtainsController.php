@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\addDataOrderRequest;
-use App\Http\Requests\addDataRequest;
+use App\Http\Requests\pAddDataRequest;
 use App\Http\Requests\CoverOrderRequest;
 use App\Http\Requests\CoverRequest;
 use App\Http\Requests\CurtainDataRequest;
@@ -45,7 +45,7 @@ class CurtainsController extends Controller
      * @return mixed
      */
 
-    public function addData(addDataRequest $request)
+    public function addData(pAddDataRequest $request)
     {
         $curtain = Curtain::findOrFail($request->get('curtain_id'));
         $order = Order::findOrFail($curtain->order_id);

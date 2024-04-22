@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\addDataRequest;
 use App\Http\Requests\CoverRequest;
 use App\Http\Requests\ModelRequest;
+use App\Http\Requests\pAddDataRequest;
 use App\Http\Requests\PalilleriaDataRequest;
 use App\Http\Requests\PalilleriaFeaturesRequest;
 use App\Http\Requests\PalilleriaModelRequest;
@@ -51,7 +52,7 @@ class PalilleriasController extends Controller
         return redirect()->back()->withStatus('Copia generada correctamente');
     }
 
-    public function addData(addDataRequest $request)
+    public function addData(pAddDataRequest $request)
     {
         $palilleria = Palilleria::findOrFail($request->get('palilleria_id'));
         $order = Order::findOrFail($palilleria->order_id);

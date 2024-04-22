@@ -514,7 +514,7 @@
                     @endif
                 </tr>
                 <tr>
-                    <td class="border-right">Guías</td>
+                    <td class="border-right">Guías extra</td>
                     @if(sizeof($order->palillerias) >= ($e*6))
                         @for($i = ($e*6-6); $i < ($e*6); $i++)
                             @if($order->palillerias[$i]->guide != 9999 && $order->palillerias[$i]->guide != 0)
@@ -534,7 +534,7 @@
                     @endif
                 </tr>
                 <tr>
-                    <td class="border-right">Porterías</td>
+                    <td class="border-right">Porterías extra</td>
                     @if(sizeof($order->palillerias) >= ($e*6))
                         @for($i = ($e*6-6); $i < ($e*6); $i++)
                             @if($order->palillerias[$i]->goal != 9999 && $order->palillerias[$i]->goal != 0)
@@ -554,7 +554,7 @@
                     @endif
                 </tr>
                 <tr>
-                    <td class="border-right">Semiporterías</td>
+                    <td class="border-right">Semiporterías extra</td>
                     @if(sizeof($order->palillerias) >= ($e*6))
                         @for($i = ($e*6-6); $i < ($e*6); $i++)
                             @if($order->palillerias[$i]->semigoal != 9999 && $order->palillerias[$i]->semigoal != 0)
@@ -574,7 +574,7 @@
                     @endif
                 </tr>
                 <tr>
-                    <td class="border-right">Traves</td>
+                    <td class="border-right">Traves extra</td>
                     @if(sizeof($order->palillerias) >= ($e*6))
                         @for($i = ($e*6-6); $i < ($e*6); $i++)
                             @if($order->palillerias[$i]->trave != 9999 && $order->palillerias[$i]->trave != 0)
@@ -585,7 +585,7 @@
                         @endfor
                     @else
                         @for($i = ($e*6-6); $i < sizeof($order->palillerias); $i++)
-                            @if($order->palillerias[$i]->trave != 9999 && $order->palillerias[$i]->trave != 999)
+                            @if($order->palillerias[$i]->trave != 9999 && $order->palillerias[$i]->trave != 0)
                                 <td class="text-right border-right-clear">{{$order->palillerias[$i]->trave_quantity}}</td>
                             @else
                                 <td class="border-right-clear"></td>
@@ -666,26 +666,26 @@
                     @endif
                 </tr>
                 <tr>
-                    <td class="border-right">Tipo de instalación</td>
+                    <td class="border-right">Inclinación</td>
                     @if(sizeof($order->palillerias) >= ($e*6)))
                     @for($i = ($e*6-6); $i < ($e*6); $i++)
-                        <td class="text-right border-right-clear">{{$order->palillerias[$i]->installation_type}}</td>
+                        <td class="text-right border-right-clear">{{$order->palillerias[$i]->inclination}}</td>
                     @endfor
                     @else
                         @for($i = ($e*6-6); $i < sizeof($order->palillerias); $i++)
-                            <td class="text-right border-right-clear">{{$order->palillerias[$i]->installation_type}}</td>
+                            <td class="text-right border-right-clear">{{$order->palillerias[$i]->inclination}}</td>
                         @endfor
                     @endif
                 </tr>
                 <tr>
-                    <td class="border-right">Lado del mecanismo</td>
-                    @if(sizeof($order->palillerias) >= ($e*6))
-                        @for($i = ($e*6-6); $i < ($e*6); $i++)
-                            <td class="text-right border-right-clear">{{$order->palillerias[$i]->mechanism_side}}</td>
-                        @endfor
+                    <td class="border-right">Altura de porterias</td>
+                    @if(sizeof($order->palillerias) >= ($e*6)))
+                    @for($i = ($e*6-6); $i < ($e*6); $i++)
+                        <td class="text-right border-right-clear">{{$order->palillerias[$i]->goal_height}}</td>
+                    @endfor
                     @else
                         @for($i = ($e*6-6); $i < sizeof($order->palillerias); $i++)
-                            <td class="text-right border-right-clear">{{$order->palillerias[$i]->mechanism_side}}</td>
+                            <td class="text-right border-right-clear">{{$order->palillerias[$i]->goal_height}}</td>
                         @endfor
                     @endif
                 </tr>

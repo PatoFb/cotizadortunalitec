@@ -654,7 +654,7 @@
                                           <td>{{$p->quantity}}</td>
                                           <td class="text-right">${{number_format($p->price, 2)}}</td>
                                           <td class="td-actions text-right">
-                                              <button type="button" class="btn btn-link btn-info" data-toggle="modal" data-target="#pDetailsModal{{$p->id}}" id="curtain_details_modal">
+                                              <button type="button" class="btn btn-link btn-info" data-toggle="modal" data-target="#pDetailsModal{{$p->id}}" id="p_details_modal">
                                                   <i class="material-icons">info</i>
                                                   <div class="ripple-container"></div></button>
                                               @if($order->activity == "Oferta")
@@ -671,6 +671,166 @@
                                               @endif
                                           </td>
                                       </tr>
+                                      <div class="modal fade" id="pAddModal{{$p->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                          <div class="modal-dialog modal-lg" role="document">
+                                              <div class="modal-content">
+                                                  <div class="modal-header">
+                                                      <h5 class="modal-title" id="exampleModalLabel">Editar sistema</h5>
+                                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                          <span aria-hidden="true">&times;</span>
+                                                      </button>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                      {!! Form::model($p, ['method'=>'PUT', 'action'=>['App\Http\Controllers\PalilleriasController@addData', $p->id]]) !!}
+                                                      <h6>Datos</h6>
+                                                      <div class="row">
+                                                          <div class="col-12">
+                                                              {!! Form::label('quantity', 'Cantidad de sistemas') !!}
+                                                              {!! Form::number('quantity', $p->quantity ?? null, ['class'=>'form-control', "id"=>"quantity", "step"=>1, "min"=>1]) !!}
+                                                          </div>
+                                                      </div>
+                                                      <br>
+                                                      <div class="row" id="palilleria-data-form2{{$p->id}}">
+                                                          <div class="col-md-6 col-sm-6">
+                                                              {!! Form::label('width', 'Ancho') !!}
+                                                              {!! Form::number('width', $p->width ?? null , ['class'=>'form-control', "step"=>0.01, "min"=>1.01, "max"=>$p->model->max_width,'id'=>'width']) !!}
+                                                          </div>
+
+                                                          <div class="col-md-6 col-sm-6">
+                                                              {!! Form::label('height', 'Caida') !!}
+                                                              {!! Form::number('height', $p->height ?? null, ['class'=>'form-control', "step"=>0.01, "min"=>1.01, "max"=>$p->model->max_height, 'id'=>'height']) !!}
+                                                          </div>
+                                                      </div>
+                                                      <br>
+                                                      <h6>Cubierta</h6>
+                                                      <div class="row">
+                                                          <div class="col-12" id="coverForm2{{$p->id}}">
+                                                              <input name="curtain_id" type="hidden" value="{{$p->id}}" id="curtain_id">
+                                                              {!! Form::label('cover_id', 'Clave (del 1 al 10 son estilos pendientes, no se aceptan pendientes para Pedidos)') !!}
+                                                              {!! Form::number('cover_id', $p->cover_id ?? null, ['class'=>'form-control', "id"=>"cover_id"]) !!}
+                                                          </div>
+                                                      </div>
+                                                      <br>
+                                                      <div class="row">
+                                                          <div class="col-12" id="coverDynamic2{{$p->id}}">
+
+                                                          </div>
+                                                      </div>
+                                                      <br>
+                                                      <h6>Accesorios</h6>
+                                                      <div class="row">
+                                                          @if($curtain->sensor_id == 9999)
+                                                              {!! Form::number('sensor_id', 9999, ['class'=>'form-control', "step"=>1, "id"=>"sensor_id", 'hidden']) !!}
+                                                              {!! Form::number('sensor_quantity', 0, ['class'=>'form-control', "step"=>1, "id"=>"sensor_quantity", 'hidden']) !!}
+                                                          @else
+                                                              <div class="col-6">
+                                                                  {!! Form::label('sensor_id', 'Sensor (Precio por unidad)' )  !!}
+                                                                  <select class="form-control" name="handle_id" id="handle_id" >
+                                                                      <option value="999" {{{ (isset($p->sensor_id) && $p->sensor_id == 999) ? "selected=\"selected\"" : "" }}}>No aplica</option>
+                                                                      @foreach($sensors as $sensor)
+                                                                          <option value="{{$sensor->id}}" {{{ (isset($p->sensor_id) && $p->sensor_id == $sensor->id) ? "selected=\"selected\"" : "" }}}>{{$sensor->name}} mts - ${{number_format($sensor->price*1.16, 2)}}</option>
+                                                                      @endforeach
+                                                                  </select>
+                                                              </div>
+                                                              <div class="col-6">
+                                                                  {!! Form::label('sensor_quantity', 'Cantidad (manivelas):') !!}
+                                                                  {!! Form::number('sensor_quantity', $p->sensor_quantity ?? 0, ['class'=>'form-control', "step"=>1, "id"=>"handle_quantity"]) !!}
+                                                              </div>
+                                                          @endif
+                                                      </div>
+                                                      @if($p->sensor_id != 9999)
+                                                          <br>
+                                                      @endif
+                                                      <div class="row">
+                                                          @if($p->control_id == 9999)
+                                                              {!! Form::number('control_id', 9999, ['class'=>'form-control', "step"=>1, "id"=>"control_id", 'hidden']) !!}
+                                                              {!! Form::number('control_quantity', 0, ['class'=>'form-control', "step"=>1, "id"=>"control_quantity", 'hidden']) !!}
+                                                          @else
+                                                              <div class="col-6">
+                                                                  {!! Form::label('control_id', 'Control (Precio por unidad)' )  !!}
+                                                                  <select class="form-control" name="control_id" id="control_id">
+                                                                      <option value="999" {{{ (isset($p->control_id) && $p->control_id == 999) ? "selected=\"selected\"" : "" }}}>No aplica</option>
+                                                                      @foreach($controls as $control)
+                                                                          @if($control->mechanism_id == $p->mechanism_id)
+                                                                              <option value="{{$control->id}}" {{{ (isset($p->control_id) && $p->control_id == $control->id) ? "selected=\"selected\"" : "" }}}>{{$control->name}} - ${{number_format($control->price*1.16, 2)}}</option>
+                                                                          @elseif($p->mechanism_id == 3)
+                                                                              @if($control->mechanism_id == 2)
+                                                                                  <option value="{{$control->id}}" {{{ (isset($p->control_id) && $p->control_id == $control->id) ? "selected=\"selected\"" : "" }}}>{{$control->name}} - ${{number_format($control->price*1.16, 2)}}</option>
+                                                                              @endif
+                                                                          @endif
+                                                                      @endforeach
+                                                                  </select>
+                                                              </div>
+                                                              <div class="col-6">
+                                                                  {!! Form::label('control_quantity', 'Cantidad (controles):') !!}
+                                                                  {!! Form::number('control_quantity', $p->control_quantity ?? 0, ['class'=>'form-control', "step"=>1, "id"=>"control_quantity"]) !!}
+                                                              </div>
+                                                          @endif
+                                                      </div>
+                                                      @if($p->control_id != 9999)
+                                                          <br>
+                                                      @endif
+                                                      <div class="row">
+                                                          @if($p->voice_id == 9999)
+                                                              {!! Form::number('voice_id', 9999, ['class'=>'form-control', 'id'=>'voice_id', 'hidden']) !!}
+                                                              {!! Form::number('voice_quantity', 0, ['class'=>'form-control', 'id'=>'voice_quantity', 'hidden']) !!}
+                                                          @else
+                                                              <div class="col-6">
+                                                                  {!! Form::label('voice_id', 'Voz (Precio por unidad)' )  !!}
+                                                                  <select class="form-control hidden" name="voice_id" id="voice_id" >
+                                                                      <option value="999" {{{ (isset($p->voice_id) && $p->voice_id == 999) ? "selected=\"selected\"" : "" }}}>No aplica</option>
+                                                                      @foreach($voices as $voice)
+                                                                          @if($voice->mechanism_id == $p->mechanism_id)
+                                                                              <option value="{{$voice->id}}" {{{ (isset($curtain->voice_id) && $curtain->voice_id == $voice->id) ? "selected=\"selected\"" : "" }}}>{{$voice->name}} - ${{number_format($voice->price*1.16, 2)}}</option>
+                                                                          @elseif($p->mechanism_id == 3)
+                                                                              @if($voice->mechanism_id == 2)
+                                                                                  <option value="{{$voice->id}}" {{{ (isset($p->voice_id) && $p->voice_id == $voice->id) ? "selected=\"selected\"" : "" }}}>{{$voice->name}} - ${{number_format($voice->price*1.16, 2)}}</option>
+                                                                              @endif
+                                                                          @endif
+                                                                      @endforeach
+                                                                  </select>
+                                                              </div>
+                                                              <div class="col-6">
+                                                                  {!! Form::label('voice_quantity', 'Cantidad (controles de voz):') !!}
+                                                                  {!! Form::number('voice_quantity', $p->voice_quantity ?? 0, ['class'=>'form-control', 'id'=>'voice_quantity']) !!}
+                                                              </div>
+                                                          @endif
+                                                      </div>
+
+                                                      <br>
+                                                      <h6>Datos para pedido</h6>
+                                                      <div class="row">
+                                                          <div class="col-12">
+                                                              {!! Form::label('inclination', 'Tipo de instalación:') !!}
+                                                              <select class="form-control" name="installation_type">
+                                                                  <option value="">Selecciona inclinación</option>
+                                                                  <option {{{ (isset($p->inclination) && $p->inclination == '30 y 60mm') ? "selected=\"selected\"" : "" }}}>30 y 60mm</option>
+                                                                  <option {{{ (isset($p->inclination) && $p->inclination == '60 y 90mm') ? "selected=\"selected\"" : "" }}}>60 y 90mm</option>
+                                                                  <option {{{ (isset($p->inclination) && $p->inclination == '30 y 90mm') ? "selected=\"selected\"" : "" }}}>30 y 90mm</option>
+                                                                  <option {{{ (isset($p->inclination) && $p->inclination == '30, 60 y 90mm') ? "selected=\"selected\"" : "" }}}>30, 60 y 90mm</option>
+                                                                  <option {{{ (isset($p->inclination) && $p->inclination == 'Recta 30mm') ? "selected=\"selected\"" : "" }}}>Recta 30mm</option>
+                                                                  <option {{{ (isset($p->inclination) && $p->inclination == 'Recta 60mm') ? "selected=\"selected\"" : "" }}}>Recta 60mm</option>
+                                                                  <option {{{ (isset($p->inclination) && $p->inclination == 'Recta 90mm') ? "selected=\"selected\"" : "" }}}>Recta 90mm</option>
+                                                                  <option {{{ (isset($p->inclination) && $p->inclination == 'Otro') ? "selected=\"selected\"" : "" }}}>Otro</option>
+                                                              </select>
+                                                          </div>
+                                                      </div>
+                                                      <br>
+                                                      <div class="row">
+                                                          <div class="col-12">
+                                                              {!! Form::label('goal_height', 'Altura de porterías:') !!}
+                                                              {!! Form::number('goal_height', $p->goal_height ?? 0, ['class'=>'form-control', 'id'=>'goal_height', 'max'=>5, 'step'=>0.01]) !!}
+                                                          </div>
+                                                      </div>
+
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                      {!! Form::submit('Aceptar', ['class'=>'btn btn-primary', 'id'=>'add_data']) !!}
+                                                      {!! Form::close() !!}
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
                                       <div class="modal fade" id="pDetailsModal{{$p->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                           <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
                                               <div class="modal-content">
@@ -830,13 +990,42 @@
                                                           </div>
                                                           <hr>
                                                       @endif
+                                                      <br>
+                                                      <h5><strong>Datos para producción</strong></h5>
+                                                      <div class="row">
+                                                          <div class="col-6 text-center">
+                                                              Inclinación:
+                                                          </div>
+                                                          <div class="col-6 text-center">
+                                                              @if($p->inclination)
+                                                                  <strong>{{$p->inclination}}</strong>
+                                                              @else
+                                                                  <strong class="text-danger">Faltante</strong>
+                                                              @endif
+                                                          </div>
+                                                      </div>
+                                                      <hr>
+                                                      <div class="row">
+                                                          <div class="col-6 text-center">
+                                                              Altura de porterías:
+                                                          </div>
+                                                          <div class="col-6 text-center">
+                                                              @if($p->goal_height != 0)
+                                                                  <strong>{{$p->goal_height}}</strong>
+                                                              @else
+                                                                  <strong class="text-danger">Faltante</strong>
+                                                              @endif
+                                                          </div>
+                                                      </div>
+                                                      <hr>
+                                                      <br>
                                                       <h5><strong>Precios</strong></h5>
                                                       <div class="row">
                                                           <div class="col-6 text-center">
                                                               Precio unitario:
                                                           </div>
                                                           <div class="col-6 text-center">
-                                                              <strong>${{number_format($p->price/$p->quantity, 2)}}</strong>
+                                                              <strong>${{number_format($p->systems_total/$p->quantity, 2)}}</strong>
                                                           </div>
                                                       </div>
                                                       <hr>
@@ -846,6 +1035,15 @@
                                                           </div>
                                                           <div class="col-6 text-center">
                                                               <strong>{{$p->quantity}}</strong>
+                                                          </div>
+                                                      </div>
+                                                      <hr>
+                                                      <div class="row">
+                                                          <div class="col-6 text-center">
+                                                              Accesorios:
+                                                          </div>
+                                                          <div class="col-6 text-center">
+                                                              <strong>${{number_format($p->accessories_total_total, 2)}}</strong>
                                                           </div>
                                                       </div>
                                                       <hr>
@@ -861,7 +1059,7 @@
                                               </div>
                                           </div>
                                       </div>
-                                      <div class="modal fade" id="pDeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal fade" id="pDeleteModal{{$p->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                           <div class="modal-dialog" role="document">
                                               <div class="modal-content">
                                                   <div class="modal-header">
