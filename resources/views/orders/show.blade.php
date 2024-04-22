@@ -802,7 +802,7 @@
                                                       <div class="row">
                                                           <div class="col-12">
                                                               {!! Form::label('inclination', 'Tipo de instalación:') !!}
-                                                              <select class="form-control" name="installation_type">
+                                                              <select class="form-control" name="inclination">
                                                                   <option value="">Selecciona inclinación</option>
                                                                   <option {{{ (isset($p->inclination) && $p->inclination == '30 y 60mm') ? "selected=\"selected\"" : "" }}}>30 y 60mm</option>
                                                                   <option {{{ (isset($p->inclination) && $p->inclination == '60 y 90mm') ? "selected=\"selected\"" : "" }}}>60 y 90mm</option>

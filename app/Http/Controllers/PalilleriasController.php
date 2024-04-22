@@ -26,6 +26,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
+use Symfony\Polyfill\Intl\Idn\Info;
 
 class PalilleriasController extends Controller
 {
@@ -55,7 +56,9 @@ class PalilleriasController extends Controller
     public function addData(pAddDataRequest $request)
     {
         $palilleria = Palilleria::findOrFail($request->get('palilleria_id'));
+        Log::info($request->all());
         $order = Order::findOrFail($palilleria->order_id);
+        Log::info($order);
         $order->price = $order->price - $palilleria->price;
         $order->total = $order->total - $palilleria->price;
         $palilleria->fill($request->all());
