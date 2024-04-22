@@ -59,6 +59,8 @@ class Palilleria extends Model
         'voice_id',
         'voice_quantity',
         'accessories_total',
-        'systems_total'
+        'systems_total',
+        'inclination',
+        'goal_height'
     ];
 }
