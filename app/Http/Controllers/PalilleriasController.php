@@ -276,9 +276,22 @@ class PalilleriasController extends Controller
 
         $factor = $this->factor($cover->roll_width);
 
-        $total_cover = $this->calculateCoverPrice($cover, $width, $height, $factor);
+        $somfy =  15021;
+        $tube = 10416;
 
-        $model_price = $this->calculateModelPrice($palilleria['model_id'], $width, $height);
+        switch($palilleria['mechanism_id']) {
+            case 2:
+                $model_price = $this->calculateModelPrice($palilleria['model_id'], $width, $height) + $somfy;
+                break;
+            case 4:
+                $model_price = $this->calculateModelPrice($palilleria['model_id'], $width, $height) + $tube;
+                break;
+            default:
+                $model_price = 0;
+                break;
+        }
+
+        $total_cover = $this->calculateCoverPrice($cover, $width, $height, $factor);
 
         return ($model_price + $total_cover) / 0.6 * 1.16 * (1 - ($discount/100)) * $quantity;
     }
@@ -414,15 +427,12 @@ class PalilleriasController extends Controller
 
         $reinforcement_total = $this->calculateReinforcementsPrice($palilleria, $height, $factor);
 
-        $somfy =  15021;
-        $tube = 10416;
-
         //Pricing of user selected option
         switch($mechanism_id) {
             case 2:
-                return ($control_total + $voice_total + $sensor_total + $somfy + $reinforcement_total)*1.16;
+                return ($control_total + $voice_total + $sensor_total + $reinforcement_total)*1.16;
             case 4:
-                return ($control_total + $voice_total + $tube + $reinforcement_total)*1.16;
+                return ($control_total + $voice_total + $reinforcement_total)*1.16;
             default:
                 return 0;
         }
@@ -503,7 +513,7 @@ class PalilleriasController extends Controller
            </div>
             <div class='row'>
             <div class='col-md-6 col-sm-12'>
-               <img src=".asset('storage')."/images/".$cover->photo." style='width: 100%;'>
+               <img src=".asset('storage')."/images/covers/".$cover->photo." style='width: 100%;'>
           </div>
           <div class='col-md-6 col-sm-12'>
                <h7 style='color: grey;'><strong>$cover->name</strong></h7>
