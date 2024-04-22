@@ -380,7 +380,7 @@
         @endif
     @if(sizeof($order->palillerias) > 0)
         @for($e = 1; $e <= ceil(sizeof($order->palillerias)/6); $e++)
-            @if(count($order->curtain) == 0)
+            @if(count($order->curtains) == 0)
             @if($e % 2 == 1)
                 <div class="pdf-section company-logo">
                     <!-- Insert company logo here -->
