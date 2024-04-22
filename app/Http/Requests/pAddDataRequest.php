@@ -25,15 +25,14 @@ class pAddDataRequest extends FormRequest
     {
         return [
             'cover_id' => ['required', 'exists:covers,id', 'integer'],
-            'mechanism_side' => 'nullable',
-            'installation_type' => 'nullable',
+            'inclination' => 'nullable',
+            'goal_height' => 'nullable',
             'width' => ['required', 'min:0.5', 'max:10', 'numeric'],
             'height' => ['required', 'min:0.5', 'max:10', 'numeric'],
             'sensor_id' => ['required', 'exists:handles,id', 'integer'],
             'control_id' => ['required', 'exists:controls,id', 'integer'],
             'voice_id' => ['required', 'exists:voice_controls,id', 'integer'],
             'control_quantity' => ['required', 'min:0', 'integer'],
-            'handle_quantity' => ['required', 'min:0', 'integer'],
             'voice_quantity' => ['required', 'min:0', 'integer'],
             'quantity' => ['required', 'min:1', 'integer'],
         ];

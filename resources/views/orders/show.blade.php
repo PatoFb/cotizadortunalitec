@@ -704,7 +704,7 @@
                                                       <br>
                                                       <h6>Cubierta</h6>
                                                       <div class="row">
-                                                          <div class="col-12" id="coverForm2{{$p->id}}">
+                                                          <div class="col-12" id="coverFormP2{{$p->id}}">
                                                               <input name="curtain_id" type="hidden" value="{{$p->id}}" id="curtain_id">
                                                               {!! Form::label('cover_id', 'Clave (del 1 al 10 son estilos pendientes, no se aceptan pendientes para Pedidos)') !!}
                                                               {!! Form::number('cover_id', $p->cover_id ?? null, ['class'=>'form-control', "id"=>"cover_id"]) !!}
@@ -712,7 +712,7 @@
                                                       </div>
                                                       <br>
                                                       <div class="row">
-                                                          <div class="col-12" id="coverDynamic2{{$p->id}}">
+                                                          <div class="col-12" id="coverDynamicP2{{$p->id}}">
 
                                                           </div>
                                                       </div>
