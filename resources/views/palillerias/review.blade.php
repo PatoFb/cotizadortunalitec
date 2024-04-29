@@ -49,16 +49,16 @@
                       <h5 class="card-title">Refuerzos</h5>
                       <ul class="list-group">
                           @if($palilleria->guide == 1)
-                              <li class="list-group-item"><strong>Guías: </strong>{{$palilleria->guide_quantity}}</li>
+                              <li class="list-group-item"><strong>Guías extra: </strong>{{$palilleria->guide_quantity}}</li>
                           @endif
                           @if($palilleria->goal == 1)
-                              <li class="list-group-item"><strong>Porterías: </strong>{{$palilleria->goal_quantity}}</li>
+                              <li class="list-group-item"><strong>Porterías extra: </strong>{{$palilleria->goal_quantity}}</li>
                           @endif
                           @if($palilleria->semigoal == 1)
-                              <li class="list-group-item"><strong>Semiporterías: </strong>{{$palilleria->semigoal_quantity}}</li>
+                              <li class="list-group-item"><strong>Semiporterías extra: </strong>{{$palilleria->semigoal_quantity}}</li>
                           @endif
                           @if($palilleria->trave == 1)
-                              <li class="list-group-item"><strong>Traves: </strong>{{$palilleria->trave_quantity}}</li>
+                              <li class="list-group-item"><strong>Traves extra: </strong>{{$palilleria->trave_quantity}}</li>
                           @endif
                       </ul>
                   </div>
