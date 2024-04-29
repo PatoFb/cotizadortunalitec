@@ -8,7 +8,7 @@
       <div class="col-md-12">
           <div class="card">
             <div class="card-header card-header-primary">
-              <h4 class="card-title">Características (Paso 6 de 7)</h4>
+              <h4 class="card-title">Características (Paso 5 de 6)</h4>
             </div>
             <div class="card-body">
                 {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\PalilleriasController@addFeaturesPost', $order_id]]) !!}
