@@ -1073,7 +1073,7 @@
 
                                                   </div>
                                                   <div class="modal-footer">
-                                                      {!! Form::submit('Aceptar', ['class'=>'btn btn-primary', 'id'=>'add_data']) !!}
+                                                      {!! Form::submit('Aceptar', ['class'=>'btn btn-primary', 'id'=>'p_add_data']) !!}
                                                       {!! Form::close() !!}
                                                   </div>
                                               </div>

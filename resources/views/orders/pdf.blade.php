@@ -100,6 +100,7 @@
         @if(sizeof($order->curtains) > 0)
         <img src="{{asset('storage')}}/images/{{$order->curtains[0]->model->photo}}" style="max-width: 300px" alt="Model">
         @else
+            <br> <br> <br>
             <img src="{{asset('storage')}}/images/{{$order->palillerias[0]->model->photo}}" style="max-width: 300px" alt="Model">
             @endif
     </div>
