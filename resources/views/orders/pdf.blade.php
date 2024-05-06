@@ -102,6 +102,8 @@
         @else
             <br> <br> <br>
             <img src="{{asset('storage')}}/images/{{$order->palillerias[0]->model->photo}}" style="max-width: 300px" alt="Model">
+            <br> <br> <br>
+            <br> <br> <br>
             @endif
     </div>
     <div class="clear"></div>
