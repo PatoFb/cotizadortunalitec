@@ -16,6 +16,8 @@
                       <p class="card-text">
                           <strong>Modelo:</strong> {{$palilleria->model->name}}
                           <br>
+                          <strong>Cantidad:</strong> {{$palilleria->quantity}}
+                          <br>
                           <strong>Cubierta:</strong> {{$palilleria->cover->name}}
                           <br>
                           <strong>Mecanismo:</strong> {{$palilleria->mechanism->name}}
@@ -82,8 +84,6 @@
                       <h5 class="card-title">Precio</h5>
                       <p class="card-text">
                           <strong>Precio unitario:</strong> ${{number_format($palilleria->systems_total/$palilleria->quantity, 2)}}
-                          <br>
-                          <strong>Cantidad:</strong> {{$palilleria->quantity}}
                           <br>
                           <strong>Accesorios:</strong> ${{number_format($palilleria->accessories_total, 2)}}
                           <br>

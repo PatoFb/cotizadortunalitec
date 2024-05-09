@@ -16,6 +16,8 @@
                       <p class="card-text">
                           <strong>Modelo:</strong> {{$curtain->model->name}}
                           <br>
+                          <strong>Cantidad:</strong> {{$curtain->quantity}}
+                          <br>
                           <strong>Cubierta:</strong> {{$curtain->cover->name}}
                           <br>
                           <strong>Mecanismo:</strong> {{$curtain->mechanism->name}}
@@ -64,8 +66,6 @@
                       <h5 class="card-title">Precio</h5>
                       <p class="card-text">
                           <strong>Precio unitario:</strong> ${{number_format($curtain->systems_total/$curtain->quantity, 2)}}
-                          <br>
-                          <strong>Cantidad:</strong> {{$curtain->quantity}}
                           <br>
                           <strong>Accesorios:</strong> ${{number_format($curtain->accessories_total, 2)}}
                           <br>
