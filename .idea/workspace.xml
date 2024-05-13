@@ -178,7 +178,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/xampp/htdocs/vendedores",
+    "last_opened_file_path": "C:/xampp/htdocs/mitunalitec_web",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -439,6 +439,8 @@
       <workItem from="1714661621334" duration="1479000" />
       <workItem from="1714676684316" duration="1202000" />
       <workItem from="1715006864232" duration="2183000" />
+      <workItem from="1715285723857" duration="670000" />
+      <workItem from="1715611837748" duration="1992000" />
     </task>
     <servers />
   </component>
