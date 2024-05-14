@@ -140,7 +140,7 @@ Route::group(['middleware' => 'user'], function () {
 
     Route::post('toldos/fetch/cover', 'App\Http\Controllers\ToldosController@fetchCover')->name('toldo.fetch.cover');
     Route::post('toldos/fetch/projection', 'App\Http\Controllers\ToldosController@fetchProjection')->name('toldo.fetch.projection');
-        Route::post('toldos/fetch/cover2', 'App\Http\Controllers\ToldosController@fetchCover2')->name('toldo.fetch.cover2');
+    Route::post('toldos/fetch/cover2', 'App\Http\Controllers\ToldosController@fetchCover2')->name('toldo.fetch.cover2');
 
     Route::get('toldos/copy/{id}', 'App\Http\Controllers\ToldosController@copy')->name('toldo.copy');
 
