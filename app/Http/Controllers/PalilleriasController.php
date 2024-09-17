@@ -278,8 +278,8 @@ class PalilleriasController extends Controller
 
         $factor = $this->factor($cover->roll_width);
 
-        $somfy =  15021;
-        $tube = 10416;
+        $somfy =  (15021*1.1);
+        $tube = (10416*1.1);
 
         switch($palilleria['mechanism_id']) {
             case 2:
@@ -337,7 +337,7 @@ class PalilleriasController extends Controller
         $bubble_price = (900/35) * ($width*6);
         $added = $bubble_price/3;
         $total_bubble = $bubble_price + $added;
-        $operation_costs = $work_price + $total_bubble;
+        $operation_costs = ($work_price + $total_bubble*1.1);
 
         return $total_cover + $operation_costs;
     }
@@ -396,7 +396,7 @@ class PalilleriasController extends Controller
             $total_trave = 0;
         }
 
-        return $total_trave + $total_semigoals + $total_goals + $extra_guides;
+        return ($total_trave + $total_semigoals + $total_goals + $extra_guides)*1.1;
     }
 
     /**

@@ -451,13 +451,13 @@ class CurtainsController extends Controller
                 return ($system_price) ;
             case 2:
                 //somfy mechanism accessories
-                return ($system_price + 6927.693627);
+                return ($system_price + (6927.693627*1.1));
             case 3:
                 //cmo mechanism accessories
-                return ($system_price + 7971.151961);
+                return ($system_price + (7971.151961*1.1));
             case 4:
                 //tube mechanism accessories
-                return ($system_price + 1959.235294);
+                return ($system_price + (1959.235294*1.1));
             default:
                 return 0;
         }
@@ -474,7 +474,7 @@ class CurtainsController extends Controller
 
     private function calculateCanopyPrice(int $canopy, float $width, float $newWidth): float {
         if($canopy == 1) {
-            return ((1023 * $width) + (145 * $width) + (142 * ($newWidth/2)) + 377) * 1.16;
+            return (((1023*1.1) * $width) + ((145*1.1) * $width) + ((142*1.1) * ($newWidth/2)) + (377*1.1)) * 1.16;
         } else {
             return 0;
         }
@@ -513,7 +513,7 @@ class CurtainsController extends Controller
             $cover_price = $full_price + $complement_price;
         }
 
-        $work_price = $squared_meters * (70/(1 - 0.3));
+        $work_price = ($squared_meters * (70/(1 - 0.3))*1.1);
         return ($cover_price + $work_price);
     }
 
