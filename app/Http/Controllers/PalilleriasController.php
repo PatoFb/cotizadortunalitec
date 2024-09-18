@@ -310,6 +310,7 @@ class PalilleriasController extends Controller
         $model = PalilleriaModel::find($model_id);
         $goals_total = $model->price;
         $pprice = PalilleriasPrice::where('width', ceil($width))->where('height', ceil($height))->value('price');
+        Log::info($pprice);
         return $goals_total + $pprice;
     }
 
@@ -337,7 +338,7 @@ class PalilleriasController extends Controller
         $bubble_price = (900/35) * ($width*6);
         $added = $bubble_price/3;
         $total_bubble = $bubble_price + $added;
-        $operation_costs = ($work_price + $total_bubble*1.1);
+        $operation_costs = ($work_price + $total_bubble)*1.1;
 
         return $total_cover + $operation_costs;
     }
