@@ -278,10 +278,13 @@ class PalilleriasController extends Controller
 
         $factor = $this->factor($cover->roll_width);
 
-        $somfy =  (15021*1.1);
-        $tube = (10416*1.1);
+        $somfy =  15021*1.1;
+        $tube = 10416*1.1;
 
         switch($palilleria['mechanism_id']) {
+            case 1:
+                $model_price = $this->calculateModelPrice($palilleria['model_id'], $width, $height);
+                break;
             case 2:
                 $model_price = $this->calculateModelPrice($palilleria['model_id'], $width, $height) + $somfy;
                 break;
