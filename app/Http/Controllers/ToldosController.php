@@ -360,13 +360,16 @@ class ToldosController extends Controller
 
     public function addFeaturesPost(ToldoFeaturesRequest $request, $order_id)
     {
+        $order = Order::find($order_id);
         $toldo = Session::get('toldo');
         if($toldo->model){
             $keys = ['model', 'cover', 'mechanism', 'handle', 'control', 'voice', 'sensor'];
             removeKeys($toldo, $keys, 'toldo');
         }
         $toldo->fill($request->all());
-        $toldo->price = $this->calculateToldoPrice($toldo);
+        $toldo->accessories_total = $this->calculateAccessoriesPrice($toldo) * (1-($order->discount/100)) * 1.1;
+        $toldo->systems_total = $this->calculateToldoPrice($toldo) * (1-($order->discount/100)) * 1.1;
+        $toldo->price = $toldo->accessories_total + $toldo->systems_total;
         Session::put('toldo', $toldo);
         return redirect()->route('toldo.review', $order_id);
     }
@@ -378,10 +381,6 @@ class ToldosController extends Controller
      * @return float
      */
     private function calculateToldoPrice(Toldo $toldo): float {
-        $user = Auth::user();
-        $bambalina = $toldo['bambalina'];
-        $canopy = $toldo['canopy'];
-
         $width = $toldo['width'];
         $projection = $toldo['projection'];
         $quantity = $toldo['quantity'];
@@ -410,13 +409,8 @@ class ToldosController extends Controller
                 $sprice = 0;
                 break;
         }
-        $total_canopy = $this->calculateCanopyPrice($canopy, $width);
 
-        $total_bambalina = (632.4 * $width) + $this->calculateBambalinaPrice($bambalina);
-
-        $accessories = $this->calculateAccessoriesPrice($toldo) + $total_bambalina + $total_canopy;
-
-        return (((($sprice+$total_cover+$accessories) / (0.60)) * $quantity) * (1-($user->discount/100)))*1.1;
+        return ($sprice+$total_cover) * $quantity / 0.60;
     }
 
     /**
@@ -443,15 +437,19 @@ class ToldosController extends Controller
         $sensor_total = $sensor->price * $squant;
         $handle_total = $handle->price * $hquant;
 
+        $total_canopy = $this->calculateCanopyPrice($toldo['canopy'], $toldo['width']);
+
+        $total_bambalina = (632.4 * $toldo['width']) + $this->calculateBambalinaPrice($toldo['bambalina']);
+
         switch($mechanism_id) {
             case 1:
-                return $handle_total;
+                return ($handle_total + $total_canopy + $total_bambalina) / 0.6;
             case 2:
-                return $control_total + $sensor_total + $voice_total;
+                return ($control_total + $sensor_total + $voice_total + $total_canopy + $total_bambalina) / 0.6;
             case 3:
-                return $control_total + $handle_total + $sensor_total + $voice_total;
+                return ($control_total + $handle_total + $sensor_total + $voice_total + $total_canopy + $total_bambalina) / 0.6;
             case 4:
-                return $handle_total + $voice_total + $control_total;
+                return ($handle_total + $voice_total + $control_total + $total_canopy + $total_bambalina) / 0.6;
             default:
                 return 0;
         }
