@@ -721,7 +721,7 @@
     @endif
     @if(sizeof($order->toldos) > 0)
         @for($e = 1; $e <= ceil(sizeof($order->toldos)/6); $e++)
-            @if(count($order->curtains) == 0)
+            @if(count($order->curtains) == 0 && count($order->palillerias) == 0)
                 @if($e % 2 == 1)
                     <div class="pdf-section company-logo">
                         <!-- Insert company logo here -->
@@ -803,7 +803,7 @@
                             <td class="text-right border-right-clear">{{$order->toldos[$i]->width}} m</td>
                         @endfor
                     @else
-                        @for($i = ($e*6-6); $i < sizeof($order->palillerias); $i++)
+                        @for($i = ($e*6-6); $i < sizeof($order->toldos); $i++)
                             <td class="text-right border-right-clear">{{$order->toldos[$i]->width}} m</td>
                         @endfor
                     @endif
@@ -815,7 +815,7 @@
                             <td class="text-right border-right-clear">{{$order->toldos[$i]->projection}} m</td>
                         @endfor
                     @else
-                        @for($i = ($e*6-6); $i < sizeof($order->palillerias); $i++)
+                        @for($i = ($e*6-6); $i < sizeof($order->toldos); $i++)
                             <td class="text-right border-right-clear">{{$order->toldos[$i]->projection}} m</td>
                         @endfor
                     @endif
@@ -827,7 +827,7 @@
                             <td class="text-right border-right-clear">{{$order->toldos[$i]->cover->id}}</td>
                         @endfor
                     @else
-                        @for($i = ($e*6-6); $i < sizeof($order->palillerias); $i++)
+                        @for($i = ($e*6-6); $i < sizeof($order->toldos); $i++)
                             <td class="text-right border-right-clear">{{$order->toldos[$i]->cover->id}}</td>
                         @endfor
                     @endif
@@ -839,7 +839,7 @@
                             <td class="text-right border-right-clear">{{$order->toldos[$i]->cover->name}}</td>
                         @endfor
                     @else
-                        @for($i = ($e*6-6); $i < sizeof($order->palillerias); $i++)
+                        @for($i = ($e*6-6); $i < sizeof($order->toldos); $i++)
                             <td class="text-right border-right-clear">{{$order->toldos[$i]->cover->name}}</td>
                         @endfor
                     @endif
