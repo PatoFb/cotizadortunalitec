@@ -106,6 +106,26 @@ class ToldosController extends Controller
         $this->echoToldo($toldo, $value);
     }
 
+    public function addData(Request $request)
+    {
+        $toldo = Toldo::findOrFail($request->get('toldo_id'));
+        $order = Order::findOrFail($toldo->order_id);
+        $order->price = $order->price - $toldo->price;
+        $order->total = $order->total - $toldo->price;
+        $toldo->fill($request->all());
+        $toldo->systems_total = $this->calculateToldoPrice($toldo) * (1-($order->discount/100)) * 1.1;;
+        $toldo->accessories_total = $this->calculateAccessoriesPrice($toldo) * (1-($order->discount/100)) * 1.1;;
+        $toldo->price = $toldo->systems_total + $toldo->accessories_total;
+        $order->price = $order->price + $toldo->price;
+        $order->total = $order->total + $toldo->price;
+        $toldo->save();
+        if($order->delivery == 1) {
+            addPackages($order);
+        }
+        $order->save();
+        return redirect()->back()->withStatus('Datos guardados correctamente');
+    }
+
     private function echoToldo(Toldo $toldo, int $value) {
         $cover = Cover::findOrFail($value);
         if ($toldo->model_id == 2) {
