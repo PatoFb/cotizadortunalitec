@@ -919,7 +919,7 @@
                                               </div>
                                           </div>
                                       </div>
-                                      <div class="modal fade" id="NOpAddModal{{$p->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal fade" id="pAddModal{{$p->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                           <div class="modal-dialog modal-lg" role="document">
                                               <div class="modal-content">
                                                   <div class="modal-header">
@@ -1371,7 +1371,6 @@
                                                       </div>
                                                       <br>
                                                       <div class="row">
-                                                          {!! Form::hidden('toldo_id', $toldo->id ?? '', ['id' => 'toldo_id']) !!}
                                                           <div class="col-md-6 col-sm-6">
                                                               {!! Form::label('width', 'Ancho') !!}
                                                               {!! Form::number('width', $toldo->width ?? null , ['class'=>'form-control dynamicPro', "step"=>0.01, "data-dependent2"=>"projection", "min"=>$toldo->model->min_width, "max"=>$toldo->model->max_width]) !!}
