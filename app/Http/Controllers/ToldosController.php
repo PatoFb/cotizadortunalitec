@@ -513,10 +513,10 @@ class ToldosController extends Controller
         if($cover->unions == 'Vertical') {
             $num_lienzos = ceil($width / $cover->roll_width);
             $total_fabric = $measure * $num_lienzos;
-            $cover_price = $cover->price * $total_fabric;
+            $cover_price = $cover->toldo_price * $total_fabric;
         } else {
             $complements = ceil($measure/$cover->roll_width);
-            $cover_price = $cover->price * $complements * $width;
+            $cover_price = $cover->toldo_price * $complements * $width;
         }
         //Calculates total pricing of fabric plus handiwork plus IVA
         $work_price = (50 * $measure * $width);

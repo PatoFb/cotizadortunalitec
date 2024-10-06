@@ -19,6 +19,7 @@ class CreateCurtainCoversTable extends Migration
             $table->float('roll_width');
             $table->string('unions');
             $table->float('price');
+            $table->float('toldo_price');
             $table->timestamps();
         });
     }
