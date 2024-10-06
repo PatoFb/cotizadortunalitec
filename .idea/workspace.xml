@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="" />
+    <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PalilleriasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PalilleriasController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ToldosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ToldosController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_09_10_154410_create_sistema_toldos_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_09_10_154410_create_sistema_toldos_table.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -176,7 +181,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/mitunalitec_web&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/cotizadortunalitec&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -439,7 +444,10 @@
       <workItem from="1715006864232" duration="2183000" />
       <workItem from="1715285723857" duration="670000" />
       <workItem from="1715611837748" duration="2621000" />
-      <workItem from="1726617526194" duration="787000" />
+      <workItem from="1726617526194" duration="2436000" />
+      <workItem from="1726670171251" duration="1382000" />
+      <workItem from="1727969158031" duration="1233000" />
+      <workItem from="1728227025394" duration="5379000" />
     </task>
     <servers />
   </component>

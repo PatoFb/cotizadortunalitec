@@ -278,7 +278,7 @@ class PalilleriasController extends Controller
 
         $factor = $this->factor($cover->roll_width);
 
-        $somfy =  15021*1.1;
+        $somfy = 15021*1.1;
         $tube = 10416*1.1;
 
         switch($palilleria['mechanism_id']) {
@@ -313,7 +313,6 @@ class PalilleriasController extends Controller
         $model = PalilleriaModel::find($model_id);
         $goals_total = $model->price;
         $pprice = PalilleriasPrice::where('width', ceil($width))->where('height', ceil($height))->value('price');
-        Log::info($pprice);
         return $goals_total + $pprice;
     }
 

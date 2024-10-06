@@ -18,8 +18,10 @@ class CreateSistemaToldosTable extends Migration
             $table->integer('modelo_toldo_id')->unsigned()->index()->nullable(true);
             $table->float('width');
             $table->float('projection');
-            $table->integer('mechanism_id')->unsigned()->index()->nullable(true);
             $table->float('price');
+            $table->float('tube_price')->nullable(true);
+            $table->float('somfy_price');
+            $table->float('cmo_price');
         });
     }
 

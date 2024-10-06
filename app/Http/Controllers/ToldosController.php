@@ -90,14 +90,14 @@ class ToldosController extends Controller
 
     private function echoToldo(Toldo $toldo, int $value) {
         $cover = Cover::findOrFail($value);
-        $width = $toldo['width'];
-        $projection = $toldo['height'];
-        $num_lienzos = ceil($width/$cover->roll_width);
-        $measure = $projection + 0.75;
-        $total_fabric = $measure * $num_lienzos;
-
+        if ($toldo->model_id == 2) {
+            $measure = $toldo->projection * 2 + 0.85;
+        } else {
+            $measure = $toldo->projection + 0.85;
+        }
         if($cover->unions == 'Vertical') {
-            //Calculates number of fabric needed for pricing
+            $num_lienzos = ceil($toldo->width / $cover->roll_width);
+            $total_fabric = $measure * $num_lienzos;
             echo "<div class='col-12'>
                 <h4>Detalles de cubierta</h4>
                </div>
@@ -122,6 +122,7 @@ class ToldosController extends Controller
               ";
             //Calculates total pricing of fabric plus handiwork plus IVA
         } else {
+            $complements = ceil($measure/$cover->roll_width);
             echo "<div class='col-12'>
                 <h4>Detalles de cubierta</h4>
                </div>
@@ -136,11 +137,9 @@ class ToldosController extends Controller
                    <br>
                    <h7 style='color: grey;'>Uniones: <strong>$cover->unions</strong></h7>
                    <br>
-                   <h7 style='color: grey;'>Número de lienzos: <strong>$num_lienzos</strong></h7>
+                   <h7 style='color: grey;'>Lienzos completos: <strong>$complements</strong></h7>
                    <br>
                    <h7 style='color: grey;'>Medida de lienzos: <strong>$measure mts</strong></h7>
-                   <br>
-                   <h7 style='color: grey;'>Total de textil: <strong>$total_fabric mts</strong></h7>
               </div>
                 </div>
               ";
@@ -229,8 +228,11 @@ class ToldosController extends Controller
     public function addDat($order_id)
     {
         $toldo = Session::get('toldo');
-        $system = SistemaToldo::where('modelo_toldo_id', $toldo->model_id)->groupBy('mechanism_id')->get('mechanism_id');
-        $mechs = Mechanism::whereIn('id', $system)->get();
+        if($toldo->model_id == 7) {
+            $mechs = Mechanism::whereIn('id', [1,2,3])->get();
+        } else {
+            $mechs = Mechanism::all();
+        }
         $model = ModeloToldo::find($toldo->model_id);
         return view('toldos.data', compact('order_id', 'toldo', 'mechs', 'model'));
     }
@@ -248,8 +250,24 @@ class ToldosController extends Controller
         $toldo = Session::get('toldo');
         $oldMechanismId = $toldo->mechanism_id;
         $newMechanismId = $request['mechanism_id'];
+        $newWidth = ceilMeasure($request['width'], 1);
+
+        if ($newMechanismId == 4) {
+            // Get the system based on the specified conditions
+            $system = SistemaToldo::where('modelo_toldo_id', $toldo['model_id'])
+                ->where('projection', $request['projection'])
+                ->where('width', $newWidth)
+                ->first();
+
+            // Validate if tube_price is not null
+            if (!$system || is_null($system->tube_price)) {
+                return back()->withErrors(['tube_price' => 'Las medidas seleccionadas no permiten el motor Tube']);
+            }
+        }
+
         $toldo->fill($request->all());
         $this->resetAccessories($toldo, $oldMechanismId, $newMechanismId);
+
         return redirect()->route('toldo.cover', $order_id);
     }
 
@@ -323,7 +341,7 @@ class ToldosController extends Controller
             }
             $controls = Control::where('mechanism_id', 2)->get();
             $voices = VoiceControl::where('mechanism_id', 2)->get();
-            $sensors = Sensor::where('type', 'T')->get();
+            $sensors = Sensor::where('type', 'L')->get();
         }
         return view('toldos.features', compact('order_id', 'toldo', 'handles', 'controls', 'sensors', 'voices'));
     }
@@ -372,15 +390,34 @@ class ToldosController extends Controller
 
         $newWidth = ceilMeasure($width, 1);
 
-        $sprice = SistemaToldo::where('modelo_toldo_id', $toldo['model_id'])->where('mechanism_id', $toldo['mechanism_id'])->where('projection', $projection)->where('width', $newWidth)->value('price');
+        switch ($toldo['mechanism_id']) {
+            case 1:
+                $sprice = SistemaToldo::where('modelo_toldo_id', $toldo['model_id'])->where('projection', $projection)->where('width', $newWidth)->value('price');
+                break;
+            case 2:
+                $somfy = SistemaToldo::where('modelo_toldo_id', $toldo['model_id'])->where('projection', $projection)->where('width', $newWidth)->get();
+                $sprice = $somfy->price + $somfy->somfy_price;
+                break;
+            case 3:
+                $cmo = SistemaToldo::where('modelo_toldo_id', $toldo['model_id'])->where('projection', $projection)->where('width', $newWidth)->get();
+                $sprice = $cmo->price + $cmo->cmo_price;
+                break;
+            case 4:
+                $tube = SistemaToldo::where('modelo_toldo_id', $toldo['model_id'])->where('projection', $projection)->where('width', $newWidth)->get();
+                $sprice = $tube->price + $tube->tube_price;
+                break;
+            default:
+                $sprice = 0;
+                break;
+        }
 
         $total_canopy = $this->calculateCanopyPrice($canopy, $width);
 
-        $total_bambalina = $this->calculateBambalinaPrice($bambalina, $width);
+        $total_bambalina = (632.4 * $width) + $this->calculateBambalinaPrice($bambalina;
 
         $accessories = $this->calculateAccessoriesPrice($toldo) + $total_bambalina + $total_canopy;
 
-        return ((((($sprice+$total_cover)*1.16) / (0.60)) * $quantity) * (1-($user->discount/100))) + $accessories;
+        return (((($sprice+$total_cover+$accessories) / (0.60)) * $quantity) * (1-($user->discount/100)));
     }
 
     /**
@@ -402,10 +439,10 @@ class ToldosController extends Controller
         $hquant = $toldo['handle_quantity'];
 
         //Accessories plus IVA
-        $control_total = $control->price * $cquant * 1.16;
-        $voice_total = $voice->price * $vquant * 1.16;
-        $sensor_total = $sensor->price * $squant * 1.16;
-        $handle_total = $handle->price * $hquant * 1.16;
+        $control_total = $control->price * $cquant;
+        $voice_total = $voice->price * $vquant;
+        $sensor_total = $sensor->price * $squant;
+        $handle_total = $handle->price * $hquant;
 
         switch($mechanism_id) {
             case 1:
@@ -428,9 +465,9 @@ class ToldosController extends Controller
      * @param float $width
      * @return float
      */
-    private function calculateBambalinaPrice(int $bambalina, float $width): float {
+    private function calculateBambalinaPrice(int $bambalina): float {
         if($bambalina == 1) {
-            return 4384.60 + ($width * 1.5 * 50 * 1.16) + (626.4 * $width);
+            return 6326.22 / 0.7;
         } else {
             return 0;
         }
@@ -446,9 +483,9 @@ class ToldosController extends Controller
     private function calculateCanopyPrice(int $canopy, float $width): float {
         if($canopy == 1) {
             if($width > 3.5) {
-                return ((4268.18 / 5 * $width + 100) + 498.79 + (271.07 * $width) + (629.69 * 2))* 1.16 / 0.8;
+                return ((3212.05 / 5 * $width + 100) + 392.37 + (496.40 * 2) + (181.77 * $width)) / 0.7;
             } else {
-                return ((4268.18/5*$width+100) + 498.79 + (271.07*$width) + (629.69))* 1.16 / 0.8;
+                return ((3212.05/5*$width+100) + 392.37 + (496.40) + (181.77 * $width)) / 0.7;
             }
         } else {
             return 0;
@@ -468,20 +505,22 @@ class ToldosController extends Controller
     private function calculateCoverPrice(int $cover_id, int $model_id, float $width, float $projection): float
     {
         $cover = Cover::find($cover_id);
-        $num_lienzos = ceil($width/$cover->roll_width);
-        if($model_id == 1){
-            $measure = $projection + 1.2;
-        } elseif ($model_id == 2) {
-            $measure = $projection * 2 + 0.75;
+        if ($model_id == 2) {
+            $measure = $projection * 2 + 0.85;
         } else {
-            $measure = $projection + 0.75;
+            $measure = $projection + 0.85;
         }
-        $total_fabric = $measure * $num_lienzos;
-
+        if($cover->unions == 'Vertical') {
+            $num_lienzos = ceil($width / $cover->roll_width);
+            $total_fabric = $measure * $num_lienzos;
+            $cover_price = $cover->price * $total_fabric;
+        } else {
+            $complements = ceil($measure/$cover->roll_width);
+            $cover_price = $cover->price * $complements * $width;
+        }
         //Calculates total pricing of fabric plus handiwork plus IVA
-        $cover_price = $cover->price * $total_fabric;
-        $work_price = (40 * $measure * $width);
-        return ($cover_price + $work_price) / (1-0.30);
+        $work_price = (50 * $measure * $width);
+        return ($cover_price + $work_price);
     }
 
     /**
