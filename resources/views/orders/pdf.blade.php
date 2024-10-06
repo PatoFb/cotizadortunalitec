@@ -99,9 +99,14 @@
     <div class="pdf-section company-logo">
         @if(sizeof($order->curtains) > 0)
         <img src="{{asset('storage')}}/images/{{$order->curtains[0]->model->photo}}" style="max-width: 300px" alt="Model">
-        @else
+        @elseif(sizeof($order->palillerias) > 0)
             <br> <br> <br>
             <img src="{{asset('storage')}}/images/{{$order->palillerias[0]->model->photo}}" style="max-width: 300px" alt="Model">
+            <br> <br> <br>
+            <br> <br> <br>
+            @else
+            <br> <br> <br>
+            <img src="{{asset('storage')}}/images/{{$order->toldos[0]->model->photo}}" style="max-width: 300px" alt="Model">
             <br> <br> <br>
             <br> <br> <br>
             @endif
