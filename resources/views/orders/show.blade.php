@@ -1373,7 +1373,7 @@
                                                       <div class="row">
                                                           <div class="col-md-6 col-sm-6">
                                                               {!! Form::label('width', 'Ancho') !!}
-                                                              {!! Form::number('width', $toldo->width ?? null , ['class'=>'form-control', "step"=>0.01, "min"=>1.01, "max"=>$toldo->model->max_width,'id'=>'width']) !!}
+                                                              {!! Form::number('width', $toldo->width ?? null , ['class'=>'form-control dynamicPro', "step"=>0.01, "data-dependent2"=>"projection", "min"=>$model->min_width, "max"=>$model->max_width]) !!}
                                                           </div>
 
                                                           <div class="col-md-6 col-sm-12">
