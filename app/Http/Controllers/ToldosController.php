@@ -413,7 +413,7 @@ class ToldosController extends Controller
 
         $total_canopy = $this->calculateCanopyPrice($canopy, $width);
 
-        $total_bambalina = (632.4 * $width) + $this->calculateBambalinaPrice($bambalina;
+        $total_bambalina = (632.4 * $width) + $this->calculateBambalinaPrice($bambalina);
 
         $accessories = $this->calculateAccessoriesPrice($toldo) + $total_bambalina + $total_canopy;
 

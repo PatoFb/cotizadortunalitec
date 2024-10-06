@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PalilleriasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PalilleriasController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ToldosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ToldosController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_09_10_154410_create_sistema_toldos_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_09_10_154410_create_sistema_toldos_table.php" afterDir="false" />
-    </list>
+    <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -447,7 +442,7 @@
       <workItem from="1726617526194" duration="2436000" />
       <workItem from="1726670171251" duration="1382000" />
       <workItem from="1727969158031" duration="1233000" />
-      <workItem from="1728227025394" duration="5379000" />
+      <workItem from="1728227025394" duration="6746000" />
     </task>
     <servers />
   </component>

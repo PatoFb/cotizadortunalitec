@@ -49,9 +49,9 @@ class TypesController extends Controller
             case 3:
                 Session::forget('palilleria');
                 return redirect()->route('palilleria.model', $order_id);
-            /*case 4:
+            case 4:
                 Session::forget('toldo');
-                return redirect()->route('toldo.model', $order_id);*/
+                return redirect()->route('toldo.model', $order_id);
             default:
                 return redirect()->route('orders.type', $order_id)->withStatus(__('El producto seleccionado no está disponible por el momento'));
 
