@@ -113,8 +113,8 @@ class ToldosController extends Controller
         $order->price = $order->price - $toldo->price;
         $order->total = $order->total - $toldo->price;
         $toldo->fill($request->all());
-        $toldo->systems_total = $this->calculateToldoPrice($toldo) * (1-($order->discount/100)) * 1.1;;
-        $toldo->accessories_total = $this->calculateAccessoriesPrice($toldo) * (1-($order->discount/100)) * 1.1;;
+        $toldo->accessories_total = $this->calculateAccessoriesPrice($toldo) * (1-($order->discount/100)) * 1.1;
+        $toldo->systems_total = $this->calculateToldoPrice($toldo) * (1-($order->discount/100)) * 1.1;
         $toldo->price = $toldo->systems_total + $toldo->accessories_total;
         $order->price = $order->price + $toldo->price;
         $order->total = $order->total + $toldo->price;
