@@ -11,7 +11,7 @@
                 <h4 class="card-title">Revisión de sistema (Paso 6 de 6)</h4>
             </div>
             <div class="card-body">
-                {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\CurtainsController@reviewPost', $order_id]]) !!}
+                {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\ToldosController@reviewPost', $order_id]]) !!}
                 <h5 class="card-title">Configuración de sistema</h5>
                 <p class="card-text">
                     <strong>Modelo:</strong> {{$toldo->model->name}}
@@ -38,14 +38,14 @@
                         @if($toldo->bambalina == 1)
                             <li class="list-group-item"><strong>Bambalina enrollable: </strong>Si</li>
                         @endif
-                    @if($toldo->handle_id != 9999 && $curtain->handle_id != 999 && $curtain->handle_quantity > 0)
-                        <li class="list-group-item"><strong>Manivela: </strong>{{$curtain->handle->measure}} mts ({{$curtain->handle_quantity}})</li>
+                    @if($toldo->handle_id != 9999 && $toldo->handle_id != 999 && $toldo->handle_quantity > 0)
+                        <li class="list-group-item"><strong>Manivela: </strong>{{$toldo->handle->measure}} mts ({{$toldo->handle_quantity}})</li>
                     @endif
-                    @if($toldo->control_id != 9999 && $curtain->control_id != 999 && $curtain->control_quantity > 0)
-                        <li class="list-group-item"><strong>Control: </strong>{{$curtain->control->name}} ({{$curtain->control_quantity}})</li>
+                    @if($toldo->control_id != 9999 && $toldo->control_id != 999 && $toldo->control_quantity > 0)
+                        <li class="list-group-item"><strong>Control: </strong>{{$toldo->control->name}} ({{$toldo->control_quantity}})</li>
                     @endif
-                    @if($toldo->voice_id != 9999 && $curtain->voice_id != 999 && $curtain->voice_quantity > 0)
-                        <li class="list-group-item"><strong>Control de voz: </strong>{{$curtain->voice->name}} ({{$curtain->voice_quantity}})</li>
+                    @if($toldo->voice_id != 9999 && $toldo->voice_id != 999 && $toldo->voice_quantity > 0)
+                        <li class="list-group-item"><strong>Control de voz: </strong>{{$toldo->voice->name}} ({{$toldo->voice_quantity}})</li>
                     @endif
                     @if($toldo->sensor_id != 9999 && $toldo->sensor_id != 999 && $toldo->sensor_quantity > 0)
                         <li class="list-group-item"><strong>Control de voz: </strong>{{$toldo->sensor->name}} ({{$toldo->sensor_quantity}})</li>
