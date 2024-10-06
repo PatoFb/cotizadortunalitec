@@ -1342,7 +1342,7 @@
                                               </div>
                                           </div>
                                       </div>
-                                      <div class="modal fade" id="tDeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal fade" id="tDeleteModal{{$toldo->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                           <div class="modal-dialog" role="document">
                                               <div class="modal-content">
                                                   <div class="modal-header">
@@ -1381,7 +1381,7 @@
                       </button>
                   </div>
                   <div class="modal-body">
-                      Seguro que desea enviar su orden a Tunalitec? Pasará a revisión y un colaborador se pondrá en contacto con usted.
+                      Seguro que desea enviar su orden a Solair? Pasará a revisión y un colaborador se pondrá en contacto con usted.
                   </div>
                   <div class="modal-footer">
                       <a class="btn btn-success" href="{{route('orders.send', $order->id)}}" data-original-title="" title="">
