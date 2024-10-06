@@ -5,141 +5,74 @@
     @include('alerts.errors')
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-12">
-          <div class="card">
+        <div class="col-md-8 offset-md-2">
+        <div class="card mt-3">
             <div class="card-header card-header-primary">
-              <h4 class="card-title">Revisión de sistema (Paso 7 de 7)</h4>
-              {{--<p class="card-category"> Here you can manage users</p>--}}
+                <h4 class="card-title">Revisión de sistema (Paso 6 de 6)</h4>
             </div>
             <div class="card-body">
-                {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\ToldosController@reviewPost', $order_id]]) !!}
-                <tr class="table-responsive">
-                    <table class="table">
-                        <tr>
-                            <td class="text-center">Modelo:</td>
-                            <td><strong>{{$toldo->model->name}}</strong></td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">Cubierta:</td>
-                            <td><strong>{{$toldo->cover->name}}</strong></td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">Mecanismo:</td>
-                            <td><strong>{{$toldo->mechanism->name}}</strong></td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">Ancho:</td>
-                            <td><strong>{{$toldo->width}} mts</strong></td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">Proyección:</td>
-                            <td><strong>{{$toldo->projection}} mts</strong></td>
-                        </tr>
-                        @if($toldo->canopy == 1)
-                            <tr>
-                                <td class="text-center">
-                                    Tejadillo:
-                                </td>
-                                <td>
-                                    <strong>Si</strong>
-                                </td>
-                            </tr>
-                        @endif
-                        @if($toldo->bambalina == 1)
-                            <tr>
-                                <td class="text-center">
-                                    Bambalina:
-                                </td>
-                                <td>
-                                    <strong>Si</strong>
-                                </td>
-                            </tr>
-                        @endif
-                        @if($toldo->handle_id != 9999 && $toldo->handle_id != 999 && $toldo->handle_quantity > 0)
-                            <tr>
-                                <td class="text-center">
-                                    Manivela:
-                                    <br>
-                                    Cantidad:
-                                </td>
-                                <td>
-                                    <strong>{{$toldo->handle->measure}} mts</strong>
-                                    <br>
-                                    <strong>{{$toldo->handle_quantity}}</strong>
-                                </td>
-                            </tr>
-                        @endif
-                        @if($toldo->control_id != 9999 && $toldo->control_id != 999 && $toldo->control_quantity > 0)
-                            <tr>
-                                <td class="text-center">
-                                    Control:
-                                    <br>
-                                    Cantidad:
-                                </td>
-                                <td>
-                                    <strong>{{$toldo->control->name}}</strong>
-                                    <br>
-                                    <strong>{{$toldo->control_quantity}}</strong>
-                                </td>
-                            </tr>
-                        @endif
-                        @if($toldo->voice_id != 9999 && $toldo->voice_id != 999 && $toldo->voice_quantity > 0)
-                            <tr>
-                                <td class="text-center">
-                                    Control de voz:
-                                    <br>
-                                    Cantidad:
-                                </td>
-                                <td>
-                                    <strong>{{$toldo->voice->name}}</strong>
-                                    <br>
-                                    <strong>{{$toldo->voice_quantity}}</strong>
-                                </td>
-                            </tr>
-                        @endif
-                        @if($toldo->sensor_id != 9999 && $toldo->sensor_id != 999 && $toldo->sensor_quantity > 0)
-                            <tr>
-                                <td class="text-center">
-                                    Sensor:
-                                    <br>
-                                    Cantidad:
-                                </td>
-                                <td>
-                                    <strong>{{$toldo->sensor->name}}</strong>
-                                    <br>
-                                    <strong>{{$toldo->sensor_quantity}}</strong>
-                                </td>
-                            </tr>
-                        @endif
-                        <tr>
-                            <td class="text-center">Precio unitario:</td>
-                            <td><strong>${{number_format($toldo->price/$toldo->quantity, 2)}}</strong></td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">Cantidad:</td>
-                            <td><strong>{{$toldo->quantity}}</strong></td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">Total:</td>
-                            <td><strong>${{number_format($toldo->price, 2)}}</strong></td>
-                        </tr>
-                    </table>
-                <div class="form-row text-center">
-                    <div class="col-6 text-left">
-                        <a href="{{ route('toldo.features', $order_id) }}" class="btn btn-danger">Anterior</a>
-                    </div>
-                    <div class="col-6 text-right">
-                        {!! Form::submit('Guardar', ['class'=>'btn btn-primary', $order_id]) !!}
-                        {!! Form::close() !!}
-                    </div>
-                </div>
-
-          </div>
-
-</div>
+                {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\CurtainsController@reviewPost', $order_id]]) !!}
+                <h5 class="card-title">Configuración de sistema</h5>
+                <p class="card-text">
+                    <strong>Modelo:</strong> {{$toldo->model->name}}
+                    <br>
+                    <strong>Cantidad:</strong> {{$toldo->quantity}}
+                    <br>
+                    <strong>Cubierta:</strong> {{$toldo->cover->name}}
+                    <br>
+                    <strong>Mecanismo:</strong> {{$toldo->mechanism->name}}
+                    <br>
+                    <strong>Ancho:</strong> {{$toldo->width}} mts
+                    <br>
+                    <strong>Caída:</strong> {{$toldo->projection}} mts
+                </p>
             </div>
+        </div>
+        <div class="card mt-3">
+            <div class="card-body">
+                <h5 class="card-title">Accesorios</h5>
+                <ul class="list-group">
+                    @if($toldo->canopy == 1)
+                        <li class="list-group-item"><strong>Tejadillo: </strong>Si</li>
+                    @endif
+                        @if($toldo->bambalina == 1)
+                            <li class="list-group-item"><strong>Bambalina enrollable: </strong>Si</li>
+                        @endif
+                    @if($toldo->handle_id != 9999 && $curtain->handle_id != 999 && $curtain->handle_quantity > 0)
+                        <li class="list-group-item"><strong>Manivela: </strong>{{$curtain->handle->measure}} mts ({{$curtain->handle_quantity}})</li>
+                    @endif
+                    @if($toldo->control_id != 9999 && $curtain->control_id != 999 && $curtain->control_quantity > 0)
+                        <li class="list-group-item"><strong>Control: </strong>{{$curtain->control->name}} ({{$curtain->control_quantity}})</li>
+                    @endif
+                    @if($toldo->voice_id != 9999 && $curtain->voice_id != 999 && $curtain->voice_quantity > 0)
+                        <li class="list-group-item"><strong>Control de voz: </strong>{{$curtain->voice->name}} ({{$curtain->voice_quantity}})</li>
+                    @endif
+                    @if($toldo->sensor_id != 9999 && $toldo->sensor_id != 999 && $toldo->sensor_quantity > 0)
+                        <li class="list-group-item"><strong>Control de voz: </strong>{{$toldo->sensor->name}} ({{$toldo->sensor_quantity}})</li>
+                    @endif
+                </ul>
+            </div>
+        </div>
+        <div class="card mt-3">
+            <div class="card-body">
+                <h5 class="card-title">Precio</h5>
+                <p class="card-text">
+                    <strong>Precio unitario:</strong> ${{number_format($toldo->systems_total/$toldo->quantity, 2)}}
+                    <br>
+                    <strong>Accesorios:</strong> ${{number_format($toldo->accessories_total, 2)}}
+                    <br>
+                    <strong>Total:</strong> ${{number_format($toldo->price, 2)}}
+                </p>
+            </div>
+        </div>
+        <div class="mt-4 d-flex justify-content-between">
+            <a href="{{ route('toldo.features', $order_id) }}" class="btn btn-danger">Anterior</a>
+            {!! Form::submit('Guardar', ['class'=>'btn btn-primary', $order_id]) !!}
+            {!! Form::close() !!}
+        </div>
       </div>
     </div>
+  </div>
   </div>
 </div>
     @endsection
