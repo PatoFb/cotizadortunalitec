@@ -1361,7 +1361,7 @@
                                                       </button>
                                                   </div>
                                                   <div class="modal-body">
-                                                      {!! Form::model($t, ['method'=>'PUT', 'action'=>['App\Http\Controllers\ToldosController@addData', $toldo->id]]) !!}
+                                                      {!! Form::model($toldo, ['method'=>'PUT', 'action'=>['App\Http\Controllers\ToldosController@addData', $toldo->id]]) !!}
                                                       <h6>Datos</h6>
                                                       <div class="row">
                                                           <div class="col-12">
@@ -1376,9 +1376,11 @@
                                                               {!! Form::number('width', $toldo->width ?? null , ['class'=>'form-control', "step"=>0.01, "min"=>1.01, "max"=>$toldo->model->max_width,'id'=>'width']) !!}
                                                           </div>
 
-                                                          <div class="col-md-6 col-sm-6">
-                                                              {!! Form::label('height', 'Caida') !!}
-                                                              {!! Form::number('height', $p->height ?? null, ['class'=>'form-control', "step"=>0.01, "min"=>1.01, "max"=>$p->model->max_height, 'id'=>'height']) !!}
+                                                          <div class="col-md-6 col-sm-12">
+                                                              {!! Form::label('projection', 'Proyección:' )  !!}
+                                                              <select class="form-control" name="projection" id="projection" >
+                                                                  <option value={{$toldo->projection ?? ""}}>{{$toldo->projection ?? "Seleccionar proyección"}}</option>
+                                                              </select>
                                                           </div>
                                                       </div>
                                                       <br>
