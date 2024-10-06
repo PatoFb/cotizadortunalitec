@@ -1317,7 +1317,7 @@
                                                               Precio unitario:
                                                           </div>
                                                           <div class="col-6 text-center">
-                                                              <strong>${{number_format($toldo->price/$toldo->quantity, 2)}}</strong>
+                                                              <strong>${{number_format($toldo->systems_total/$toldo->quantity, 2)}}</strong>
                                                           </div>
                                                       </div>
                                                       <hr>
@@ -1327,6 +1327,15 @@
                                                           </div>
                                                           <div class="col-6 text-center">
                                                               <strong>{{$toldo->quantity}}</strong>
+                                                          </div>
+                                                      </div>
+                                                      <hr>
+                                                      <div class="row">
+                                                          <div class="col-6 text-center">
+                                                              Accesorios:
+                                                          </div>
+                                                          <div class="col-6 text-center">
+                                                              <strong>${{number_format($toldo->accessories_total_total, 2)}}</strong>
                                                           </div>
                                                       </div>
                                                       <hr>
