@@ -417,7 +417,7 @@ class ToldosController extends Controller
 
         $accessories = $this->calculateAccessoriesPrice($toldo) + $total_bambalina + $total_canopy;
 
-        return (((($sprice+$total_cover+$accessories) / (0.60)) * $quantity) * (1-($user->discount/100)));
+        return (((($sprice+$total_cover+$accessories) / (0.60)) * $quantity) * (1-($user->discount/100)))*1.1;
     }
 
     /**
