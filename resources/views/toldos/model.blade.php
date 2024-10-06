@@ -25,7 +25,7 @@
                                         <div class='col-md-7 col-sm-12'>
                                             <h7 style='color: grey;'><h3><strong>{{$model->description}}</strong></h3></h7>
                                             <br>
-                                            <h7 style='color: grey;'>Máxima resistencia al viento de <strong>{{$model->max_resistance}} km/h</strong></h7>
+                                            <h7 style='color: grey;'>Máxima resistencia al viento de <strong>{{$model->wind_resistance}} km/h</strong></h7>
                                             <br>
                                             <h7 style='color: grey;'>Tiempo de producción: <strong>{{$model->production_time}} días hábiles</strong></h7>
                                             <br>

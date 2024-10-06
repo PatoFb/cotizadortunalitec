@@ -260,8 +260,8 @@ class ToldosController extends Controller
                 ->first();
 
             // Validate if tube_price is not null
-            if (!$system || is_null($system->tube_price)) {
-                return back()->withErrors(['tube_price' => 'Las medidas seleccionadas no permiten el motor Tube']);
+            if (!$system || $system->tube_price == 0) {
+                return back()->withErrors(['mechanism_id' => 'Las medidas seleccionadas no permiten el motor Tube']);
             }
         }
 
