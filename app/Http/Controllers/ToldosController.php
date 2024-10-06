@@ -395,15 +395,15 @@ class ToldosController extends Controller
                 $sprice = SistemaToldo::where('modelo_toldo_id', $toldo['model_id'])->where('projection', $projection)->where('width', $newWidth)->value('price');
                 break;
             case 2:
-                $somfy = SistemaToldo::where('modelo_toldo_id', $toldo['model_id'])->where('projection', $projection)->where('width', $newWidth)->get();
+                $somfy = SistemaToldo::where('modelo_toldo_id', $toldo['model_id'])->where('projection', $projection)->where('width', $newWidth)->first();
                 $sprice = $somfy->price + $somfy->somfy_price;
                 break;
             case 3:
-                $cmo = SistemaToldo::where('modelo_toldo_id', $toldo['model_id'])->where('projection', $projection)->where('width', $newWidth)->get();
+                $cmo = SistemaToldo::where('modelo_toldo_id', $toldo['model_id'])->where('projection', $projection)->where('width', $newWidth)->first();
                 $sprice = $cmo->price + $cmo->cmo_price;
                 break;
             case 4:
-                $tube = SistemaToldo::where('modelo_toldo_id', $toldo['model_id'])->where('projection', $projection)->where('width', $newWidth)->get();
+                $tube = SistemaToldo::where('modelo_toldo_id', $toldo['model_id'])->where('projection', $projection)->where('width', $newWidth)->first();
                 $sprice = $tube->price + $tube->tube_price;
                 break;
             default:
