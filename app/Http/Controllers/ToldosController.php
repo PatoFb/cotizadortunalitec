@@ -60,13 +60,31 @@ class ToldosController extends Controller
     {
         $value = $request->get('value');
         $newWidth = ceilMeasure($value, 1);
+
+        // Get toldo_id from the request
+        $toldo_id = $request->get('toldo_id');
+
+        // Fetch toldo from the database if not available in session
         $toldo = $request->session()->get('toldo');
-        $data = SistemaToldo::where('modelo_toldo_id', $toldo->model_id)->where('width', $newWidth)->groupBy('projection')->get();
-        $output = '<option value="">Seleccionar proyección</option>';
-        foreach($data as $row){
-            $output .= '<option value="'.$row->projection.'">'.$row->projection.'</option>';
+
+        if (!$toldo && $toldo_id) {
+            $toldo = Toldo::find($toldo_id); // Retrieve the toldo by its ID
         }
-        echo $output;
+
+        if ($toldo) {
+            $data = SistemaToldo::where('modelo_toldo_id', $toldo->model_id)
+                ->where('width', $newWidth)
+                ->groupBy('projection')
+                ->get();
+
+            $output = '<option value="">Seleccionar proyección</option>';
+            foreach ($data as $row) {
+                $output .= '<option value="' . $row->projection . '">' . $row->projection . '</option>';
+            }
+            echo $output;
+        } else {
+            echo '<option value="">No toldo found</option>';
+        }
     }
 
     /**

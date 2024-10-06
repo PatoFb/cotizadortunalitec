@@ -148,12 +148,14 @@
                 if($(this).val() != '') {
                     var select = $(this).attr("id");
                     var value = $(this).val();
-                    var dependent2 =  $(this).data('dependent2');
+                    var toldo_id = $('#toldo_id').val(); // Get toldo_id from hidden input
+                    var dependent2 = $(this).data('dependent2');
                     var _token = $('input[name="_token"]').val();
+
                     $.ajax({
                         url: '{{ route('toldo.fetch.projection') }}',
                         method: 'POST',
-                        data: {select:select, value:value, _token:_token, dependent2:dependent2},
+                        data: {select: select, value: value, toldo_id: toldo_id, _token: _token, dependent2: dependent2},
                         success: function(result) {
                             $('#'+dependent2).html(result);
                         }
