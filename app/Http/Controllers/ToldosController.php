@@ -410,7 +410,7 @@ class ToldosController extends Controller
                 break;
         }
 
-        return ($sprice+$total_cover) * $quantity / 0.60;
+        return ($sprice+$total_cover+(632.4 * $toldo['width'])) * $quantity / 0.60;
     }
 
     /**
@@ -439,7 +439,7 @@ class ToldosController extends Controller
 
         $total_canopy = $this->calculateCanopyPrice($toldo['canopy'], $toldo['width']);
 
-        $total_bambalina = (632.4 * $toldo['width']) + $this->calculateBambalinaPrice($toldo['bambalina']);
+        $total_bambalina = $this->calculateBambalinaPrice($toldo['bambalina']);
 
         switch($mechanism_id) {
             case 1:

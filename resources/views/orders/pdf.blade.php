@@ -714,6 +714,295 @@
             @endif
         @endfor
     @endif
+    @if(sizeof($order->toldos) > 0)
+        @for($e = 1; $e <= ceil(sizeof($order->toldos)/6); $e++)
+            @if(count($order->curtains) == 0)
+                @if($e % 2 == 1)
+                    <div class="pdf-section company-logo">
+                        <!-- Insert company logo here -->
+                        <img src="{{ asset('material') }}/img/logosolair.png" alt="Company Logo" width="200">
+                    </div>
+                    <div class="pdf-section client-data">
+                        @if($order->activity == 'Oferta')
+                            <h1 class="text-center">Oferta {{ $order->id }}</h1>
+                        @else
+                            <h1 class="text-center">Pedido{{ $order->id }}</h1>
+                        @endif
+                        <h3>{{ $order->project }}</h3>
+                        <!-- Insert client data here -->
+                        Contacto: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $order->user->name }}<br>
+                        Socio: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $order->user->partner->description }}<br>
+                        Email: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $order->user->email }}<br>
+                        Teléfono: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $order->user->phone }}<br>
+                    </div>
+                    <div class="clear"></div>
+                    <h3 class="text-center">Desglose de proyecto</h3>
+                @endif
+            @endif
+            <table class="pdf-table">
+                <thead>
+                <tr>
+                    <th class="border-right">Datos de sistema:</th>
+                    @if(sizeof($order->toldos) >= ($e*6))
+                        @for($i = ($e*6-5); $i <= ($e*6); $i++)
+                            <th class="border-bottom border-right-clear">Toldo {{$i}}:</th>
+                        @endfor
+                    @else
+                        @for($i = ($e*6-5); $i <= sizeof($order->toldos); $i++)
+                            <th class="border-bottom border-right-clear">Toldo {{$i}}:</th>
+                        @endfor
+                    @endif
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="border-right">Cantidad</td>
+                    @if(sizeof($order->toldos) >= ($e*6))
+                        @for($i = ($e*6-6); $i < ($e*6); $i++)
+                            <td class="text-right border-right-clear">{{$order->toldos[$i]->quantity}}</td>
+                        @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->toldos); $i++)
+                            <td class="text-right border-right-clear">{{$order->toldos[$i]->quantity}}</td>
+                        @endfor
+                    @endif
+                </tr>
+                <tr>
+                    <td class="border-right">Modelo</td>
+                    @if(sizeof($order->toldos) >= ($e*6))
+                        @for($i = ($e*6-6); $i < ($e*6); $i++)
+                            <td class="text-right border-right-clear">{{$order->toldos[$i]->model->name}}</td>
+                        @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->toldos); $i++)
+                            <td class="text-right border-right-clear">{{$order->toldos[$i]->model->name}}</td>
+                        @endfor
+                    @endif
+                </tr>
+                <tr>
+                    <td class="border-right">Mecanismo</td>
+                    @if(sizeof($order->toldos) >= ($e*6))
+                        @for($i = ($e*6-6); $i < ($e*6); $i++)
+                            <td class="text-right border-right-clear">{{$order->toldos[$i]->mechanism->name}}</td>
+                        @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->toldos); $i++)
+                            <td class="text-right border-right-clear">{{$order->toldos[$i]->mechanism->name}}</td>
+                        @endfor
+                    @endif
+                </tr>
+                <tr>
+                    <td class="border-right">Ancho</td>
+                    @if(sizeof($order->toldos) >= ($e*6))
+                        @for($i = ($e*6-6); $i < ($e*6); $i++)
+                            <td class="text-right border-right-clear">{{$order->toldos[$i]->width}} m</td>
+                        @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->palillerias); $i++)
+                            <td class="text-right border-right-clear">{{$order->toldos[$i]->width}} m</td>
+                        @endfor
+                    @endif
+                </tr>
+                <tr>
+                    <td class="border-right">Salida</td>
+                    @if(sizeof($order->toldos) >= ($e*6))
+                        @for($i = ($e*6-6); $i < ($e*6); $i++)
+                            <td class="text-right border-right-clear">{{$order->toldos[$i]->projection}} m</td>
+                        @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->palillerias); $i++)
+                            <td class="text-right border-right-clear">{{$order->toldos[$i]->projection}} m</td>
+                        @endfor
+                    @endif
+                </tr>
+                <tr>
+                    <td class="border-right"></td>
+                    @if(sizeof($order->toldos) >= ($e*6))
+                        @for($i = ($e*6-6); $i < ($e*6); $i++)
+                            <td class="text-right border-right-clear">{{$order->toldos[$i]->cover->id}}</td>
+                        @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->palillerias); $i++)
+                            <td class="text-right border-right-clear">{{$order->toldos[$i]->cover->id}}</td>
+                        @endfor
+                    @endif
+                </tr>
+                <tr>
+                    <td class="border-right">Cubierta</td>
+                    @if(sizeof($order->toldos) >= ($e*6))
+                        @for($i = ($e*6-6); $i < ($e*6); $i++)
+                            <td class="text-right border-right-clear">{{$order->toldos[$i]->cover->name}}</td>
+                        @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->palillerias); $i++)
+                            <td class="text-right border-right-clear">{{$order->toldos[$i]->cover->name}}</td>
+                        @endfor
+                    @endif
+                </tr>
+                <tr>
+                    <td class="border-right fixed-height-cell"></td>
+                    @if(sizeof($order->toldos) >= ($e*6))
+                        @for($i = ($e*6-6); $i < ($e*6); $i++)
+                            <td class="border-right-clear"></td>
+                        @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->toldos); $i++)
+                            <td class="border-right-clear"></td>
+                        @endfor
+                    @endif
+                </tr>
+                <tr>
+                    <td class="border-right">Manivelas</td>
+                    @if(sizeof($order->toldos) >= ($e*6))
+                        @for($i = ($e*6-6); $i < ($e*6); $i++)
+                            @if($order->toldos[$i]->handle_id != 9999 && $order->toldos[$i]->handle_id != 999)
+                                <td class="text-right border-right-clear">{{$order->toldos[$i]->handle->name}} ({{$order->toldos[$i]->handle_quantity}})</td>
+                            @else
+                                <td class="border-right-clear"></td>
+                            @endif
+                        @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->toldos); $i++)
+                            @if($order->toldos[$i]->handle_id != 9999 && $order->toldos[$i]->handle_id != 999)
+                                <td class="text-right border-right-clear">{{$order->toldos[$i]->handle->name}} ({{$order->toldos[$i]->handle_quantity}})</td>
+                            @else
+                                <td class="border-right-clear"></td>
+                            @endif
+                        @endfor
+                    @endif
+                </tr>
+                <tr>
+                    <td class="border-right">Control</td>
+                    @if(sizeof($order->toldos) >= ($e*6))
+                        @for($i = ($e*6-6); $i < ($e*6); $i++)
+                            @if($order->toldos[$i]->control_id != 9999 && $order->toldos[$i]->control_id != 999)
+                                <td class="text-right border-right-clear">{{$order->toldos[$i]->control->name}} ({{$order->toldos[$i]->control_quantity}})</td>
+                            @else
+                                <td class="border-right-clear"></td>
+                            @endif
+                        @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->toldos); $i++)
+                            @if($order->toldos[$i]->control_id != 9999 && $order->toldos[$i]->control_id != 999)
+                                <td class="text-right border-right-clear">{{$order->toldos[$i]->control->name}} ({{$order->toldos[$i]->control_quantity}})</td>
+                            @else
+                                <td class="border-right-clear"></td>
+                            @endif
+                        @endfor
+                    @endif
+                </tr>
+                <tr>
+                    <td class="border-right">Control voz</td>
+                    @if(sizeof($order->toldos) >= ($e*6))
+                        @for($i = ($e*6-6); $i < ($e*6); $i++)
+                            @if($order->toldos[$i]->voice_id != 9999 && $order->toldos[$i]->voice_id != 999)
+                                <td class="text-right border-right-clear">{{$order->toldos[$i]->voice->name}} ({{$order->toldos[$i]->voice_quantity}})</td>
+                            @else
+                                <td class="border-right-clear"></td>
+                            @endif
+                        @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->toldos); $i++)
+                            @if($order->toldos[$i]->voice_id != 9999 && $order->toldos[$i]->voice_id != 999)
+                                <td class="text-right border-right-clear">{{$order->toldos[$i]->voice->name}} ({{$order->toldos[$i]->voice_quantity}})</td>
+                            @else
+                                <td class="border-right-clear"></td>
+                            @endif
+                        @endfor
+                    @endif
+                </tr>
+                <tr>
+                    <td class="border-right">Sensores</td>
+                    @if(sizeof($order->toldos) >= ($e*6))
+                        @for($i = ($e*6-6); $i < ($e*6); $i++)
+                            @if($order->toldos[$i]->sensor_id != 9999 && $order->toldos[$i]->sensor_id != 999)
+                                <td class="text-right border-right-clear">{{$order->toldos[$i]->sensor->name}} ({{$order->toldos[$i]->sensor_quantity}})</td>
+                            @else
+                                <td class="border-right-clear"></td>
+                            @endif
+                        @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->toldos); $i++)
+                            @if($order->toldos[$i]->sensor_id != 9999 && $order->toldos[$i]->sensor_id != 999)
+                                <td class="text-right border-right-clear">{{$order->toldos[$i]->sensor->name}} ({{$order->toldos[$i]->sensor_quantity}})</td>
+                            @else
+                                <td class="border-right-clear"></td>
+                            @endif
+                        @endfor
+                    @endif
+                </tr>
+                <tr>
+                    <td class="border-right">Tejadillo</td>
+                    @if(sizeof($order->toldos) >= ($e*6))
+                        @for($i = ($e*6-6); $i < ($e*6); $i++)
+                            @if($order->toldos[$i]->canopy == 1)
+                                <td class="text-right border-right-clear">Si</td>
+                            @else
+                                <td class="border-right-clear"></td>
+                            @endif
+                        @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->toldos); $i++)
+                            @if($order->toldos[$i]->canopy == 1)
+                                <td class="text-right border-right-clear">Si</td>
+                            @else
+                                <td class="border-right-clear"></td>
+                            @endif
+                        @endfor
+                    @endif
+                </tr>
+                <tr>
+                    <td class="border-right">Bambalina</td>
+                    @if(sizeof($order->toldos) >= ($e*6))
+                        @for($i = ($e*6-6); $i < ($e*6); $i++)
+                            @if($order->toldos[$i]->bambalina == 1)
+                                <td class="text-right border-right-clear">Si</td>
+                            @else
+                                <td class="border-right-clear"></td>
+                            @endif
+                        @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->toldos); $i++)
+                            @if($order->toldos[$i]->bambalina == 1)
+                                <td class="text-right border-right-clear">Si</td>
+                            @else
+                                <td class="border-right-clear"></td>
+                            @endif
+                        @endfor
+                    @endif
+                </tr>
+                <tr>
+                    <td class="border-right fixed-height-cell"></td>
+                    @if(sizeof($order->toldos) >= ($e*6))
+                        @for($i = ($e*6-6); $i < ($e*6); $i++)
+                            <td class="border-right-clear"></td>
+                        @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->toldos); $i++)
+                            <td class="border-right-clear"></td>
+                        @endfor
+                    @endif
+                </tr>
+                <tr>
+                    <td class="border-right">Precio</td>
+                    @if(sizeof($order->toldos) >= ($e*6))
+                        @for($i = ($e*6-6); $i < ($e*6); $i++)
+                            <td bgcolor="#d3d3d3" class="text-center border-right-clear">${{number_format($order->toldos[$i]->price,2)}}</td>
+                        @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->toldos); $i++)
+                            <td bgcolor="#d3d3d3" class="text-center border-right-clear">${{number_format($order->toldos[$i]->price,2)}}</td>
+                        @endfor
+                    @endif
+                </tr>
+                </tbody>
+            </table>
+            <br>
+            @if($e % 2 == 1)
+                <hr>
+            @endif
+        @endfor
+    @endif
 </div>
 </body>
 </html>
