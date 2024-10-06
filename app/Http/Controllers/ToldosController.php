@@ -103,7 +103,7 @@ class ToldosController extends Controller
                </div>
                 <div class='row'>
                 <div class='col-md-6 col-sm-12'>
-                   <img src=".asset('storage')."/images/".$cover->photo." style='width: 100%;'>
+                   <img src=".asset('storage')."/images/covers/".$cover->photo." style='width: 100%;'>
               </div>
               <div class='col-md-6 col-sm-12'>
                    <h7 style='color: grey;'><strong>$cover->name</strong></h7>
@@ -128,7 +128,7 @@ class ToldosController extends Controller
                </div>
                 <div class='row'>
                 <div class='col-md-6 col-sm-12'>
-                   <img src=".asset('storage')."/images/".$cover->photo." style='width: 100%;'>
+                   <img src=".asset('storage')."/images/covers/".$cover->photo." style='width: 100%;'>
               </div>
               <div class='col-md-6 col-sm-12'>
                    <h7 style='color: grey;'><strong>$cover->name</strong></h7>
