@@ -90,8 +90,8 @@
               </div>
             </div>
               <div class="card-footer">
-                  <div class="justify-content-center">
-                      {{ $users->links() }}
+                  <div class="d-flex justify-content-center">
+                      {{ $users->links('pagination::bootstrap-4', ['size' => 'sm']) }}
                   </div>
               </div>
           </div>
