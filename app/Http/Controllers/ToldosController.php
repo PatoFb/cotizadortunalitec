@@ -107,7 +107,7 @@ class ToldosController extends Controller
         $this->echoToldo($toldo, $value);
     }
 
-    public function addData(addDataRequestToldo $request)
+    public function addData(Request $request)
     {
         $toldo = Toldo::findOrFail($request->get('toldo_id'));
         $order = Order::findOrFail($toldo->order_id);
