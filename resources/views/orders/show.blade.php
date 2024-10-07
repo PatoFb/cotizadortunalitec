@@ -941,12 +941,12 @@
                                                       <div class="row">
                                                           <div class="col-md-6 col-sm-6">
                                                               {!! Form::label('width', 'Ancho') !!}
-                                                              {!! Form::number('width', $p->width ?? null , ['class'=>'form-control', "step"=>0.01, "min"=>1.01, "max"=>$p->model->max_width,'id'=>'width']) !!}
+                                                              {!! Form::number('width', $p->width ?? null , ['class'=>'form-control', "step"=>0.01, "min"=>1.01, "max"=>$p->model->max_width]) !!}
                                                           </div>
 
                                                           <div class="col-md-6 col-sm-6">
                                                               {!! Form::label('height', 'Caida') !!}
-                                                              {!! Form::number('height', $p->height ?? null, ['class'=>'form-control', "step"=>0.01, "min"=>1.01, "max"=>$p->model->max_height, 'id'=>'height']) !!}
+                                                              {!! Form::number('height', $p->height ?? null, ['class'=>'form-control', "step"=>0.01, "min"=>1.01, "max"=>$p->model->max_height]) !!}
                                                           </div>
                                                       </div>
                                                       <br>
@@ -955,7 +955,7 @@
                                                           <div class="col-12" id="coverFormP2{{$p->id}}">
                                                               <input name="palilleria_id" type="hidden" value="{{$p->id}}" id="palilleria_id">
                                                               {!! Form::label('cover_id', 'Clave (del 1 al 10 son estilos pendientes, no se aceptan pendientes para Pedidos)') !!}
-                                                              {!! Form::number('cover_id', $p->cover_id ?? null, ['class'=>'form-control', "id"=>"cover_id"]) !!}
+                                                              {!! Form::number('cover_id', $p->cover_id ?? null, ['class'=>'form-control']) !!}
                                                           </div>
                                                       </div>
                                                       <br>
@@ -969,7 +969,7 @@
                                                       <div class="row">
                                                           @if($p->sensor_id == 9999)
                                                               {!! Form::number('sensor_id', 9999, ['class'=>'form-control', "step"=>1, "id"=>"sensor_id", 'hidden']) !!}
-                                                              {!! Form::number('sensor_quantity', 0, ['class'=>'form-control', "step"=>1, "id"=>"sensor_quantity", 'hidden']) !!}
+                                                              {!! Form::number('sensor_quantity', 0, ['class'=>'form-control', "step"=>1, 'hidden']) !!}
                                                           @else
                                                               <div class="col-6">
                                                                   {!! Form::label('sensor_id', 'Sensor (Precio por unidad)' )  !!}
@@ -982,7 +982,7 @@
                                                               </div>
                                                               <div class="col-6">
                                                                   {!! Form::label('sensor_quantity', 'Cantidad (sensores):') !!}
-                                                                  {!! Form::number('sensor_quantity', $p->sensor_quantity ?? 0, ['class'=>'form-control', "step"=>1, "id"=>"sensor_quantity"]) !!}
+                                                                  {!! Form::number('sensor_quantity', $p->sensor_quantity ?? 0, ['class'=>'form-control', "step"=>1]) !!}
                                                               </div>
                                                           @endif
                                                       </div>
@@ -992,7 +992,7 @@
                                                       <div class="row">
                                                           @if($p->control_id == 9999)
                                                               {!! Form::number('control_id', 9999, ['class'=>'form-control', "step"=>1, "id"=>"control_id", 'hidden']) !!}
-                                                              {!! Form::number('control_quantity', 0, ['class'=>'form-control', "step"=>1, "id"=>"control_quantity", 'hidden']) !!}
+                                                              {!! Form::number('control_quantity', 0, ['class'=>'form-control', "step"=>1, 'hidden']) !!}
                                                           @else
                                                               <div class="col-6">
                                                                   {!! Form::label('control_id', 'Control (Precio por unidad)' )  !!}
@@ -1011,7 +1011,7 @@
                                                               </div>
                                                               <div class="col-6">
                                                                   {!! Form::label('control_quantity', 'Cantidad (controles):') !!}
-                                                                  {!! Form::number('control_quantity', $p->control_quantity ?? 0, ['class'=>'form-control', "step"=>1, "id"=>"control_quantity"]) !!}
+                                                                  {!! Form::number('control_quantity', $p->control_quantity ?? 0, ['class'=>'form-control', "step"=>1]) !!}
                                                               </div>
                                                           @endif
                                                       </div>
@@ -1021,7 +1021,7 @@
                                                       <div class="row">
                                                           @if($p->voice_id == 9999)
                                                               {!! Form::number('voice_id', 9999, ['class'=>'form-control', 'id'=>'voice_id', 'hidden']) !!}
-                                                              {!! Form::number('voice_quantity', 0, ['class'=>'form-control', 'id'=>'voice_quantity', 'hidden']) !!}
+                                                              {!! Form::number('voice_quantity', 0, ['class'=>'form-control', 'hidden']) !!}
                                                           @else
                                                               <div class="col-6">
                                                                   {!! Form::label('voice_id', 'Voz (Precio por unidad)' )  !!}
@@ -1040,7 +1040,7 @@
                                                               </div>
                                                               <div class="col-6">
                                                                   {!! Form::label('voice_quantity', 'Cantidad (controles de voz):') !!}
-                                                                  {!! Form::number('voice_quantity', $p->voice_quantity ?? 0, ['class'=>'form-control', 'id'=>'voice_quantity']) !!}
+                                                                  {!! Form::number('voice_quantity', $p->voice_quantity ?? 0, ['class'=>'form-control']) !!}
                                                               </div>
                                                           @endif
                                                       </div>
@@ -1366,7 +1366,7 @@
                                                       <div class="row">
                                                           <div class="col-12">
                                                               {!! Form::label('quantity', 'Cantidad de sistemas') !!}
-                                                              {!! Form::number('quantity', $toldo->quantity ?? null, ['class'=>'form-control', "id"=>"quantity", "step"=>1, "min"=>1]) !!}
+                                                              {!! Form::number('quantity', $toldo->quantity ?? null, ['class'=>'form-control', "step"=>1, "min"=>1]) !!}
                                                           </div>
                                                       </div>
                                                       <br>
@@ -1389,7 +1389,7 @@
                                                           <div class="col-12" id="coverFormT2{{$toldo->id}}">
                                                               <input name="toldo_id" type="hidden" value="{{$toldo->id}}" id="toldo_id">
                                                               {!! Form::label('cover_id', 'Clave (del 1 al 10 son estilos pendientes, no se aceptan pendientes para Pedidos)') !!}
-                                                              {!! Form::number('cover_id', $toldo->cover_id ?? null, ['class'=>'form-control', "id"=>"cover_id"]) !!}
+                                                              {!! Form::number('cover_id', $toldo->cover_id ?? null, ['class'=>'form-control']) !!}
                                                           </div>
                                                       </div>
                                                       <br>
@@ -1403,7 +1403,7 @@
                                                       <div class="row">
                                                           @if($toldo->handle_id == 9999)
                                                               {!! Form::number('handle_id', 9999, ['class'=>'form-control', "step"=>1, "id"=>"handle_id", 'hidden']) !!}
-                                                              {!! Form::number('handle_quantity', 0, ['class'=>'form-control', "step"=>1, "id"=>"handle_quantity", 'hidden']) !!}
+                                                              {!! Form::number('handle_quantity', 0, ['class'=>'form-control', "step"=>1, 'hidden']) !!}
                                                           @else
                                                               <div class="col-6">
                                                                   {!! Form::label('handle_id', 'Manivela (Medida en metros) (Precio por unidad)' )  !!}
@@ -1416,14 +1416,14 @@
                                                               </div>
                                                               <div class="col-6">
                                                                   {!! Form::label('handle_quantity', 'Cantidad (manivelas):') !!}
-                                                                  {!! Form::number('handle_quantity', $toldo->handle_quantity ?? 0, ['class'=>'form-control', "step"=>1, "id"=>"handle_quantity"]) !!}
+                                                                  {!! Form::number('handle_quantity', $toldo->handle_quantity ?? 0, ['class'=>'form-control', "step"=>1]) !!}
                                                               </div>
                                                           @endif
                                                       </div>
                                                       <div class="row">
                                                           @if($toldo->sensor_id == 9999)
                                                               {!! Form::number('sensor_id', 9999, ['class'=>'form-control', "step"=>1, "id"=>"sensor_id", 'hidden']) !!}
-                                                              {!! Form::number('sensor_quantity', 0, ['class'=>'form-control', "step"=>1, "id"=>"sensor_quantity", 'hidden']) !!}
+                                                              {!! Form::number('sensor_quantity', 0, ['class'=>'form-control', "step"=>1, 'hidden']) !!}
                                                           @else
                                                               <div class="col-6">
                                                                   {!! Form::label('sensor_id', 'Sensor (Precio por unidad)' )  !!}
@@ -1436,7 +1436,7 @@
                                                               </div>
                                                               <div class="col-6">
                                                                   {!! Form::label('sensor_quantity', 'Cantidad (sensores):') !!}
-                                                                  {!! Form::number('sensor_quantity', $toldo->sensor_quantity ?? 0, ['class'=>'form-control', "step"=>1, "id"=>"sensor_quantity"]) !!}
+                                                                  {!! Form::number('sensor_quantity', $toldo->sensor_quantity ?? 0, ['class'=>'form-control', "step"=>1]) !!}
                                                               </div>
                                                           @endif
                                                       </div>
@@ -1446,7 +1446,7 @@
                                                       <div class="row">
                                                           @if($toldo->control_id == 9999)
                                                               {!! Form::number('control_id', 9999, ['class'=>'form-control', "step"=>1, "id"=>"control_id", 'hidden']) !!}
-                                                              {!! Form::number('control_quantity', 0, ['class'=>'form-control', "step"=>1, "id"=>"control_quantity", 'hidden']) !!}
+                                                              {!! Form::number('control_quantity', 0, ['class'=>'form-control', "step"=>1, 'hidden']) !!}
                                                           @else
                                                               <div class="col-6">
                                                                   {!! Form::label('control_id', 'Control (Precio por unidad)' )  !!}
@@ -1465,7 +1465,7 @@
                                                               </div>
                                                               <div class="col-6">
                                                                   {!! Form::label('control_quantity', 'Cantidad (controles):') !!}
-                                                                  {!! Form::number('control_quantity', $toldo->control_quantity ?? 0, ['class'=>'form-control', "step"=>1, "id"=>"control_quantity"]) !!}
+                                                                  {!! Form::number('control_quantity', $toldo->control_quantity ?? 0, ['class'=>'form-control', "step"=>1]) !!}
                                                               </div>
                                                           @endif
                                                       </div>
@@ -1475,7 +1475,7 @@
                                                       <div class="row">
                                                           @if($toldo->voice_id == 9999)
                                                               {!! Form::number('voice_id', 9999, ['class'=>'form-control', 'id'=>'voice_id', 'hidden']) !!}
-                                                              {!! Form::number('voice_quantity', 0, ['class'=>'form-control', 'id'=>'voice_quantity', 'hidden']) !!}
+                                                              {!! Form::number('voice_quantity', 0, ['class'=>'form-control', 'hidden']) !!}
                                                           @else
                                                               <div class="col-6">
                                                                   {!! Form::label('voice_id', 'Voz (Precio por unidad)' )  !!}
@@ -1494,7 +1494,7 @@
                                                               </div>
                                                               <div class="col-6">
                                                                   {!! Form::label('voice_quantity', 'Cantidad (controles de voz):') !!}
-                                                                  {!! Form::number('voice_quantity', $toldo->voice_quantity ?? 0, ['class'=>'form-control', 'id'=>'voice_quantity']) !!}
+                                                                  {!! Form::number('voice_quantity', $toldo->voice_quantity ?? 0, ['class'=>'form-control']) !!}
                                                               </div>
                                                           @endif
                                                       </div>
