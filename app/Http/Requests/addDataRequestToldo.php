@@ -25,7 +25,7 @@ class addDataRequestToldo extends FormRequest
     {
         return [
             'cover_id' => ['required', 'exists:covers,id', 'integer'],
-            'width' => ['required', 'min:0.5', 'max:10', 'numeric'],
+            'width' => ['required', 'min:1', 'max:12', 'numeric'],
             'projection' => ['required', 'numeric'],
             'handle_id' => ['required', 'exists:handles,id', 'integer'],
             'canopy' => ['required', 'integer', 'min:0', 'max:1'],
