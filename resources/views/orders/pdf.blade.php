@@ -88,7 +88,7 @@
         <p class="red">Notas Adicionales</p>
         a) Vigencia válida por 10 dias hábiles o hasta agotar existencias<br>
         b) Precios sujetos a cambio sin previo aviso<br>
-        c) Oferta de carácter informtivo, no es válida como pedido de producción<br>
+        c) Oferta de carácter informativo, no es válida como pedido de producción<br>
         d) Revisar "TÉRMINOS DE VENTA"<br>
         e) Confirmar disponibilidad de materiales con personal de ventas Solair antes de enviar pedido en firma para producción<br>
         @if($order->user->restricted == 0)
