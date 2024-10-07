@@ -144,11 +144,11 @@
                 <th class="border-right">Datos de sistema:</th>
                 @if(sizeof($order->curtains) >= ($e*6))
                     @for($i = ($e*6-5); $i <= ($e*6); $i++)
-                        <th class="border-bottom border-right-clear">Curtain {{$i}}:</th>
+                        <th class="border-bottom border-right-clear">Cortina {{$i}}:</th>
                     @endfor
                 @else
                     @for($i = ($e*6-5); $i <= sizeof($order->curtains); $i++)
-                        <th class="border-bottom border-right-clear">Curtain {{$i}}:</th>
+                        <th class="border-bottom border-right-clear">Cortina {{$i}}:</th>
                     @endfor
                 @endif
             </tr>
