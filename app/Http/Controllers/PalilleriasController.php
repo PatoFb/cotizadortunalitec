@@ -123,9 +123,10 @@ class PalilleriasController extends Controller
 
     public function addCover($order_id)
     {
+        $order = Order::findOrFail($order_id);
         $cov = Cover::all();
         $palilleria = Session::get('palilleria');
-        return view('palillerias.cover', compact('order_id', 'cov', 'palilleria'));
+        return view('palillerias.cover', compact('order_id', 'cov', 'palilleria', 'order'));
     }
 
     /**

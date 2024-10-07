@@ -234,9 +234,10 @@ class ToldosController extends Controller
 
     public function addCover($order_id)
     {
+        $order = Order::findOrFail($order_id);
         $cov = Cover::all();
         $toldo = Session::get('toldo');
-        return view('toldos.cover', compact('order_id', 'cov', 'toldo'));
+        return view('toldos.cover', compact('order_id', 'cov', 'toldo', 'order'));
     }
 
     /**
