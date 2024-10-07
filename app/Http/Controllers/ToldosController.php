@@ -124,7 +124,7 @@ class ToldosController extends Controller
             addPackages($order);
         }
         $order->save();
-        return redirect()->route('order.show', $order->id)->withStatus('Datos guardados correctamente');
+        return redirect()->route('orders.show', $order->id)->withStatus('Datos guardados correctamente');
     }
 
     private function echoToldo(Toldo $toldo, int $value) {
