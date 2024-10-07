@@ -575,4 +575,14 @@ class CurtainsController extends Controller
         deleteSystem($curtain);
         return redirect()->back()->withStatus('Sistema eliminado correctamente');
     }
+
+    public function edit($id){
+        $curtain = Curtain::findOrFail($id);
+        $user = Auth::user();
+        $role = $user->role_id;
+        $handles = Handle::where('price', '>', 0)->get();
+        $controls = Control::where('price', '>', 0)->get();
+        $voices = VoiceControl::where('price', '>', 0)->get();
+        return view('curtains.edit', compact('curtain', 'role', 'handles', 'controls', 'voices'));
+    }
 }

@@ -16,8 +16,13 @@
 
                 <div class="form-row">
                     <div class="col-md-6 col-sm-12" id="coverFormP">
-                        {!! Form::label('cover_id', 'Clave (del 1 al 10 son estilos pendientes)') !!}
-                        {!! Form::number('cover_id', $palilleria->cover_id ?? null, ['class'=>'form-control', "id"=>"cover_id"]) !!}
+                        @if($order->activity == 'Oferta')
+                            {!! Form::label('cover_id', 'Clave (del 1 al 10 son estilos pendientes)') !!}
+                            {!! Form::number('cover_id', $palilleria->cover_id ?? null, ['class'=>'form-control', "id"=>"cover_id"]) !!}
+                        @else
+                            {!! Form::label('cover_id', 'Clave (no se aceptan estilos pendientes para pedidos)') !!}
+                            {!! Form::number('cover_id', $palilleria->cover_id ?? null, ['class'=>'form-control', "id"=>"cover_id"]) !!}
+                        @endif
                     </div>
                     <div class="col-md-6 col-sm-12" id="coverDynamicP">
 

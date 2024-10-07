@@ -612,4 +612,16 @@ class ToldosController extends Controller
         deleteSystem($toldo);
         return redirect()->back()->withStatus('Sistema eliminado correctamente');
     }
+
+    public function edit($id){
+        $toldo = Toldo::findOrFail($id);
+        $user = Auth::user();
+        $role = $user->role_id;
+        $handles = Handle::where('price', '>', 0)->get();
+        $controls = Control::where('price', '>', 0)->get();
+        $voices = VoiceControl::where('price', '>', 0)->get();
+        $sensors = Sensor::where('price', '>', 0)->where('type', 'P')->get();
+        $sensorst = Sensor::where('price', '>', 0)->where('type', 'T')->get();
+        return view('toldos.edit', compact('toldo', 'role', 'handles', 'controls', 'voices', 'sensors', 'sensorst'));
+    }
 }

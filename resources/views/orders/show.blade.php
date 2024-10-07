@@ -167,9 +167,10 @@
                                               <i class="material-icons">info</i>
                                               <div class="ripple-container"></div></button>
                                           @if($order->activity == "Oferta")
-                                              <button type="button" class="btn btn-info btn-link" data-toggle="modal" data-target="#addModal{{$curtain->id}}" id="add_data_modal">
+                                              <a class="btn btn-info btn-link" href="{{route('curtains.edit', $curtain->id)}}">
                                                   <i class="material-icons">edit_square</i>
-                                                  <div class="ripple-container"></div></button>
+                                                  <div class="ripple-container"></div>
+                                              </a>
                                               <a class="btn btn-success btn-link" href="{{route('curtain.copy', $curtain->id)}}">
                                                   <i class="material-icons">content_copy</i>
                                                   <div class="ripple-container"></div>
@@ -658,9 +659,10 @@
                                                   <i class="material-icons">info</i>
                                                   <div class="ripple-container"></div></button>
                                               @if($order->activity == "Oferta")
-                                                  <button type="button" class="btn btn-info btn-link" data-toggle="modal" data-target="#NOpAddModal{{$p->id}}" id="add_data_modal">
+                                                  <a class="btn btn-info btn-link" href="{{route('palillerias.edit', $p->id)}}">
                                                       <i class="material-icons">edit_square</i>
-                                                      <div class="ripple-container"></div></button>
+                                                      <div class="ripple-container"></div>
+                                                  </a>
                                                   <a class="btn btn-success btn-link" href="{{route('palilleria.copy', $p->id)}}">
                                                       <i class="material-icons">content_copy</i>
                                                       <div class="ripple-container"></div>
@@ -1142,9 +1144,10 @@
                                                   <i class="material-icons">info</i>
                                                   <div class="ripple-container"></div></button>
                                               @if($order->activity == "Oferta")
-                                                  <button type="button" class="btn btn-info btn-link" data-toggle="modal" data-target="#NOtAddModal{{$toldo->id}}" id="add_data_modal">
+                                                  <a class="btn btn-info btn-link" href="{{route('toldos.edit', $toldo->id)}}">
                                                       <i class="material-icons">edit_square</i>
-                                                      <div class="ripple-container"></div></button>
+                                                      <div class="ripple-container"></div>
+                                                  </a>
                                                   <a class="btn btn-success btn-link" href="{{route('toldo.copy', $toldo->id)}}">
                                                       <i class="material-icons">content_copy</i>
                                                       <div class="ripple-container"></div>

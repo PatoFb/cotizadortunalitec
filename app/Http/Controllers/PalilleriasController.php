@@ -590,4 +590,15 @@ class PalilleriasController extends Controller
         deleteSystem($palilleria);
         return redirect()->back()->withStatus('Sistema eliminado correctamente');
     }
+
+    public function edit($id){
+        $p = Palilleria::findOrFail($id);
+        $user = Auth::user();
+        $role = $user->role_id;
+        $controls = Control::where('price', '>', 0)->get();
+        $voices = VoiceControl::where('price', '>', 0)->get();
+        $sensors = Sensor::where('price', '>', 0)->where('type', 'P')->get();
+        $sensorst = Sensor::where('price', '>', 0)->where('type', 'T')->get();
+        return view('palillerias.edit', compact('p', 'role', 'controls', 'voices', 'sensors', 'sensorst'));
+    }
 }
