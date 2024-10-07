@@ -113,6 +113,7 @@ class ToldosController extends Controller
         $order = Order::findOrFail($toldo->order_id);
         $order->price = $order->price - $toldo->price;
         $order->total = $order->total - $toldo->price;
+        dd($request->all());
         $toldo->fill($request->all());
         $toldo->accessories_total = $this->calculateAccessoriesPrice($toldo) * (1-($order->discount/100)) * 1.1;
         $toldo->systems_total = $this->calculateToldoPrice($toldo) * (1-($order->discount/100)) * 1.1;
