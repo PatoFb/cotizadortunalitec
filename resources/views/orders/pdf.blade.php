@@ -86,11 +86,11 @@
     <br><br><br>
     <div class="pdf-section notes">
         <p class="red">Notas Adicionales</p>
-        a) Vigencia valida por 10 dias habilies o hasta agotar existencias<br>
+        a) Vigencia válida por 10 dias hábiles o hasta agotar existencias<br>
         b) Precios sujetos a cambio sin previo aviso<br>
-        c) Oferta de carácter informtivo, no es valida como pedido de producción<br>
-        d) Revisar "TERMINOS DE VENTA"<br>
-        e) Confirmar disponibilidad de materiales con personal de ventas Tunali Tec antes de enviar pedido en firma para producción<br>
+        c) Oferta de carácter informtivo, no es válida como pedido de producción<br>
+        d) Revisar "TÉRMINOS DE VENTA"<br>
+        e) Confirmar disponibilidad de materiales con personal de ventas Solair antes de enviar pedido en firma para producción<br>
         @if($order->user->restricted == 0)
             f) Los precios mostrados en esta Oferta incluyen IVA<br>
         @endif
