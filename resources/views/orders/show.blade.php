@@ -421,19 +421,19 @@
                               <div class="row">
                                   <div class="col-12">
                                       {!! Form::label('quantity', 'Cantidad de sistemas') !!}
-                                      {!! Form::number('quantity', $curtain->quantity ?? null, ['class'=>'form-control', "id"=>"quantity", "step"=>1, "min"=>1]) !!}
+                                      {!! Form::number('quantity', $curtain->quantity ?? null, ['class'=>'form-control', "step"=>1, "min"=>1]) !!}
                                   </div>
                               </div>
                               <br>
                               <div class="row" id="curtain-data-form2{{$curtain->id}}">
                                   <div class="col-md-6 col-sm-6">
                                       {!! Form::label('width', 'Ancho') !!}
-                                      {!! Form::number('width', $curtain->width ?? null , ['class'=>'form-control', "step"=>0.01, "min"=>1.01, "max"=>$curtain->model->max_width,'id'=>'width']) !!}
+                                      {!! Form::number('width', $curtain->width ?? null , ['class'=>'form-control', "step"=>0.01, "min"=>1.01, "max"=>$curtain->model->max_width]) !!}
                                   </div>
 
                                   <div class="col-md-6 col-sm-6">
                                       {!! Form::label('height', 'Caida') !!}
-                                      {!! Form::number('height', $curtain->height ?? null, ['class'=>'form-control', "step"=>0.01, "min"=>1.01, "max"=>$curtain->model->max_height, 'id'=>'height']) !!}
+                                      {!! Form::number('height', $curtain->height ?? null, ['class'=>'form-control', "step"=>0.01, "min"=>1.01, "max"=>$curtain->model->max_height]) !!}
                                   </div>
                               </div>
                               <br>
@@ -442,7 +442,7 @@
                               <div class="col-12" id="coverForm2{{$curtain->id}}">
                                   <input name="curtain_id" type="hidden" value="{{$curtain->id}}" id="curtain_id">
                                   {!! Form::label('cover_id', 'Clave (del 1 al 10 son estilos pendientes, no se aceptan pendientes para Pedidos)') !!}
-                                  {!! Form::number('cover_id', $curtain->cover_id ?? null, ['class'=>'form-control', "id"=>"cover_id"]) !!}
+                                  {!! Form::number('cover_id', $curtain->cover_id ?? null, ['class'=>'form-control']) !!}
                               </div>
                               </div>
                               <br>
@@ -456,7 +456,7 @@
                               <div class="row">
                                   @if($curtain->handle_id == 9999)
                                       {!! Form::number('handle_id', 9999, ['class'=>'form-control', "step"=>1, "id"=>"handle_id", 'hidden']) !!}
-                                      {!! Form::number('handle_quantity', 0, ['class'=>'form-control', "step"=>1, "id"=>"handle_quantity", 'hidden']) !!}
+                                      {!! Form::number('handle_quantity', 0, ['class'=>'form-control', "step"=>1, 'hidden']) !!}
                                   @else
                                       <div class="col-6">
                                           {!! Form::label('handle_id', 'Manivela (Medida en metros) (Precio por unidad)' )  !!}
@@ -469,7 +469,7 @@
                                       </div>
                                       <div class="col-6">
                                           {!! Form::label('handle_quantity', 'Cantidad (manivelas):') !!}
-                                          {!! Form::number('handle_quantity', $curtain->handle_quantity ?? 0, ['class'=>'form-control', "step"=>1, "id"=>"handle_quantity"]) !!}
+                                          {!! Form::number('handle_quantity', $curtain->handle_quantity ?? 0, ['class'=>'form-control', "step"=>1]) !!}
                                       </div>
                                   @endif
                               </div>
@@ -479,7 +479,7 @@
                               <div class="row">
                                   @if($curtain->control_id == 9999)
                                       {!! Form::number('control_id', 9999, ['class'=>'form-control', "step"=>1, "id"=>"control_id", 'hidden']) !!}
-                                      {!! Form::number('control_quantity', 0, ['class'=>'form-control', "step"=>1, "id"=>"control_quantity", 'hidden']) !!}
+                                      {!! Form::number('control_quantity', 0, ['class'=>'form-control', "step"=>1, 'hidden']) !!}
                                   @else
                                       <div class="col-6">
                                           {!! Form::label('control_id', 'Control (Precio por unidad)' )  !!}
@@ -498,7 +498,7 @@
                                       </div>
                                       <div class="col-6">
                                           {!! Form::label('control_quantity', 'Cantidad (controles):') !!}
-                                          {!! Form::number('control_quantity', $curtain->control_quantity ?? 0, ['class'=>'form-control', "step"=>1, "id"=>"control_quantity"]) !!}
+                                          {!! Form::number('control_quantity', $curtain->control_quantity ?? 0, ['class'=>'form-control', "step"=>1]) !!}
                                       </div>
                                   @endif
                               </div>
@@ -508,7 +508,7 @@
                               <div class="row">
                                   @if($curtain->voice_id == 9999)
                                       {!! Form::number('voice_id', 9999, ['class'=>'form-control', 'id'=>'voice_id', 'hidden']) !!}
-                                      {!! Form::number('voice_quantity', 0, ['class'=>'form-control', 'id'=>'voice_quantity', 'hidden']) !!}
+                                      {!! Form::number('voice_quantity', 0, ['class'=>'form-control', 'hidden']) !!}
                                   @else
                                       <div class="col-6">
                                           {!! Form::label('voice_id', 'Voz (Precio por unidad)' )  !!}
@@ -527,7 +527,7 @@
                                       </div>
                                       <div class="col-6">
                                           {!! Form::label('voice_quantity', 'Cantidad (controles de voz):') !!}
-                                          {!! Form::number('voice_quantity', $curtain->voice_quantity ?? 0, ['class'=>'form-control', 'id'=>'voice_quantity']) !!}
+                                          {!! Form::number('voice_quantity', $curtain->voice_quantity ?? 0, ['class'=>'form-control']) !!}
                                       </div>
                                   @endif
                               </div>
