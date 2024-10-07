@@ -21,7 +21,7 @@
                         <select class="form-control" name="activity" >
                             <option value="">Selecciona la actividad</option>
                             <option @if($order->activity == "Oferta") selected @endif>Oferta</option>
-                            <option @if($order->activity == "Pedido") selected @endif>Pedido</option>
+                            <!--<option @if($order->activity == "Pedido") selected @endif>Pedido</option>-->
                         </select>
                     </div>
 

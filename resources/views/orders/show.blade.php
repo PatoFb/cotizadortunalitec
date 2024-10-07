@@ -56,10 +56,10 @@
                           <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#editModal" id="edit_order_modal">
                               Editar Orden
                           </button>
-                          <a href="{{route('orders.type', $order->id)}}" class="btn btn-sm btn-primary" >Agregar producto</a>
+                          <!--<a href="{{route('orders.type', $order->id)}}" class="btn btn-sm btn-primary" >Agregar producto</a>
                                   <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#makeOrderModal" id="make_order_modal">
                                       Hacer Pedido
-                                  </button>
+                                  </button>-->
                               @endif
                       </div>
                       <div class="table-responsive">
