@@ -167,7 +167,7 @@
                         </select>
                     </div>
                 </div>
-            </div>
+                <br>
               <div class="row">
                   <div class="col-12">
                       {!! Form::submit('Guardar', ['class'=>'btn btn-primary', 'id'=>'toldo_add_data']) !!}

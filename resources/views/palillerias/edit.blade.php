@@ -153,7 +153,7 @@
                         {!! Form::number('goal_height', $p->goal_height ?? 0, ['class'=>'form-control', 'id'=>'goal_height', 'max'=>5, 'step'=>0.01]) !!}
                     </div>
                 </div>
-
+                <br>
                 <div class="row">
                     <div class="col-12">
                         {!! Form::submit('Guardar', ['class'=>'btn btn-primary', 'id'=>'toldo_add_data']) !!}

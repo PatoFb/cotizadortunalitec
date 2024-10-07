@@ -71,7 +71,7 @@ class PalilleriasController extends Controller
             addPackages($order);
         }
         $order->save();
-        return redirect()->back()->withStatus('Datos guardados correctamente');
+        return redirect()->route('order.show', $order->id)->withStatus('Datos guardados correctamente');
     }
 
     /**

@@ -5,18 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/curtains/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/palillerias/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/toldos/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CurtainsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PalilleriasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PalilleriasController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ToldosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ToldosController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/palillerias/cover.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/palillerias/cover.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/toldos/cover.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/toldos/cover.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/toldos/data.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/toldos/data.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/toldos/features.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/toldos/features.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/toldos/model.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/toldos/model.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/curtains/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/curtains/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/palillerias/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/palillerias/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/toldos/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/toldos/edit.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -455,7 +446,7 @@
       <workItem from="1726617526194" duration="2436000" />
       <workItem from="1726670171251" duration="1382000" />
       <workItem from="1727969158031" duration="1233000" />
-      <workItem from="1728227025394" duration="20892000" />
+      <workItem from="1728227025394" duration="21236000" />
     </task>
     <servers />
   </component>
