@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\addDataRequestToldo;
 use App\Http\Requests\CoverRequest;
 use App\Http\Requests\ModelRequest;
 use App\Http\Requests\ToldoDataRequest;
@@ -106,7 +107,7 @@ class ToldosController extends Controller
         $this->echoToldo($toldo, $value);
     }
 
-    public function addData(Request $request)
+    public function addData(addDataRequestToldo $request)
     {
         $toldo = Toldo::findOrFail($request->get('toldo_id'));
         $order = Order::findOrFail($toldo->order_id);

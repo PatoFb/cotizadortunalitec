@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\addDataRequest;
+use App\Http\Requests\addDataRequestPalilleria;
 use App\Http\Requests\CoverRequest;
 use App\Http\Requests\ModelRequest;
 use App\Http\Requests\pAddDataRequest;
@@ -53,10 +54,9 @@ class PalilleriasController extends Controller
         return redirect()->back()->withStatus('Copia generada correctamente');
     }
 
-    public function addData(Request $request)
+    public function addData(addDataRequestPalilleria $request)
     {
         $palilleria = Palilleria::findOrFail($request->get('palilleria_id'));
-        Log::info($request->all());
         $order = Order::findOrFail($palilleria->order_id);
         $order->price = $order->price - $palilleria->price;
         $order->total = $order->total - $palilleria->price;

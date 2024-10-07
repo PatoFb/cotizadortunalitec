@@ -67,23 +67,51 @@ class OrdersController extends Controller
     public function makeOrder($id)
     {
         $order = Order::findOrFail($id);
+
+// Check for each curtain
         foreach ($order->curtains as $curtain) {
-            if(!$curtain->installation_type || !$curtain->mechanism_side || $curtain->cover_id <= 10) {
-                if($curtain->installation_type == '' || $curtain->mechanism_side == '') {
+            if (!$curtain->installation_type || !$curtain->mechanism_side || $curtain->cover_id <= 10) {
+                if ($curtain->installation_type == '' || $curtain->mechanism_side == '') {
                     $status = 'Asegurese de ingresar los datos para producción de cada sistema antes de realizar el pedido.';
                     return redirect()->back()->withError(__($status));
                 }
-                if($curtain->cover_id <= 10) {
+                if ($curtain->cover_id <= 10) {
                     $status = 'Asegurese de no tener estilos pendientes antes de realizar el pedido.';
                     return redirect()->back()->withError(__($status));
                 }
-            } else {
-                $status = 'Su pedido fue realizado exitosamente, pasará a revisión del equipo para confirmar su pago. Gracias!';
-                $order->activity = 'Pedido';
-                $order->save();
-                return redirect()->back()->withStatus(__($status));
             }
         }
+
+// Check for each palilleria
+        foreach ($order->palillerias as $palilleria) {
+            // Add your specific validation logic for palilleria here
+            if (!$palilleria->inclination || !$palilleria->goal_height || $palilleria->cover_id <= 10) {
+                if ($palilleria->inclination == '' || $palilleria->goal_height == '') {
+                    $status = 'Asegurese de ingresar los datos para producción de cada sistema antes de realizar el pedido.';
+                    return redirect()->back()->withError(__($status));
+                }
+                if ($palilleria->cover_id <= 10) {
+                    $status = 'Asegurese de no tener estilos pendientes antes de realizar el pedido.';
+                    return redirect()->back()->withError(__($status));
+                }
+            }
+        }
+
+// Check for each toldo
+        foreach ($order->toldos as $toldo) {
+            // Add your specific validation logic for toldo here
+            if ($toldo->cover_id <= 10) {
+                $status = 'Asegurese de no tener estilos pendientes para la toldo antes de realizar el pedido.';
+                return redirect()->back()->withError(__($status));
+            }
+
+        }
+
+// If all validations pass, finalize the order
+        $status = 'Su pedido fue realizado exitosamente, pasará a revisión del equipo para confirmar su pago. Gracias!';
+        $order->activity = 'Pedido';
+        $order->save();
+        return redirect()->back()->withStatus(__($status));
     }
 
     public function cancel($id)
