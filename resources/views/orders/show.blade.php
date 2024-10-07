@@ -658,7 +658,7 @@
                                                   <i class="material-icons">info</i>
                                                   <div class="ripple-container"></div></button>
                                               @if($order->activity == "Oferta")
-                                                  <button type="button" class="btn btn-info btn-link" data-toggle="modal" data-target="#pAddModal{{$p->id}}" id="add_data_modal">
+                                                  <button type="button" class="btn btn-info btn-link" data-toggle="modal" data-target="#NOpAddModal{{$p->id}}" id="add_data_modal">
                                                       <i class="material-icons">edit_square</i>
                                                       <div class="ripple-container"></div></button>
                                                   <a class="btn btn-success btn-link" href="{{route('palilleria.copy', $p->id)}}">
@@ -1142,7 +1142,7 @@
                                                   <i class="material-icons">info</i>
                                                   <div class="ripple-container"></div></button>
                                               @if($order->activity == "Oferta")
-                                                  <button type="button" class="btn btn-info btn-link" data-toggle="modal" data-target="#tAddModal{{$toldo->id}}" id="add_data_modal">
+                                                  <button type="button" class="btn btn-info btn-link" data-toggle="modal" data-target="#NOtAddModal{{$toldo->id}}" id="add_data_modal">
                                                       <i class="material-icons">edit_square</i>
                                                       <div class="ripple-container"></div></button>
                                                   <a class="btn btn-success btn-link" href="{{route('toldo.copy', $toldo->id)}}">
