@@ -64,6 +64,10 @@ class Toldo extends Model
         'voice_quantity',
         'sensor_quantity',
         'accessories_total',
-        'systems_total'
+        'systems_total',
+        'installation_type',
+        'mechanism_side',
+        'bambalina_type',
+        'inclination'
     ];
 }
