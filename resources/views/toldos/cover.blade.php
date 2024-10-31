@@ -19,6 +19,39 @@
                         @if($order->activity == 'Oferta')
                             {!! Form::label('cover_id', 'Clave (del 1 al 10 son estilos pendientes)') !!}
                             {!! Form::number('cover_id', $toldo->cover_id ?? null, ['class'=>'form-control', "id"=>"cover_id"]) !!}
+                            <br>
+                            <ol>
+                                <li>
+                                    <p>Dickson 1.20m ancho</p>
+                                </li>
+                                <li>
+                                    <p>Sunbrella 1.16m ancho</p>
+                                </li>
+                                <li>
+                                    <p>Infinity 3.20m ancho</p>
+                                </li>
+                                <li>
+                                    <p>Soltis 92</p>
+                                </li>
+                                <li>
+                                    <p>Soltis 86</p>
+                                </li>
+                                <li>
+                                    <p>Soltis 96</p>
+                                </li>
+                                <li>
+                                    <p>Soltis W96</p>
+                                </li>
+                                <li>
+                                    <p>Soltis 502</p>
+                                </li>
+                                <li>
+                                    <p>Suntex</p>
+                                </li>
+                                <li>
+                                    <p>Infinity+</p>
+                                </li>
+                            </ol>
                         @else
                             {!! Form::label('cover_id', 'Clave (no se aceptan estilos pendientes para pedidos)') !!}
                             {!! Form::number('cover_id', $toldo->cover_id ?? null, ['class'=>'form-control', "id"=>"cover_id"]) !!}

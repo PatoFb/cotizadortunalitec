@@ -6,6 +6,7 @@ use App\Http\Requests\addDataRequestToldo;
 use App\Http\Requests\CoverRequest;
 use App\Http\Requests\ModelRequest;
 use App\Http\Requests\ToldoDataRequest;
+use App\Http\Requests\ToldoFeaturesOrderRequest;
 use App\Http\Requests\ToldoFeaturesRequest;
 use App\Http\Requests\ToldoModelRequest;
 use App\Models\Complement;
@@ -398,15 +399,22 @@ class ToldosController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
 
-    public function addFeaturesPost(ToldoFeaturesRequest $request, $order_id)
+    public function addFeaturesPost(Request $request, $order_id)
     {
         $order = Order::find($order_id);
         $toldo = Session::get('toldo');
+        if ($order->activity == "Pedido") {
+            $rp = new ToldoFeaturesOrderRequest();
+            $validatedData = $request->validate($rp->rules(), $rp->messages());
+        } else {
+            $ro = new ToldoFeaturesRequest();
+            $validatedData = $request->validate($ro->rules(), $ro->messages());
+        }
         if($toldo->model){
             $keys = ['model', 'cover', 'mechanism', 'handle', 'control', 'voice', 'sensor'];
             removeKeys($toldo, $keys, 'toldo');
         }
-        $toldo->fill($request->all());
+        $toldo->fill($validatedData);
         $toldo->accessories_total = $this->calculateAccessoriesPrice($toldo) * (1-($order->discount/100)) * 1.1;
         $toldo->systems_total = $this->calculateToldoPrice($toldo) * (1-($order->discount/100)) * 1.1;
         $toldo->price = $toldo->accessories_total + $toldo->systems_total;

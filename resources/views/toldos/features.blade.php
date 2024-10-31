@@ -113,6 +113,67 @@
                 </div>
 
                 <br>
+                @if($order->activity == 'Pedido')
+                    <h6><strong>Datos para producción</strong></h6>
+                    <div class="form-row">
+                        <div class="col-12">
+                            {!! Form::label('installation_type', 'Tipo de instalación:') !!}
+                            <select class="form-control" name="installation_type">
+                                <option value="">Selecciona tipo de instalacion</option>
+                                <option {{{ (isset($toldo->installation_type) && $toldo->installation_type == 'A pared') ? "selected=\"selected\"" : "" }}}>A pared</option>
+                                <option {{{ (isset($toldo->installation_type) && $toldo->installation_type == 'A techo') ? "selected=\"selected\"" : "" }}}>A techo</option>
+                                <option {{{ (isset($toldo->installation_type) && $toldo->installation_type == 'Entre paredes') ? "selected=\"selected\"" : "" }}}>Entre paredes</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col-12">
+                            {!! Form::label('mechanism_side', 'Lado de mecanismo:') !!}
+                            <select class="form-control" name="mechanism_side" >
+                                <option value="">Lado del mecanismo</option>
+                                <option {{{ (isset($toldo->mechanism_side) && $toldo->mechanism_side == 'Izquierdo') ? "selected=\"selected\"" : "" }}}>Izquierdo</option>
+                                <option {{{ (isset($toldo->mechanism_side) && $toldo->mechanism_side == 'Derecho') ? "selected=\"selected\"" : "" }}}>Derecho</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col-12">
+                            {!! Form::label('bambalina_type', 'Tipo de bambalina:') !!}
+                            <select class="form-control" name="bambalina_type" >
+                                <option value="">Tipo de bambalina</option>
+                                <option {{{ (isset($toldo->mechanism_side) && $toldo->mechanism_side == 'Recta') ? "selected=\"selected\"" : "" }}}>Recta</option>
+                                <option {{{ (isset($toldo->mechanism_side) && $toldo->mechanism_side == 'Ondulada') ? "selected=\"selected\"" : "" }}}>Ondulada</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col-12">
+                            {!! Form::label('inclination', 'Tipo de instalación:') !!}
+                            <select class="form-control" name="inclination">
+                                <option value="">Selecciona inclinación</option>
+                                <option {{ (isset($toldo->inclination) && $toldo->inclination == '5 y 5 grados') ? 'selected="selected"' : '' }}>5 y 5 grados</option>
+                                <option {{ (isset($toldo->inclination) && $toldo->inclination == '10 y 10 grados') ? 'selected="selected"' : '' }}>10 y 10 grados</option>
+                                <option {{ (isset($toldo->inclination) && $toldo->inclination == '15 y 15 grados') ? 'selected="selected"' : '' }}>15 y 15 grados</option>
+                                <option value="20 y 20 grados" {{ (isset($toldo->inclination) && $toldo->inclination == '20 y 20 grados') ? 'selected="selected"' : '' }}>Estándar (20 y 20 grados)</option>
+                                <option {{ (isset($toldo->inclination) && $toldo->inclination == '25 y 25 grados') ? 'selected="selected"' : '' }}>25 y 25 grados</option>
+                                <option {{ (isset($toldo->inclination) && $toldo->inclination == '30 y 30 grados') ? 'selected="selected"' : '' }}>30 y 30 grados</option>
+                                <option {{ (isset($toldo->inclination) && $toldo->inclination == '35 y 35 grados') ? 'selected="selected"' : '' }}>35 y 35 grados</option>
+                                <option {{ (isset($toldo->inclination) && $toldo->inclination == '40 y 40 grados') ? 'selected="selected"' : '' }}>40 y 40 grados</option>
+                                <option {{ (isset($toldo->inclination) && $toldo->inclination == '45 y 45 grados') ? 'selected="selected"' : '' }}>45 y 45 grados</option>
+                                <option {{ (isset($toldo->inclination) && $toldo->inclination == '50 y 50 grados') ? 'selected="selected"' : '' }}>50 y 50 grados</option>
+                                <option {{ (isset($toldo->inclination) && $toldo->inclination == '55 y 55 grados') ? 'selected="selected"' : '' }}>55 y 55 grados</option>
+                                <option {{ (isset($toldo->inclination) && $toldo->inclination == '60 y 60 grados') ? 'selected="selected"' : '' }}>60 y 60 grados</option>
+                                <option {{ (isset($toldo->inclination) && $toldo->inclination == '65 y 65 grados') ? 'selected="selected"' : '' }}>65 y 65 grados</option>
+                                <option {{ (isset($toldo->inclination) && $toldo->inclination == '70 y 70 grados') ? 'selected="selected"' : '' }}>70 y 70 grados</option>
+                                <option {{ (isset($toldo->inclination) && $toldo->inclination == '75 y 75 grados') ? 'selected="selected"' : '' }}>75 y 75 grados</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                @endif
 
                 <div class="form-row text-center">
                     <div class="col-6 text-left">

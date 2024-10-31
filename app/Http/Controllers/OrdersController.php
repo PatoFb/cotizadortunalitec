@@ -36,21 +36,21 @@ class OrdersController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $orders = Order::where('user_id', $user->id)->get();
+        $orders = Order::where('user_id', $user->id)->orderBy('id', 'desc')->get();
         return view('orders.index', compact('orders'));
     }
 
     public function all()
     {
-        $orders = Order::where('activity', 'Pedido')->get();
-        $offers = Order::where('activity', 'Oferta')->get();
-        $prods = Order::where('activity', 'Produccion')->get();
+        $orders = Order::where('activity', 'Pedido')->orderBy('id', 'desc')->get();
+        $offers = Order::where('activity', 'Oferta')->orderBy('id', 'desc')->get();
+        $prods = Order::where('activity', 'Produccion')->orderBy('id', 'desc')->get();
         return view('admin.orders.index', compact('orders', 'offers', 'prods'));
     }
 
     public function record()
     {
-        $orders = Order::where('activity', 'Cerrada')->get();;
+        $orders = Order::where('activity', 'Cerrada')->orderBy('id', 'desc')->get();;
         return view('admin.orders.record', compact('orders'));
     }
 
@@ -100,11 +100,16 @@ class OrdersController extends Controller
 // Check for each toldo
         foreach ($order->toldos as $toldo) {
             // Add your specific validation logic for toldo here
-            if ($toldo->cover_id <= 10) {
-                $status = 'Asegurese de no tener estilos pendientes para la toldo antes de realizar el pedido.';
-                return redirect()->back()->withError(__($status));
+            if (!$toldo->installation_type || !$toldo->mechanism_side || $toldo->cover_id <= 10 || !$toldo->inclination || !$toldo->bambalina_type) {
+                if ($toldo->installation_type == '' || $toldo->mechanism_side == '' || $toldo->inclination == '' || $toldo->bambalina_type == '') {
+                    $status = 'Asegurese de ingresar los datos para producción de cada sistema antes de realizar el pedido.';
+                    return redirect()->back()->withError(__($status));
+                }
+                if ($toldo->cover_id <= 10) {
+                    $status = 'Asegurese de no tener estilos pendientes para la toldo antes de realizar el pedido.';
+                    return redirect()->back()->withError(__($status));
+                }
             }
-
         }
 
 // If all validations pass, finalize the order

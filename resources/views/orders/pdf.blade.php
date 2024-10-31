@@ -65,10 +65,10 @@
         <thead>
         <tr>
             <th>Referencia</th>
-            <th>Precio público sugerido</th>
+            <th>Precio sin descuento</th>
             <th>Paquetería</th>
             <th>Seguro</th>
-            <th>Costo socio</th>
+            <th>Precio con descuento</th>
             <th>Total proyecto</th>
         </tr>
         </thead>
@@ -985,6 +985,54 @@
                     @else
                         @for($i = ($e*6-6); $i < sizeof($order->toldos); $i++)
                             <td class="border-right-clear"></td>
+                        @endfor
+                    @endif
+                </tr>
+                <tr>
+                    <td class="border-right">Tipo de instalación</td>
+                    @if(sizeof($order->toldos) >= ($e*6)))
+                    @for($i = ($e*6-6); $i < ($e*6); $i++)
+                        <td class="text-right border-right-clear">{{$order->toldos[$i]->installation_type}}</td>
+                    @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->toldos); $i++)
+                            <td class="text-right border-right-clear">{{$order->toldos[$i]->installation_type}}</td>
+                        @endfor
+                    @endif
+                </tr>
+                <tr>
+                    <td class="border-right">Lado del mecanismo</td>
+                    @if(sizeof($order->toldos) >= ($e*6))
+                        @for($i = ($e*6-6); $i < ($e*6); $i++)
+                            <td class="text-right border-right-clear">{{$order->toldos[$i]->mechanism_side}}</td>
+                        @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->toldos); $i++)
+                            <td class="text-right border-right-clear">{{$order->toldos[$i]->mechanism_side}}</td>
+                        @endfor
+                    @endif
+                </tr>
+                <tr>
+                    <td class="border-right">Tipo de bambalina</td>
+                    @if(sizeof($order->toldos) >= ($e*6)))
+                    @for($i = ($e*6-6); $i < ($e*6); $i++)
+                        <td class="text-right border-right-clear">{{$order->toldos[$i]->bambalina_type}}</td>
+                    @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->toldos); $i++)
+                            <td class="text-right border-right-clear">{{$order->toldos[$i]->bambalina_type}}</td>
+                        @endfor
+                    @endif
+                </tr>
+                <tr>
+                    <td class="border-right">Inclinación</td>
+                    @if(sizeof($order->toldos) >= ($e*6))
+                        @for($i = ($e*6-6); $i < ($e*6); $i++)
+                            <td class="text-right border-right-clear">{{$order->toldos[$i]->inclination}}</td>
+                        @endfor
+                    @else
+                        @for($i = ($e*6-6); $i < sizeof($order->toldos); $i++)
+                            <td class="text-right border-right-clear">{{$order->toldos[$i]->inclination}}</td>
                         @endfor
                     @endif
                 </tr>

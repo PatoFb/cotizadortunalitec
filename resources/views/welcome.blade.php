@@ -8,9 +8,9 @@
       <div class="card">
           <div class="card-body text-center">
               @if(\Illuminate\Support\Facades\Auth::user()->role_id == 3)
-                  <h2>{{ __('Bienvenido al cotizador Solair. Su usuario pasará a revisión del equipo, se le notificará cuando sea autorizado.') }}</h2>
+                  <h2>{{ __('Bienvenido a Toldos Solair - Aquí podrás configurar tu sistema. Su usuario pasará a revisión del equipo, se le notificará cuando sea autorizado.') }}</h2>
               @else
-                  <h2>{{ __('Bienvenido al cotizador Solair.') }}</h2>
+                  <h2>{{ __('Bienvenido a Toldos Solair - Aquí podrás configurar tu sistema') }}</h2>
               @endif
           </div>
       </div>

@@ -6,7 +6,7 @@
   -->
   <div class="logo">
     <a href="/home" class="simple-text logo-normal">
-      {{ __('Cotizador') }}
+      {{ __('Cotizador Solair') }}
     </a>
   </div>
   <div class="sidebar-wrapper">

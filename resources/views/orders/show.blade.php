@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'myorders', 'titlePage' => __('Mis ordenes')])
+@extends('layouts.app', ['activePage' => 'myorders', 'titlePage' => __('Mis proyectos')])
 
 @section('content')
 <div class="content">
@@ -10,7 +10,7 @@
           <div class="col-md-12">
               <div class="card">
                   <div class="card-header card-header-primary">
-                      <h4 class="card-title">Orden {{$order->id}}</h4>
+                      <h4 class="card-title">Proyecto {{$order->id}}</h4>
                       {{--<p class="card-category"> Here you can manage users</p>--}}
                   </div>
                   <div class="card-body">
@@ -54,7 +54,7 @@
                                       Generar PDF
                                   </a>
                           <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#editModal" id="edit_order_modal">
-                              Editar Orden
+                              Editar Proyecto
                           </button>
                           <a href="{{route('orders.type', $order->id)}}" class="btn btn-sm btn-primary" >Agregar producto</a>
                                   <!--<button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#makeOrderModal" id="make_order_modal">
@@ -417,7 +417,7 @@
                               </button>
                           </div>
                           <div class="modal-body">
-                              Seguro que desea eliminar el producto de su orden? Esta acción es irreversible.
+                              Seguro que desea eliminar el producto de su proyecto? Esta acción es irreversible.
                           </div>
                           <div class="modal-footer">
                               {!! Form::open(['method'=>'DELETE', 'action'=>['App\Http\Controllers\CurtainsController@destroy', $curtain->id]]) !!}
@@ -978,6 +978,61 @@
                                                           </div>
                                                           <hr>
                                                       @endif
+                                                      <br>
+                                                      <h5><strong>Datos para producción</strong></h5>
+                                                      <div class="row">
+                                                          <div class="col-6 text-center">
+                                                              Tipo de instalación:
+                                                          </div>
+                                                          <div class="col-6 text-center">
+                                                              @if($toldo->installation_type)
+                                                                  <strong>{{$toldo->installation_type}}</strong>
+                                                              @else
+                                                                  <strong class="text-danger">Faltante</strong>
+                                                              @endif
+                                                          </div>
+                                                      </div>
+                                                      <hr>
+                                                      <div class="row">
+                                                          <div class="col-6 text-center">
+                                                              Lado del mecanismo:
+                                                          </div>
+                                                          <div class="col-6 text-center">
+                                                              @if($toldo->mechanism_side)
+                                                                  <strong>{{$toldo->mechanism_side}}</strong>
+                                                              @else
+                                                                  <strong class="text-danger">Faltante</strong>
+                                                              @endif
+                                                          </div>
+                                                      </div>
+                                                      <hr>
+                                                      <div class="row">
+                                                          <div class="col-6 text-center">
+                                                              Tipo de bambalina:
+                                                          </div>
+                                                          <div class="col-6 text-center">
+                                                              @if($toldo->bambalina_type)
+                                                                  <strong>{{$toldo->bambalina_type}}</strong>
+                                                              @else
+                                                                  <strong class="text-danger">Faltante</strong>
+                                                              @endif
+                                                          </div>
+                                                      </div>
+                                                      <hr>
+                                                      <div class="row">
+                                                          <div class="col-6 text-center">
+                                                                Inclinación:
+                                                          </div>
+                                                          <div class="col-6 text-center">
+                                                              @if($toldo->inclination)
+                                                                  <strong>{{$toldo->inclination}}</strong>
+                                                              @else
+                                                                  <strong class="text-danger">Faltante</strong>
+                                                              @endif
+                                                          </div>
+                                                      </div>
+                                                      <hr>
+                                                      <br>
                                                       <h5><strong>Precios</strong></h5>
                                                       <div class="row">
                                                           <div class="col-6 text-center">
@@ -1051,13 +1106,13 @@
           <div class="modal-dialog" role="document">
               <div class="modal-content">
                   <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Enviar orden</h5>
+                      <h5 class="modal-title" id="exampleModalLabel">Enviar proyecto</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                       </button>
                   </div>
                   <div class="modal-body">
-                      Seguro que desea enviar su orden a Solair? Pasará a revisión y un colaborador se pondrá en contacto con usted.
+                      Seguro que desea enviar su proyecto a Solair? Pasará a revisión y un colaborador se pondrá en contacto con usted.
                   </div>
                   <div class="modal-footer">
                       <a class="btn btn-success" href="{{route('orders.send', $order->id)}}" data-original-title="" title="">
@@ -1072,7 +1127,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Editar Orden</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Editar Proyecto</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -1189,7 +1244,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Editar Orden</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Editar Proyecto</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -1245,7 +1300,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    Seguro que desea eliminar la orden? Se eliminarán todos los productos dentro de ella también.
+                    Seguro que desea eliminar el proyecto? Se eliminarán todos los productos dentro de ella también.
                 </div>
                 <div class="modal-footer">
                     {!! Form::open(['method'=>'DELETE', 'action'=>['App\Http\Controllers\OrdersController@destroy', $order->id]]) !!}
@@ -1260,13 +1315,13 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Autorizar orden</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Autorizar Proyecto</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    Autorizar orden y enviar a producción?
+                    Autorizar proyecto y enviar a producción?
                 </div>
                 <div class="modal-footer">
                     <a class="btn btn-primary" href="{{route('orders.production', $order->id)}}" data-original-title="" title="">
