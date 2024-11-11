@@ -384,7 +384,8 @@ class ToldosController extends Controller
             $voices = VoiceControl::where('mechanism_id', 2)->get();
             $sensors = Sensor::where('type', 'L')->get();
         }
-        return view('toldos.features', compact('order_id', 'toldo', 'handles', 'controls', 'sensors', 'voices'));
+        $order = Order::findOrFail($order_id);
+        return view('toldos.features', compact('order_id', 'toldo', 'handles', 'controls', 'sensors', 'voices', 'order'));
     }
 
     /**
