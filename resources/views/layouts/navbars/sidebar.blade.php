@@ -6,7 +6,7 @@
   -->
   <div class="logo">
     <a href="/home" class="simple-text logo-normal">
-      {{ __('Cotizador Solair') }}
+        <img src="{{ asset('material') }}/img/logo.png" data-at2x="images/logo@2x.png" alt="Toldos y sombrillas" title="Toldos retractiles">
     </a>
   </div>
   <div class="sidebar-wrapper">

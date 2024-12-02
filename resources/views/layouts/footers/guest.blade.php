@@ -3,16 +3,6 @@
         <nav class="float-left">
         <ul>
             <li>
-                <a href="http://www.tunalitec.com" target="_blank">
-                    {{__(" Tunalitec")}}
-                </a>
-            </li>
-            <li>
-                <a href="http://www.membranasyvelarias.com" target="_blank">
-                    {{__(" Membranas y Velarias")}}
-                </a>
-            </li>
-            <li>
                 <a href="http://www.solairmexico.com" target="_blank">
                     {{__(" Solair")}}
                 </a>
