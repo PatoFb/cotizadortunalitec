@@ -16,7 +16,7 @@
 /*     brand Colors              */
 .navbar-logo {
     height: 100%; /* Adjusts to the navbar height */
-    max-height: 50px; /* Optional: Sets a max height for larger screens */
+    max-height: 60px; /* Optional: Sets a max height for larger screens */
     width: auto; /* Maintains the aspect ratio */
 }
 
