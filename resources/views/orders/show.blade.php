@@ -1154,7 +1154,7 @@
                         <div class="col-12">
                             {!! Form::label('delivery', 'Paquetería:') !!}
                             <select class="form-control" name="delivery" readonly>
-                                <option value="1" {{{ ($order->delivery == 1) ? "selected=\"selected\"" : "" }}}>Si</option>
+                                <!--<option value="1" {{{ ($order->delivery == 1) ? "selected=\"selected\"" : "" }}}>Si</option>-->
                                 <option value="0" {{{ ($order->delivery == 0) ? "selected=\"selected\"" : "" }}}>No</option>
                             </select>
                         </div>
