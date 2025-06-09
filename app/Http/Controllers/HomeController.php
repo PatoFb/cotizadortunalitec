@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notice;
+
 class HomeController extends Controller
 {
     /**
@@ -21,6 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('welcome');
+        $notices = Notice::with('cover')->where('is_active', true)->latest()->get();
+        return view('welcome', compact('notices'));
     }
 }

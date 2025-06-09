@@ -19,6 +19,10 @@ class Cover extends Model
         return $this->hasMany(Toldo::class);
     }
 
+    public function notices() {
+        return $this->hasMany(Notice::class);
+    }
+
     protected $fillable = [
         'id',
         'name',

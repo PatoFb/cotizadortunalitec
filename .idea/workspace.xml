@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="" />
+    <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/notices/create.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/notices/edit.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/notices/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Cover.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Cover.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/navbars/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/navbars/sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -181,7 +190,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/xampp/htdocs/cotizadortunalitec",
+    "last_opened_file_path": "C:/xampp/htdocs/cotizadortunalitec/resources/views/admin",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -193,11 +202,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\admin" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\palillerias" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\curtains" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\toldos" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\app\Http\Requests" />
-      <recent name="C:\xampp\htdocs\cotizadortunalitec\public\storage\images\covers" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\cotizadortunalitec\public\storage\images\covers" />
@@ -466,6 +475,9 @@
       <workItem from="1733167551435" duration="2911000" />
       <workItem from="1733263494642" duration="18000" />
       <workItem from="1733351274082" duration="806000" />
+      <workItem from="1745259683019" duration="2896000" />
+      <workItem from="1749064430898" duration="3229000" />
+      <workItem from="1749504158396" duration="3363000" />
     </task>
     <servers />
   </component>

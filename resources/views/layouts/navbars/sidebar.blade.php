@@ -60,7 +60,7 @@
         </a>
         <div class="collapse {{ ($activePage == 'usuarios') || ($activePage == 'controles') || ($activePage == 'tipos')
                               || ($activePage == 'manivelas_cortina') || ($activePage == 'modelos_cortina') || ($activePage == 'cubiertas') ||
-                              ($activePage == 'mecanismos') || ($activePage == 'record') ? ' show' : 'hide' }}" id="admin">
+                              ($activePage == 'mecanismos') || ($activePage == 'record') || ($activePage == 'avisos') ? ' show' : 'hide' }}" id="admin">
           <ul class="nav">
               <li class="nav-item{{ $activePage == 'record' ? ' active' : '' }}">
                   <a class="nav-link" href="{{ route('orders.record') }}">
@@ -72,6 +72,12 @@
                   <a class="nav-link" href="{{ route('users.index') }}">
                       <span class="sidebar-mini"> U </span>
                       <span class="sidebar-normal"> {{ __('Usuarios') }} </span>
+                  </a>
+              </li>
+              <li class="nav-item{{ $activePage == 'avisos' ? ' active' : '' }}">
+                  <a class="nav-link" href="{{ route('notices.index') }}">
+                      <span class="sidebar-mini"> A </span>
+                      <span class="sidebar-normal"> {{ __('Avisos') }} </span>
                   </a>
               </li>
           </ul>

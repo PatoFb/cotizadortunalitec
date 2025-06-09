@@ -44,6 +44,8 @@ Route::group(['middleware' => 'admin'], function () {
     Route::resource('admin/controls', 'App\Http\Controllers\ControlsController', ['except' => ['show']]);
     Route::resource('admin/types', 'App\Http\Controllers\TypesController', ['except' => ['show']]);
 
+    Route::resource('admin/notices', 'App\Http\Controllers\NoticesController', ['except' => ['show']]);
+
     Route::post('admin/users/search', 'App\Http\Controllers\UsersController@search')->name('users.search');
 
     Route::get('orders/all', 'App\Http\Controllers\OrdersController@all')->name('orders.all');
