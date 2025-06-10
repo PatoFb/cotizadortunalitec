@@ -30,7 +30,7 @@ Route::group(['middleware' => 'auth'], function () {
         return view('contact');
     })->name('contact');
     Route::get('/', function () {
-        return redirect()->route('home');
+        return view('welcome');
     });
 });
 
