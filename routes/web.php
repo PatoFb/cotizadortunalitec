@@ -30,7 +30,7 @@ Route::group(['middleware' => 'auth'], function () {
         return view('contact');
     })->name('contact');
     Route::get('/', function () {
-        return view('welcome');
+        return redirect()->route('home');
     });
 });
 
@@ -43,6 +43,8 @@ Route::group(['middleware' => 'admin'], function () {
     Route::resource('admin/users', 'App\Http\Controllers\UsersController', ['except' => ['show', 'update']]);
     Route::resource('admin/controls', 'App\Http\Controllers\ControlsController', ['except' => ['show']]);
     Route::resource('admin/types', 'App\Http\Controllers\TypesController', ['except' => ['show']]);
+
+    Route::resource('admin/notices', 'App\Http\Controllers\NoticesController', ['except' => ['show']]);
 
     Route::post('admin/users/search', 'App\Http\Controllers\UsersController@search')->name('users.search');
 
