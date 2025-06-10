@@ -5,7 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e6596d50-cdc5-4f56-a8ce-d82ada90a341" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/notices/create.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/notices/edit.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/notices/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Cover.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Cover.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/navbars/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/navbars/sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,6 +178,7 @@
   &quot;associatedIndex&quot;: 6
 }</component>
   <component name="ProjectId" id="1pHPbY30g1VNK72qrSfGMDazFBu" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -179,12 +187,10 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
-    "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "C:/xampp/htdocs/cotizadortunalitec",
+    "last_opened_file_path": "C:/xampp/htdocs/cotizadortunalitec/resources/views/admin",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -196,11 +202,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\admin" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\palillerias" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\curtains" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\resources\views\toldos" />
       <recent name="C:\xampp\htdocs\cotizadortunalitec\app\Http\Requests" />
-      <recent name="C:\xampp\htdocs\cotizadortunalitec\public\storage\images\covers" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\cotizadortunalitec\public\storage\images\covers" />
@@ -219,8 +225,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-PS-251.25410.148" />
-        <option value="bundled-php-predefined-a98d8de5180a-c5828cf854d9-com.jetbrains.php.sharedIndexes-PS-251.25410.148" />
+        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-PS-241.15989.102" />
+        <option value="bundled-php-predefined-ba97393d7c68-c76157a7178b-com.jetbrains.php.sharedIndexes-PS-241.15989.102" />
       </set>
     </attachedChunks>
   </component>
@@ -468,9 +474,10 @@
       <workItem from="1732902634086" duration="1208000" />
       <workItem from="1733167551435" duration="2911000" />
       <workItem from="1733263494642" duration="18000" />
-      <workItem from="1733351274082" duration="1053000" />
-      <workItem from="1734553141725" duration="62000" />
-      <workItem from="1749575659501" duration="626000" />
+      <workItem from="1733351274082" duration="806000" />
+      <workItem from="1745259683019" duration="2896000" />
+      <workItem from="1749064430898" duration="3229000" />
+      <workItem from="1749504158396" duration="3363000" />
     </task>
     <servers />
   </component>
