@@ -18,7 +18,7 @@
                           <br>
                           <strong>Cantidad:</strong> {{$curtain->quantity}}
                           <br>
-                          <strong>Cubierta:</strong> {{$curtain->cover->name}}
+                          <strong>Cubierta:</strong>@if($curtain->cover) {{$curtain->cover->name}} @else Cubierta descontinuada @endif
                           <br>
                           <strong>Mecanismo:</strong> {{$curtain->mechanism->name}}
                           <br>

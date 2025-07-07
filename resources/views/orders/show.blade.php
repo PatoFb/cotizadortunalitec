@@ -156,7 +156,7 @@
                               @foreach($order->curtains as $curtain)
                               <tr>
                                   <td>{{$curtain->model->name}}</td>
-                                  <td>{{$curtain->cover->name}}</td>
+                                  <td>@if($curtain->cover) {{$curtain->cover->name}} @else Cubierta descontinuada @endif</td>
                                   <td>{{$curtain->mechanism->name}}</td>
                                   <td>{{$curtain->width}} m</td>
                                   <td>{{$curtain->height}} m</td>
@@ -218,7 +218,7 @@
                                       Cubierta:
                                   </div>
                                   <div class="col-6 text-center">
-                                      <strong>{{$curtain->cover->name}}</strong>
+                                      <strong>@if($curtain->cover) {{$curtain->cover->name}} @else Cubierta descontinuada @endif</strong>
                                   </div>
                               </div>
                               <hr>
@@ -472,7 +472,7 @@
                                   @foreach($order->palillerias as $p)
                                       <tr>
                                           <td>{{$p->model->name}}</td>
-                                          <td>{{$p->cover->name}}</td>
+                                          <td>@if($p->cover) {{$p->cover->name}} @else Cubierta descontinuada @endif</td>
                                           <td>{{$p->mechanism->name}}</td>
                                           <td>{{$p->width}} m</td>
                                           <td>{{$p->height}} m</td>
@@ -522,7 +522,7 @@
                                                               Cubierta:
                                                           </div>
                                                           <div class="col-6 text-center">
-                                                              <strong>{{$p->cover->name}}</strong>
+                                                              <strong>@if($p->cover) {{$p->cover->name}} @else Cubierta descontinuada @endif</strong>
                                                           </div>
                                                       </div>
                                                       <hr>
@@ -797,7 +797,7 @@
                                   @foreach($order->toldos as $toldo)
                                       <tr>
                                           <td>{{$toldo->model->name}}</td>
-                                          <td>{{$toldo->cover->name}}</td>
+                                          <td>@if($toldo->cover) {{$toldo->cover->name}} @else Cubierta descontinuada @endif</td>
                                           <td>{{$toldo->mechanism->name}}</td>
                                           <td>{{$toldo->width}} m</td>
                                           <td>{{$toldo->projection}} m</td>
@@ -848,7 +848,7 @@
                                                              Cubierta:
                                                           </div>
                                                           <div class="col-6 text-center">
-                                                              <strong>{{$toldo->cover->name}}</strong>
+                                                              <strong>@if($toldo->cover) {{$toldo->cover->name}} @else Cubierta descontinuada @endif</strong>
                                                           </div>
                                                       </div>
                                                       <hr>

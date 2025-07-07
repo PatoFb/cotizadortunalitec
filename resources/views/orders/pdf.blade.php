@@ -218,11 +218,11 @@
                 <td class="border-right"></td>
                 @if(sizeof($order->curtains) >= ($e*6))
                     @for($i = ($e*6-6); $i < ($e*6); $i++)
-                        <td class="text-right border-right-clear">{{$order->curtains[$i]->cover->id}}</td>
+                        <td class="text-right border-right-clear">@if($order->curtains[$i]->cover->id) {{$order->curtains[$i]->cover->id}} @else Cubierta descontinuada @endif</td>
                     @endfor
                 @else
                     @for($i = ($e*6-6); $i < sizeof($order->curtains); $i++)
-                        <td class="text-right border-right-clear">{{$order->curtains[$i]->cover->id}}</td>
+                        <td class="text-right border-right-clear">@if($order->curtains[$i]->cover->id) {{$order->curtains[$i]->cover->id}} @else Cubierta descontinuada @endif</td>
                     @endfor
                 @endif
             </tr>
@@ -230,11 +230,11 @@
                 <td class="border-right">Cubierta</td>
                 @if(sizeof($order->curtains) >= ($e*6))
                     @for($i = ($e*6-6); $i < ($e*6); $i++)
-                        <td class="text-right border-right-clear">{{$order->curtains[$i]->cover->name}}</td>
+                        <td class="text-right border-right-clear">@if($order->curtains[$i]->cover->id) {{$order->curtains[$i]->cover->id}} @else Cubierta descontinuada @endif</td>
                     @endfor
                 @else
                     @for($i = ($e*6-6); $i < sizeof($order->curtains); $i++)
-                        <td class="text-right border-right-clear">{{$order->curtains[$i]->cover->name}}</td>
+                        <td class="text-right border-right-clear">@if($order->curtains[$i]->cover->name) {{$order->curtains[$i]->cover->name}} @else Cubierta descontinuada @endif</td>
                     @endfor
                 @endif
             </tr>
@@ -491,11 +491,11 @@
                     <td class="border-right"></td>
                     @if(sizeof($order->palillerias) >= ($e*6))
                         @for($i = ($e*6-6); $i < ($e*6); $i++)
-                            <td class="text-right border-right-clear">{{$order->palillerias[$i]->cover->id}}</td>
+                            <td class="text-right border-right-clear">@if($order->palillerias[$i]->cover->id) {{$order->palillerias[$i]->cover->id}} @else Cubierta descontinuada @endif</td>
                         @endfor
                     @else
                         @for($i = ($e*6-6); $i < sizeof($order->palillerias); $i++)
-                            <td class="text-right border-right-clear">{{$order->palillerias[$i]->cover->id}}</td>
+                            <td class="text-right border-right-clear">@if($order->palillerias[$i]->cover->id) {{$order->palillerias[$i]->cover->id}} @else Cubierta descontinuada @endif</td>
                         @endfor
                     @endif
                 </tr>
@@ -503,11 +503,11 @@
                     <td class="border-right">Cubierta</td>
                     @if(sizeof($order->palillerias) >= ($e*6))
                         @for($i = ($e*6-6); $i < ($e*6); $i++)
-                            <td class="text-right border-right-clear">{{$order->palillerias[$i]->cover->name}}</td>
+                            <td class="text-right border-right-clear">@if($order->palillerias[$i]->cover->name) {{$order->palillerias[$i]->cover->name}} @else Cubierta descontinuada @endif</td>
                         @endfor
                     @else
                         @for($i = ($e*6-6); $i < sizeof($order->palillerias); $i++)
-                            <td class="text-right border-right-clear">{{$order->palillerias[$i]->cover->name}}</td>
+                            <td class="text-right border-right-clear">@if($order->palillerias[$i]->cover->name) {{$order->palillerias[$i]->cover->name}} @else Cubierta descontinuada @endif</td>
                         @endfor
                     @endif
                 </tr>
@@ -824,11 +824,11 @@
                     <td class="border-right"></td>
                     @if(sizeof($order->toldos) >= ($e*6))
                         @for($i = ($e*6-6); $i < ($e*6); $i++)
-                            <td class="text-right border-right-clear">{{$order->toldos[$i]->cover->id}}</td>
+                            <td class="text-right border-right-clear">@if($order->toldos[$i]->cover->id) {{$order->toldos[$i]->cover->id}} @else Cubierta descontinuada @endif</td>
                         @endfor
                     @else
                         @for($i = ($e*6-6); $i < sizeof($order->toldos); $i++)
-                            <td class="text-right border-right-clear">{{$order->toldos[$i]->cover->id}}</td>
+                            <td class="text-right border-right-clear">@if($order->toldos[$i]->cover->id) {{$order->toldos[$i]->cover->id}} @else Cubierta descontinuada @endif</td>
                         @endfor
                     @endif
                 </tr>
@@ -836,11 +836,11 @@
                     <td class="border-right">Cubierta</td>
                     @if(sizeof($order->toldos) >= ($e*6))
                         @for($i = ($e*6-6); $i < ($e*6); $i++)
-                            <td class="text-right border-right-clear">{{$order->toldos[$i]->cover->name}}</td>
+                            <td class="text-right border-right-clear">@if($order->toldos[$i]->cover->name) {{$order->toldos[$i]->cover->name}} @else Cubierta descontinuada @endif</td>
                         @endfor
                     @else
                         @for($i = ($e*6-6); $i < sizeof($order->toldos); $i++)
-                            <td class="text-right border-right-clear">{{$order->toldos[$i]->cover->name}}</td>
+                            <td class="text-right border-right-clear">@if($order->toldos[$i]->cover->name) {{$order->toldos[$i]->cover->name}} @else Cubierta descontinuada @endif</td>
                         @endfor
                     @endif
                 </tr>

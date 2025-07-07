@@ -18,7 +18,7 @@
                           <br>
                           <strong>Cantidad:</strong> {{$palilleria->quantity}}
                           <br>
-                          <strong>Cubierta:</strong> {{$palilleria->cover->name}}
+                          <strong>Cubierta:</strong> @if($palilleria->cover) {{$palilleria->cover->name}} @else Cubierta descontinuada @endif
                           <br>
                           <strong>Mecanismo:</strong> {{$palilleria->mechanism->name}}
                           <br>

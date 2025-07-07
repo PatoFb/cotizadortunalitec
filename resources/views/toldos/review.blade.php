@@ -18,7 +18,7 @@
                     <br>
                     <strong>Cantidad:</strong> {{$toldo->quantity}}
                     <br>
-                    <strong>Cubierta:</strong> {{$toldo->cover->name}}
+                    <strong>Cubierta:</strong> @if($toldo->cover) {{$toldo->cover->name}} @else Cubierta descontinuada @endif
                     <br>
                     <strong>Mecanismo:</strong> {{$toldo->mechanism->name}}
                     <br>
