@@ -55,4 +55,20 @@ class ToldoDataRequest extends FormRequest
             'quantity.integer' => 'La cantidad debe ser un número entero.',
         ];
     }
+
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+            $width = (float) $this->width;
+            $projection = (float) $this->projection;
+
+            if (($width - $projection) < 0.40) {
+                $validator->errors()->add(
+                    'projection',
+                    'El ancho debe ser al menos 0.40 m mayor que la proyección.'
+                );
+            }
+        });
+    }
+
 }
