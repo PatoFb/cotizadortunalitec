@@ -26,17 +26,7 @@ class addDataRequestToldo extends FormRequest
         return [
             'cover_id' => ['required', 'exists:covers,id', 'integer'],
             'width' => ['required', 'min:1', 'max:12', 'numeric'],
-            'projection' => [
-                'required',
-                'numeric',
-                function ($attribute, $value, $fail) {
-                    $width = (float) $this->input('width');
-
-                    if (($width - (float) $value) < 0.40) {
-                        $fail('El ancho debe ser al menos 0.40 m mayor que la proyección.');
-                    }
-                },
-            ],
+            'projection' => ['required', 'numeric'],
             'handle_id' => ['required', 'exists:handles,id', 'integer'],
             'canopy' => ['required', 'integer', 'min:0', 'max:1'],
             'bambalina' => ['required', 'integer', 'min:0', 'max:1'],
@@ -118,4 +108,20 @@ class addDataRequestToldo extends FormRequest
             'quantity.integer' => 'La cantidad debe ser un número entero.',
         ];
     }
+
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+            $width = (float) $this->width;
+            $projection = (float) $this->projection;
+
+            if (($width - $projection) < 0.3999) {
+                $validator->errors()->add(
+                    'projection',
+                    'El ancho debe ser al menos 0.40 m mayor que la proyección.'
+                );
+            }
+        });
+    }
+
 }
