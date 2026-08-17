@@ -73,8 +73,12 @@
                       <td>{{$user->role->name}}</td>
                       <td>{{$user->phone}}</td>
                       <td>{{$user->rfc}}</td>
-                      <td>{{$user->cfdi}}</td>
+                      <td>{{$user->cfdi}}</td>\
+                      @if($user->partner)
                       <td>{{$user->partner->description}}</td>
+                      @else
+                          <td>Socio no asignado</td>
+                      @endif
                       <td>{{$user->discount}}%</td>
                         <td class="td-actions text-right">
                             <a rel="tooltip" class="btn btn-success btn-link" href="{{route('users.edit', $user->id)}}" data-original-title="" title="">
